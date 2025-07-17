@@ -1,0 +1,248 @@
+/* Accessibility Styles */
+
+/* Accessibility Menu Animations */
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation: slideInFromBottom 0.2s ease-out;
+}
+
+.slide-in-from-bottom-2 {
+  animation: slideInFromBottom 0.2s ease-out;
+}
+
+/* Floating button pulse effect */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.accessibility-pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Color Blind Mode Styles */
+.color-blind-mode {
+  /* High contrast background and text */
+  --accessibility-bg-primary: #000000;
+  --accessibility-bg-secondary: #1a1a1a;
+  --accessibility-text-primary: #ffffff;
+  --accessibility-text-secondary: #e0e0e0;
+  --accessibility-accent: #ffff00;
+  --accessibility-success: #00ff00;
+  --accessibility-warning: #ff8800;
+  --accessibility-error: #ff0000;
+  --accessibility-info: #00ffff;
+  --accessibility-border: #444444;
+}
+
+/* Apply color blind mode styles */
+.color-blind-mode {
+  background-color: var(--accessibility-bg-primary) !important;
+  color: var(--accessibility-text-primary) !important;
+}
+
+.color-blind-mode * {
+  border-color: var(--accessibility-border) !important;
+}
+
+/* Text elements */
+.color-blind-mode h1,
+.color-blind-mode h2,
+.color-blind-mode h3,
+.color-blind-mode h4,
+.color-blind-mode h5,
+.color-blind-mode h6 {
+  color: var(--accessibility-text-primary) !important;
+  font-weight: bold !important;
+}
+
+.color-blind-mode p,
+.color-blind-mode span,
+.color-blind-mode div,
+.color-blind-mode li,
+.color-blind-mode td,
+.color-blind-mode th {
+  color: var(--accessibility-text-secondary) !important;
+}
+
+/* Links */
+.color-blind-mode a {
+  color: var(--accessibility-accent) !important;
+  text-decoration: underline !important;
+}
+
+.color-blind-mode a:hover {
+  color: var(--accessibility-info) !important;
+  background-color: var(--accessibility-bg-secondary) !important;
+}
+
+/* Buttons */
+.color-blind-mode button {
+  background-color: var(--accessibility-bg-secondary) !important;
+  color: var(--accessibility-text-primary) !important;
+  border: 2px solid var(--accessibility-border) !important;
+  font-weight: bold !important;
+}
+
+.color-blind-mode button:hover {
+  background-color: var(--accessibility-accent) !important;
+  color: var(--accessibility-bg-primary) !important;
+}
+
+.color-blind-mode button:disabled {
+  background-color: var(--accessibility-border) !important;
+  color: var(--accessibility-text-secondary) !important;
+  opacity: 0.6 !important;
+}
+
+/* Forms */
+.color-blind-mode input,
+.color-blind-mode textarea,
+.color-blind-mode select {
+  background-color: var(--accessibility-bg-secondary) !important;
+  color: var(--accessibility-text-primary) !important;
+  border: 2px solid var(--accessibility-border) !important;
+}
+
+.color-blind-mode input:focus,
+.color-blind-mode textarea:focus,
+.color-blind-mode select:focus {
+  border-color: var(--accessibility-accent) !important;
+  outline: 2px solid var(--accessibility-accent) !important;
+  outline-offset: 2px !important;
+}
+
+/* Cards and containers */
+.color-blind-mode .bg-white,
+.color-blind-mode .bg-gray-50,
+.color-blind-mode .bg-gray-100,
+.color-blind-mode .bg-gray-200 {
+  background-color: var(--accessibility-bg-secondary) !important;
+}
+
+.color-blind-mode .bg-gray-800,
+.color-blind-mode .bg-gray-900 {
+  background-color: var(--accessibility-bg-primary) !important;
+}
+
+/* Status colors */
+.color-blind-mode .text-green-500,
+.color-blind-mode .text-green-600,
+.color-blind-mode .bg-green-500,
+.color-blind-mode .bg-green-600 {
+  color: var(--accessibility-success) !important;
+  background-color: var(--accessibility-success) !important;
+}
+
+.color-blind-mode .text-red-500,
+.color-blind-mode .text-red-600,
+.color-blind-mode .bg-red-500,
+.color-blind-mode .bg-red-600 {
+  color: var(--accessibility-error) !important;
+  background-color: var(--accessibility-error) !important;
+}
+
+.color-blind-mode .text-yellow-500,
+.color-blind-mode .text-yellow-600,
+.color-blind-mode .bg-yellow-500,
+.color-blind-mode .bg-yellow-600 {
+  color: var(--accessibility-warning) !important;
+  background-color: var(--accessibility-warning) !important;
+}
+
+.color-blind-mode .text-blue-500,
+.color-blind-mode .text-blue-600,
+.color-blind-mode .bg-blue-500,
+.color-blind-mode .bg-blue-600 {
+  color: var(--accessibility-info) !important;
+  background-color: var(--accessibility-info) !important;
+}
+
+/* Primary brand colors */
+.color-blind-mode .bg-primary,
+.color-blind-mode .text-primary {
+  background-color: var(--accessibility-accent) !important;
+  color: var(--accessibility-bg-primary) !important;
+}
+
+/* Navigation */
+.color-blind-mode nav {
+  background-color: var(--accessibility-bg-primary) !important;
+  border-bottom: 2px solid var(--accessibility-border) !important;
+}
+
+/* Shadows and borders */
+.color-blind-mode .shadow,
+.color-blind-mode .shadow-sm,
+.color-blind-mode .shadow-md,
+.color-blind-mode .shadow-lg,
+.color-blind-mode .shadow-xl,
+.color-blind-mode .shadow-2xl {
+  box-shadow: 0 0 0 2px var(--accessibility-border) !important;
+}
+
+/* Images - add high contrast filter */
+.color-blind-mode img {
+  filter: contrast(1.2) brightness(1.1) !important;
+}
+
+/* Focus indicators */
+.color-blind-mode *:focus {
+  outline: 3px solid var(--accessibility-accent) !important;
+  outline-offset: 2px !important;
+}
+
+/* Ensure text is always readable */
+.color-blind-mode .text-gray-400,
+.color-blind-mode .text-gray-500,
+.color-blind-mode .text-gray-600 {
+  color: var(--accessibility-text-secondary) !important;
+}
+
+/* Tables */
+.color-blind-mode table {
+  border: 2px solid var(--accessibility-border) !important;
+}
+
+.color-blind-mode th,
+.color-blind-mode td {
+  border: 1px solid var(--accessibility-border) !important;
+  background-color: var(--accessibility-bg-secondary) !important;
+}
+
+.color-blind-mode th {
+  background-color: var(--accessibility-bg-primary) !important;
+  font-weight: bold !important;
+}
+
+/* Animations - reduce motion for accessibility */
+.color-blind-mode * {
+  animation-duration: 0.1s !important;
+  transition-duration: 0.1s !important;
+}
+
+/* Ensure accessibility menu itself is visible */
+.color-blind-mode .fixed.bottom-6.right-6 button {
+  background-color: var(--accessibility-accent) !important;
+  color: var(--accessibility-bg-primary) !important;
+  border: 3px solid var(--accessibility-text-primary) !important;
+}
+
+.color-blind-mode .fixed.bottom-6.right-6 .bg-white {
+  background-color: var(--accessibility-bg-secondary) !important;
+  border: 2px solid var(--accessibility-accent) !important;
+}

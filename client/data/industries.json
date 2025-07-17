@@ -1,0 +1,536 @@
+[
+  {
+    "slug": "corporate-professional",
+    "title": "Corporate & Professional Sector",
+    "hero": {
+      "headline": "Workforce Screening Solutions for Consulting & Service Firms",
+      "subhead": "Ensure credibility, reduce reputational risk, and maintain compliance across your professional teams."
+    },
+    "overview": "In B2B services, employees are the face of the brand. Misrepresented qualifications or fraudulent activity can cause significant damage. Our tailored background screening ensures your workforce upholds professional integrity.",
+    "services": [
+      "Academic Verification",
+      "Professional Certification Validation",
+      "Criminal Record Checks",
+      "Employment Reference Verification"
+    ],
+    "compliance": "We maintain ISO-aligned workflows and ensure full GDPR compliance throughout the screening process.",
+    "story": {
+      "stat": "1 in 4 Leading Law Firms Trust IntelliDelve for Screening",
+      "text": "A top-tier law firm partnered with IntelliDelve to strengthen its hiring process using our legal-specific verification framework. Within 3 months, the firm saw a 48% drop in fraudulent CVs through checks on academic credentials, bar-council registration, and prior misconduct. From paralegals to partners, IntelliDelve ensures every legal hire is compliant, credible, and client-ready."
+    },
+    "cta": "Want to vet professionals faster? Contact us for our corporate screening demo."
+  },
+  {
+    "slug": "legal-services",
+    "title": "Legal Services & Law Firms",
+    "hero": {
+      "headline": "Comprehensive Background Screening for Legal Professionals",
+      "subhead": "Ensure integrity and compliance in your legal practice with thorough screening for attorneys, paralegals, and support staff."
+    },
+    "overview": "Legal firms handle sensitive client information and must maintain the highest standards of professional integrity. Our specialized screening ensures your legal team meets bar requirements and ethical standards.",
+    "services": [
+      "Bar Admission Verification",
+      "Professional License Validation",
+      "Criminal Background Checks",
+      "Academic Credential Verification",
+      "Professional Reference Checks"
+    ],
+    "compliance": "Fully compliant with state bar requirements and legal professional standards.",
+    "story": {
+      "stat": "95% of Top Law Firms Use Professional Screening",
+      "text": "A prestigious law firm implemented our comprehensive screening process and discovered 12% of applicants had misrepresented their bar status or academic credentials, preventing potential malpractice issues and protecting client interests."
+    },
+    "cta": "Protect your practice with professional legal screening solutions."
+  },
+  {
+    "slug": "real-estate",
+    "title": "Real Estate & Property Management",
+    "hero": {
+      "headline": "Trusted Background Screening for Real Estate Professionals",
+      "subhead": "Build client confidence with verified real estate agents, brokers, and property management staff."
+    },
+    "overview": "Real estate professionals handle significant financial transactions and have access to client homes and personal information. Our screening ensures your team maintains the trust essential to your business.",
+    "services": [
+      "Real Estate License Verification",
+      "Criminal Background Checks",
+      "Financial Integrity Screening",
+      "Professional Reference Validation",
+      "Identity Verification"
+    ],
+    "compliance": "Aligned with real estate commission requirements and industry best practices.",
+    "story": {
+      "stat": "78% Reduction in Client Complaints",
+      "text": "A major property management company reduced client complaints by 78% after implementing comprehensive background screening, ensuring only qualified and trustworthy professionals represent their brand."
+    },
+    "cta": "Enhance your real estate team's credibility with professional screening."
+  },
+  {
+    "slug": "accounting-advisory",
+    "title": "Accounting & Advisory Services",
+    "hero": {
+      "headline": "Secure Financial Advisory with Verified Professionals",
+      "subhead": "Protect client assets and maintain regulatory compliance with comprehensive screening for accounting and advisory staff."
+    },
+    "overview": "Accounting and advisory professionals have access to sensitive financial information and must meet strict regulatory requirements. Our screening ensures your team maintains the highest standards of professional integrity.",
+    "services": [
+      "CPA License Verification",
+      "Professional Certification Checks",
+      "Criminal Background Screening",
+      "Financial Integrity Assessment",
+      "Academic Credential Validation"
+    ],
+    "compliance": "Compliant with AICPA standards and regulatory requirements.",
+    "story": {
+      "stat": "100% Compliance Achievement",
+      "text": "An accounting firm achieved 100% regulatory compliance and avoided potential sanctions by implementing our comprehensive screening process, identifying and addressing credential discrepancies before hiring."
+    },
+    "cta": "Ensure compliance and integrity in your accounting practice."
+  },
+  {
+    "slug": "banking-financial",
+    "title": "Banking & Financial Services",
+    "hero": {
+      "headline": "Trusted Background Checks for Finance & Fintech",
+      "subhead": "Reduce risk, meet regulatory requirements, and hire with confidence—tailored for banks, fintech firms, and financial-services providers."
+    },
+    "overview": "Financial institutions face heightened risk of fraud, insider trading, and regulatory penalties. Our solutions verify employment history, financial integrity, and compliance with AML, KYC, and FATF standards.",
+    "services": [
+      "Identity Verification",
+      "Criminal Background Checks",
+      "Credit-Report Checks",
+      "AML & KYC Screening",
+      "Regulatory Watchlist Screening"
+    ],
+    "compliance": "Fully aligned with AML, FATF, GDPR, and PCI DSS.",
+    "story": {
+      "stat": "5 Out of Every 15 Financial Institutions in Pakistan Choose IntelliDelve",
+      "text": "With over 45 banks operating in Pakistan, background screening is now critical. One major bank reported a 30% reduction in onboarding time and successfully blocked a high-risk hire—saving costs and preserving institutional trust."
+    },
+    "cta": "Get ahead of financial risk—schedule a demo with our compliance team today."
+  },
+  {
+    "slug": "it-software",
+    "title": "IT & Software Development",
+    "hero": {
+      "headline": "Secure Your Tech Team with Comprehensive Screening",
+      "subhead": "Protect intellectual property and ensure security with thorough background checks for IT professionals and developers."
+    },
+    "overview": "IT professionals have access to critical systems, source code, and sensitive data. Our specialized screening helps prevent insider threats and ensures your technical team meets security clearance requirements.",
+    "services": [
+      "Technical Certification Verification",
+      "Security Clearance Validation",
+      "Criminal Background Checks",
+      "Academic Credential Verification",
+      "Previous Employment Validation"
+    ],
+    "compliance": "Aligned with cybersecurity frameworks and industry security standards.",
+    "story": {
+      "stat": "85% Reduction in Security Incidents",
+      "text": "A software company reduced security incidents by 85% after implementing comprehensive IT screening, identifying potential insider threats and ensuring all developers met security requirements."
+    },
+    "cta": "Secure your technology infrastructure with professional IT screening."
+  },
+  {
+    "slug": "startups-tech",
+    "title": "Startups & Tech Companies",
+    "hero": {
+      "headline": "Fast, Scalable Screening for Growing Tech Teams",
+      "subhead": "Build your startup team with confidence using streamlined background screening designed for rapid growth."
+    },
+    "overview": "Startups need to hire quickly while maintaining quality and security standards. Our flexible screening solutions scale with your growth while protecting your intellectual property and company culture.",
+    "services": [
+      "Rapid Background Verification",
+      "Technical Skill Validation",
+      "Cultural Fit Assessment",
+      "Reference Verification",
+      "Identity and Credential Checks"
+    ],
+    "compliance": "Flexible compliance options that grow with your startup.",
+    "story": {
+      "stat": "50% Faster Hiring Process",
+      "text": "A fast-growing tech startup reduced their hiring timeline by 50% while maintaining quality standards, using our streamlined screening process to build a team of 200+ employees in 18 months."
+    },
+    "cta": "Scale your startup team with confidence and speed."
+  },
+  {
+    "slug": "ecommerce-digital",
+    "title": "E-commerce & Digital Marketing",
+    "hero": {
+      "headline": "Trusted Teams for Digital Commerce Success",
+      "subhead": "Build customer trust with verified e-commerce and digital marketing professionals who protect your brand reputation."
+    },
+    "overview": "E-commerce and digital marketing teams handle customer data, payment information, and brand reputation. Our screening ensures your team maintains the trust essential for online business success.",
+    "services": [
+      "Digital Marketing Certification Checks",
+      "Criminal Background Screening",
+      "Identity Verification",
+      "Professional Reference Validation",
+      "Social Media Background Review"
+    ],
+    "compliance": "Compliant with e-commerce regulations and data protection standards.",
+    "story": {
+      "stat": "92% Improvement in Customer Trust",
+      "text": "An e-commerce platform improved customer trust scores by 92% after implementing comprehensive team screening, ensuring all customer-facing staff met high integrity standards."
+    },
+    "cta": "Build trust in your digital commerce operations."
+  },
+  {
+    "slug": "gig-workers",
+    "title": "Gig Workers",
+    "hero": {
+      "headline": "Fast, Scalable Background Screening for the Gig Economy",
+      "subhead": "Ensure trust and safety on your platform with real-time, API-ready background checks for gig workers, freelancers, and temporary hires."
+    },
+    "overview": "The gig economy thrives on speed and scale, but that shouldn't compromise trust. IntelliDelve validates driver IDs, conducts criminal checks, and flags red flags before they impact your brand.",
+    "services": [
+      "Real-Time ID Verification",
+      "Criminal Background Checks",
+      "License & Permit Validation",
+      "Continuous Monitoring"
+    ],
+    "compliance": "Compliant with global safety and labor guidelines, including GDPR and CCPA.",
+    "story": {
+      "stat": "40% Drop in Fraud, 60% Fewer Complaints",
+      "text": "A leading rideshare platform reduced onboarding fraud by 40% and cut user complaints by 60% using IntelliDelve's gig-worker screening API—powered by ID verification, geo-location cross-checks, and physical-appearance matching."
+    },
+    "cta": "Streamline your gig-worker onboarding—get started with developer-friendly tools today."
+  },
+  {
+    "slug": "telecommunications",
+    "title": "Telecommunications",
+    "hero": {
+      "headline": "Secure Communications with Verified Telecom Professionals",
+      "subhead": "Ensure network security and regulatory compliance with comprehensive screening for telecommunications staff."
+    },
+    "overview": "Telecommunications professionals have access to critical infrastructure and sensitive communications data. Our screening ensures your team meets security clearance requirements and regulatory standards.",
+    "services": [
+      "Security Clearance Verification",
+      "Technical Certification Checks",
+      "Criminal Background Screening",
+      "Professional License Validation",
+      "Identity and Credential Verification"
+    ],
+    "compliance": "Aligned with telecommunications regulations and security standards.",
+    "story": {
+      "stat": "99.8% Network Security Compliance",
+      "text": "A major telecom provider achieved 99.8% security compliance after implementing comprehensive screening, ensuring all network access personnel met strict security requirements."
+    },
+    "cta": "Secure your telecommunications infrastructure with professional screening."
+  },
+  {
+    "slug": "government-public",
+    "title": "Government & Public Sector",
+    "hero": {
+      "headline": "Trusted Public Service Through Comprehensive Screening",
+      "subhead": "Ensure public trust and security with thorough background checks for government and public sector employees."
+    },
+    "overview": "Government and public sector roles require the highest levels of integrity and security clearance. Our comprehensive screening ensures public servants meet strict requirements for serving the community.",
+    "services": [
+      "Security Clearance Processing",
+      "Criminal Background Investigation",
+      "Financial Integrity Assessment",
+      "Professional Reference Verification",
+      "Continuous Monitoring Services"
+    ],
+    "compliance": "Fully compliant with government security standards and public sector requirements.",
+    "story": {
+      "stat": "100% Security Clearance Success Rate",
+      "text": "A government agency achieved 100% success rate in security clearance processing, ensuring all personnel met strict requirements for handling sensitive public information."
+    },
+    "cta": "Ensure public trust with comprehensive government screening."
+  },
+  {
+    "slug": "healthcare-medical",
+    "title": "Healthcare & Medical Services",
+    "hero": {
+      "headline": "Protect Patients Through Certified Medical-Staff Screening",
+      "subhead": "Deliver quality care by ensuring your healthcare hires are qualified, licensed, and trustworthy."
+    },
+    "overview": "Healthcare providers are responsible for lives—there's no room for risk. We verify licenses, screen for exclusions, and identify criminal or unethical histories while ensuring HIPAA compliance.",
+    "services": [
+      "Medical License Verification",
+      "Sanctions and Exclusion Lists",
+      "Drug Screening"
+    ],
+    "compliance": "Fully aligned with HIPAA, HHS guidelines, and applicable regional medical-board regulations.",
+    "story": {
+      "stat": "Fake Doctor Flagged Before Onboarding",
+      "text": "A regional healthcare network avoided a legal crisis when IntelliDelve identified a fake medical practitioner with a falsified license and a history on the OIG exclusion list—before they were hired."
+    },
+    "cta": "Safeguard your facility and your patients—request a healthcare screening consultation today."
+  },
+  {
+    "slug": "education-academic",
+    "title": "Education & Academic Institutions",
+    "hero": {
+      "headline": "Create Safer Campuses with Verified Educator Background Checks",
+      "subhead": "Ensure educational credibility and safety across your institution with comprehensive staff and faculty screenings."
+    },
+    "overview": "From kindergarten to universities, academic institutions face increasing scrutiny. We help you avoid hiring individuals with falsified degrees, misconduct history, or criminal records.",
+    "services": [
+      "Degree & Credential Verification",
+      "Criminal Record Screening",
+      "Global Watchlist Checks",
+      "Sexual Offender Registry Searches"
+    ],
+    "compliance": "Compliant with local and international education-board requirements, including GDPR for international applicants.",
+    "story": {
+      "stat": "Major University Avoids Public Backlash",
+      "text": "After IntelliDelve flagged a fake Master's claim during international academic verification, the university prevented an unqualified professor from entering the classroom."
+    },
+    "cta": "Protect your students—schedule a background-check consultation today."
+  },
+  {
+    "slug": "hospitality-food-leisure",
+    "title": "Hospitality, Food & Leisure Sector",
+    "hero": {
+      "headline": "Enhance Guest Trust with Hospitality Background Screening",
+      "subhead": "Hire staff who meet safety and service standards with fast, reliable background checks for hotels, restaurants, and resorts."
+    },
+    "overview": "Customer-facing roles require clean histories and verified credentials. We screen for criminal pasts, previous misconduct, and employment inconsistencies.",
+    "services": [
+      "Identity & Criminal Checks",
+      "Customer Complaint History",
+      "Employment Verification",
+      "Work Visa & Permit Validation"
+    ],
+    "compliance": "Compliant with food-safety labor laws and hospitality regulatory codes globally.",
+    "story": {
+      "stat": "Luxury Hotel Chain Cuts Internal Theft by 45%",
+      "text": "After adopting IntelliDelve across all properties, the chain uncovered candidates with fake IDs, undisclosed criminal records, and falsified employment histories."
+    },
+    "cta": "Secure your guest experience—book a hospitality background-screening demo now."
+  },
+  {
+    "slug": "insurance",
+    "title": "Insurance",
+    "hero": {
+      "headline": "Build Trust with Verified Insurance Professionals",
+      "subhead": "Minimize fraud risk, ensure ethical hiring, and meet regulatory compliance with background checks for insurers and claims professionals."
+    },
+    "overview": "Insurance firms handle sensitive data. Our services detect fraudulent applicants, verify licenses, and ensure compliance with national insurance codes.",
+    "services": [
+      "License & Credential Verification",
+      "Criminal Record Screening",
+      "Financial-Integrity Checks",
+      "Claims-History Analysis"
+    ],
+    "compliance": "Compliant with insurance-governance regulations and data-protection laws such as GDPR and CCPA.",
+    "story": {
+      "stat": "33% Reduction in Internal Fraud",
+      "text": "A regional provider cut internal fraud cases by 33% within six months by catching red flags before offer letters were issued."
+    },
+    "cta": "Get ahead of insurance risk—schedule a demo with our compliance team today."
+  },
+  {
+    "slug": "manufacturing-industrial",
+    "title": "Manufacturing & Industrial",
+    "hero": {
+      "headline": "Hire Safer, More Reliable Workers for Your Industrial Operations",
+      "subhead": "Protect your supply chain, workforce, and workplace safety with thorough background checks for manufacturing personnel."
+    },
+    "overview": "Manufacturing sites are high-risk environments. We check for criminal records, substance abuse, and proper certifications.",
+    "services": [
+      "Drug & Alcohol Testing",
+      "Criminal Background Checks",
+      "Employment & Safety Record Verification",
+      "Certification Validation"
+    ],
+    "compliance": "Aligned with OSHA, ISO 45001, and local industrial-safety regulations.",
+    "story": {
+      "stat": "20% Drop in Workplace Incidents",
+      "text": "After screening 1,200+ workers, a production facility saw a 20% fall in incident rates linked to improved hiring quality."
+    },
+    "cta": "Protect your operations—book a free consultation for industrial workforce screening."
+  },
+  {
+    "slug": "non-profit",
+    "title": "Non-Profit Organizations",
+    "hero": {
+      "headline": "Screen with Integrity. Operate with Accountability.",
+      "subhead": "Protect beneficiaries and build donor confidence with compliant, compassionate background checks for staff and volunteers."
+    },
+    "overview": "Non-profits often work with vulnerable communities. We verify team integrity to avoid abuse, fraud, and reputational harm.",
+    "services": [
+      "Volunteer Background Checks",
+      "Identity & Global Watchlist Screening",
+      "Mission-Alignment Assessments",
+      "Criminal-History Verification"
+    ],
+    "compliance": "Supports compliance with UN, WHO, and national donor regulations.",
+    "story": {
+      "stat": "Real-Time Red Flag Prevents Harm",
+      "text": "During refugee-assistance volunteer onboarding, IntelliDelve flagged an applicant previously dismissed for misconduct—preventing reputational and operational harm."
+    },
+    "cta": "Secure your mission—explore our NGO screening plans now."
+  },
+  {
+    "slug": "energy-utilities",
+    "title": "Energy & Utilities",
+    "hero": {
+      "headline": "Hire for Hazard Zones with Confidence",
+      "subhead": "Secure your energy workforce and ensure regulatory compliance with specialized screening for oil, gas, and energy."
+    },
+    "overview": "From offshore rigs to pipeline crews, energy roles demand high-clearance and zero-risk hiring. We validate international licenses, check sanctions, and ensure fitness for duty.",
+    "services": [
+      "Sanctions-List Screening",
+      "Drug & Alcohol Testing",
+      "License Verification",
+      "Remote-Worker Vetting"
+    ],
+    "compliance": "Compliant with IADC, API, and national energy-board regulations.",
+    "story": {
+      "stat": "Million-Dollar Compliance Fine Averted",
+      "text": "An oil-exploration firm nearly onboarded a senior engineer on a global sanctions registry. IntelliDelve flagged the issue in real time—averting fines and reputational damage."
+    },
+    "cta": "Protect your people and assets—book your energy screening session today."
+  },
+  {
+    "slug": "pharmaceutical-biotech",
+    "title": "Pharmaceutical & Biotech Sector",
+    "hero": {
+      "headline": "Ensure Trial Integrity with Verified Pharma Staff",
+      "subhead": "Secure your R&D pipeline, protect intellectual property, and meet FDA/EMA standards through advanced employee screening."
+    },
+    "overview": "A single bad hire can jeopardize clinical-trial outcomes or patent security. We verify academic qualifications, trial experience, and regulatory red flags.",
+    "services": [
+      "Academic & Research Credential Checks",
+      "Regulatory Sanction Screening",
+      "Global Criminal-History Checks",
+      "NDA Compliance Monitoring"
+    ],
+    "compliance": "Supports compliance with FDA, EMA, TGA, and global clinical-trial protocols.",
+    "story": {
+      "stat": "Falsified Credentials Exposed Before Phase III",
+      "text": "A biotech firm discovered a candidate had falsified clinical research credentials and omitted disciplinary history—preventing regulatory risk and data compromise."
+    },
+    "cta": "Build your research team with integrity—start screening smarter today."
+  },
+  {
+    "slug": "real-estate-property",
+    "title": "Real Estate & Property Management",
+    "hero": {
+      "headline": "Create Safer Living Spaces with Property Staff & Tenant Screening",
+      "subhead": "Reduce security incidents and improve occupancy rates through reliable background screening."
+    },
+    "overview": "Safe and trustworthy occupants and staff are vital for apartments, gated communities, or shared housing. We screen for criminal records, eviction history, and prior misconduct.",
+    "services": [
+      "Tenant Background Checks",
+      "Eviction & Credit History",
+      "Maintenance-Staff Vetting",
+      "Property-Security Screening"
+    ],
+    "compliance": "Adheres to housing-compliance and tenant-privacy laws across jurisdictions.",
+    "story": {
+      "stat": "50% Reduction in Resident Complaints",
+      "text": "A residential group achieved stronger community satisfaction after screening all tenants and property staff."
+    },
+    "cta": "Start building safer communities—speak to a residential-screening expert now."
+  },
+  {
+    "slug": "recruitment-agencies",
+    "title": "Recruitment Agencies",
+    "hero": {
+      "headline": "Place with Confidence—Screen Candidates Before You Submit",
+      "subhead": "Enhance your agency's reputation and client trust with candidate-ready background checks for every placement."
+    },
+    "overview": "Your credibility depends on candidate quality. We help staffing firms perform pre-employment checks and flag risks before resumes reach clients.",
+    "services": [
+      "Pre-Placement Background Checks",
+      "Bulk Screening",
+      "Global Education Verification",
+      "ID, License, and Reference Checks"
+    ],
+    "compliance": "Complies with FCRA, GDPR, and local labor-screening laws.",
+    "story": {
+      "stat": "Staffing Agency Doubles Client Retention",
+      "text": "After bundling IntelliDelve's checks with all submissions, an agency doubled client retention."
+    },
+    "cta": "Upgrade your placements—book a staffing-solutions demo today."
+  },
+  {
+    "slug": "driver-fleet",
+    "title": "Driver & Fleet Background Checks",
+    "hero": {
+      "headline": "Ensure Compliance on Every Mile",
+      "subhead": "Keep fleets safe, compliant, and efficient with rigorous background checks for transportation and logistics."
+    },
+    "overview": "Every driver and logistics worker must meet strict hiring standards. We validate licenses, review MVRs, and screen for substance use and criminal records.",
+    "services": [
+      "MVR Validation",
+      "Criminal History & Driving Record",
+      "Logistics-Staff Background Verification"
+    ],
+    "compliance": "Meets DOT, FMCSA, and transport-specific workplace laws.",
+    "story": {
+      "stat": "95% Fewer License-Related Onboarding Delays",
+      "text": "A national logistics provider eliminated most delays after adopting IntelliDelve's automated verification—accelerating hiring while avoiding costly penalties."
+    },
+    "cta": "Drive safer hiring decisions—get started with logistics background checks today."
+  },
+  {
+    "slug": "tech-saas-cybersecurity",
+    "title": "Tech, SaaS & Cybersecurity",
+    "hero": {
+      "headline": "Secure Your Stack with Smart Tech-Talent Screening",
+      "subhead": "Prevent IP theft and insider risks with fast, global, AI-powered background checks."
+    },
+    "overview": "Tech teams have access to source code, IP, and core systems. We screen for education fraud, compliance violations, and insider threats across global hiring markets.",
+    "services": [
+      "Global Academic Checks",
+      "GitHub & Open-Source Contribution Review",
+      "Cybersecurity Clearance Checks",
+      "Insider-Threat Risk Modeling"
+    ],
+    "compliance": "Supports SOC 2, ISO 27001, and global data-protection laws.",
+    "story": {
+      "stat": "Critical Insider Threat Blocked",
+      "text": "A fintech startup avoided hiring a developer with undisclosed sanctions exposure and falsified GitHub contributions, preventing potential IP theft and regulatory violations."
+    },
+    "cta": "Secure your future—book a cybersecurity-screening consultation today."
+  },
+  {
+    "slug": "retail-consumer",
+    "title": "Retail & Consumer Goods",
+    "hero": {
+      "headline": "Build Customer Trust with Verified Retail Teams",
+      "subhead": "Ensure customer safety and brand protection with comprehensive screening for retail and consumer goods staff."
+    },
+    "overview": "Retail employees interact directly with customers and handle merchandise, requiring trustworthy staff who represent your brand values. Our screening ensures your team maintains customer trust and safety.",
+    "services": [
+      "Criminal Background Checks",
+      "Identity Verification",
+      "Employment History Validation",
+      "Professional Reference Checks",
+      "Drug Screening Services"
+    ],
+    "compliance": "Compliant with retail industry standards and customer safety requirements.",
+    "story": {
+      "stat": "67% Reduction in Theft Incidents",
+      "text": "A major retail chain reduced internal theft incidents by 67% after implementing comprehensive employee screening, creating a more secure shopping environment for customers."
+    },
+    "cta": "Protect your retail operations with comprehensive staff screening."
+  },
+  {
+    "slug": "transportation-logistics",
+    "title": "Transportation & Logistics",
+    "hero": {
+      "headline": "Safe and Compliant Transportation Operations",
+      "subhead": "Ensure road safety and regulatory compliance with thorough screening for drivers and logistics personnel."
+    },
+    "overview": "Transportation and logistics operations require drivers and staff who meet strict safety and regulatory requirements. Our screening ensures your team maintains safety standards and compliance.",
+    "services": [
+      "DOT Physical and Drug Testing",
+      "Motor Vehicle Record Checks",
+      "Criminal Background Screening",
+      "Employment History Verification",
+      "Continuous Monitoring Services"
+    ],
+    "compliance": "Fully compliant with DOT regulations and transportation safety standards.",
+    "story": {
+      "stat": "89% Improvement in Safety Scores",
+      "text": "A logistics company improved their safety scores by 89% after implementing comprehensive driver screening, reducing accidents and ensuring regulatory compliance across their fleet."
+    },
+    "cta": "Ensure safe and compliant transportation operations."
+  }
+]

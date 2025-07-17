@@ -1,0 +1,426 @@
+import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { TrendingUp, Shield, Users, Building, Eye, Brain, Zap, Globe, Lock, Database } from "lucide-react";
+import { CaseStudyPopup } from "../components/CaseStudyPopup";
+
+gsap.registerPlugin(ScrollTrigger);
+
+export default function CaseStudies() {
+  const headerRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
+  const casesRef = useRef<HTMLDivElement>(null);
+  const [selectedCaseStudy, setSelectedCaseStudy] = useState<any>(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const openCaseStudy = (caseStudy: any) => {
+    setSelectedCaseStudy(caseStudy);
+    setIsPopupOpen(true);
+  };
+
+  const closeCaseStudy = () => {
+    setIsPopupOpen(false);
+    setTimeout(() => setSelectedCaseStudy(null), 300);
+  };
+
+  useEffect(() => {
+    if (headerRef.current) {
+      gsap.fromTo(
+        headerRef.current,
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
+      );
+    }
+
+    if (statsRef.current) {
+      gsap.fromTo(
+        statsRef.current.children,
+        { opacity: 0, scale: 0.8 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.6,
+          stagger: 0.2,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: statsRef.current,
+            start: "top 80%",
+          },
+        },
+      );
+    }
+
+    if (casesRef.current) {
+      gsap.fromTo(
+        casesRef.current.children,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.3,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: casesRef.current,
+            start: "top 80%",
+          },
+        },
+      );
+    }
+  }, []);
+
+  const stats = [
+    { number: "99.8%", label: "Accuracy Rate" },
+    { number: "500+", label: "Enterprise Clients" },
+    { number: "2.5M+", label: "Background Checks" },
+    { number: "24hr", label: "Average Turnaround" },
+  ];
+
+  const caseStudies = [
+    {
+      id: "techglobal-corp",
+      title: "Global Workforce Screening Transformation",
+      icon: <Building className="h-8 w-8 text-white" />,
+      company: "TechGlobal Corp",
+      industry: "Multinational Technology Company",
+      location: "San Francisco, CA & Global",
+      duration: "6 months",
+      completedDate: "March 2024",
+      challenge:
+        "TechGlobal Corp needed to screen 2,000+ candidates across 15 countries while ensuring compliance with local regulations, maintaining strict confidentiality requirements, and reducing time-to-hire by 50%. Their existing manual process was taking 3-4 weeks per candidate and had compliance gaps.",
+      solution:
+        "We deployed our comprehensive global screening platform with automated compliance checks, real-time reporting dashboard, and AI-powered risk assessment. The solution included integration with their HRIS system and custom workflows for different regions.",
+      implementation: [
+        "Conducted comprehensive audit of existing screening processes across all regions",
+        "Designed custom workflows for each country's regulatory requirements",
+        "Integrated our platform with their existing HRIS and ATS systems",
+        "Implemented automated compliance monitoring and reporting",
+        "Trained regional HR teams on the new platform and processes",
+        "Established 24/7 support channels for global operations"
+      ],
+      results: [
+        { metric: "85%", label: "Faster Screening", improvement: "From 3-4 weeks to 3-5 days" },
+        { metric: "100%", label: "Compliance Rate", improvement: "Zero regulatory violations" },
+        { metric: "2,000+", label: "Candidates Screened", improvement: "Monthly processing capacity" }
+      ],
+      testimonial: {
+        quote: "IntelliDelve transformed our global hiring process. What used to take weeks now takes days, and we have complete confidence in our compliance across all regions. The platform is intuitive and the support team is exceptional.",
+        author: "Sarah Chen",
+        position: "Global Head of Talent Acquisition, TechGlobal Corp"
+      },
+      tags: ["Global Screening", "Compliance Automation", "HRIS Integration", "Risk Assessment", "Multi-Region"],
+      color: "text-blue-500",
+      bgGradient: "bg-gradient-to-br from-blue-600 to-blue-800"
+    },
+    {
+      id: "medcare-alliance",
+      title: "Healthcare Compliance & Safety Enhancement",
+      icon: <Shield className="h-8 w-8 text-white" />,
+      company: "MedCare Alliance",
+      industry: "Healthcare Network",
+      location: "Chicago, IL",
+      duration: "4 months",
+      completedDate: "January 2024",
+      challenge:
+        "MedCare Alliance required comprehensive healthcare-specific background checks with strict HIPAA compliance for 500+ medical professionals. They needed to verify licenses, check sanctions lists, and ensure ongoing monitoring while maintaining patient data security.",
+      solution:
+        "We implemented specialized healthcare screening protocols with automated license verification, sanctions checking, and continuous monitoring. The solution included HIPAA-compliant data handling and integration with medical licensing boards.",
+      implementation: [
+        "Developed HIPAA-compliant screening workflows and data handling procedures",
+        "Integrated with state medical licensing boards for real-time verification",
+        "Implemented automated sanctions and exclusion list monitoring",
+        "Created custom reporting dashboards for compliance officers",
+        "Established continuous monitoring for license renewals and sanctions",
+        "Provided specialized training for healthcare HR teams"
+      ],
+      results: [
+        { metric: "99.9%", label: "Accuracy Rate", improvement: "Zero false positives or negatives" },
+        { metric: "60%", label: "Time Savings", improvement: "From 2 weeks to 3 days" },
+        { metric: "500+", label: "Professionals Screened", improvement: "Monthly processing volume" }
+      ],
+      testimonial: {
+        quote: "Patient safety is our top priority, and IntelliDelve's healthcare screening solution gives us complete confidence in our hiring decisions. The automated license verification and continuous monitoring are game-changers.",
+        author: "Dr. Michael Rodriguez",
+        position: "Chief Medical Officer, MedCare Alliance"
+      },
+      tags: ["Healthcare Screening", "HIPAA Compliance", "License Verification", "Sanctions Monitoring", "Continuous Monitoring"],
+      color: "text-green-500",
+      bgGradient: "bg-gradient-to-br from-green-600 to-green-800"
+    },
+    {
+      id: "fintech-innovations",
+      title: "Financial Services Risk Mitigation",
+      icon: <Lock className="h-8 w-8 text-white" />,
+      company: "FinTech Innovations",
+      industry: "Financial Technology",
+      location: "New York, NY",
+      duration: "8 months",
+      completedDate: "February 2024",
+      challenge:
+        "A rapidly growing fintech company needed to implement comprehensive background screening for 1,000+ employees while meeting strict financial regulatory requirements including SOX compliance, anti-money laundering checks, and ongoing risk monitoring.",
+      solution:
+        "We deployed our financial services screening platform with enhanced due diligence capabilities, regulatory compliance automation, and continuous risk monitoring. The solution included integration with financial crime databases and regulatory reporting tools.",
+      implementation: [
+        "Conducted regulatory compliance assessment and gap analysis",
+        "Implemented enhanced due diligence procedures for high-risk roles",
+        "Integrated with financial crime and sanctions databases",
+        "Developed automated regulatory reporting capabilities",
+        "Established continuous monitoring for regulatory changes",
+        "Created role-based screening protocols for different risk levels"
+      ],
+      results: [
+        { metric: "100%", label: "Regulatory Compliance", improvement: "Zero compliance violations" },
+        { metric: "75%", label: "Risk Reduction", improvement: "Significant decrease in risk exposure" },
+        { metric: "1,000+", label: "Employees Screened", improvement: "Comprehensive coverage achieved" }
+      ],
+      testimonial: {
+        quote: "IntelliDelve's financial services expertise is unmatched. They understand our regulatory environment and delivered a solution that not only meets compliance requirements but enhances our overall risk management strategy.",
+        author: "Jennifer Walsh",
+        position: "Chief Risk Officer, FinTech Innovations"
+      },
+      tags: ["Financial Services", "SOX Compliance", "AML Screening", "Risk Monitoring", "Regulatory Reporting"],
+      color: "text-purple-500",
+      bgGradient: "bg-gradient-to-br from-purple-600 to-purple-800"
+    },
+    {
+      id: "global-manufacturing",
+      title: "Manufacturing Safety & Security Enhancement",
+      icon: <Zap className="h-8 w-8 text-white" />,
+      company: "Global Manufacturing Solutions",
+      industry: "Industrial Manufacturing",
+      location: "Detroit, MI & International",
+      duration: "5 months",
+      completedDate: "December 2023",
+      challenge:
+        "A multinational manufacturing company needed to enhance workplace safety and security by implementing comprehensive background screening for 3,000+ employees across multiple facilities, including security clearance verification for sensitive projects.",
+      solution:
+        "We implemented a comprehensive manufacturing-focused screening solution with safety record verification, security clearance management, and international background checks. The platform included integration with safety management systems and security protocols.",
+      implementation: [
+        "Developed manufacturing-specific screening criteria and safety protocols",
+        "Implemented security clearance verification and management system",
+        "Integrated with existing safety management and HR systems",
+        "Established international screening capabilities for global workforce",
+        "Created automated reporting for safety and security compliance",
+        "Provided specialized training for facility managers and HR teams"
+      ],
+      results: [
+        { metric: "90%", label: "Safety Improvement", improvement: "Significant reduction in incidents" },
+        { metric: "100%", label: "Security Clearance", improvement: "Complete verification coverage" },
+        { metric: "3,000+", label: "Employees Processed", improvement: "Full workforce coverage" }
+      ],
+      testimonial: {
+        quote: "Workplace safety is paramount in manufacturing. IntelliDelve's solution has significantly enhanced our ability to maintain a safe and secure work environment while streamlining our hiring processes.",
+        author: "Robert Thompson",
+        position: "VP of Operations, Global Manufacturing Solutions"
+      },
+      tags: ["Manufacturing Safety", "Security Clearance", "International Screening", "Safety Compliance", "Risk Management"],
+      color: "text-orange-500",
+      bgGradient: "bg-gradient-to-br from-orange-600 to-orange-800"
+    }
+  ];
+
+  const industries = [
+    {
+      icon: <Building className="h-12 w-12 text-blue-500" />,
+      title: "Financial Services",
+      description:
+        "Major bank reduced compliance risk by 95% while processing 15,000+ screenings monthly.",
+      metric: "95%",
+      metricLabel: "Risk Reduction",
+    },
+    {
+      icon: <Users className="h-12 w-12 text-green-500" />,
+      title: "Education Sector",
+      description:
+        "University system improved safety protocols with 100% compliance across 50+ campuses.",
+      metric: "100%",
+      metricLabel: "Compliance Rate",
+    },
+    {
+      icon: <Shield className="h-12 w-12 text-purple-500" />,
+      title: "Government Agency",
+      description:
+        "Federal contractor achieved 100% security clearance verification with zero false positives.",
+      metric: "100%",
+      metricLabel: "Security Clearance",
+    },
+  ];
+
+  return (
+    <div className="min-h-screen pt-16">
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-blue-600 to-purple-700 dark:from-brand-navy dark:to-purple-900 py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div ref={headerRef} className="text-center text-white">
+            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
+              <TrendingUp className="h-5 w-5 mr-2 text-yellow-300" />
+              <span className="text-sm font-medium">
+                Tracking Client Departments
+              </span>
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+              Proven Results,{" "}
+              <span className="text-yellow-300">Trusted Compliance</span>
+            </h1>
+            <p className="text-xl md:text-2xl mb-8 opacity-90 max-w-4xl mx-auto">
+              Discover how IntelliDelve has helped organizations make informed
+              decisions while maintaining the highest standards of regulatory
+              compliance and data security.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-20 bg-primary text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {stats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <div className="text-4xl md:text-5xl font-bold mb-2 text-yellow-300">
+                  {stat.number}
+                </div>
+                <div className="text-lg opacity-90">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Success Stories */}
+      <section className="py-20 bg-white dark:bg-brand-navy">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Success Stories
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Real-world examples of how IntelliDelve has helped organizations
+              mitigate risk, ensure compliance, and make confident hiring
+              decisions.
+            </p>
+          </div>
+
+          <div ref={casesRef} className="space-y-12">
+            {caseStudies.map((study, index) => (
+              <div
+                key={study.id}
+                className={`bg-gray-50 dark:bg-slate-800/50 rounded-3xl p-8 md:p-12 border-l-8 border-l-blue-500 shadow-lg hover:shadow-xl transition-all duration-300 hover:transform hover:scale-[1.02]`}
+              >
+                <div className="grid lg:grid-cols-2 gap-8 items-center">
+                  <div>
+                    <div className="flex items-center mb-6">
+                      {study.icon}
+                      <div className="ml-4">
+                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                          {study.title}
+                        </h3>
+                        <p className="text-gray-600 dark:text-gray-300">
+                          {study.company} • {study.industry}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="space-y-6">
+                      <div>
+                        <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
+                          Challenge
+                        </h4>
+                        <p className="text-gray-600 dark:text-gray-300">
+                          {study.challenge}
+                        </p>
+                      </div>
+
+                      <div>
+                        <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
+                          Solution
+                        </h4>
+                        <p className="text-gray-600 dark:text-gray-300">
+                          {study.solution}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg">
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-6 text-center">
+                      Results
+                    </h4>
+                    <div className="grid grid-cols-2 gap-6">
+                      {study.results.slice(0, 2).map((result, rIndex) => (
+                        <div key={rIndex} className="text-center">
+                          <div className="text-4xl font-bold text-primary dark:text-sky-300 mb-2">
+                            {result.metric}
+                          </div>
+                          <div className="text-gray-600 dark:text-gray-300 text-sm">
+                            {result.label}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <button
+                      onClick={() => openCaseStudy(study)}
+                      className="w-full mt-6 bg-primary dark:bg-sky-500 text-white py-3 rounded-xl font-semibold hover:bg-primary/90 dark:hover:bg-sky-400 transition-colors transform hover:scale-105"
+                    >
+                      View Full Case Study
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Industry Highlights */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-brand-navy/50 dark:to-purple-900/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Industry Highlights
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Proven success across diverse sectors and use cases
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {industries.map((industry, index) => (
+              <div
+                key={index}
+                className="bg-white dark:bg-brand-navy rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              >
+                <div className="flex justify-center mb-6">{industry.icon}</div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">
+                  {industry.title}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-6 text-center">
+                  {industry.description}
+                </p>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-primary mb-1">
+                    {industry.metric}
+                  </div>
+                  <div className="text-gray-600 dark:text-gray-300 text-sm">
+                    {industry.metricLabel}
+                  </div>
+                </div>
+                <button className="w-full mt-6 text-primary hover:text-primary/80 font-medium transition-colors">
+                  Learn More →
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Case Study Popup */}
+      <CaseStudyPopup
+        isOpen={isPopupOpen}
+        onClose={closeCaseStudy}
+        caseStudy={selectedCaseStudy}
+      />
+    </div>
+  );
+}

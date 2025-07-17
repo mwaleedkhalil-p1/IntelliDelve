@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>IntelliDelve - AI-Powered Background Verification</title>
+
+    <!-- Preconnect to external domains for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+    <!-- DNS prefetch for performance -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/client/global.css" as="style" />
+
+    <!-- Favicon and app icons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Theme colors -->
+    <meta name="theme-color" content="#2563eb" />
+    <meta name="msapplication-TileColor" content="#2563eb" />
+
+    <!-- Performance hints -->
+    <meta httpEquiv="x-dns-prefetch-control" content="on" />
+
+    <!-- Google reCAPTCHA v3 -->
+    <script
+      src="https://www.google.com/recaptcha/api.js?render=6LehToYrAAAAANHEwM7r0icjthYUovqk0hokm4Iz"
+      async
+      defer
+    ></script>
+
+    <!-- Preload fonts -->
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap"
+      />
+    </noscript>
+
+    <!-- Critical CSS inlined would go here in production -->
+    <style>
+      /* Critical CSS for above-the-fold content */
+      body {
+        font-family:
+          "Syne",
+          "Montserrat",
+          system-ui,
+          -apple-system,
+          sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #ffffff;
+        color: #111827;
+      }
+
+      .loading-spinner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+      }
+
+      .spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-top: 3px solid white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Loading screen for better perceived performance -->
+    <div id="root">
+      <div class="loading-spinner">
+        <div class="spinner"></div>
+      </div>
+    </div>
+
+    <!-- Module script with performance optimizations -->
+    <script type="module" src="/client/main.tsx"></script>
+
+    <!-- Fallback for browsers without JS -->
+    <noscript>
+      <div style="padding: 2rem; text-align: center; font-family: sans-serif">
+        <h1>JavaScript Required</h1>
+        <p>
+          This application requires JavaScript to function properly. Please
+          enable JavaScript in your browser settings.
+        </p>
+      </div>
+    </noscript>
+  </body>
+</html>

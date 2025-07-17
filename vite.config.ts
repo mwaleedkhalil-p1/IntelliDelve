@@ -19,6 +19,14 @@ export default defineConfig(({ mode }) => ({
   build: {
     outDir: 'dist/spa',
     sourcemap: mode !== 'production',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          recaptcha: ['react-google-recaptcha', 'react-google-recaptcha-v3'],
+        },
+      },
+    },
   },
   define: {
     'process.env.NODE_ENV': JSON.stringify(mode),

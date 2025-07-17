@@ -1,7 +1,10 @@
 [build]
   command = "npm run build"
   publish = "dist/spa"
-  environment = { NODE_VERSION = "18" }
+  environment = {
+    NODE_VERSION = "18",
+    REACT_APP_RECAPTCHA_SITE_KEY = "6Le6iYYrAAAAALPQ2Qd7wcP_p53u4wKBridN4bAO"
+  }
 
 [[redirects]]
   from = "/*"
@@ -15,4 +18,4 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.netlify.app https://unpkg.com; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https: https://fonts.gstatic.com; connect-src 'self' https:;"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.netlify.app https://unpkg.com https://www.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https: https://fonts.gstatic.com; connect-src 'self' https:; frame-src https://www.google.com;"

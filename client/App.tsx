@@ -19,7 +19,7 @@ import AccessibilityMenu from "./components/AccessibilityMenu";
 import { queryClient } from "./lib/queryClient";
 import { routes } from "./routes";
 import { useCalendly } from "./hooks/useCalendly";
-import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
+
 
 export const CalendlyContext = createContext<{
   openCalendly: (title?: string) => void;
@@ -72,33 +72,12 @@ const AppContent: React.FC<{ calendly: ReturnType<typeof useCalendly> }> = ({
 
 const App: React.FC = () => {
   const calendly = useCalendly();
-  const recaptchaKey = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
-
-  // Only enable reCAPTCHA if a valid site key is provided
-  const shouldUseRecaptcha =
-    recaptchaKey &&
-    !recaptchaKey.includes("YourSiteKeyHere") &&
-    recaptchaKey.length > 10;
 
   return (
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
         <TooltipProvider>
-          {shouldUseRecaptcha ? (
-            <GoogleReCaptchaProvider
-              reCaptchaKey={recaptchaKey}
-              scriptProps={{
-                async: false,
-                defer: false,
-                appendTo: "head",
-                nonce: undefined,
-              }}
-            >
-              <AppContent calendly={calendly} />
-            </GoogleReCaptchaProvider>
-          ) : (
-            <AppContent calendly={calendly} />
-          )}
+          <AppContent calendly={calendly} />
         </TooltipProvider>
       </HelmetProvider>
     </QueryClientProvider>

@@ -35,6 +35,7 @@ export default defineConfig(({ mode }) => ({
   define: {
     'process.env.NODE_ENV': JSON.stringify(mode),
     'import.meta.env.NODE_ENV': JSON.stringify(mode),
+    'process.env.REACT_APP_RECAPTCHA_SITE_KEY': JSON.stringify(process.env.REACT_APP_RECAPTCHA_SITE_KEY),
     __APP_VERSION__: JSON.stringify(process.env.npm_package_version || '1.0.0'),
   },
 }));

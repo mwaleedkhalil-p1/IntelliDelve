@@ -218,13 +218,6 @@ export function SEO({
       </script>
 
       {/* Additional performance hints */}
-      <link
-        rel="preload"
-        href="/fonts/inter.woff2"
-        as="font"
-        type="font/woff2"
-        crossOrigin="anonymous"
-      />
       <meta httpEquiv="x-dns-prefetch-control" content="on" />
     </Helmet>
   );

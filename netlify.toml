@@ -18,4 +18,4 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.netlify.app https://unpkg.com https://www.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https: https://fonts.gstatic.com; connect-src 'self' https:; frame-src https://www.google.com;"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.netlify.app https://unpkg.com https://www.google.com https://www.gstatic.com https://assets.calendly.com https://calendly.com; style-src 'self' 'unsafe-inline' https: https://assets.calendly.com; img-src 'self' data: https: https://assets.calendly.com https://calendly.com; font-src 'self' data: https: https://fonts.gstatic.com https://assets.calendly.com; connect-src 'self' https: https://calendly.com https://api.calendly.com; frame-src https://www.google.com https://calendly.com;"

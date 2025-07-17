@@ -1,4 +1,5 @@
 import { UserCheck, Brain, Target, LineChart, Filter, Clock } from "lucide-react";
+import React from "react";
 
 export default function ResumeRanking() {
   return (

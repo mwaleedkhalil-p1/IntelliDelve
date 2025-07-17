@@ -1,4 +1,5 @@
 import { Brain, MessageSquare, BarChart, Zap, Users, Target } from "lucide-react";
+import React from "react";
 
 export default function SentimentAnalysis() {
   return (

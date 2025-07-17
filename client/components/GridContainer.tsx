@@ -1,4 +1,4 @@
-import { memo, useLayoutEffect, useRef } from "react";
+import React, { memo, useLayoutEffect, useRef } from "react";
 
 interface GridContainerProps {
   children: React.ReactNode;

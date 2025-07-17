@@ -1,4 +1,5 @@
 import { Cog, Target, Users, Zap, LineChart, Database } from "lucide-react";
+import React from "react";
 
 export default function RecommendationEngines() {
   return (

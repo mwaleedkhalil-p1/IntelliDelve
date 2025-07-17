@@ -1,4 +1,5 @@
 import { Users, Shield, Bell, Eye, Clock, FileText } from "lucide-react";
+import React from "react";
 
 export default function WorkforceMonitoring() {
   return (

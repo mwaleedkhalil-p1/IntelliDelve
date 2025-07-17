@@ -1,4 +1,5 @@
 import { FileText, Search, Brain, Scan, Eye, Database } from "lucide-react";
+import React from "react";
 
 export default function DocumentIntelligence() {
   return (

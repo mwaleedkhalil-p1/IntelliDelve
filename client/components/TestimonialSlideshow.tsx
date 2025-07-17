@@ -1,4 +1,4 @@
-import { useState, useEffect, memo } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { ChevronLeft, ChevronRight, Star, Quote, Play, Pause } from "lucide-react";
 
 interface Testimonial {

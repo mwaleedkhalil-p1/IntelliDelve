@@ -1,4 +1,5 @@
 import { Brain, Database, Search, Zap, RefreshCw, FileText } from "lucide-react";
+import React from "react";
 
 export default function RAG() {
   return (

@@ -1,4 +1,4 @@
-import { memo } from "react";
+import React, { memo } from "react";
 import { Shield, Eye, Lock, Globe, Users, FileText } from "lucide-react";
 
 const PrivacyPolicy = memo(() => {

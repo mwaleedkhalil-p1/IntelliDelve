@@ -1,4 +1,5 @@
 import { BarChart3, PieChart, LineChart, Activity, RefreshCw, Layers } from "lucide-react";
+import React from "react";
 
 export default function InteractiveDashboards() {
   return (

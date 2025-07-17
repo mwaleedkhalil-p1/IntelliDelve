@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TrendingUp, Shield, Users, Building, Eye, Brain, Zap, Globe, Lock, Database } from "lucide-react";

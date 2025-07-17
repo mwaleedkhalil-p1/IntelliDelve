@@ -1,4 +1,4 @@
-import { useState, useEffect, memo } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { ArrowUp } from "lucide-react";
 
 const BackToTopButton = memo(() => {

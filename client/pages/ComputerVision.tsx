@@ -1,3 +1,4 @@
+import React from "react";
 import { Eye, Camera, Scan, Maximize2, Cpu, BarChart } from "lucide-react";
 
 export default function ComputerVision() {

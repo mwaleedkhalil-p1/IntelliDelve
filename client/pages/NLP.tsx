@@ -1,4 +1,5 @@
 import { MessageSquare, Brain, Search, FileText, Zap, Database } from "lucide-react";
+import React from "react";
 
 export default function NLP() {
   return (

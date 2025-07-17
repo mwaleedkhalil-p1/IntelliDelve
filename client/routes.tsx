@@ -1,4 +1,4 @@
-import { lazy } from "react";
+import React, { lazy } from "react";
 import { RouteObject } from "react-router-dom";
 
 const Index = lazy(() => import("./pages/Index"));

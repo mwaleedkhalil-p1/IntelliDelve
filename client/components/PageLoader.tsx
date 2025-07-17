@@ -1,4 +1,4 @@
-import { memo } from "react";
+import React, { memo } from "react";
 
 const PageLoader = memo(() => (
   <div className="flex items-center justify-center min-h-[400px]">

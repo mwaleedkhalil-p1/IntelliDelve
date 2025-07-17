@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, memo, useCallback } from "react";
+import React, { useEffect, useRef, useState, memo, useCallback } from "react";
 import { gsap } from "gsap";
 import { Link } from "react-router-dom";
 

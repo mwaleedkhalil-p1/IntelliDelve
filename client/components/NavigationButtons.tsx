@@ -1,4 +1,4 @@
-import { memo } from "react";
+import React, { memo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ChevronLeft, ChevronRight, Home } from "lucide-react";
 

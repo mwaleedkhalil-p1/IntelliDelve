@@ -23,9 +23,79 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
   title = "Schedule a Demo",
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
-  const [useIframeFallback, setUseIframeFallback] = useState(false);
+  const [useIframeFallback, setUseIframeFallback] = useState(true);
+
+  const loadCalendlyWidget = () => {
+    // Check if Calendly script is already loaded
+    const existingScript = document.querySelector(
+      'script[src="https://assets.calendly.com/assets/external/widget.js"]',
+    );
+
+    if (existingScript) {
+      // Script already exists, just initialize
+      setIsLoading(false);
+      setTimeout(() => {
+        const widgetElement = document.querySelector(".calendly-inline-widget");
+        if (window.Calendly && widgetElement) {
+          try {
+            window.Calendly.initInlineWidget({
+              url: "https://calendly.com/mwaleedkhalil/30min",
+              parentElement: widgetElement,
+            });
+          } catch (error) {
+            console.error("Failed to initialize Calendly widget:", error);
+            setHasError(true);
+          }
+        } else {
+          setHasError(true);
+        }
+      }, 100);
+    } else {
+      // Load Calendly script dynamically
+      const script = document.createElement("script");
+      script.src = "https://assets.calendly.com/assets/external/widget.js";
+      script.async = true;
+
+      script.onload = () => {
+        setIsLoading(false);
+        // Initialize the widget after script loads
+        setTimeout(() => {
+          const widgetElement = document.querySelector(".calendly-inline-widget");
+          if (window.Calendly && widgetElement) {
+            try {
+              window.Calendly.initInlineWidget({
+                url: "https://calendly.com/mwaleedkhalil/30min",
+                parentElement: widgetElement,
+              });
+            } catch (error) {
+              console.error("Failed to initialize Calendly widget:", error);
+              setHasError(true);
+            }
+          } else {
+            setHasError(true);
+          }
+        }, 100);
+      };
+
+      script.onerror = () => {
+        setIsLoading(false);
+        setHasError(true);
+        console.error("Failed to load Calendly script");
+      };
+
+      // Timeout fallback
+      setTimeout(() => {
+        if (isLoading) {
+          setIsLoading(false);
+          setHasError(true);
+        }
+      }, 10000); // 10 second timeout
+
+      document.head.appendChild(script);
+    }
+  };
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -37,55 +107,11 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
     if (isOpen) {
       document.addEventListener("keydown", handleEscape);
       document.body.style.overflow = "hidden";
-      setIsLoading(true);
+      // Reset states when opening
+      setIsLoading(false);
       setHasError(false);
-
-      // Check if Calendly script is already loaded
-      const existingScript = document.querySelector(
-        'script[src="https://assets.calendly.com/assets/external/widget.js"]',
-      );
-
-      if (existingScript) {
-        // Script already exists, just initialize
-        setIsLoading(false);
-        if (window.Calendly) {
-          window.Calendly.initInlineWidget({
-            url: "https://calendly.com/mwaleedkhalil/30min",
-            parentElement: document.querySelector(".calendly-inline-widget"),
-          });
-        }
-      } else {
-        // Load Calendly script dynamically
-        const script = document.createElement("script");
-        script.src = "https://assets.calendly.com/assets/external/widget.js";
-        script.async = true;
-
-        script.onload = () => {
-          setIsLoading(false);
-          // Initialize the widget after script loads
-          if (window.Calendly) {
-            window.Calendly.initInlineWidget({
-              url: "https://calendly.com/mwaleedkhalil/30min",
-              parentElement: document.querySelector(".calendly-inline-widget"),
-            });
-          }
-        };
-
-        script.onerror = () => {
-          setIsLoading(false);
-          setHasError(true);
-          console.error("Failed to load Calendly script");
-        };
-
-        // Timeout fallback
-        setTimeout(() => {
-          if (isLoading) {
-            setIsLoading(false);
-            setHasError(true);
-          }
-        }, 10000); // 10 second timeout
-
-        document.head.appendChild(script);
+      if (!useIframeFallback) {
+        setUseIframeFallback(true); // Default to iframe since it works
       }
 
       return () => {
@@ -167,7 +193,23 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
           )}
 
           {useIframeFallback && (
-            <CalendlyIframe />
+            <div>
+              <CalendlyIframe />
+              <div className="mt-4 text-center">
+                <button
+                  onClick={() => {
+                    setUseIframeFallback(false);
+                    setIsLoading(true);
+                    setHasError(false);
+                    // Try to load the widget method
+                    loadCalendlyWidget();
+                  }}
+                  className="text-sm text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-sky-400 transition-colors"
+                >
+                  Try Interactive Widget Instead
+                </button>
+              </div>
+            </div>
           )}
 
           {!isLoading && !hasError && !useIframeFallback && (

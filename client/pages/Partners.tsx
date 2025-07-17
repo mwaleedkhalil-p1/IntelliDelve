@@ -21,7 +21,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 type PartnershipFormData = {
   company_name: string;
-  partnership_type: "technology" | "channel" | "solution";
+  partnership_type: "background_screening" | "ai_data_intelligence" | "business_tech_solutions" | "others";
   email: string;
   goals: string;
 };
@@ -35,7 +35,7 @@ export default function Partners() {
 
   const [formData, setFormData] = useState<PartnershipFormData>({
     company_name: "",
-    partnership_type: "technology",
+    partnership_type: "background_screening",
     email: "",
     goals: "",
   });
@@ -132,7 +132,7 @@ export default function Partners() {
 
       setFormData({
         company_name: "",
-        partnership_type: "technology",
+        partnership_type: "background_screening",
         email: "",
         goals: "",
       });
@@ -168,23 +168,23 @@ export default function Partners() {
   const partnerships = [
     {
       icon: <Laptop className="h-12 w-12 text-blue-500" />,
-      title: "Technology Integration Partners",
+      title: "Background Screening Dashboard",
       description:
-        "Integrate our verification APIs into your platform for seamless background checks.",
+        "Integrate our comprehensive background screening solutions into your platform.",
       color: "bg-blue-50 dark:bg-blue-900/20 border-blue-500",
     },
     {
       icon: <Users className="h-12 w-12 text-purple-500" />,
-      title: "Channel Partners",
+      title: "AI & Data Intelligence",
       description:
-        "Reseller programs with competitive margins and dedicated support.",
+        "Leverage our AI-powered data intelligence solutions for advanced analytics.",
       color: "bg-purple-50 dark:bg-purple-900/20 border-purple-500",
     },
     {
       icon: <UserCheck className="h-12 w-12 text-green-500" />,
-      title: "Solution Partners",
+      title: "Business Technological Solutions",
       description:
-        "Joint go-to-market strategies for comprehensive verification solutions.",
+        "Comprehensive tech solutions tailored for your business needs.",
       color: "bg-green-50 dark:bg-green-900/20 border-green-500",
     },
   ];
@@ -349,14 +349,15 @@ export default function Partners() {
                   required
                   className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-brand-navy focus:ring-2 focus:ring-primary focus:border-transparent"
                 >
-                  <option value="technology">Technology Integration</option>
-                  <option value="channel">Channel Partner</option>
-                  <option value="solution">Solution Partner</option>
+                  <option value="background_screening">Background Screening Dashboard</option>
+                  <option value="ai_data_intelligence">AI & Data Intelligence</option>
+                  <option value="business_tech_solutions">Business Technological Solutions</option>
+                  <option value="others">Others</option>
                 </select>
               </div>
               <div>
                 <label
-                  htmlFor="contact_email"
+                  htmlFor="email"
                   className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                 >
                   Contact Email
@@ -374,7 +375,7 @@ export default function Partners() {
               </div>
               <div>
                 <label
-                  htmlFor="partnership_goals"
+                  htmlFor="goals"
                   className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                 >
                   Partnership Goals

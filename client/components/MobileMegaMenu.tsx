@@ -119,7 +119,10 @@ const AccordionSection = ({ section, isExpanded, onToggle, onItemClick }: Accord
 
 export const MobileMegaMenu = ({ isOpen, title, sections, onClose }: MobileMegaMenuProps) => {
   const [expandedSections, setExpandedSections] = useState<Set<number>>(new Set());
+  const [canScrollUp, setCanScrollUp] = useState(false);
+  const [canScrollDown, setCanScrollDown] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const toggleSection = (index: number) => {
     setExpandedSections(prev => {
@@ -136,6 +139,20 @@ export const MobileMegaMenu = ({ isOpen, title, sections, onClose }: MobileMegaM
   const handleItemClick = () => {
     setExpandedSections(new Set());
     onClose();
+  };
+
+  const scrollToTop = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
+      setCanScrollUp(scrollTop > 10);
+      setCanScrollDown(scrollTop < scrollHeight - clientHeight - 10);
+    }
   };
 
   // Keyboard navigation
@@ -157,6 +174,19 @@ export const MobileMegaMenu = ({ isOpen, title, sections, onClose }: MobileMegaM
       document.removeEventListener('keydown', handleKeyDown);
     };
   }, [isOpen, onClose]);
+
+  // Scroll tracking
+  useEffect(() => {
+    if (scrollRef.current) {
+      const scrollElement = scrollRef.current;
+      scrollElement.addEventListener('scroll', handleScroll);
+      handleScroll(); // Initial check
+
+      return () => {
+        scrollElement.removeEventListener('scroll', handleScroll);
+      };
+    }
+  }, [isOpen]);
 
   // Animation
   useEffect(() => {
@@ -194,11 +224,31 @@ export const MobileMegaMenu = ({ isOpen, title, sections, onClose }: MobileMegaM
       </div>
 
       {/* Scrollable Content with Modern Design */}
-      <div className="max-h-[calc(100vh-200px)] overflow-y-auto mobile-mega-menu-scrollbar relative">
+      <div
+        ref={scrollRef}
+        className="max-h-[calc(100vh-180px)] overflow-y-auto mobile-mega-menu-scrollbar relative scroll-smooth"
+        style={{ scrollBehavior: 'smooth' }}
+      >
         {/* Scroll Indicator */}
-        <div className="absolute top-0 right-0 w-1 bg-gradient-to-b from-primary/20 to-purple-500/20 dark:from-sky-400/20 dark:to-purple-400/20 z-10"></div>
+        <div className="absolute top-0 right-0 w-1 bg-gradient-to-b from-primary/20 to-purple-500/20 dark:from-sky-400/20 dark:to-purple-400/20 z-10 rounded-full"></div>
 
-        <div className="p-2">
+        {/* Scroll to Top Button */}
+        {canScrollUp && (
+          <button
+            onClick={scrollToTop}
+            className="fixed bottom-24 right-4 z-30 p-3 bg-primary dark:bg-sky-500 text-white rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 active:scale-95"
+            aria-label="Scroll to top"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+            </svg>
+          </button>
+        )}
+
+        {/* Top fade indicator */}
+        <div className={`sticky top-0 h-4 bg-gradient-to-b from-white dark:from-gray-900 to-transparent z-20 pointer-events-none transition-opacity duration-300 ${canScrollUp ? 'opacity-100' : 'opacity-0'}`}></div>
+
+        <div className="px-2 pb-2">
           {sections.map((section, index) => (
             <div key={index} className="mb-2">
               <AccordionSection
@@ -211,12 +261,15 @@ export const MobileMegaMenu = ({ isOpen, title, sections, onClose }: MobileMegaM
           ))}
         </div>
 
+        {/* Bottom fade indicator */}
+        <div className={`sticky bottom-0 h-4 bg-gradient-to-t from-white dark:from-gray-900 to-transparent z-20 pointer-events-none transition-opacity duration-300 ${canScrollDown ? 'opacity-100' : 'opacity-0'}`}></div>
+
         {/* Sticky Bottom CTA */}
-        <div className="sticky bottom-0 bg-gradient-to-t from-white via-white to-white/80 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900/80 p-4 border-t border-gray-100 dark:border-gray-700">
+        <div className="sticky bottom-0 bg-gradient-to-t from-white via-white to-white/95 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900/95 p-4 border-t border-gray-100 dark:border-gray-700 backdrop-blur-sm">
           <Link
             to={`/${title.toLowerCase().replace(/\s+/g, '-')}`}
             onClick={onClose}
-            className="flex items-center justify-center w-full py-4 px-6 bg-gradient-to-r from-primary to-purple-600 dark:from-sky-500 dark:to-purple-500 text-white rounded-xl hover:shadow-lg transform hover:scale-[1.02] transition-all duration-300 font-semibold text-base shadow-md"
+            className="flex items-center justify-center w-full py-4 px-6 bg-gradient-to-r from-primary to-purple-600 dark:from-sky-500 dark:to-purple-500 text-white rounded-xl hover:shadow-lg transform hover:scale-[1.02] transition-all duration-300 font-semibold text-base shadow-md active:scale-[0.98]"
           >
             <div className="flex items-center">
               <span>Explore All {title}</span>

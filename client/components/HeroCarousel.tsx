@@ -210,7 +210,7 @@ export function HeroCarousel() {
   return (
     <div
       ref={carouselRef}
-      className="relative w-full h-[500px] sm:h-[600px] md:h-[650px] lg:h-[700px] overflow-hidden bg-white dark:bg-gray-900"
+      className="relative w-full h-[100vh] sm:h-[600px] md:h-[650px] lg:h-[700px] overflow-hidden bg-white dark:bg-gray-900"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
@@ -236,9 +236,9 @@ export function HeroCarousel() {
             }}
           >
             <div className="max-w-7xl mx-auto hero-carousel-spacing px-4 sm:px-6 lg:px-8 h-full flex items-center">
-              <div className="flex flex-col lg:grid lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-12 xl:gap-16 items-stretch w-full py-6 sm:py-8 lg:py-16">
-                <div className="relative w-full flex">
-                  <div className="hero-carousel-content bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg rounded-xl sm:rounded-2xl shadow-2xl border border-white/20 dark:border-gray-700/50 w-full h-full flex flex-col">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-12 xl:gap-16 w-full py-6 sm:py-8 lg:py-16 h-full">
+                <div className="relative w-full flex order-2 lg:order-1">
+                  <div className="hero-carousel-content bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg rounded-xl sm:rounded-2xl shadow-2xl border border-white/20 dark:border-gray-700/50 w-full flex flex-col min-h-[300px] sm:min-h-[400px] lg:h-full">
                     <div className="flex-1 flex items-center p-4 sm:p-6 lg:p-10">
                       <div className="w-full">
                         <div className="space-y-4 sm:space-y-6 lg:space-y-8">
@@ -301,13 +301,13 @@ export function HeroCarousel() {
                   </div>
                 </div>
 
-                <div className="relative w-full max-w-md sm:max-w-lg lg:max-w-none flex">
+                <div className="relative w-full flex order-1 lg:order-2">
                   <div className="relative z-10 transform hover:scale-105 transition-transform duration-500 w-full">
-                    <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl backdrop-blur-sm bg-white/10 dark:bg-white/10 border border-white/20 dark:border-white/20 h-full">
+                    <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl backdrop-blur-sm bg-white/10 dark:bg-white/10 border border-white/20 dark:border-white/20 h-[250px] sm:h-[300px] lg:h-full min-h-[250px]">
                       <img
                         src={slide.image}
                         alt="Background verification illustration"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover object-center"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                     </div>

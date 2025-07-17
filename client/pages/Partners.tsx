@@ -8,7 +8,7 @@ import ReCaptcha, { ReCaptchaRef } from "../components/ReCaptcha";
 import {
   Laptop,
   Users,
-  Handshake,
+  UserCheck,
   CheckCircle,
   MapPin,
   Coffee,
@@ -181,7 +181,7 @@ export default function Partners() {
       color: "bg-purple-50 dark:bg-purple-900/20 border-purple-500",
     },
     {
-      icon: <Handshake className="h-12 w-12 text-green-500" />,
+      icon: <UserCheck className="h-12 w-12 text-green-500" />,
       title: "Solution Partners",
       description:
         "Joint go-to-market strategies for comprehensive verification solutions.",

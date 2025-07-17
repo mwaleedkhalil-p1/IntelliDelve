@@ -4,7 +4,7 @@
 
 [build.environment]
   NODE_VERSION = "18"
-  REACT_APP_RECAPTCHA_SITE_KEY = "6LdSpYYrAAAAALwppnqP0wY5wioxmfCBqc4OpNou"
+  REACT_APP_RECAPTCHA_SITE_KEY = "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
 
 [[redirects]]
   from = "/*"

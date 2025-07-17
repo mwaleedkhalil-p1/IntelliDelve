@@ -7,7 +7,7 @@ export default defineConfig(({ mode }) => ({
   base: '/',
   plugins: [
     react({
-      jsxRuntime: 'automatic',
+      jsxRuntime: 'classic',
     }),
   ],
   resolve: {

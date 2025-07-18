@@ -98,12 +98,11 @@ const VideoPlayer = memo(() => {
       <video
         ref={videoRef}
         className="w-full h-64 md:h-80 object-cover"
-        poster="https://cdn.builder.io/o/assets%2F97d489be91794fd7a638b6cb340cc0d0%2F179c8d4e0d634993ae7ad5fb0945d2a9?alt=media&token=194585f7-36fc-4f92-a071-3c2d1058f1c6&apiKey=97d489be91794fd7a638b6cb340cc0d0"
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
       >
         <source
-          src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+          src="https://cdn.pixabay.com/video/2015/08/07/2-135653517_large.mp4"
           type="video/mp4"
         />
         Your browser does not support the video tag.

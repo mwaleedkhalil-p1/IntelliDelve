@@ -183,11 +183,6 @@ const AboutUs = memo(() => {
       {/* Hero Section */}
       <section
         className="relative pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-br from-primary/5 to-accent/5 dark:from-primary/20 dark:to-accent/20"
-        style={{
-          backgroundImage: `url(${"https://cdn.builder.io/o/assets%2F97d489be91794fd7a638b6cb340cc0d0%2F179c8d4e0d634993ae7ad5fb0945d2a9?alt=media&token=194585f7-36fc-4f92-a071-3c2d1058f1c6&apiKey=97d489be91794fd7a638b6cb340cc0d0"})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
       >
         <div className="absolute inset-0 bg-blue-600/80 dark:bg-blue-700/90"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

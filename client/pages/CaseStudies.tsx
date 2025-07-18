@@ -216,6 +216,76 @@ export default function CaseStudies() {
       tags: ["Manufacturing Safety", "Security Clearance", "International Screening", "Safety Compliance", "Risk Management"],
       color: "text-orange-500",
       bgGradient: "bg-gradient-to-br from-orange-600 to-orange-800"
+    },
+    {
+      id: "education-network",
+      title: "Educational Institution Safety Enhancement",
+      icon: <Users className="h-8 w-8 text-white" />,
+      company: "National Education Network",
+      industry: "Education & Academia",
+      location: "Boston, MA & Multi-State",
+      duration: "6 months",
+      completedDate: "November 2023",
+      challenge:
+        "A network of educational institutions needed comprehensive background screening for 2,500+ faculty and staff members across multiple campuses, ensuring student safety while maintaining compliance with state and federal education regulations.",
+      solution:
+        "We implemented education-specific screening protocols with automated degree verification, criminal background checks, and ongoing monitoring. The solution included integration with state education databases and compliance reporting systems.",
+      implementation: [
+        "Developed education-specific screening workflows and compliance protocols",
+        "Integrated with state education licensing and certification databases",
+        "Implemented automated degree and credential verification systems",
+        "Created specialized reporting for education compliance officers",
+        "Established ongoing monitoring for license renewals and violations",
+        "Provided training for campus HR and administrative teams"
+      ],
+      results: [
+        { metric: "100%", label: "Student Safety", improvement: "Zero safety incidents post-implementation" },
+        { metric: "95%", label: "Compliance Rate", improvement: "Exceeded state requirements" },
+        { metric: "2,500+", label: "Staff Screened", improvement: "Complete network coverage" }
+      ],
+      testimonial: {
+        quote: "Student safety is our highest priority. IntelliDelve's education-focused screening solution has given us complete confidence in our hiring decisions while streamlining our compliance processes across all campuses.",
+        author: "Dr. Patricia Williams",
+        position: "Superintendent, National Education Network"
+      },
+      tags: ["Education Screening", "Student Safety", "Credential Verification", "Multi-Campus", "Compliance Monitoring"],
+      color: "text-indigo-500",
+      bgGradient: "bg-gradient-to-br from-indigo-600 to-indigo-800"
+    },
+    {
+      id: "logistics-enterprise",
+      title: "Transportation & Logistics Security Overhaul",
+      icon: <Globe className="h-8 w-8 text-white" />,
+      company: "TransGlobal Logistics",
+      industry: "Transportation & Logistics",
+      location: "Atlanta, GA & International",
+      duration: "7 months",
+      completedDate: "October 2023",
+      challenge:
+        "A major logistics company required comprehensive driver and warehouse staff screening across 50+ locations internationally, including DOT compliance, criminal background checks, and ongoing monitoring for safety-sensitive positions.",
+      solution:
+        "We deployed a transportation-focused screening platform with DOT compliance automation, international background checks, and continuous monitoring. The solution included integration with fleet management systems and safety protocols.",
+      implementation: [
+        "Developed DOT-compliant screening workflows for drivers and safety-sensitive roles",
+        "Implemented international background check capabilities for global operations",
+        "Integrated with fleet management and safety monitoring systems",
+        "Created automated compliance reporting for DOT and international regulations",
+        "Established continuous monitoring for license violations and safety incidents",
+        "Provided specialized training for logistics and safety managers"
+      ],
+      results: [
+        { metric: "98%", label: "DOT Compliance", improvement: "Exceeded federal requirements" },
+        { metric: "80%", label: "Safety Improvement", improvement: "Significant reduction in incidents" },
+        { metric: "5,000+", label: "Personnel Screened", improvement: "Complete workforce coverage" }
+      ],
+      testimonial: {
+        quote: "Safety and compliance are critical in our industry. IntelliDelve's transportation screening solution has transformed our hiring process and significantly improved our safety record across all operations.",
+        author: "Mark Johnson",
+        position: "Chief Safety Officer, TransGlobal Logistics"
+      },
+      tags: ["DOT Compliance", "Driver Screening", "International Background", "Safety Monitoring", "Fleet Management"],
+      color: "text-teal-500",
+      bgGradient: "bg-gradient-to-br from-teal-600 to-teal-800"
     }
   ];
 
@@ -259,13 +329,13 @@ export default function CaseStudies() {
               </span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Proven Results,{" "}
-              <span className="text-yellow-300">Trusted Compliance</span>
+              Client Case Studies,{" "}
+              <span className="text-yellow-300">Proven Background Screening ROI</span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 opacity-90 max-w-4xl mx-auto">
-              Discover how IntelliDelve has helped organizations make informed
-              decisions while maintaining the highest standards of regulatory
-              compliance and data security.
+              Explore real-world case studies of how IntelliDelve's AI-powered
+              background screening helped global organizations improve compliance,
+              reduce fraud, and accelerate hiring.
             </p>
           </div>
         </div>
@@ -302,13 +372,13 @@ export default function CaseStudies() {
             </p>
           </div>
 
-          <div ref={casesRef} className="space-y-12">
+          <div ref={casesRef} className="grid md:grid-cols-2 gap-8">
             {caseStudies.map((study, index) => (
               <div
                 key={study.id}
-                className={`bg-gray-50 dark:bg-slate-800/50 rounded-3xl p-8 md:p-12 border-l-8 border-l-blue-500 shadow-lg hover:shadow-xl transition-all duration-300 hover:transform hover:scale-[1.02]`}
+                className={`bg-gray-50 dark:bg-slate-800/50 rounded-3xl p-6 md:p-8 border-l-8 border-l-blue-500 shadow-lg hover:shadow-xl transition-all duration-300 hover:transform hover:scale-[1.02]`}
               >
-                <div className="grid lg:grid-cols-2 gap-8 items-center">
+                <div className="space-y-6">
                   <div>
                     <div className="flex items-center mb-6">
                       {study.icon}

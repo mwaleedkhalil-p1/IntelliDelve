@@ -918,6 +918,65 @@
     -webkit-overflow-scrolling: touch;
   }
 
+  /* Safari-specific modal and overlay fixes */
+  @supports (-webkit-appearance: none) {
+    /* Safari modal overlay fixes */
+    .modal-overlay-safari {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 9999 !important;
+      background-color: rgba(0, 0, 0, 0.6) !important;
+      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(4px);
+      /* Force hardware acceleration */
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      will-change: opacity;
+    }
+
+    /* Safari modal content fixes */
+    .modal-content-safari {
+      position: relative;
+      z-index: 10000 !important;
+      /* Force hardware acceleration */
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      will-change: transform, opacity;
+    }
+
+    /* Safari body scroll lock */
+    body.modal-open-safari {
+      position: fixed !important;
+      top: 0;
+      left: 0;
+      right: 0;
+      overflow: hidden !important;
+      -webkit-overflow-scrolling: touch;
+      height: 100vh !important;
+      width: 100vw !important;
+    }
+
+    /* Safari backdrop blur fallback */
+    .backdrop-blur-safari {
+      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(4px);
+    }
+
+    /* Ensure proper stacking context for Safari */
+    .safari-modal-container {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      isolation: isolate;
+      /* Create new stacking context */
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+    }
+  }
+
   .mobile-mega-menu-scrollbar::-webkit-scrollbar {
     width: 6px;
   }

@@ -72,12 +72,12 @@ export function HeroCarousel() {
     },
     {
       id: 2,
-      headline: "AI-Powered Verification Solutions",
+      headline: "AI & Data Science Solutions",
       subtext:
-        "Leverage cutting-edge artificial intelligence for faster, more accurate background verification and risk assessment processes.",
+        "Empower your organization with intelligent analytics and machine learning tools for proactive decision-making and risk mitigation.",
       primaryCTA: {
-        text: "Request Demo",
-        link: "#calendly",
+        text: "Explore Solutions",
+        link: "/solutions/ai-data-science",
       },
       secondaryCTAs: [
         {
@@ -92,17 +92,17 @@ export function HeroCarousel() {
     },
     {
       id: 3,
-      headline: "Tech & Innovation Services",
+      headline: "Tech & Innovation",
       subtext:
-        "Custom technology solutions and innovation services to accelerate your digital transformation and business growth.",
+        "Custom web development, business process automation, and innovative technology solutions designed to streamline operations and enhance productivity.",
       primaryCTA: {
-        text: "Request Demo",
-        link: "#calendly",
+        text: "Our Solutions",
+        link: "/solutions/tech-innovation",
       },
       secondaryCTAs: [
         {
-          text: "Our Solutions",
-          link: "/solutions/tech-innovation",
+          text: "Learn More",
+          link: "/what-we-offer",
           icon: <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />,
         },
       ],

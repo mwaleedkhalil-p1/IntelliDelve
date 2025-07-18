@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { X, Loader2, AlertCircle } from "lucide-react";
 import { CalendlyIframe } from "./CalendlyIframe";
+import { useSafariModal } from "../hooks/useSafariModal";
 
 // Declare Calendly global type
 declare global {
@@ -27,21 +28,71 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
   const [hasError, setHasError] = useState(false);
   const [useIframeFallback, setUseIframeFallback] = useState(true);
 
+  // Use Safari modal hook
+  const { getOverlayClasses, getContentClasses } = useSafariModal(isOpen);
+
+  // Preload Calendly script when component mounts
+  useEffect(() => {
+    const preloadScript = () => {
+      const existingScript = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]');
+      if (!existingScript) {
+        const script = document.createElement("script");
+        script.src = "https://assets.calendly.com/assets/external/widget.js";
+        script.async = true;
+        script.defer = true;
+        script.crossOrigin = "anonymous";
+        document.head.appendChild(script);
+      }
+    };
+
+    // Preload script after a short delay to not block initial page load
+    const timer = setTimeout(preloadScript, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
   const loadCalendlyWidget = () => {
+    setIsLoading(true);
+    setHasError(false);
+
     // Check if Calendly script is already loaded
     const existingScript = document.querySelector(
       'script[src="https://assets.calendly.com/assets/external/widget.js"]',
     );
 
     if (existingScript) {
-      // Script already exists, just initialize
+      // Script already exists, initialize immediately without delay
       setIsLoading(false);
-      setTimeout(() => {
+      const widgetElement = document.querySelector(".calendly-inline-widget");
+      if (window.Calendly && widgetElement) {
+        try {
+          window.Calendly.initInlineWidget({
+            url: "https://calendly.com/mwaleedkhalil/30min?hide_landing_page_details=1&hide_gdpr_banner=1&prefill_name=&prefill_email=",
+            parentElement: widgetElement,
+          });
+        } catch (error) {
+          console.error("Failed to initialize Calendly widget:", error);
+          setHasError(true);
+        }
+      } else {
+        setHasError(true);
+      }
+    } else {
+      // Load Calendly script dynamically with optimizations
+      const script = document.createElement("script");
+      script.src = "https://assets.calendly.com/assets/external/widget.js";
+      script.async = true;
+      script.defer = true;
+      // Add preload hints for faster loading
+      script.crossOrigin = "anonymous";
+
+      script.onload = () => {
+        setIsLoading(false);
+        // Initialize immediately without delay
         const widgetElement = document.querySelector(".calendly-inline-widget");
         if (window.Calendly && widgetElement) {
           try {
             window.Calendly.initInlineWidget({
-              url: "https://calendly.com/mwaleedkhalil/30min",
+              url: "https://calendly.com/mwaleedkhalil/30min?hide_landing_page_details=1&hide_gdpr_banner=1&prefill_name=&prefill_email=",
               parentElement: widgetElement,
             });
           } catch (error) {
@@ -51,32 +102,6 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
         } else {
           setHasError(true);
         }
-      }, 100);
-    } else {
-      // Load Calendly script dynamically
-      const script = document.createElement("script");
-      script.src = "https://assets.calendly.com/assets/external/widget.js";
-      script.async = true;
-
-      script.onload = () => {
-        setIsLoading(false);
-        // Initialize the widget after script loads
-        setTimeout(() => {
-          const widgetElement = document.querySelector(".calendly-inline-widget");
-          if (window.Calendly && widgetElement) {
-            try {
-              window.Calendly.initInlineWidget({
-                url: "https://calendly.com/mwaleedkhalil/30min",
-                parentElement: widgetElement,
-              });
-            } catch (error) {
-              console.error("Failed to initialize Calendly widget:", error);
-              setHasError(true);
-            }
-          } else {
-            setHasError(true);
-          }
-        }, 100);
       };
 
       script.onerror = () => {
@@ -85,13 +110,13 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
         console.error("Failed to load Calendly script");
       };
 
-      // Timeout fallback
+      // Reduced timeout for faster fallback
       setTimeout(() => {
         if (isLoading) {
           setIsLoading(false);
           setHasError(true);
         }
-      }, 10000); // 10 second timeout
+      }, 5000); // 5 second timeout (reduced from 10)
 
       document.head.appendChild(script);
     }
@@ -106,7 +131,7 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
 
     if (isOpen) {
       document.addEventListener("keydown", handleEscape);
-      document.body.style.overflow = "hidden";
+
       // Reset states when opening
       setIsLoading(false);
       setHasError(false);
@@ -116,12 +141,9 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
 
       return () => {
         document.removeEventListener("keydown", handleEscape);
-        document.body.style.overflow = "unset";
       };
-    } else {
-      document.body.style.overflow = "unset";
     }
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, useIframeFallback]);
 
   const handleClickOutside = (e: React.MouseEvent) => {
     if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
@@ -133,12 +155,12 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm"
+      className={getOverlayClasses("fixed inset-0 flex items-center justify-center")}
       onClick={handleClickOutside}
     >
       <div
         ref={modalRef}
-        className="relative bg-white dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-4xl mx-4 max-h-[90vh] overflow-hidden"
+        className={getContentClasses("relative bg-white dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-4xl mx-4 max-h-[90vh] overflow-hidden")}
       >
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">

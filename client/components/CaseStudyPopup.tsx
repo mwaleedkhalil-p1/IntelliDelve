@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import { 
-  X, 
-  Building, 
-  Shield, 
-  Users, 
-  TrendingUp, 
-  CheckCircle, 
+import {
+  X,
+  Building,
+  Shield,
+  Users,
+  TrendingUp,
+  CheckCircle,
   Calendar,
   MapPin,
   Award,
@@ -14,6 +14,7 @@ import {
   Clock,
   BarChart3
 } from "lucide-react";
+import { useSafariModal } from "../hooks/useSafariModal";
 
 interface CaseStudyData {
   id: string;
@@ -52,11 +53,25 @@ export function CaseStudyPopup({ isOpen, onClose, caseStudy }: CaseStudyPopupPro
   const overlayRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const [shouldRender, setShouldRender] = useState(false);
+  const [isSafari, setIsSafari] = useState(false);
+
+  // Detect Safari browser
+  useEffect(() => {
+    const userAgent = navigator.userAgent;
+    const isSafariBrowser = /^((?!chrome|android).)*safari/i.test(userAgent);
+    setIsSafari(isSafariBrowser);
+  }, []);
 
   useEffect(() => {
     if (isOpen && caseStudy) {
       setShouldRender(true);
-      document.body.style.overflow = 'hidden';
+
+      // Safari-specific body scroll lock
+      if (isSafari) {
+        document.body.classList.add("modal-open-safari");
+      } else {
+        document.body.style.overflow = 'hidden';
+      }
       
       gsap.killTweensOf([overlayRef.current, modalRef.current]);
       
@@ -91,20 +106,32 @@ export function CaseStudyPopup({ isOpen, onClose, caseStudy }: CaseStudyPopupPro
           ease: "power2.in",
           onComplete: () => {
             setShouldRender(false);
-            document.body.style.overflow = 'unset';
+            if (isSafari) {
+              document.body.classList.remove("modal-open-safari");
+            } else {
+              document.body.style.overflow = 'unset';
+            }
           }
         });
       } else {
         setShouldRender(false);
-        document.body.style.overflow = 'unset';
+        if (isSafari) {
+          document.body.classList.remove("modal-open-safari");
+        } else {
+          document.body.style.overflow = 'unset';
+        }
       }
     }
 
     return () => {
-      document.body.style.overflow = 'unset';
+      if (isSafari) {
+        document.body.classList.remove("modal-open-safari");
+      } else {
+        document.body.style.overflow = 'unset';
+      }
       gsap.killTweensOf([overlayRef.current, modalRef.current]);
     };
-  }, [isOpen, caseStudy]);
+  }, [isOpen, caseStudy, isSafari]);
 
   // Handle escape key
   useEffect(() => {
@@ -123,16 +150,22 @@ export function CaseStudyPopup({ isOpen, onClose, caseStudy }: CaseStudyPopupPro
   return (
     <div
       ref={overlayRef}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      className={`fixed inset-0 flex items-center justify-center p-4 ${
+        isSafari
+          ? "safari-modal-container modal-overlay-safari"
+          : "z-50"
+      }`}
       onClick={onClose}
     >
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
-      
+      {!isSafari && <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />}
+
       {/* Modal */}
       <div
         ref={modalRef}
-        className="relative w-full max-w-4xl max-h-[90vh] bg-white dark:bg-slate-900 rounded-2xl shadow-2xl overflow-hidden"
+        className={`relative w-full max-w-4xl max-h-[90vh] bg-white dark:bg-slate-900 rounded-2xl shadow-2xl overflow-hidden ${
+          isSafari ? "modal-content-safari" : ""
+        }`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}

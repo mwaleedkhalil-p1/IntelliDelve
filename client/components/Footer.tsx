@@ -28,6 +28,9 @@ export function Footer() {
     { name: "Case Studies", href: "/case-studies" },
     { name: "Industries", href: "/industries" },
     { name: "Careers", href: "/careers" },
+  ];
+
+  const collaborateWithUs = [
     { name: "Partner", href: "/partners" },
   ];
 
@@ -45,31 +48,28 @@ export function Footer() {
   return (
     <footer className="bg-brand-navy text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-2 mb-6">
               <img
-                src="https://cdn.builder.io/api/v1/assets/81cccb29f2444c41b07efa4cabfb0846/logo-4ec879?format=webp&width=800"
+                src="/Main logo TM.png"
                 alt="IntelliDelve"
-                className="h-8 w-auto"
+                className="h-8 w-auto dark:hidden"
+              />
+              <img
+                src="/logo.png"
+                alt="IntelliDelve"
+                className="h-8 w-auto hidden dark:block"
               />
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
               A Background Checker Company™
             </p>
             <p className="text-gray-400 text-sm mb-6">
-              IntelliDelve is a global risk management and background
-              investigation firm that offers comprehensive verification services
-              worldwide. We specialize in providing security and verification
-              solutions to companies, helping them make informed decisions while
-              mitigating risks during the recruitment process.
-            </p>
-            <p className="text-gray-400 text-sm mb-6">
-              Our AI-driven platform combines cutting-edge technology with human
-              expertise to deliver accurate, efficient, and compliant background
-              screening solutions. We serve businesses across multiple
-              industries, ensuring the highest standards of due diligence and
-              risk assessment.
+              IntelliDelve empowers organizations with intelligent background screening,
+              fraud detection, and compliance solutions across 100+ countries. Our
+              AI-driven platform also delivers cutting-edge data science and IT
+              innovations for smarter, faster decisions.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social, index) => (
@@ -122,12 +122,32 @@ export function Footer() {
 
           <div>
             <h3 className="text-lg font-semibold mb-6 font-primary">
+              Collaborate with Us
+            </h3>
+            <ul className="space-y-3">
+              {collaborateWithUs.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    to={item.href}
+                    className="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-secondary"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-semibold mb-6 font-primary">
               Contact Us
             </h3>
             <ul className="space-y-3 text-gray-300 text-sm font-secondary">
               <li>Tel: +92 333 000 1456</li>
               <li>Tel: +92 51 612 3383</li>
+              <li>Sales Team:</li>
               <li>Sales@intellidelve.com</li>
+              <li>Information Queries:</li>
               <li>info@intellidelve.com</li>
             </ul>
             <div className="mt-6">

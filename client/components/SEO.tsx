@@ -196,11 +196,27 @@ export function SEO({
       />
       <link rel="preconnect" href="https://www.google-analytics.com" />
       <link rel="preconnect" href="https://www.googletagmanager.com" />
+      <link rel="preconnect" href="https://assets.calendly.com" />
+      <link rel="preconnect" href="https://calendly.com" />
 
       {/* DNS prefetch for performance */}
       <link rel="dns-prefetch" href="//fonts.googleapis.com" />
       <link rel="dns-prefetch" href="//fonts.gstatic.com" />
       <link rel="dns-prefetch" href="//www.google-analytics.com" />
+      <link rel="dns-prefetch" href="//assets.calendly.com" />
+      <link rel="dns-prefetch" href="//calendly.com" />
+
+      {/* Preload critical Calendly resources */}
+      <link
+        rel="preload"
+        href="https://assets.calendly.com/assets/external/widget.js"
+        as="script"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="prefetch"
+        href="https://calendly.com/mwaleedkhalil/30min"
+      />
 
       {/* Alternate languages */}
       {alternateLanguages.map((lang, index) => (

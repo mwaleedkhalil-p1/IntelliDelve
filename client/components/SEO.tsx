@@ -234,7 +234,7 @@ export function SEO({
       </script>
 
       {/* Additional performance hints */}
-      <meta httpEquiv="x-dns-prefetch-control" content="on" />
+      <meta httpEquiv="dns-prefetch-control" content="on" />
     </Helmet>
   );
 }

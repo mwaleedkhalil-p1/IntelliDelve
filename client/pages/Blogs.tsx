@@ -109,7 +109,7 @@ const Blogs = () => {
         className="relative bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-brand-navy dark:via-brand-navy/90 dark:to-purple-900/20 pt-20 pb-16 overflow-hidden"
       >
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10 dark:opacity-20"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10 dark:opacity-20 blur-sm"
           style={{
             backgroundImage: `url('/images/downloaded/unsplash-photo-1497366216548-37526070297c.jpg')`,
           }}
@@ -117,20 +117,20 @@ const Blogs = () => {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary dark:bg-sky-300/10 dark:text-sky-300 px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-2 bg-white/20 text-white backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium mb-6">
               <Search className="w-4 h-4" />
               Expert Insights & Industry Knowledge
             </div>
             
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
               IntelliDelve
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-600 dark:from-sky-300 dark:to-purple-400">
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-purple-300">
                 Insights Blog
               </span>
             </h1>
-            
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-              Stay ahead with expert insights on background screening, risk management, 
+
+            <p className="text-xl text-gray-100 mb-8 leading-relaxed">
+              Stay ahead with expert insights on background screening, risk management,
               and compliance. Your trusted resource for making informed business decisions.
             </p>
 

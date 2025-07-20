@@ -55,7 +55,7 @@ const Industries: React.FC = () => {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85"
+            src="/images/downloaded/unsplash-photo-1486406146926-c627a92ad1ab.jpg"
             alt="Industries We Serve"
             className="w-full h-full object-cover"
           />

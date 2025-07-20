@@ -91,7 +91,7 @@ export function Hero() {
           <div ref={imageRef} className="relative">
             <div className="relative z-10 transform rotate-3 hover:rotate-0 transition-transform duration-500">
               <img
-                src="https://img.freepik.com/free-vector/background-check-concept-illustration_114360-7455.jpg"
+                src="/images/downloaded/freepik-background-check-illustration.jpg"
                 alt="Background verification illustration"
                 className="w-full h-auto rounded-2xl shadow-2xl"
               />

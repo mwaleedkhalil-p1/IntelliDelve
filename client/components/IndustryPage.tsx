@@ -29,25 +29,25 @@ const getIndustryAssets = (slug: string) => {
   const assets: { [key: string]: { image: string; color: string; icon: any; gradient: string } } = {
     // Financial Services
     "banking-financial": {
-      image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85",
+      image: "/images/downloaded/unsplash-photo-1554224155-6726b3ff858f.jpg",
       color: "blue",
       icon: Building2,
       gradient: "from-blue-600 via-indigo-600 to-purple-600"
     },
     "financial-institution": {
-      image: "https://images.unsplash.com/photo-1541354329998-f4d9a9f9297f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85",
+      image: "/images/downloaded/unsplash-photo-1541354329998-f4d9a9f9297f.jpg",
       color: "blue",
       icon: Building2,
       gradient: "from-blue-600 via-sky-600 to-cyan-600"
     },
     "accounting-advisory": {
-      image: "https://images.unsplash.com/photo-1554224154-26032ffc0d07?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85",
+      image: "/images/downloaded/unsplash-photo-1554224154-26032ffc0d07.jpg",
       color: "green",
       icon: Calculator,
       gradient: "from-green-600 via-emerald-600 to-teal-600"
     },
     "insurance": {
-      image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85",
+      image: "/images/downloaded/unsplash-photo-1450101499163-c8848c66ca85.jpg",
       color: "indigo",
       icon: Shield,
       gradient: "from-indigo-600 via-blue-600 to-purple-600"
@@ -63,19 +63,19 @@ const getIndustryAssets = (slug: string) => {
 
     // Technology & Innovation
     "it-software": {
-      image: "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85",
+      image: "/images/downloaded/unsplash-photo-1517077304055-6e89abbf09b0.jpg",
       color: "purple",
       icon: Laptop,
       gradient: "from-purple-600 via-violet-600 to-indigo-600"
     },
     "startups-tech": {
-      image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85",
+      image: "/images/downloaded/unsplash-photo-1559136555-9303baea8ebd.jpg",
       color: "purple",
       icon: Rocket,
       gradient: "from-purple-600 via-pink-600 to-red-600"
     },
     "telecommunications": {
-      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85",
+      image: "/images/downloaded/unsplash-photo-1558618666-fcd25c85cd64.jpg",
       color: "cyan",
       icon: Zap,
       gradient: "from-cyan-600 via-blue-600 to-indigo-600"
@@ -83,7 +83,7 @@ const getIndustryAssets = (slug: string) => {
 
     // Education
     "education-academic": {
-      image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85",
+      image: "/images/downloaded/unsplash-photo-1541339907198-e08756dedf3f.jpg",
       color: "orange",
       icon: GraduationCap,
       gradient: "from-orange-600 via-amber-600 to-yellow-600"
@@ -97,7 +97,7 @@ const getIndustryAssets = (slug: string) => {
 
     // Government & Public
     "government-public": {
-      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85",
+      image: "/images/downloaded/unsplash-photo-1486406146926-c627a92ad1ab.jpg",
       color: "slate",
       icon: Building,
       gradient: "from-slate-600 via-gray-600 to-zinc-600"
@@ -105,7 +105,7 @@ const getIndustryAssets = (slug: string) => {
 
     // Corporate & Professional
     "corporate-professional": {
-      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85",
+      image: "/images/downloaded/unsplash-photo-1497366216548-37526070297c.jpg",
       color: "blue",
       icon: Briefcase,
       gradient: "from-blue-600 via-sky-600 to-cyan-600"
@@ -113,7 +113,7 @@ const getIndustryAssets = (slug: string) => {
 
     // Legal Services
     "legal-services": {
-      image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85",
+      image: "/images/downloaded/unsplash-photo-1589829545856-d10d557cf95f.jpg",
       color: "red",
       icon: FileCheck,
       gradient: "from-red-600 via-rose-600 to-pink-600"
@@ -121,13 +121,13 @@ const getIndustryAssets = (slug: string) => {
 
     // Manufacturing & Industrial
     "manufacturing-industrial": {
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85",
+      image: "/images/downloaded/unsplash-photo-1581091226825-a6a2a5aee158.jpg",
       color: "gray",
       icon: Factory,
       gradient: "from-gray-600 via-slate-600 to-zinc-600"
     },
     "industrial-manufacturing": {
-      image: "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85",
+      image: "/images/downloaded/unsplash-photo-1565793298595-6a879b1d9492.jpg",
       color: "gray",
       icon: Cog,
       gradient: "from-gray-700 via-slate-700 to-zinc-700"
@@ -135,7 +135,7 @@ const getIndustryAssets = (slug: string) => {
 
     // Energy & Utilities
     "energy-utilities": {
-      image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85",
+      image: "/images/downloaded/unsplash-photo-1473341304170-971dccb5ac1e.jpg",
       color: "yellow",
       icon: Zap,
       gradient: "from-yellow-600 via-orange-600 to-red-600"
@@ -143,13 +143,13 @@ const getIndustryAssets = (slug: string) => {
 
     // Retail & Consumer
     "retail-consumer": {
-      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85",
+      image: "/images/downloaded/unsplash-photo-1441986300917-64674bd600d8.jpg",
       color: "pink",
       icon: ShoppingCart,
       gradient: "from-pink-600 via-rose-600 to-red-600"
     },
     "ecommerce-digital": {
-      image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85",
+      image: "/images/downloaded/unsplash-photo-1556742049-0cfed4f6a45d.jpg",
       color: "purple",
       icon: ShoppingCart,
       gradient: "from-purple-600 via-violet-600 to-pink-600"
@@ -157,7 +157,7 @@ const getIndustryAssets = (slug: string) => {
 
     // Real Estate
     "real-estate": {
-      image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85",
+      image: "/images/downloaded/unsplash-photo-1560518883-ce09059eeffa.jpg",
       color: "emerald",
       icon: Home,
       gradient: "from-emerald-600 via-green-600 to-teal-600"
@@ -165,7 +165,7 @@ const getIndustryAssets = (slug: string) => {
 
     // Transportation & Logistics
     "transportation-logistics": {
-      image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85",
+      image: "/images/downloaded/unsplash-photo-1586528116311-ad8dd3c8310d.jpg",
       color: "amber",
       icon: Award,
       gradient: "from-amber-600 via-orange-600 to-red-600"
@@ -173,7 +173,7 @@ const getIndustryAssets = (slug: string) => {
 
     // Hospitality & Food
     "hospitality-food-leisure": {
-      image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85",
+      image: "/images/downloaded/unsplash-photo-1414235077428-338989a2e8c0.jpg",
       color: "orange",
       icon: Utensils,
       gradient: "from-orange-600 via-red-600 to-pink-600"
@@ -181,7 +181,7 @@ const getIndustryAssets = (slug: string) => {
 
     // Gig Workers
     "gig-workers": {
-      image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85",
+      image: "/images/downloaded/unsplash-photo-1521737604893-d14cc237f11d.jpg",
       color: "teal",
       icon: Users,
       gradient: "from-teal-600 via-cyan-600 to-blue-600"
@@ -189,7 +189,7 @@ const getIndustryAssets = (slug: string) => {
 
     // Non-Profit
     "non-profit": {
-      image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85",
+      image: "/images/downloaded/unsplash-photo-1559027615-cd4628902d4a.jpg",
       color: "green",
       icon: Heart,
       gradient: "from-green-600 via-teal-600 to-cyan-600"

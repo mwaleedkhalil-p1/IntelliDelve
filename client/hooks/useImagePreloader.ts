@@ -138,9 +138,9 @@ export const useCriticalImagePreloader = () => {
   // Critical images that should load immediately
   const criticalImages = [
     // Hero section images for main pages
-    'https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85',
-    'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85',
-    'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85',
+    '/images/downloaded/unsplash-photo-1497366216548-37526070297c.jpg',
+    '/images/downloaded/unsplash-photo-1486406146926-c627a92ad1ab.jpg',
+    '/images/downloaded/unsplash-photo-1518186285589-2f7649de83e0.jpg',
     // Add more critical images as needed
   ];
 

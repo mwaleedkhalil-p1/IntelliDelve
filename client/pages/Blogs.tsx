@@ -1,24 +1,27 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
-import { 
-  Calendar, 
-  Clock, 
-  User, 
-  ArrowRight, 
+import {
+  Calendar,
+  Clock,
+  User,
+  ArrowRight,
   Search,
   Shield,
   TrendingUp,
   AlertTriangle,
   CheckCircle,
   Eye,
-  Share2
+  Share2,
+  X
 } from "lucide-react";
 import { SEO } from "../components/SEO";
 
 const Blogs = () => {
   const heroRef = useRef<HTMLElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All Posts");
 
   useEffect(() => {
     // Animate hero section
@@ -88,11 +91,44 @@ const Blogs = () => {
   const categories = [
     "All Posts",
     "Background Screening",
-    "Risk Management", 
+    "Risk Management",
     "Employment Screening",
     "Legal Compliance",
     "Technology"
   ];
+
+  // Filter posts based on search query and selected category
+  const filteredPosts = useMemo(() => {
+    let filtered = blogPosts;
+
+    // Filter by category
+    if (selectedCategory !== "All Posts") {
+      filtered = filtered.filter(post => post.category === selectedCategory);
+    }
+
+    // Filter by search query
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      filtered = filtered.filter(post =>
+        post.title.toLowerCase().includes(query) ||
+        post.excerpt.toLowerCase().includes(query) ||
+        post.tags.some(tag => tag.toLowerCase().includes(query)) ||
+        post.author.toLowerCase().includes(query)
+      );
+    }
+
+    return filtered;
+  }, [searchQuery, selectedCategory]);
+
+  // Clear search
+  const clearSearch = () => {
+    setSearchQuery("");
+  };
+
+  // Handle category selection
+  const handleCategorySelect = (category: string) => {
+    setSelectedCategory(category);
+  };
 
   return (
     <div className="min-h-screen">
@@ -140,8 +176,18 @@ const Blogs = () => {
                 <input
                   type="text"
                   placeholder="Search articles..."
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-800 dark:text-white"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-10 pr-10 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-800 dark:text-white"
                 />
+                {searchQuery && (
+                  <button
+                    onClick={clearSearch}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                )}
               </div>
               <Link
                 to="/contact"
@@ -166,8 +212,9 @@ const Blogs = () => {
             {categories.map((category) => (
               <button
                 key={category}
+                onClick={() => handleCategorySelect(category)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                  category === "All Posts"
+                  category === selectedCategory
                     ? "bg-primary text-white shadow-lg"
                     : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
                 }`}
@@ -192,7 +239,7 @@ const Blogs = () => {
           </div>
 
           <div ref={cardsRef} className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-            {blogPosts.filter(post => post.featured).map((post) => (
+            {filteredPosts.filter(post => post.featured).map((post) => (
               <article
                 key={post.id}
                 className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
@@ -273,15 +320,50 @@ const Blogs = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Latest Articles
+              {searchQuery || selectedCategory !== "All Posts" ? "Search Results" : "Latest Articles"}
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Explore our comprehensive library of articles on background screening and business protection
+              {searchQuery || selectedCategory !== "All Posts"
+                ? `Found ${filteredPosts.length} article${filteredPosts.length !== 1 ? 's' : ''} ${searchQuery ? `matching "${searchQuery}"` : `in "${selectedCategory}"`}`
+                : "Explore our comprehensive library of articles on background screening and business protection"
+              }
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post) => (
+          {filteredPosts.length === 0 ? (
+            <div className="text-center py-16">
+              <Search className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                No articles found
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
+                {searchQuery
+                  ? `No articles match "${searchQuery}". Try different keywords or browse by category.`
+                  : `No articles found in "${selectedCategory}" category.`
+                }
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                {searchQuery && (
+                  <button
+                    onClick={clearSearch}
+                    className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors font-medium"
+                  >
+                    <X className="w-4 h-4" />
+                    Clear Search
+                  </button>
+                )}
+                <button
+                  onClick={() => handleCategorySelect("All Posts")}
+                  className="inline-flex items-center gap-2 border border-primary text-primary dark:text-sky-300 px-6 py-3 rounded-lg hover:bg-primary hover:text-white dark:hover:bg-sky-300 dark:hover:text-brand-navy transition-colors font-medium"
+                >
+                  <ArrowRight className="w-4 h-4" />
+                  View All Posts
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredPosts.map((post) => (
               <article
                 key={post.id}
                 className="bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-200 dark:border-gray-700"
@@ -325,8 +407,9 @@ const Blogs = () => {
                   </Link>
                 </div>
               </article>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

@@ -168,7 +168,7 @@ const MegaMenu = memo(
 
         {/* Menu content - positioned absolutely to avoid overlay interference */}
         <div
-          className="absolute top-16 left-1/2 transform -translate-x-1/2 w-full max-w-[95vw] sm:max-w-5xl lg:max-w-6xl xl:max-w-7xl px-2 sm:px-4 z-50 max-h-[calc(100vh-5rem)] overflow-hidden"
+          className="absolute top-16 left-1/2 transform -translate-x-1/2 w-full max-w-[95vw] sm:max-w-5xl lg:max-w-6xl xl:max-w-7xl px-2 sm:px-4 z-50 max-h-[calc(100vh-6rem)] lg:max-h-[calc(100vh-5rem)] overflow-hidden"
           role="dialog"
           aria-modal="true"
           aria-labelledby="mega-menu-title"
@@ -209,8 +209,8 @@ const MegaMenu = memo(
               </div>
             </div>
 
-            {/* Content - Scrollable */}
-            <div className="relative flex-1 overflow-y-auto">
+            {/* Content - Scrollable with custom scrollbar */}
+            <div className="relative flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent hover:scrollbar-thumb-gray-400 dark:hover:scrollbar-thumb-gray-500">
               <div
                 ref={contentRef}
                 className="p-4 sm:p-5 lg:p-6"

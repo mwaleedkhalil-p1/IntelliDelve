@@ -634,29 +634,46 @@ const Navigation = memo(() => {
               {navItems.map((item) => (
                 <div key={item.name} className="relative">
                   {item.hasMegaMenu ? (
-                    <Link
-                      to={item.path}
-                      className={`flex items-center space-x-1 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-sky-300 transition-colors duration-200 font-medium py-2 px-1 ${
-                        location.pathname === item.path || activeMenu === item.name.toLowerCase()
-                          ? "text-primary dark:text-sky-300"
-                          : ""
-                      }`}
-                      onMouseEnter={() => handleMenuHover(item.name.toLowerCase())}
-                      onClick={(e) => {
-                        // On desktop, close menus and navigate
-                        if (window.innerWidth >= 1024) {
+                    <div className="flex items-center">
+                      <Link
+                        to={item.path}
+                        className={`flex items-center text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-sky-300 transition-colors duration-200 font-medium py-2 px-1 ${
+                          location.pathname === item.path
+                            ? "text-primary dark:text-sky-300"
+                            : ""
+                        }`}
+                        onMouseEnter={() => handleMenuHover(item.name.toLowerCase())}
+                        onClick={() => {
+                          // Always navigate to the page when clicking the text
                           closeAllMenus();
-                        } else {
-                          // On mobile/tablet, toggle mega menu
-                          handleMegaMenuClick(item.name.toLowerCase(), e);
-                        }
-                      }}
-                    >
-                      <span>{item.name}</span>
-                      <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${
-                        activeMenu === item.name.toLowerCase() ? 'rotate-180' : ''
-                      }`} />
-                    </Link>
+                        }}
+                      >
+                        <span>{item.name}</span>
+                      </Link>
+
+                      {/* Separate clickable arrow for mega menu */}
+                      <button
+                        className={`ml-1 p-1 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-sky-300 transition-all duration-200 ${
+                          activeMenu === item.name.toLowerCase() ? 'text-primary dark:text-sky-300' : ''
+                        }`}
+                        onMouseEnter={() => handleMenuHover(item.name.toLowerCase())}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          // Toggle mega menu on both desktop and mobile when clicking arrow
+                          if (activeMenu === item.name.toLowerCase()) {
+                            setActiveMenu(null);
+                          } else {
+                            setActiveMenu(item.name.toLowerCase());
+                          }
+                        }}
+                        aria-label={`Toggle ${item.name} menu`}
+                      >
+                        <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${
+                          activeMenu === item.name.toLowerCase() ? 'rotate-180' : ''
+                        }`} />
+                      </button>
+                    </div>
                   ) : (
                     <Link
                       to={item.path}
@@ -723,34 +740,43 @@ const Navigation = memo(() => {
                 <div key={item.name}>
                   {item.hasMegaMenu ? (
                     <div>
-                      <button
-                        onClick={() =>
-                          handleMobileSubMenu(item.name.toLowerCase())
-                        }
-                        className={`w-full flex items-center justify-between text-left py-3 px-4 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-sky-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200 font-medium rounded-lg ${
-                          location.pathname === item.path
-                            ? "text-primary dark:text-sky-300 bg-primary/5"
-                            : ""
-                        }`}
-                      >
-                        <span>{item.name}</span>
-                        <ChevronDown
-                          className={`h-4 w-4 transition-transform duration-200 ${
-                            mobileSubMenuOpen === item.name.toLowerCase()
-                              ? "rotate-180"
+                      <div className="flex items-center rounded-lg overflow-hidden">
+                        <Link
+                          to={item.path}
+                          onClick={closeAllMenus}
+                          className={`flex-1 py-3 px-4 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-sky-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200 font-medium ${
+                            location.pathname === item.path
+                              ? "text-primary dark:text-sky-300 bg-primary/5"
                               : ""
                           }`}
-                        />
-                      </button>
+                        >
+                          {item.name}
+                        </Link>
+                        <button
+                          onClick={() =>
+                            handleMobileSubMenu(item.name.toLowerCase())
+                          }
+                          className="py-3 px-3 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-sky-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200"
+                          aria-label={`Toggle ${item.name} submenu`}
+                        >
+                          <ChevronDown
+                            className={`h-4 w-4 transition-transform duration-200 ${
+                              mobileSubMenuOpen === item.name.toLowerCase()
+                                ? "rotate-180"
+                                : ""
+                            }`}
+                          />
+                        </button>
+                      </div>
 
                       <div
                         className={`transition-all duration-300 ease-in-out ${
                           mobileSubMenuOpen === item.name.toLowerCase()
-                            ? "max-h-screen opacity-100"
+                            ? "max-h-96 opacity-100"
                             : "max-h-0 opacity-0 overflow-hidden"
                         }`}
                       >
-                        <div className="pl-4 pr-2 py-2 space-y-1">
+                        <div className="pl-4 pr-2 py-2 space-y-1 max-h-96 overflow-y-auto scrollbar-thin">
                           {(item.name.toLowerCase().includes("what we offer")
                             ? whatWeOfferMegaMenuData
                             : industriesMegaMenuData

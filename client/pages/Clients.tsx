@@ -65,7 +65,7 @@ export default function Clients() {
   }, []);
 
   const stats = [
-    { icon: <Building2 className="h-8 w-8" />, number: "500+", label: "Global Clients" },
+    { icon: <Building2 className="h-8 w-8" />, number: "50+", label: "Global Clients" },
     { icon: <Users className="h-8 w-8" />, number: "1M+", label: "Screenings Completed" },
     { icon: <Globe className="h-8 w-8" />, number: "50+", label: "Countries Served" },
     { icon: <Award className="h-8 w-8" />, number: "99.8%", label: "Accuracy Rate" },

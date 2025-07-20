@@ -90,7 +90,7 @@ const Industries: React.FC = () => {
                   <p className="text-sm text-gray-300">Industries</p>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-white mb-2">500+</div>
+                  <div className="text-3xl font-bold text-white mb-2">50+</div>
                   <p className="text-sm text-gray-300">Clients</p>
                 </div>
                 <div className="text-center">

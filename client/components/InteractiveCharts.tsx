@@ -403,7 +403,7 @@ export function InteractiveCharts() {
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-300 mb-1">
-                  500+
+                  50+
                 </div>
                 <p className="text-sm text-gray-600 dark:text-gray-300 font-medium">
                   Enterprise Partnerships

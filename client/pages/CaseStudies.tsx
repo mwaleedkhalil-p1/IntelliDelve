@@ -72,8 +72,8 @@ export default function CaseStudies() {
 
   const stats = [
     { number: "99.8%", label: "Accuracy Rate" },
-    { number: "500+", label: "Enterprise Clients" },
-    { number: "2.5M+", label: "Background Checks" },
+    { number: "50+", label: "Enterprise Clients" },
+    { number: "1M+", label: "Background Checks" },
     { number: "24hr", label: "Average Turnaround" },
   ];
 

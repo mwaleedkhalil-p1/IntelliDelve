@@ -275,7 +275,7 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry }) => {
                   </div>
                   <div className="bg-white/10 rounded-xl p-4">
                     <Award className="w-6 h-6 text-blue-400 mx-auto mb-2" />
-                    <div className="text-white font-bold">500+</div>
+                    <div className="text-white font-bold">50+</div>
                     <div className="text-xs text-gray-300">Clients</div>
                   </div>
                   <div className="bg-white/10 rounded-xl p-4">

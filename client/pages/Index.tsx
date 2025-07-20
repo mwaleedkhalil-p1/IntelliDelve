@@ -414,14 +414,14 @@ export default function Index() {
               <div className="flex justify-center mb-4">
                 <Users className="h-16 w-16 text-yellow-300" data-chart-icon />
               </div>
-              <div className="text-4xl md:text-5xl font-bold mb-2">500+</div>
+              <div className="text-4xl md:text-5xl font-bold mb-2">50+</div>
               <div className="text-lg opacity-90">Enterprise Clients</div>
             </div>
             <div className="text-center">
               <div className="flex justify-center mb-4">
                 <Shield className="h-16 w-16 text-yellow-300" data-chart-icon />
               </div>
-              <div className="text-4xl md:text-5xl font-bold mb-2">2.5M+</div>
+              <div className="text-4xl md:text-5xl font-bold mb-2">1M+</div>
               <div className="text-lg opacity-90">Background Checks</div>
             </div>
             <div className="text-center">

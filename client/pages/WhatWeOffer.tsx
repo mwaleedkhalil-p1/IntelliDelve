@@ -235,7 +235,7 @@ const allSolutions = [
 const stats = [
   { number: "25+", label: "Comprehensive Solutions", icon: Zap },
   { number: "16+", label: "Specialized Industries", icon: Globe },
-  { number: "500+", label: "Clients Served", icon: Users },
+  { number: "50+", label: "Clients Served", icon: Users },
   { number: "99.7%", label: "Accuracy Rate", icon: Target },
   { number: "24/7", label: "Support Available", icon: Settings },
 ];

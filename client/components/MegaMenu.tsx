@@ -168,7 +168,7 @@ const MegaMenu = memo(
 
         {/* Menu content - positioned absolutely to avoid overlay interference */}
         <div
-          className="absolute top-16 left-1/2 transform -translate-x-1/2 w-full max-w-[95vw] sm:max-w-5xl lg:max-w-6xl xl:max-w-7xl px-2 sm:px-4 z-50"
+          className="absolute top-16 left-1/2 transform -translate-x-1/2 w-full max-w-[95vw] sm:max-w-5xl lg:max-w-6xl xl:max-w-7xl px-2 sm:px-4 z-50 max-h-[calc(100vh-5rem)] overflow-hidden"
           role="dialog"
           aria-modal="true"
           aria-labelledby="mega-menu-title"
@@ -176,27 +176,41 @@ const MegaMenu = memo(
         >
           <div
             ref={menuRef}
-            className="relative bg-white/95 dark:bg-brand-navy/95 backdrop-blur-lg rounded-xl sm:rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700"
+            className="relative bg-white/95 dark:bg-brand-navy/95 backdrop-blur-lg rounded-xl sm:rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700 max-h-full overflow-hidden flex flex-col"
             onClick={(e) => e.stopPropagation()}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             data-mega-menu-content
           >
             {/* Header */}
-            <div className="p-4 sm:p-5 lg:p-6 border-b border-gray-100 dark:border-gray-700">
-              <h3
-                id="mega-menu-title"
-                className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-2"
-              >
-                {title}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
-                {description}
-              </p>
+            <div className="p-4 sm:p-5 lg:p-6 border-b border-gray-100 dark:border-gray-700 flex-shrink-0">
+              <div className="flex items-start justify-between">
+                <div className="flex-1">
+                  <h3
+                    id="mega-menu-title"
+                    className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-2"
+                  >
+                    {title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
+                    {description}
+                  </p>
+                </div>
+                {/* Close button for mobile/tablet */}
+                <button
+                  onClick={onClose}
+                  className="lg:hidden ml-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  aria-label="Close menu"
+                >
+                  <svg className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
             </div>
 
-            {/* Content */}
-            <div className="relative">
+            {/* Content - Scrollable */}
+            <div className="relative flex-1 overflow-y-auto">
               <div
                 ref={contentRef}
                 className="p-4 sm:p-5 lg:p-6"
@@ -223,7 +237,7 @@ const MegaMenu = memo(
                             <Link
                               to={item.path}
                               onClick={onClose}
-                              className="flex items-center gap-2 sm:gap-3 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-sky-300 transition-all duration-200 py-2 px-3 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg group text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-800"
+                              className="flex items-center gap-2 sm:gap-3 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-sky-300 transition-all duration-200 py-3 sm:py-2 px-3 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg group text-sm touch-manipulation focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-800"
                               tabIndex={0}
                             >
                               {item.icon && (

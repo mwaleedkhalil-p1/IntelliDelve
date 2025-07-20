@@ -33,6 +33,7 @@ export function Footer() {
   const weAreDelvers = [
     { name: "About Us", href: "/about" },
     { name: "Our Clients", href: "/clients" },
+    { name: "Blogs", href: "/blogs" },
     { name: "Case Studies", href: "/case-studies" },
     { name: "Industries", href: "/industries" },
     { name: "Careers", href: "/careers" },

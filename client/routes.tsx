@@ -13,6 +13,8 @@ const CaseStudies = lazy(() => import("./pages/CaseStudies"));
 const Partners = lazy(() => import("./pages/Partners"));
 const Clients = lazy(() => import("./pages/Clients"));
 const Careers = lazy(() => import("./pages/Careers"));
+const Blogs = lazy(() => import("./pages/Blogs"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
 
 // Solution pages
 const BackgroundScreeningSolution = lazy(
@@ -126,6 +128,8 @@ export const routes: RouteObject[] = [
   { path: "/partners", element: <Partners /> },
   { path: "/clients", element: <Clients /> },
   { path: "/careers", element: <Careers /> },
+  { path: "/blogs", element: <Blogs /> },
+  { path: "/blogs/:id", element: <BlogPost /> },
 
   // Solution pages
   {

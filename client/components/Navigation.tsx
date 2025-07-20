@@ -356,6 +356,23 @@ const Navigation = memo(() => {
     [mobileSubMenuOpen],
   );
 
+  /**
+   * Handle mega menu clicks for mobile/tablet screens
+   * Opens mega menu on click for touch devices
+   */
+  const handleMegaMenuClick = useCallback((menuType: string, event: React.MouseEvent) => {
+    event.preventDefault();
+
+    // For mobile/tablet screens, toggle the mega menu
+    if (window.innerWidth < 1024) {
+      if (activeMenu === menuType) {
+        setActiveMenu(null);
+      } else {
+        setActiveMenu(menuType);
+      }
+    }
+  }, [activeMenu]);
+
   const handleClickOutside = useCallback(
     (event: MouseEvent) => {
       if (
@@ -620,15 +637,25 @@ const Navigation = memo(() => {
                     <Link
                       to={item.path}
                       className={`flex items-center space-x-1 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-sky-300 transition-colors duration-200 font-medium py-2 px-1 ${
-                        location.pathname === item.path
+                        location.pathname === item.path || activeMenu === item.name.toLowerCase()
                           ? "text-primary dark:text-sky-300"
                           : ""
                       }`}
                       onMouseEnter={() => handleMenuHover(item.name.toLowerCase())}
-                      onClick={closeAllMenus}
+                      onClick={(e) => {
+                        // On desktop, close menus and navigate
+                        if (window.innerWidth >= 1024) {
+                          closeAllMenus();
+                        } else {
+                          // On mobile/tablet, toggle mega menu
+                          handleMegaMenuClick(item.name.toLowerCase(), e);
+                        }
+                      }}
                     >
                       <span>{item.name}</span>
-                      <ChevronDown className="h-4 w-4" />
+                      <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${
+                        activeMenu === item.name.toLowerCase() ? 'rotate-180' : ''
+                      }`} />
                     </Link>
                   ) : (
                     <Link
@@ -784,11 +811,11 @@ const Navigation = memo(() => {
         </div>
       </nav>
 
-      {/* Desktop Mega Menu with Enhanced Mouse Handling */}
+      {/* Mega Menu - Responsive for all screen sizes */}
       {(activeMenu === "what we offer?" || activeMenu === "industries") && (
         <div
           ref={megaMenuRef}
-          className="relative z-40 hidden lg:block"
+          className="relative z-40"
           data-mega-menu-area
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}

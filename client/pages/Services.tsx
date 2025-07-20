@@ -66,7 +66,7 @@ export default function Services() {
         "Education Verification",
         "Reference and Credential Validation",
         "Global Watchlist and Sanctions Screening",
-        "Continuous Workforce Risk Monitoring",
+
       ],
       color: "bg-blue-500",
       textColor: "text-blue-500",
@@ -176,7 +176,7 @@ export default function Services() {
   ];
 
   return (
-    <div className="min-h-screen pt-16">
+    <div className="min-h-screen">
       <Helmet>
         <title>
           Our Services - IntelliDelve Background Verification & Risk Management
@@ -187,8 +187,14 @@ export default function Services() {
         />
       </Helmet>
 
-      <section className="bg-gradient-to-br from-blue-600 to-purple-700 dark:from-brand-navy dark:to-purple-900 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative bg-gradient-to-br from-blue-600 to-purple-700 dark:from-brand-navy dark:to-purple-900 min-h-screen flex items-center overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80')`,
+          }}
+        ></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div ref={headerRef} className="text-center text-white">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
               Our <span className="text-yellow-300">Services</span>
@@ -223,11 +229,11 @@ export default function Services() {
             </p>
           </div>
 
-          <div ref={servicesRef} className="grid md:grid-cols-2 gap-8">
+          <div ref={servicesRef} className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 services-mobile-grid md:services-tablet-grid">
             {services.map((service, index) => (
               <div
                 key={index}
-                className="flex flex-col bg-gray-50 dark:bg-brand-navy/50 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700"
+                className="flex flex-col bg-gray-50 dark:bg-brand-navy/50 rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700 services-mobile-card"
               >
                 <div className="flex-grow">
                   <div
@@ -282,11 +288,11 @@ export default function Services() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mobile-full-width">
             {industryServices.map((service, index) => (
               <div
                 key={index}
-                className={`bg-white dark:bg-brand-navy rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 ${service.color} transform hover:scale-105`}
+                className={`bg-white dark:bg-brand-navy rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 ${service.color} transform hover:scale-105`}
               >
                 <div className="mb-4">{service.icon}</div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">

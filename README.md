@@ -47,7 +47,7 @@ The platform is designed to help businesses streamline their operations, ensure 
 - **Risk Scoring**: Advanced risk assessment algorithms
 - **Document Processing**: AI-powered document analysis and extraction
 - **Predictive Analytics**: Machine learning models for business insights
-- **Workforce Monitoring**: Employee screening and background verification
+- **Background Verification**: Employee screening and background verification
 
 ### 🎨 User Experience
 - **Interactive Charts**: Dynamic data visualization with Recharts

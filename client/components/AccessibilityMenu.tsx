@@ -63,8 +63,8 @@ const AccessibilityMenu: React.FC = () => {
 
   return (
     <>
-      {/* Floating Button */}
-      <div className="fixed bottom-6 right-6 z-50">
+      {/* Floating Button - Positioned above BackToTopButton */}
+      <div className="fixed bottom-24 right-6 z-50">
         <button
           ref={buttonRef}
           onClick={() => setIsOpen(!isOpen)}

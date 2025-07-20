@@ -13,6 +13,7 @@ const ReferenceValidation: React.FC = () => {
       subtext:
         "Verify professional references and validate credentials to make informed hiring decisions with confidence.",
     },
+    heroImage: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=85",
     features: [
       "Professional reference interviews and validation",
       "Credential and certification verification",
@@ -32,10 +33,10 @@ const ReferenceValidation: React.FC = () => {
       "Make informed decisions with detailed reference reports",
     ],
     process: [
-      "Collect reference contacts and credential information",
-      "Conduct structured interviews with professional references",
-      "Verify credentials and certifications with issuing bodies",
-      "Compile comprehensive reference and credential validation report",
+      "Request initiated with candidate-provided information",
+      "Verification process activated through secure, trusted pathways",
+      "Credentials and references undergo multi-layered validation",
+      "Insights compiled into a detailed, compliance-ready report",
     ],
     icon: <FileCheck className="h-6 w-6" />,
     color: "bg-purple-500/10 text-purple-600",

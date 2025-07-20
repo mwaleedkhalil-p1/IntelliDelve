@@ -5,6 +5,7 @@ const Index = lazy(() => import("./pages/Index"));
 const AboutUs = lazy(() => import("./pages/AboutUs"));
 const Industries = lazy(() => import("./pages/Industries"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const Cookies = lazy(() => import("./pages/Cookies"));
 
 const Services = lazy(() => import("./pages/Services"));
 const Solutions = lazy(() => import("./pages/Solutions"));
@@ -22,6 +23,7 @@ const CorporateDueDiligence = lazy(
 );
 const AIDataScience = lazy(() => import("./pages/solutions/AIDataScience"));
 const TechInnovation = lazy(() => import("./pages/solutions/TechInnovation"));
+const CitizenByInvestment = lazy(() => import("./pages/CitizenByInvestment"));
 
 // Industry pages
 const BankingFinancial = lazy(
@@ -105,7 +107,7 @@ const RecommendationEngines = lazy(
 const ResumeRanking = lazy(() => import("./pages/ResumeRanking"));
 const RiskScoring = lazy(() => import("./pages/RiskScoring"));
 const SentimentAnalysis = lazy(() => import("./pages/SentimentAnalysis"));
-const WorkforceMonitoring = lazy(() => import("./pages/WorkforceMonitoring"));
+
 const WhatWeOffer = lazy(() => import("./pages/WhatWeOffer"));
 const CustomSoftware = lazy(() => import("./pages/CustomSoftware"));
 const SystemIntegration = lazy(() => import("./pages/SystemIntegration"));
@@ -117,6 +119,7 @@ export const routes: RouteObject[] = [
   { path: "/about", element: <AboutUs /> },
   { path: "/industries", element: <Industries /> },
   { path: "/privacy-policy", element: <PrivacyPolicy /> },
+  { path: "/cookies", element: <Cookies /> },
   { path: "/services", element: <Services /> },
   { path: "/solutions", element: <Solutions /> },
   { path: "/case-studies", element: <CaseStudies /> },
@@ -187,6 +190,7 @@ export const routes: RouteObject[] = [
   { path: "/address-verification", element: <AddressVerification /> },
   { path: "/predictive-analytics", element: <PredictiveAnalytics /> },
   { path: "/kyc-compliance", element: <KYCCompliance /> },
+  { path: "/citizen-by-investment", element: <CitizenByInvestment /> },
   { path: "/computer-vision", element: <ComputerVision /> },
   { path: "/document-intelligence", element: <DocumentIntelligence /> },
   { path: "/interactive-dashboards", element: <InteractiveDashboards /> },
@@ -196,7 +200,7 @@ export const routes: RouteObject[] = [
   { path: "/resume-ranking", element: <ResumeRanking /> },
   { path: "/risk-scoring", element: <RiskScoring /> },
   { path: "/sentiment-analysis", element: <SentimentAnalysis /> },
-  { path: "/workforce-monitoring", element: <WorkforceMonitoring /> },
+
   { path: "/what-we-offer", element: <WhatWeOffer /> },
   { path: "/custom-software", element: <CustomSoftware /> },
   { path: "/system-integration", element: <SystemIntegration /> },

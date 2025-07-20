@@ -74,50 +74,129 @@ export default function PredictiveAnalytics() {
 
   const applications = [
     {
-      icon: <Shield className="h-6 w-6 text-blue-500" />,
-      title: "Risk Scoring",
+      icon: <Target className="h-6 w-6 text-blue-500" />,
+      title: "Candidate Risk Prediction",
       description:
-        "Predict candidate risk levels based on historical data patterns",
-      metrics: ["95% Accuracy", "Real-time Scoring", "Custom Models"],
+        "Predict and score the likelihood of verification issues based on behavioral data and historical records.",
     },
     {
-      icon: <Database className="h-6 w-6 text-green-500" />,
-      title: "Fraud Detection",
+      icon: <Shield className="h-6 w-6 text-red-500" />,
+      title: "Fraud Pattern Detection",
       description:
-        "Identify potentially fraudulent applications before processing",
-      metrics: ["99.2% Detection", "Low False Positives", "ML-Powered"],
+        "Identify red flags early using ML-powered behavioral pattern analysis.",
     },
     {
-      icon: <BarChart3 className="h-6 w-6 text-purple-500" />,
-      title: "Market Trends",
-      description: "Forecast industry trends and verification demand patterns",
-      metrics: ["Industry Insights", "Demand Forecasting", "Trend Analysis"],
+      icon: <Clock className="h-6 w-6 text-green-500" />,
+      title: "Turnaround Time Optimization",
+      description:
+        "Forecast verification workloads and adjust team schedules for maximum efficiency.",
+    },
+    {
+      icon: <TrendingUp className="h-6 w-6 text-purple-500" />,
+      title: "Demand Forecasting for Retail",
+      description:
+        "Help retail businesses predict product demand and optimize order cycles to reduce stockouts and overstocking.",
+    },
+    {
+      icon: <BarChart3 className="h-6 w-6 text-orange-500" />,
+      title: "Market Trend Forecasting",
+      description:
+        "Anticipate industry verification trends and hiring surges before they happen.",
     },
   ];
 
   return (
-    <div className="min-h-screen pt-16">
+    <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-violet-600 to-purple-700 dark:from-brand-navy dark:to-violet-900 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div ref={headerRef} className="text-center text-white">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Predictive Analytics &{" "}
-              <span className="text-yellow-300">Forecasting</span>
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 opacity-90 max-w-4xl mx-auto">
-              Advanced AI-powered predictive analytics and forecasting solutions
-              to anticipate future trends, assess risks, and make data-driven
-              decisions with statistical confidence and machine learning
-              precision.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-violet-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-300 transform hover:scale-105 shadow-lg">
-                Explore Analytics
-              </button>
-              <button className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-violet-600 transition-colors duration-300">
-                View Demo
-              </button>
+      <section className="relative min-h-screen flex items-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80&blur=20"
+            alt="Predictive Analytics and Machine Learning"
+            className="w-full h-full object-cover filter blur-sm"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-900/95 via-violet-900/90 to-indigo-900/95"></div>
+        </div>
+
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 z-10 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-400/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-violet-400/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-400/10 rounded-full blur-3xl animate-pulse"></div>
+        </div>
+
+        {/* Pattern Overlay */}
+        <div className="absolute inset-0 z-20">
+          <div className="absolute inset-0 bg-[linear-gradient(45deg,_transparent_25%,_rgba(255,255,255,0.02)_25%,_rgba(255,255,255,0.02)_50%,_transparent_50%,_transparent_75%,_rgba(255,255,255,0.02)_75%)] bg-[length:32px_32px]"></div>
+        </div>
+
+        <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div ref={headerRef} className="text-center lg:text-left">
+              <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white text-sm font-medium mb-6">
+                <Brain className="w-4 h-4 mr-2" />
+                AI-Powered Analytics
+              </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-violet-400 to-indigo-400">
+                  Predictive
+                </span>
+                <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-violet-400">
+                  Analytics
+                </span>
+                <br />
+                <span className="text-white">&</span>
+                <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400">
+                  Forecasting
+                </span>
+              </h1>
+              <p className="text-xl text-gray-100 mb-8 leading-relaxed">
+                Advanced AI-powered predictive analytics and forecasting solutions to anticipate future trends, assess risks, and make data-driven decisions with statistical confidence.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <button className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-500 to-violet-600 text-white font-semibold rounded-full hover:from-purple-600 hover:to-violet-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                  Explore Analytics
+                  <TrendingUp className="ml-2 h-5 w-5" />
+                </button>
+                <button className="inline-flex items-center px-8 py-4 border-2 border-purple-400 text-purple-400 font-semibold rounded-full hover:bg-purple-400 hover:text-white transition-all duration-300">
+                  View Predictions
+                </button>
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-violet-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Brain className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2">AI-Powered Insights</h3>
+                  <p className="text-gray-200">Machine learning predictions and forecasts</p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-white/10 rounded-xl p-4 text-center">
+                    <TrendingUp className="w-6 h-6 text-purple-400 mx-auto mb-2" />
+                    <div className="text-white font-semibold text-sm">Trends</div>
+                  </div>
+                  <div className="bg-white/10 rounded-xl p-4 text-center">
+                    <Target className="w-6 h-6 text-violet-400 mx-auto mb-2" />
+                    <div className="text-white font-semibold text-sm">Forecasts</div>
+                  </div>
+                  <div className="bg-white/10 rounded-xl p-4 text-center">
+                    <BarChart3 className="w-6 h-6 text-indigo-400 mx-auto mb-2" />
+                    <div className="text-white font-semibold text-sm">Analytics</div>
+                  </div>
+                  <div className="bg-white/10 rounded-xl p-4 text-center">
+                    <Zap className="w-6 h-6 text-pink-400 mx-auto mb-2" />
+                    <div className="text-white font-semibold text-sm">Insights</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -171,35 +250,23 @@ export default function PredictiveAnalytics() {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
             {applications.map((app, index) => (
               <div
                 key={index}
-                className="bg-white dark:bg-brand-navy rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700"
+                className="bg-white dark:bg-brand-navy rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700"
               >
-                <div className="flex items-center space-x-4 mb-6">
-                  <div className="p-3 rounded-xl bg-gray-100 dark:bg-gray-800">
+                <div className="flex flex-col items-center text-center mb-4">
+                  <div className="p-3 rounded-xl bg-gray-100 dark:bg-gray-800 mb-4">
                     {app.icon}
                   </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                      {app.title}
-                    </h3>
-                  </div>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
+                    {app.title}
+                  </h3>
                 </div>
-                <p className="text-gray-600 dark:text-gray-300 mb-6">
+                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
                   {app.description}
                 </p>
-                <div className="space-y-2">
-                  {app.metrics.map((metric, metricIndex) => (
-                    <div
-                      key={metricIndex}
-                      className="inline-block bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 px-3 py-1 rounded-full text-sm font-medium mr-2"
-                    >
-                      {metric}
-                    </div>
-                  ))}
-                </div>
               </div>
             ))}
           </div>
@@ -249,19 +316,89 @@ export default function PredictiveAnalytics() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-violet-600 to-purple-600 text-white relative overflow-hidden">
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Unlock Predictive Intelligence
-          </h2>
-          <p className="text-xl mb-8 opacity-90 max-w-3xl mx-auto">
-            Transform your verification processes with AI-powered predictive
-            analytics and forecasting
-          </p>
-          <button className="bg-white text-violet-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-300 transform hover:scale-105 shadow-lg">
-            Start Free Trial
-          </button>
+      {/* Key Capabilities */}
+      <section className="py-20 bg-gradient-to-br from-violet-50 to-purple-50 dark:from-brand-navy/30 dark:to-violet-900/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Key Capabilities
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Advanced predictive analytics capabilities designed to enhance your decision-making process
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8">
+            <div className="bg-white dark:bg-brand-navy rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700">
+              <div className="flex items-center space-x-4 mb-6">
+                <div className="p-3 rounded-xl bg-blue-100 dark:bg-blue-900/30">
+                  <Brain className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                  AI-Powered Forecasting
+                </h3>
+              </div>
+              <p className="text-gray-600 dark:text-gray-300">
+                Use advanced machine learning models to anticipate future outcomes across hiring, compliance, and business operations with statistical confidence.
+              </p>
+            </div>
+
+            <div className="bg-white dark:bg-brand-navy rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700">
+              <div className="flex items-center space-x-4 mb-6">
+                <div className="p-3 rounded-xl bg-red-100 dark:bg-red-900/30">
+                  <Target className="h-6 w-6 text-red-600 dark:text-red-400" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                  Dynamic Risk Scoring
+                </h3>
+              </div>
+              <p className="text-gray-600 dark:text-gray-300">
+                Assess risk levels with precision using real-time behavioral patterns, historical data, and anomaly detection.
+              </p>
+            </div>
+
+            <div className="bg-white dark:bg-brand-navy rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700">
+              <div className="flex items-center space-x-4 mb-6">
+                <div className="p-3 rounded-xl bg-orange-100 dark:bg-orange-900/30">
+                  <Shield className="h-6 w-6 text-orange-600 dark:text-orange-400" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                  Fraud Detection & Prevention
+                </h3>
+              </div>
+              <p className="text-gray-600 dark:text-gray-300">
+                Uncover potentially fraudulent candidates or cases before processing begins. Our models identify suspicious activity with high accuracy and low false positives.
+              </p>
+            </div>
+
+            <div className="bg-white dark:bg-brand-navy rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700">
+              <div className="flex items-center space-x-4 mb-6">
+                <div className="p-3 rounded-xl bg-green-100 dark:bg-green-900/30">
+                  <BarChart3 className="h-6 w-6 text-green-600 dark:text-green-400" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                  Real-Time Analytics Dashboard
+                </h3>
+              </div>
+              <p className="text-gray-600 dark:text-gray-300">
+                Get instant access to predictive insights through an intuitive dashboard designed for speed and clarity.
+              </p>
+            </div>
+
+            <div className="bg-white dark:bg-brand-navy rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 lg:col-span-2">
+              <div className="flex items-center space-x-4 mb-6">
+                <div className="p-3 rounded-xl bg-purple-100 dark:bg-purple-900/30">
+                  <Zap className="h-6 w-6 text-purple-600 dark:text-purple-400" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                  Custom Model Development
+                </h3>
+              </div>
+              <p className="text-gray-600 dark:text-gray-300">
+                Build and deploy tailored prediction models aligned with your organization's workflows, compliance needs, and risk landscape.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
     </div>

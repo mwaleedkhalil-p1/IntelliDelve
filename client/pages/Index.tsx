@@ -107,6 +107,7 @@ export default function Index() {
       ],
       color: "bg-blue-500",
       textColor: "text-blue-500",
+      learnMoreLink: "/solutions/background-screening",
     },
     {
       icon: <Search className="h-8 w-8 text-white" />,
@@ -121,6 +122,7 @@ export default function Index() {
       ],
       color: "bg-purple-500",
       textColor: "text-purple-500",
+      learnMoreLink: "/solutions/due-diligence",
     },
     {
       icon: <BarChart3 className="h-8 w-8 text-white" />,
@@ -134,6 +136,7 @@ export default function Index() {
       ],
       color: "bg-red-500",
       textColor: "text-red-500",
+      learnMoreLink: "/solutions/ai-data-science",
     },
     {
       icon: <Laptop className="h-8 w-8 text-white" />,
@@ -148,6 +151,7 @@ export default function Index() {
       ],
       color: "bg-green-500",
       textColor: "text-green-500",
+      learnMoreLink: "/solutions/tech-innovation",
     },
   ];
 
@@ -451,7 +455,7 @@ export default function Index() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
             {services.map((service, index) => (
               <ServiceCard key={index} {...service} delay={index * 0.2} />
             ))}

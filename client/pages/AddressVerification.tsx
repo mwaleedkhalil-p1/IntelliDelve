@@ -11,8 +11,9 @@ const AddressVerification: React.FC = () => {
     hero: {
       headline: "Physical and Digital Address Verification",
       subtext:
-        "Confirm identity and residency with comprehensive address verification services using advanced technology and database cross-referencing.",
+        "Verify candidate residence details through secure, multi-source validation — including but not limited to location intelligence.",
     },
+    heroImage: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=85",
     features: [
       "Physical address verification and validation",
       "Residency history and duration confirmation",
@@ -32,10 +33,10 @@ const AddressVerification: React.FC = () => {
       "Streamline onboarding with verified address data",
     ],
     process: [
-      "Submit address verification request with candidate details",
-      "Cross-reference addresses with multiple databases and sources",
-      "Verify residency history and property connections",
-      "Deliver comprehensive address verification report",
+      "Initiate address verification with candidate-provided information",
+      "Activate multi-source validation through secure, trusted channels",
+      "Assess residency consistency and address authenticity",
+      "Provide a detailed verification report with validated address insights",
     ],
     icon: <MapPin className="h-6 w-6" />,
     color: "bg-orange-500/10 text-orange-600",

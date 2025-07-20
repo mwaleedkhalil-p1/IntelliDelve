@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { TrendingUp, Shield, Users, Building, Eye, Brain, Zap, Globe, Lock, Database } from "lucide-react";
+import { TrendingUp, Shield, Users, Building, Eye, Brain, Zap, Globe, Lock, Database, ArrowRight } from "lucide-react";
 import { CaseStudyPopup } from "../components/CaseStudyPopup";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -297,6 +298,7 @@ export default function CaseStudies() {
         "Major bank reduced compliance risk by 95% while processing 15,000+ screenings monthly.",
       metric: "95%",
       metricLabel: "Risk Reduction",
+      slug: "banking-financial",
     },
     {
       icon: <Users className="h-12 w-12 text-green-500" />,
@@ -305,6 +307,7 @@ export default function CaseStudies() {
         "University system improved safety protocols with 100% compliance across 50+ campuses.",
       metric: "100%",
       metricLabel: "Compliance Rate",
+      slug: "education-academic",
     },
     {
       icon: <Shield className="h-12 w-12 text-purple-500" />,
@@ -313,14 +316,21 @@ export default function CaseStudies() {
         "Federal contractor achieved 100% security clearance verification with zero false positives.",
       metric: "100%",
       metricLabel: "Security Clearance",
+      slug: "government-public",
     },
   ];
 
   return (
-    <div className="min-h-screen pt-16">
+    <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600 to-purple-700 dark:from-brand-navy dark:to-purple-900 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative bg-gradient-to-br from-blue-600 to-purple-700 dark:from-brand-navy dark:to-purple-900 min-h-screen flex items-center overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=85')`,
+          }}
+        ></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div ref={headerRef} className="text-center text-white">
             <div className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
               <TrendingUp className="h-5 w-5 mr-2 text-yellow-300" />
@@ -372,11 +382,11 @@ export default function CaseStudies() {
             </p>
           </div>
 
-          <div ref={casesRef} className="grid md:grid-cols-2 gap-8">
+          <div ref={casesRef} className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 case-studies-mobile-grid md:case-studies-tablet-grid mobile-full-width">
             {caseStudies.map((study, index) => (
               <div
                 key={study.id}
-                className={`bg-gray-50 dark:bg-slate-800/50 rounded-3xl p-6 md:p-8 border-l-8 border-l-blue-500 shadow-lg hover:shadow-xl transition-all duration-300 hover:transform hover:scale-[1.02]`}
+                className={`bg-gray-50 dark:bg-slate-800/50 rounded-3xl p-6 md:p-8 border-l-8 border-l-blue-500 shadow-lg hover:shadow-xl transition-all duration-300 hover:transform hover:scale-[1.02] case-studies-mobile-card`}
               >
                 <div className="space-y-6">
                   <div>
@@ -476,9 +486,14 @@ export default function CaseStudies() {
                     {industry.metricLabel}
                   </div>
                 </div>
-                <button className="w-full mt-6 text-primary hover:text-primary/80 font-medium transition-colors">
-                  Learn More →
-                </button>
+                <Link
+                  to={`/industries/${industry.slug}`}
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  className="inline-flex items-center justify-center w-full mt-6 px-4 py-2 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                >
+                  Learn More
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
               </div>
             ))}
           </div>

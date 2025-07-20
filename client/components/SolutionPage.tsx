@@ -24,7 +24,7 @@ interface SolutionData {
   why: {
     title: string;
     description: string;
-    benefits: string[];
+    benefits: (string | { name: string; description: string })[];
   };
   how: {
     title: string;
@@ -137,8 +137,23 @@ export const SolutionPage: React.FC<SolutionPageProps> = ({ solution }) => {
       </section>
 
       {/* Why Section */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className={`py-20 relative overflow-hidden ${!solution.why.backgroundImage ? 'bg-gray-50 dark:bg-gray-800' : ''}`}>
+        {solution.why.backgroundImage && (
+          <>
+            <div className="absolute inset-0 z-0">
+              <img
+                src={solution.why.backgroundImage}
+                alt="Why choose us"
+                className="w-full h-full object-cover filter blur-sm"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-purple-900/85 to-indigo-900/90"></div>
+            </div>
+            <div className="absolute inset-0 z-10">
+              <div className="absolute inset-0 bg-[linear-gradient(45deg,_transparent_25%,_rgba(255,255,255,0.02)_25%,_rgba(255,255,255,0.02)_50%,_transparent_50%,_transparent_75%,_rgba(255,255,255,0.02)_75%)] bg-[length:32px_32px]"></div>
+            </div>
+          </>
+        )}
+        <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${solution.why.backgroundImage ? 'relative z-20' : ''}`}>
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 font-primary">
               {solution.why.title}
@@ -149,22 +164,28 @@ export const SolutionPage: React.FC<SolutionPageProps> = ({ solution }) => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {solution.why.benefits.map((benefit, index) => (
-              <div
-                key={index}
-                className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300"
-              >
-                <div className="flex items-center mb-4">
-                  <BarChart3 className="h-6 w-6 text-blue-600 mr-3" />
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white font-primary">
-                    Key Benefit
-                  </h3>
+            {solution.why.benefits.map((benefit, index) => {
+              const isObject = typeof benefit === 'object' && benefit !== null;
+              const benefitName = isObject ? benefit.name : "Key Benefit";
+              const benefitDescription = isObject ? benefit.description : benefit;
+
+              return (
+                <div
+                  key={index}
+                  className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300"
+                >
+                  <div className="flex items-center mb-4">
+                    <BarChart3 className="h-6 w-6 text-blue-600 mr-3" />
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white font-primary">
+                      {benefitName}
+                    </h3>
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-300 font-secondary">
+                    {benefitDescription}
+                  </p>
                 </div>
-                <p className="text-gray-600 dark:text-gray-300 font-secondary">
-                  {benefit}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

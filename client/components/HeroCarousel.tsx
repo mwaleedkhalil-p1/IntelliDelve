@@ -66,9 +66,9 @@ export function HeroCarousel() {
           icon: <BookOpen className="h-4 w-4 sm:h-5 sm:w-5" />,
         },
       ],
-      image: "/Regulatory_Compliance_Made_Simple.png",
-      gradientFrom: "from-blue-100 dark:from-blue-900",
-      gradientTo: "to-purple-100 dark:to-purple-900",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      gradientFrom: "from-blue-900/70",
+      gradientTo: "to-purple-900/50",
     },
     {
       id: 2,
@@ -86,13 +86,13 @@ export function HeroCarousel() {
           icon: <BookOpen className="h-4 w-4 sm:h-5 sm:w-5" />,
         },
       ],
-      image: "/ai_pow.png",
-      gradientFrom: "from-purple-100 dark:from-purple-900",
-      gradientTo: "to-indigo-100 dark:to-indigo-900",
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      gradientFrom: "from-purple-900/70",
+      gradientTo: "to-indigo-900/50",
     },
     {
       id: 3,
-      headline: "Tech & Innovation",
+      headline: "Tech & Innovation Services",
       subtext:
         "Custom web development, business process automation, and innovative technology solutions designed to streamline operations and enhance productivity.",
       primaryCTA: {
@@ -106,9 +106,9 @@ export function HeroCarousel() {
           icon: <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />,
         },
       ],
-      image: "/Global_Complience.png",
-      gradientFrom: "from-indigo-100 dark:from-indigo-900",
-      gradientTo: "to-blue-100 dark:to-blue-900",
+      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      gradientFrom: "from-indigo-900/70",
+      gradientTo: "to-blue-900/50",
     },
   ];
 
@@ -210,20 +210,10 @@ export function HeroCarousel() {
   return (
     <div
       ref={carouselRef}
-      className="relative w-full h-[100vh] sm:h-[600px] md:h-[650px] lg:h-[700px] overflow-hidden bg-white dark:bg-gray-900"
+      className="relative w-full h-screen overflow-hidden"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      <div
-        className={`absolute inset-0 bg-gradient-to-br ${slides[currentSlide].gradientFrom} ${slides[currentSlide].gradientTo} opacity-50 dark:opacity-100 transition-all duration-700 ease-in-out`}
-      >
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 sm:top-20 left-5 sm:left-10 w-32 sm:w-72 h-32 sm:h-72 bg-white rounded-full mix-blend-overlay filter blur-xl animate-pulse"></div>
-          <div className="absolute top-20 sm:top-40 right-5 sm:right-10 w-48 sm:w-96 h-48 sm:h-96 bg-yellow-300 rounded-full mix-blend-overlay filter blur-xl animate-pulse delay-1000"></div>
-          <div className="absolute bottom-10 sm:bottom-20 left-1/4 sm:left-1/3 w-40 sm:w-80 h-40 sm:h-80 bg-pink-300 rounded-full mix-blend-overlay filter blur-xl animate-pulse delay-2000"></div>
-        </div>
-      </div>
-
       <div className="relative h-full">
         {slides.map((slide, index) => (
           <div
@@ -235,85 +225,76 @@ export function HeroCarousel() {
               opacity: index === 0 ? 1 : 0,
             }}
           >
-            <div className="max-w-7xl mx-auto hero-carousel-spacing px-4 sm:px-6 lg:px-8 h-full flex items-center">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-12 xl:gap-16 w-full py-6 sm:py-8 lg:py-16 h-full">
-                <div className="relative w-full flex order-2 lg:order-1">
-                  <div className="hero-carousel-content bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg rounded-xl sm:rounded-2xl shadow-2xl border border-white/20 dark:border-gray-700/50 w-full flex flex-col min-h-[300px] sm:min-h-[400px] lg:h-full">
-                    <div className="flex-1 flex items-center p-4 sm:p-6 lg:p-10">
-                      <div className="w-full">
-                        <div className="space-y-4 sm:space-y-6 lg:space-y-8">
-                          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight text-gray-900 dark:text-white mb-2 sm:mb-3 lg:mb-4">
-                            {slide.headline}
-                          </h1>
-                          <p className="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed text-gray-700 dark:text-gray-300 mb-4 sm:mb-6 lg:mb-8">
-                            {slide.subtext}
-                          </p>
+            {/* Full-width background image */}
+            <div
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{
+                backgroundImage: `url(${slide.image})`,
+              }}
+            >
+              {/* Gradient overlay */}
+              <div className={`absolute inset-0 bg-gradient-to-r ${slide.gradientFrom} ${slide.gradientTo}`}></div>
+            </div>
 
-                          <div className="hero-carousel-buttons flex flex-col sm:flex-row gap-3 sm:gap-4 lg:gap-5">
-                            {slide.primaryCTA.link === "#calendly" ? (
-                              <button
-                                onClick={() =>
-                                  openCalendly(
-                                    `${slide.primaryCTA.text} - ${slide.headline}`,
-                                  )
-                                }
-                                className="btn inline-flex items-center justify-center bg-primary text-white px-4 sm:px-6 lg:px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-base font-bold hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl font-primary"
-                              >
-                                {slide.primaryCTA.text}
-                                <ArrowRight className="ml-2 h-4 w-4" />
-                              </button>
-                            ) : (
-                              <Link
-                                to={slide.primaryCTA.link}
-                                className="btn inline-flex items-center justify-center bg-primary text-white px-4 sm:px-6 lg:px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-base font-bold hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl font-primary"
-                              >
-                                {slide.primaryCTA.text}
-                                <ArrowRight className="ml-2 h-4 w-4" />
-                              </Link>
-                            )}
+            {/* Content overlay */}
+            <div className="relative h-full flex items-center">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                <div className="max-w-3xl">
+                  <div className="space-y-6 sm:space-y-8">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white mb-4 sm:mb-6">
+                      {slide.headline}
+                    </h1>
+                    <p className="text-lg sm:text-xl md:text-2xl leading-relaxed text-white/90 mb-6 sm:mb-8 max-w-2xl">
+                      {slide.subtext}
+                    </p>
 
-                            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
-                              {slide.secondaryCTAs.map((cta, ctaIndex) => (
-                                <Link
-                                  key={ctaIndex}
-                                  to={cta.link}
-                                  className="btn inline-flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white border-2 border-gray-200 dark:border-gray-700 px-4 sm:px-5 py-3 sm:py-4 rounded-xl text-sm font-semibold hover:bg-gray-200 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
-                                >
-                                  {cta.icon}
-                                  <span className="ml-2">{cta.text}</span>
-                                </Link>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+                      {slide.primaryCTA.link === "#calendly" ? (
+                        <button
+                          onClick={() =>
+                            openCalendly(
+                              `${slide.primaryCTA.text} - ${slide.headline}`,
+                            )
+                          }
+                          className="inline-flex items-center justify-center bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-bold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl"
+                        >
+                          {slide.primaryCTA.text}
+                          <ArrowRight className="ml-2 h-5 w-5" />
+                        </button>
+                      ) : (
+                        <Link
+                          to={slide.primaryCTA.link}
+                          className="inline-flex items-center justify-center bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-bold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl"
+                        >
+                          {slide.primaryCTA.text}
+                          <ArrowRight className="ml-2 h-5 w-5" />
+                        </Link>
+                      )}
 
-                    {/* Progress bar at the bottom of the card */}
-                    <div className="px-3 sm:px-4 lg:px-6 xl:px-8 pb-3 sm:pb-4 lg:pb-6 xl:pb-8">
-                      <div className="bg-gray-300 dark:bg-gray-700 rounded-full h-1 sm:h-1.5 overflow-hidden">
-                        <div
-                          className="progress-bar-fill bg-blue-500 h-full rounded-full"
-                          style={{ width: "0%" }}
-                        />
-                      </div>
+                      {slide.secondaryCTAs.map((cta, ctaIndex) => (
+                        <Link
+                          key={ctaIndex}
+                          to={cta.link}
+                          className="inline-flex items-center justify-center bg-transparent text-white border-2 border-white/80 px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-white/10 hover:border-white transition-all duration-300 transform hover:scale-105 backdrop-blur-sm"
+                        >
+                          {cta.icon}
+                          <span className="ml-2">{cta.text}</span>
+                        </Link>
+                      ))}
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
 
-                <div className="relative w-full flex order-1 lg:order-2">
-                  <div className="relative z-10 transform hover:scale-105 transition-transform duration-500 w-full">
-                    <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-2xl backdrop-blur-sm bg-white/10 dark:bg-white/10 border border-white/20 dark:border-white/20 h-[250px] sm:h-[300px] lg:h-full min-h-[250px]">
-                      <img
-                        src={slide.image}
-                        alt="Background verification illustration"
-                        className="w-full h-full object-cover object-center"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                    </div>
-                  </div>
-                  <div className="absolute -top-3 sm:-top-6 -right-3 sm:-right-6 w-12 sm:w-24 h-12 sm:h-24 bg-white/20 rounded-full backdrop-blur-sm animate-float delay-300"></div>
-                  <div className="absolute -bottom-3 sm:-bottom-6 -left-3 sm:-left-6 w-16 sm:w-32 h-16 sm:h-32 bg-white/10 rounded-full backdrop-blur-sm animate-float delay-700"></div>
+            {/* Progress bar at the bottom */}
+            <div className="absolute bottom-0 left-0 right-0 px-4 sm:px-6 lg:px-8 pb-4">
+              <div className="max-w-7xl mx-auto">
+                <div className="bg-white/20 rounded-full h-1 overflow-hidden backdrop-blur-sm">
+                  <div
+                    className="progress-bar-fill bg-white h-full rounded-full"
+                    style={{ width: "0%" }}
+                  />
                 </div>
               </div>
             </div>
@@ -323,31 +304,31 @@ export function HeroCarousel() {
 
       <button
         onClick={prevSlide}
-        className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-white/90 dark:bg-white/10 backdrop-blur-lg text-gray-900 dark:text-white p-2 sm:p-3 rounded-full hover:bg-white dark:hover:bg-white/20 transition-all duration-300 shadow-xl z-10"
+        className="absolute left-4 sm:left-6 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-lg text-white p-3 sm:p-4 rounded-full hover:bg-white/30 transition-all duration-300 shadow-xl z-20"
         aria-label="Previous slide"
       >
-        <ChevronLeft className="h-4 w-4 sm:h-6 sm:w-6" />
+        <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-white/90 dark:bg-white/10 backdrop-blur-lg text-gray-900 dark:text-white p-2 sm:p-3 rounded-full hover:bg-white dark:hover:bg-white/20 transition-all duration-300 shadow-xl z-10"
+        className="absolute right-4 sm:right-6 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-lg text-white p-3 sm:p-4 rounded-full hover:bg-white/30 transition-all duration-300 shadow-xl z-20"
         aria-label="Next slide"
       >
-        <ChevronRight className="h-4 w-4 sm:h-6 sm:w-6" />
+        <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
       </button>
 
       {/* Slide Indicators and Controls */}
-      <div className="absolute bottom-12 sm:bottom-16 left-1/2 transform -translate-x-1/2 flex items-center space-x-4 z-10">
+      <div className="absolute bottom-16 sm:bottom-20 left-1/2 transform -translate-x-1/2 flex items-center space-x-4 z-20">
         {/* Play/Pause Button */}
         <button
           onClick={togglePlayPause}
-          className="p-2 bg-white/20 dark:bg-gray-800/20 backdrop-blur-sm rounded-full hover:bg-white/30 dark:hover:bg-gray-800/30 transition-all duration-300 group"
+          className="p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-all duration-300 group"
           aria-label={isPlaying ? "Pause slideshow" : "Play slideshow"}
         >
           {isPlaying ? (
-            <Pause className="h-4 w-4 text-gray-900 dark:text-white group-hover:scale-110 transition-transform" />
+            <Pause className="h-4 w-4 text-white group-hover:scale-110 transition-transform" />
           ) : (
-            <Play className="h-4 w-4 text-gray-900 dark:text-white group-hover:scale-110 transition-transform" />
+            <Play className="h-4 w-4 text-white group-hover:scale-110 transition-transform" />
           )}
         </button>
 
@@ -359,8 +340,8 @@ export function HeroCarousel() {
               onClick={() => goToSlide(index)}
               className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
                 index === currentSlide
-                  ? "bg-gray-900 dark:bg-white scale-125"
-                  : "bg-gray-600 dark:bg-white/50 hover:bg-gray-800 dark:hover:bg-white/75"
+                  ? "bg-white scale-125"
+                  : "bg-white/50 hover:bg-white/75"
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
@@ -370,7 +351,7 @@ export function HeroCarousel() {
 
       <button
         onClick={togglePlayPause}
-        className="absolute bottom-3 sm:bottom-4 right-3 sm:right-4 bg-white/90 dark:bg-white/10 backdrop-blur-lg text-gray-900 dark:text-white p-2 sm:p-3 rounded-full hover:bg-white dark:hover:bg-white/20 transition-all duration-300 shadow-xl z-10"
+        className="absolute bottom-6 sm:bottom-8 right-4 sm:right-6 bg-white/20 backdrop-blur-lg text-white p-2 sm:p-3 rounded-full hover:bg-white/30 transition-all duration-300 shadow-xl z-20"
         aria-label={isPlaying ? "Pause autoplay" : "Resume autoplay"}
       >
         {isPlaying ? (

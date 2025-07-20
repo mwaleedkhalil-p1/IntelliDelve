@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useImagePreloader } from '../hooks/useImagePreloader';
 
 interface OptimizedImageProps {
   src: string;
@@ -7,7 +8,12 @@ interface OptimizedImageProps {
   height?: number;
   className?: string;
   loading?: "eager" | "lazy";
-  priority?: boolean;
+  priority?: 'high' | 'low';
+  lazy?: boolean;
+  placeholder?: string;
+  fallback?: string;
+  onLoad?: () => void;
+  onError?: () => void;
   sizes?: string;
   quality?: number;
   placeholder?: string;

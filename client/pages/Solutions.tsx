@@ -56,7 +56,7 @@ export default function Solutions() {
         "Predictive Analytics & Forecasting",
         "Risk Scoring Models & Fraud Detection",
         "Interactive Dashboards & Business Intelligence",
-        "Continuous Workforce Risk Monitoring",
+
         "High-Volume Identity Verification Engines",
         "Anomaly Detection for Compliance & Fraud",
       ],
@@ -89,10 +89,16 @@ export default function Solutions() {
   ];
 
   return (
-    <div className="min-h-screen pt-16">
+    <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600 to-purple-700 dark:from-brand-navy dark:to-purple-900 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative bg-gradient-to-br from-blue-600 to-purple-700 dark:from-brand-navy dark:to-purple-900 min-h-screen flex items-center overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1518186285589-2f7649de83e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=85')`,
+          }}
+        ></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div ref={headerRef} className="text-center text-white">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
               AI & Data <span className="text-yellow-300">Intelligence</span>

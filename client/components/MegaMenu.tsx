@@ -30,6 +30,31 @@ const MegaMenu = memo(
     const [shouldRender, setShouldRender] = useState(false);
     const [activeKeyboardIndex, setActiveKeyboardIndex] = useState(-1);
 
+    // Prevent menu from closing when mouse is inside the mega menu content
+    const handleMouseEnter = useCallback(() => {
+      // This will be handled by the parent Navigation component
+      // but we can add additional logic here if needed
+    }, []);
+
+    const handleMouseLeave = useCallback((event: React.MouseEvent) => {
+      // Only close if mouse is leaving to an area outside the mega menu system
+      const relatedTarget = event.relatedTarget as Element;
+
+      if (relatedTarget) {
+        // Don't close if moving to navigation or other mega menu areas
+        if (relatedTarget.closest('[data-mega-menu-area]') ||
+            relatedTarget.closest('[data-mega-menu-content]') ||
+            relatedTarget.closest('nav')) {
+          return;
+        }
+      }
+
+      // Close the menu with a slight delay for better UX
+      setTimeout(() => {
+        onClose();
+      }, 100);
+    }, [onClose]);
+
     // Calculate optimal column count based on sections
     const getOptimalColumns = useCallback(() => {
       const sectionCount = sections.length;
@@ -133,20 +158,29 @@ const MegaMenu = memo(
     const optimalColumns = getOptimalColumns();
 
     return (
-      <div
-        className="fixed inset-0 z-50"
-        onClick={onClose}
-        onMouseLeave={onClose}
-        style={{ pointerEvents: isOpen ? "auto" : "none" }}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="mega-menu-title"
-      >
-        <div className="absolute top-16 inset-x-0 sm:left-1/2 sm:transform sm:-translate-x-1/2 w-full max-w-[95vw] sm:max-w-5xl lg:max-w-6xl xl:max-w-7xl px-2 sm:px-4">
+      <>
+        {/* Background overlay - only captures clicks outside menu */}
+        <div
+          className="fixed inset-0 z-40"
+          onClick={onClose}
+          style={{ pointerEvents: isOpen ? "auto" : "none" }}
+        />
+
+        {/* Menu content - positioned absolutely to avoid overlay interference */}
+        <div
+          className="absolute top-16 left-1/2 transform -translate-x-1/2 w-full max-w-[95vw] sm:max-w-5xl lg:max-w-6xl xl:max-w-7xl px-2 sm:px-4 z-50"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="mega-menu-title"
+          style={{ pointerEvents: isOpen ? "auto" : "none" }}
+        >
           <div
             ref={menuRef}
             className="relative bg-white/95 dark:bg-brand-navy/95 backdrop-blur-lg rounded-xl sm:rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700"
             onClick={(e) => e.stopPropagation()}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            data-mega-menu-content
           >
             {/* Header */}
             <div className="p-4 sm:p-5 lg:p-6 border-b border-gray-100 dark:border-gray-700">
@@ -204,7 +238,7 @@ const MegaMenu = memo(
                         {section.items.length > 6 && (
                           <li role="listitem">
                             <Link
-                              to={`/${title.toLowerCase().replace(/\s+/g, '-')}`}
+                              to={`/what-we-offer#${section.title.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')}`}
                               onClick={onClose}
                               className="text-primary dark:text-sky-300 hover:text-primary/80 dark:hover:text-sky-300/80 transition-colors duration-200 py-2 px-3 text-sm font-medium block focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-800"
                             >
@@ -222,7 +256,7 @@ const MegaMenu = memo(
             </div>
           </div>
         </div>
-      </div>
+      </>
     );
   },
 );

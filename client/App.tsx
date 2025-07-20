@@ -3,7 +3,7 @@ import "./styles/accessibility.css";
 
 import { Toaster } from "@/components/ui/toaster";
 import { HelmetProvider } from "react-helmet-async";
-import React, { Suspense, createContext, useContext } from "react";
+import React, { Suspense, createContext, useContext, useEffect } from "react";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -16,7 +16,9 @@ import { CalendlyModal } from "./components/CalendlyModal";
 import { BackToTopButton } from "./components/BackToTopButton";
 import { NavigationButtons } from "./components/NavigationButtons";
 import AccessibilityMenu from "./components/AccessibilityMenu";
+import ScrollToTop from "./components/ScrollToTop";
 import { queryClient } from "./lib/queryClient";
+import { imagePreloader } from "./services/imagePreloader";
 import { routes } from "./routes";
 import { useCalendly } from "./hooks/useCalendly";
 
@@ -39,6 +41,7 @@ const AppContent: React.FC<{ calendly: ReturnType<typeof useCalendly> }> = ({
     <Toaster />
     <Sonner />
     <BrowserRouter>
+      <ScrollToTop />
       <div className="flex flex-col min-h-screen">
         <Navigation />
         <main className="flex-1">
@@ -63,8 +66,8 @@ const AppContent: React.FC<{ calendly: ReturnType<typeof useCalendly> }> = ({
         <BackToTopButton />
         <NavigationButtons />
         <AccessibilityMenu />
-        {/* Chatbot placeholder */}
-        <div id="chatbot-mount" className="fixed bottom-4 right-4 z-40"></div>
+        {/* Chatbot placeholder - positioned to avoid conflicts with other floating elements */}
+        <div id="chatbot-mount" className="fixed bottom-4 right-20 z-40"></div>
       </div>
     </BrowserRouter>
   </CalendlyContext.Provider>
@@ -72,6 +75,11 @@ const AppContent: React.FC<{ calendly: ReturnType<typeof useCalendly> }> = ({
 
 const App: React.FC = () => {
   const calendly = useCalendly();
+
+  // Initialize image preloading on app startup
+  useEffect(() => {
+    imagePreloader.initialize().catch(console.error);
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>

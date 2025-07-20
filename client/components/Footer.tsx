@@ -1,8 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin, Linkedin, Twitter } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from "lucide-react";
 
 export function Footer() {
+  // Function to scroll to top when clicking footer links
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   const solutionsServices = [
     {
       name: "Background Screening and Risk Mitigation",
@@ -40,6 +48,10 @@ export function Footer() {
       href: "https://www.linkedin.com/company/intellidelve",
     },
     {
+      icon: <Facebook className="h-5 w-5" />,
+      href: "https://facebook.com/intellidelve",
+    },
+    {
       icon: <Twitter className="h-5 w-5" />,
       href: "https://twitter.com/intellidelve",
     },
@@ -47,40 +59,53 @@ export function Footer() {
 
   return (
     <footer className="bg-brand-navy text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-2 mb-6">
-              <img
-                src="/Main logo TM.png"
-                alt="IntelliDelve"
-                className="h-8 w-auto dark:hidden"
-              />
+              {/* Use white logo for better visibility on dark background */}
               <img
                 src="/logo.png"
                 alt="IntelliDelve"
-                className="h-8 w-auto hidden dark:block"
+                className="h-10 w-auto"
               />
             </div>
-            <p className="text-gray-300 mb-6 leading-relaxed">
-              A Background Checker Company™
-            </p>
+            {/* Removed "A Background Checker Company™" text */}
             <p className="text-gray-400 text-sm mb-6">
               IntelliDelve empowers organizations with intelligent background screening,
               fraud detection, and compliance solutions across 100+ countries. Our
               AI-driven platform also delivers cutting-edge data science and IT
               innovations for smarter, faster decisions.
             </p>
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 mb-6">
               {socialLinks.map((social, index) => (
                 <a
                   key={index}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-gray-400 hover:text-white transition-colors duration-200 p-2 rounded-lg hover:bg-white/10"
                 >
                   {social.icon}
                 </a>
               ))}
+            </div>
+            {/* Privacy Policy and Cookies moved below social icons */}
+            <div className="space-y-2">
+              <Link
+                to="/privacy-policy"
+                onClick={scrollToTop}
+                className="block text-gray-300 hover:text-white transition-colors duration-200 text-sm font-secondary"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                to="/cookies"
+                onClick={scrollToTop}
+                className="block text-gray-300 hover:text-white transition-colors duration-200 text-sm font-secondary"
+              >
+                Cookies
+              </Link>
             </div>
           </div>
 
@@ -93,6 +118,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     to={link.href}
+                    onClick={scrollToTop}
                     className="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-secondary"
                   >
                     {link.name}
@@ -111,6 +137,7 @@ export function Footer() {
                 <li key={item.name}>
                   <Link
                     to={item.href}
+                    onClick={scrollToTop}
                     className="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-secondary"
                   >
                     {item.name}
@@ -129,6 +156,7 @@ export function Footer() {
                 <li key={item.name}>
                   <Link
                     to={item.href}
+                    onClick={scrollToTop}
                     className="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-secondary"
                   >
                     {item.name}
@@ -150,41 +178,12 @@ export function Footer() {
               <li>Information Queries:</li>
               <li>info@intellidelve.com</li>
             </ul>
-            <div className="mt-6">
-              <Link
-                to="/privacy-policy"
-                className="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-secondary"
-              >
-                Privacy Policy
-              </Link>
-            </div>
           </div>
+
+
         </div>
 
-        <div className="border-t border-gray-700 mt-12 pt-8">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="flex items-center space-x-3">
-              <Mail className="h-5 w-5 text-primary dark:text-accent" />
-              <span className="text-gray-300 font-secondary">
-                sales@intellidelve.com
-              </span>
-            </div>
-            <div className="flex items-center space-x-3">
-              <Phone className="h-5 w-5 text-primary dark:text-accent" />
-              <span className="text-gray-300 font-secondary">
-                +92 333 000 1456
-              </span>
-            </div>
-            <div className="flex items-center space-x-3">
-              <MapPin className="h-5 w-5 text-primary dark:text-accent" />
-              <span className="text-gray-300 font-secondary">
-                Islamabad, Pakistan
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div className="border-t border-gray-700 mt-8 pt-8 text-center">
+        <div className="border-t border-gray-700 mt-6 pt-4 text-center">
           <p className="text-gray-400 text-sm font-secondary">
             Copyright 2022 © All Right Reserved by IntelliDelve
           </p>

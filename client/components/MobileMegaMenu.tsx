@@ -188,17 +188,28 @@ export const MobileMegaMenu = ({ isOpen, title, sections, onClose }: MobileMegaM
     }
   }, [isOpen]);
 
-  // Animation
+  // Animation and body scroll prevention
   useEffect(() => {
     if (menuRef.current) {
       if (isOpen) {
+        // Prevent body scroll
+        document.body.classList.add('mobile-mega-menu-open');
+
         gsap.fromTo(
           menuRef.current,
           { opacity: 0, y: -20 },
           { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }
         );
+      } else {
+        // Restore body scroll
+        document.body.classList.remove('mobile-mega-menu-open');
       }
     }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.classList.remove('mobile-mega-menu-open');
+    };
   }, [isOpen]);
 
   if (!isOpen) return null;
@@ -206,12 +217,12 @@ export const MobileMegaMenu = ({ isOpen, title, sections, onClose }: MobileMegaM
   return (
     <div
       ref={menuRef}
-      className="lg:hidden fixed inset-x-0 top-16 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg border-t border-gray-200 dark:border-gray-700 shadow-2xl mobile-mega-menu-enter"
+      className="lg:hidden fixed inset-x-0 top-16 bottom-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg border-t border-gray-200 dark:border-gray-700 shadow-2xl mobile-mega-menu-enter flex flex-col"
       role="region"
       aria-label={`${title} mobile menu`}
     >
       {/* Header with gradient */}
-      <div className="bg-gradient-to-r from-primary/5 to-purple-500/5 dark:from-sky-500/10 dark:to-purple-500/10 p-4 border-b border-gray-100 dark:border-gray-700">
+      <div className="flex-shrink-0 bg-gradient-to-r from-primary/5 to-purple-500/5 dark:from-sky-500/10 dark:to-purple-500/10 p-4 border-b border-gray-100 dark:border-gray-700">
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-bold text-gray-900 dark:text-white flex items-center">
             <div className="w-2 h-2 bg-primary dark:bg-sky-400 rounded-full mr-3 animate-pulse"></div>
@@ -226,7 +237,7 @@ export const MobileMegaMenu = ({ isOpen, title, sections, onClose }: MobileMegaM
       {/* Scrollable Content with Modern Design */}
       <div
         ref={scrollRef}
-        className="max-h-[calc(100vh-180px)] overflow-y-auto mobile-mega-menu-scrollbar relative scroll-smooth"
+        className="flex-1 overflow-y-auto mobile-mega-menu-scrollbar relative scroll-smooth"
         style={{ scrollBehavior: 'smooth' }}
       >
         {/* Scroll Indicator */}
@@ -263,28 +274,20 @@ export const MobileMegaMenu = ({ isOpen, title, sections, onClose }: MobileMegaM
 
         {/* Bottom fade indicator */}
         <div className={`sticky bottom-0 h-4 bg-gradient-to-t from-white dark:from-gray-900 to-transparent z-20 pointer-events-none transition-opacity duration-300 ${canScrollDown ? 'opacity-100' : 'opacity-0'}`}></div>
-
-        {/* Sticky Bottom CTA */}
-        <div className="sticky bottom-0 bg-gradient-to-t from-white via-white to-white/95 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900/95 p-4 border-t border-gray-100 dark:border-gray-700 backdrop-blur-sm">
-          <Link
-            to={`/${title.toLowerCase().replace(/\s+/g, '-')}`}
-            onClick={onClose}
-            className="flex items-center justify-center w-full py-4 px-6 bg-gradient-to-r from-primary to-purple-600 dark:from-sky-500 dark:to-purple-500 text-white rounded-xl hover:shadow-lg transform hover:scale-[1.02] transition-all duration-300 font-semibold text-base shadow-md active:scale-[0.98]"
-          >
-            <div className="flex items-center">
-              <span>Explore All {title}</span>
-              <div className="ml-2 w-2 h-2 bg-white/80 rounded-full animate-bounce"></div>
-            </div>
-          </Link>
-        </div>
       </div>
 
-      {/* Modern Scroll Hint */}
-      <div className="absolute bottom-20 right-4 pointer-events-none">
-        <div className="bg-black/10 dark:bg-white/10 backdrop-blur-sm rounded-full p-2 animate-bounce">
-          <div className="w-1 h-6 bg-gradient-to-b from-primary to-transparent dark:from-sky-400 dark:to-transparent rounded-full"></div>
-        </div>
-      </div>
+      {/* Scroll to Top Button */}
+      {canScrollUp && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-4 right-4 z-50 bg-primary dark:bg-sky-500 text-white p-3 rounded-full shadow-lg hover:bg-primary/90 dark:hover:bg-sky-600 transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+          aria-label="Scroll to top"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+          </svg>
+        </button>
+      )}
     </div>
   );
 };

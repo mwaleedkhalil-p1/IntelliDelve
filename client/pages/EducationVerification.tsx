@@ -13,6 +13,7 @@ const EducationVerification: React.FC = () => {
       subtext:
         "Confirm academic credentials and educational achievements with comprehensive verification from institutions worldwide.",
     },
+    heroImage: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=85",
     features: [
       "Direct verification with educational institutions globally",
       "Degree, diploma, and certificate authentication",
@@ -32,10 +33,10 @@ const EducationVerification: React.FC = () => {
       "Maintain compliance with industry education requirements",
     ],
     process: [
-      "Submit education verification request with academic details",
-      "Direct contact with educational institutions and registrars",
-      "Verification of degrees, transcripts, and certifications",
-      "Comprehensive academic verification report delivered",
+      "Submit an education verification request with academic details",
+      "Secure validation initiated through authorized sources by Delvers",
+      "Academic credentials are verified using confidential, standards-based methods and encrypted",
+      "Receive a detailed report with verified educational background",
     ],
     icon: <GraduationCap className="h-6 w-6" />,
     color: "bg-green-500/10 text-green-600",

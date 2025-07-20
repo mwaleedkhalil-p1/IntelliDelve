@@ -15,6 +15,7 @@ import {
   GraduationCap,
   Award,
   Globe,
+  Zap,
 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -22,6 +23,19 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Careers() {
   const heroRef = useRef<HTMLDivElement>(null);
   const benefitsRef = useRef<HTMLDivElement>(null);
+
+  // Handle hash navigation for direct links to sections
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash === '#open-positions') {
+      setTimeout(() => {
+        const element = document.getElementById('open-positions');
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 500); // Wait for page to load
+    }
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -176,6 +190,29 @@ export default function Careers() {
     },
   ];
 
+  const culturePerks = [
+    {
+      icon: <MapPin className="h-8 w-8 text-blue-500" />,
+      title: "Flexible remote and hybrid work options",
+    },
+    {
+      icon: <Heart className="h-8 w-8 text-green-500" />,
+      title: "Comprehensive health and wellness benefits",
+    },
+    {
+      icon: <Coffee className="h-8 w-8 text-purple-500" />,
+      title: "Professional development and learning opportunities",
+    },
+    {
+      icon: <Users className="h-8 w-8 text-orange-500" />,
+      title: "Equity participation and performance bonuses",
+    },
+    {
+      icon: <Zap className="h-8 w-8 text-yellow-500" />,
+      title: "Inclusive and diverse workplace culture",
+    },
+  ];
+
   return (
     <div className="min-h-screen">
       <SEO
@@ -187,9 +224,15 @@ export default function Careers() {
       {/* Hero Section */}
       <section
         ref={heroRef}
-        className="relative pt-20 pb-16 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-brand-navy dark:via-brand-navy/90 dark:to-purple-900/20"
+        className="relative min-h-screen flex items-center bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-brand-navy dark:via-brand-navy/90 dark:to-purple-900/20 overflow-hidden"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30 dark:opacity-40"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80')`,
+          }}
+        ></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
               Build the Future of <span className="text-primary dark:text-sky-300">Verification</span>
@@ -298,8 +341,8 @@ export default function Careers() {
           <div className="jobs-grid space-y-6">
             {openPositions.map((job, index) => (
               <div
-                key={index}
-                className="job-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
+                key={`job-${index}-${job.title}`}
+                className="job-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
               >
                 <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-6">
                   <div>
@@ -327,8 +370,9 @@ export default function Careers() {
                   </div>
                   <div className="mt-4 lg:mt-0">
                     <a
-                      href={`mailto:careers@intellidelve.com?subject=Application for ${job.title}`}
-                      className="bg-primary text-white px-6 py-3 rounded-full hover:bg-primary/90 transition-all duration-300 font-medium inline-block"
+                      href={`mailto:careers@intellidelve.com?subject=Application for ${encodeURIComponent(job.title)}&body=Dear IntelliDelve Team,%0D%0A%0D%0AI am interested in applying for the ${encodeURIComponent(job.title)} position.%0D%0A%0D%0APlease find my resume attached.%0D%0A%0D%0ABest regards`}
+                      className="bg-primary text-white px-6 py-3 rounded-full hover:bg-primary/90 transition-all duration-300 font-medium inline-block transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                      rel="noopener noreferrer"
                     >
                       Apply Now
                     </a>
@@ -356,6 +400,40 @@ export default function Careers() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Life at IntelliDelve */}
+      <section className="py-20 bg-primary text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                Life at IntelliDelve
+              </h2>
+              <div className="space-y-4">
+                {culturePerks.map((perk, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center space-x-4 bg-white/10 backdrop-blur-sm rounded-2xl p-4 transform hover:scale-105 transition-all duration-300"
+                  >
+                    {perk.icon}
+                    <span className="text-lg">{perk.title}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="relative">
+              <img
+                src="/istockphoto-932275488-612x612.jpg"
+                alt="Life at IntelliDelve - Team Collaboration and Innovation"
+                className="w-full h-auto rounded-2xl shadow-2xl"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent rounded-2xl"></div>
+            </div>
           </div>
         </div>
       </section>

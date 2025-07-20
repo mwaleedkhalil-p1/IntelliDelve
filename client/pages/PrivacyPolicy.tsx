@@ -217,35 +217,7 @@ const PrivacyPolicy = memo(() => {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="py-20 bg-primary text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Contact Us</h2>
-          <p className="text-xl mb-8 opacity-90">
-            If you have any concerns, inquiries, or data-related requests,
-            please contact our team:
-          </p>
-          <div className="bg-white/10 rounded-lg p-6 inline-block">
-            <p className="text-lg">
-              <strong>Email:</strong>{" "}
-              <a
-                href="mailto:verify@intellidelve.com"
-                className="underline hover:no-underline"
-              >
-                verify@intellidelve.com
-              </a>
-            </p>
-          </div>
-          <div className="mt-8">
-            <p className="text-sm opacity-75">
-              We may update this Privacy Policy periodically to reflect legal,
-              technological, or operational changes. All updates will be posted
-              on this page with the revised date. Continued use of our services
-              indicates acceptance of the updated policy.
-            </p>
-          </div>
-        </div>
-      </section>
+
     </div>
   );
 });

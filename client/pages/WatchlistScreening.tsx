@@ -75,44 +75,53 @@ export default function WatchlistScreening() {
   const watchlists = [
     {
       icon: <AlertTriangle className="h-6 w-6 text-red-500" />,
-      title: "OFAC Sanctions Lists",
+      title: "Sanctions & Watchlists",
       description:
-        "U.S. Treasury Office of Foreign Assets Control sanctioned individuals and entities",
-    },
-    {
-      icon: <Globe className="h-6 w-6 text-blue-500" />,
-      title: "UN Security Council",
-      description:
-        "United Nations Security Council consolidated sanctions lists",
+        "Multi-jurisdictional checks against international and national sanctions, embargoes, and enforcement directives.",
     },
     {
       icon: <Eye className="h-6 w-6 text-orange-500" />,
-      title: "PEP Databases",
-      description: "Politically Exposed Persons and their associates worldwide",
+      title: "Political Exposure & Influence Risk",
+      description:
+        "Screening for politically exposed persons (PEPs), associates, and high-risk profiles across global jurisdictions.",
+    },
+    {
+      icon: <Database className="h-6 w-6 text-blue-500" />,
+      title: "Financial & Criminal Risk Databases",
+      description:
+        "Advanced coverage of fraud, money laundering, organized crime, and white-collar criminal records.",
     },
     {
       icon: <Lock className="h-6 w-6 text-purple-500" />,
-      title: "Terrorism Watch Lists",
+      title: "Terrorism & National Security Screening",
       description:
-        "International terrorism and counter-terrorism screening databases",
+        "Flagging links to global terrorism, extremist groups, and counter-terrorism designations.",
     },
     {
-      icon: <Search className="h-6 w-6 text-green-500" />,
-      title: "Law Enforcement",
-      description: "FBI, Interpol, and international law enforcement lists",
+      icon: <Clock className="h-6 w-6 text-green-500" />,
+      title: "Dynamic Source Monitoring",
+      description:
+        "Real-time access to continuously updated, compliance-driven databases.",
     },
     {
-      icon: <Database className="h-6 w-6 text-indigo-500" />,
-      title: "Financial Crime",
-      description: "Money laundering, fraud, and financial crime databases",
+      icon: <Shield className="h-6 w-6 text-indigo-500" />,
+      title: "Terrorism Risk",
+      description:
+        "Screening against terrorism-related designations to ensure regulatory compliance.",
     },
   ];
 
   return (
-    <div className="min-h-screen pt-16">
+    <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-red-600 to-orange-700 dark:from-brand-navy dark:to-red-900 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative bg-gradient-to-br from-red-600 to-orange-700 dark:from-brand-navy dark:to-red-900 min-h-screen flex items-center overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')`,
+          }}
+        ></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div ref={headerRef} className="text-center text-white">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
               Global Watchlist &{" "}

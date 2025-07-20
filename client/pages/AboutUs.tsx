@@ -80,7 +80,9 @@ AnimatedCounter.displayName = "AnimatedCounter";
 
 const VideoPlayer = memo(() => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [showControls, setShowControls] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const togglePlay = () => {
     if (videoRef.current) {
@@ -93,8 +95,35 @@ const VideoPlayer = memo(() => {
     }
   };
 
+  const handleMouseEnter = () => {
+    setShowControls(true);
+    if (hideTimeoutRef.current) {
+      clearTimeout(hideTimeoutRef.current);
+      hideTimeoutRef.current = null;
+    }
+  };
+
+  const handleMouseLeave = () => {
+    hideTimeoutRef.current = setTimeout(() => {
+      setShowControls(false);
+    }, 1000);
+  };
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (hideTimeoutRef.current) {
+        clearTimeout(hideTimeoutRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <div className="relative bg-gray-900 rounded-2xl overflow-hidden shadow-2xl">
+    <div
+      className="relative bg-gray-900 rounded-2xl overflow-hidden shadow-2xl"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <video
         ref={videoRef}
         className="w-full h-64 md:h-80 object-cover"
@@ -102,12 +131,12 @@ const VideoPlayer = memo(() => {
         onPause={() => setIsPlaying(false)}
       >
         <source
-          src="https://cdn.pixabay.com/video/2015/08/07/2-135653517_large.mp4"
+          src="/ID promotion.mp4"
           type="video/mp4"
         />
         Your browser does not support the video tag.
       </video>
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0'}`}>
         <button
           onClick={togglePlay}
           className="bg-primary/80 hover:bg-primary text-white p-4 rounded-full transition-all duration-300 transform hover:scale-110"
@@ -181,9 +210,15 @@ const AboutUs = memo(() => {
     <div className="min-h-screen bg-white dark:bg-gray-900">
       {/* Hero Section */}
       <section
-        className="relative pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-br from-primary/5 to-accent/5 dark:from-primary/20 dark:to-accent/20"
+        className="relative min-h-screen flex items-center bg-gradient-to-br from-primary/5 to-accent/5 dark:from-primary/20 dark:to-accent/20"
       >
-        <div className="absolute inset-0 bg-blue-600/80 dark:bg-blue-700/90"></div>
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80')`,
+          }}
+        ></div>
+        <div className="absolute inset-0 bg-blue-600/85 dark:bg-blue-700/90"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -410,7 +445,7 @@ const AboutUs = memo(() => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-primary text-white">
+      <section className="py-20 bg-gradient-to-br from-gray-800 to-gray-900 dark:from-gray-700 dark:to-gray-800 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready to Transform Your Risk Management?

@@ -649,6 +649,57 @@
       max-height: calc(100vh - 64px);
       overflow-y: auto;
     }
+
+    /* Mobile Services Grid Improvements */
+    .services-mobile-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding: 0 1rem;
+    }
+
+    .services-mobile-card {
+      min-height: auto;
+      padding: 1.5rem;
+      border-radius: 1rem;
+    }
+
+    /* Mobile Industries Grid Improvements */
+    .industries-mobile-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding: 0 1rem;
+    }
+
+    .industries-mobile-card {
+      padding: 1.5rem;
+      border-radius: 1rem;
+      min-height: 200px;
+    }
+
+    /* Mobile Case Studies Grid Improvements */
+    .case-studies-mobile-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding: 0 1rem;
+    }
+
+    .case-studies-mobile-card {
+      padding: 1.5rem;
+      border-radius: 1rem;
+      min-height: auto;
+    }
+
+    /* Ensure full width display on mobile */
+    .mobile-full-width {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
   }
 
   /* Enhanced Mega Menu Scrollbar Styles */
@@ -876,6 +927,56 @@
     .hero-carousel-tablet-image {
       height: 300px;
     }
+
+    /* Tablet Services Grid */
+    .services-tablet-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 0 1.5rem;
+    }
+
+    /* Tablet Industries Grid */
+    .industries-tablet-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      padding: 0 1.5rem;
+    }
+
+    /* Tablet Case Studies Grid */
+    .case-studies-tablet-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 0 1.5rem;
+    }
+  }
+
+  /* Small mobile screens (iPhone SE, etc.) */
+  @media (max-width: 375px) {
+    .services-mobile-card,
+    .industries-mobile-card,
+    .case-studies-mobile-card {
+      padding: 1rem;
+      margin: 0 0.5rem;
+    }
+
+    .mobile-full-width {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+
+    /* Ensure text is readable on small screens */
+    .mobile-text-responsive {
+      font-size: 0.875rem;
+      line-height: 1.4;
+    }
+
+    .mobile-title-responsive {
+      font-size: 1.25rem;
+      line-height: 1.3;
+    }
   }
 
   /* Landscape mobile improvements */
@@ -916,6 +1017,59 @@
     scrollbar-color: rgba(59, 130, 246, 0.3) transparent;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  /* Mobile and Tablet Mega Menu Height Fixes */
+  @media (max-width: 768px) {
+    .mobile-mega-menu-scrollbar {
+      max-height: calc(100vh - 100px) !important;
+      min-height: 250px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .mobile-mega-menu-scrollbar {
+      max-height: calc(100vh - 80px) !important;
+      min-height: 200px;
+    }
+  }
+
+  /* Tablet landscape mode */
+  @media (min-width: 481px) and (max-width: 1024px) and (orientation: landscape) {
+    .mobile-mega-menu-scrollbar {
+      max-height: calc(100vh - 120px) !important;
+      min-height: 300px;
+    }
+  }
+
+  /* Enhanced touch scrolling for mobile mega menu */
+  .mobile-mega-menu-enter {
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Prevent body scroll when mega menu is open */
+  .mobile-mega-menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+  }
+
+  /* Improved accordion section spacing on mobile */
+  @media (max-width: 640px) {
+    .mobile-mega-menu-scrollbar .mb-2 {
+      margin-bottom: 0.75rem;
+    }
+
+    .mobile-mega-menu-scrollbar .px-2 {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .mobile-mega-menu-scrollbar .pb-2 {
+      padding-bottom: 1rem;
+    }
   }
 
   /* Safari-specific modal and overlay fixes */
@@ -1008,4 +1162,9 @@
   .dark .mobile-mega-menu-scrollbar::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(180deg, rgba(14, 165, 233, 0.8), rgba(168, 85, 247, 0.8));
   }
+}
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
 }

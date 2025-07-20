@@ -13,6 +13,7 @@ const KYCCompliance: React.FC = () => {
       subtext:
         "Ensure regulatory compliance and reduce financial crime risks with comprehensive Know Your Customer and AML screening solutions.",
     },
+    heroImage: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=85",
     features: [
       "Customer identification and verification procedures",
       "Anti-Money Laundering (AML) screening and monitoring",

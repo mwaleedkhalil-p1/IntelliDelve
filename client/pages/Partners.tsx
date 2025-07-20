@@ -10,10 +10,6 @@ import {
   Users,
   UserCheck,
   CheckCircle,
-  MapPin,
-  Coffee,
-  Heart,
-  Zap,
   Loader2,
 } from "lucide-react";
 
@@ -29,7 +25,6 @@ type PartnershipFormData = {
 export default function Partners() {
   const headerRef = useRef<HTMLDivElement>(null);
   const partnershipsRef = useRef<HTMLDivElement>(null);
-  const cultureRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const recaptchaRef = useRef<ReCaptchaRef>(null);
 
@@ -70,23 +65,7 @@ export default function Partners() {
       );
     }
 
-    if (cultureRef.current) {
-      gsap.fromTo(
-        cultureRef.current.children,
-        { opacity: 0, scale: 0.9 },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: "back.out(1.7)",
-          scrollTrigger: {
-            trigger: cultureRef.current,
-            start: "top 80%",
-          },
-        },
-      );
-    }
+
   }, []);
 
   const handleFormChange = (
@@ -189,28 +168,7 @@ export default function Partners() {
     },
   ];
 
-  const culturePerks = [
-    {
-      icon: <MapPin className="h-8 w-8 text-blue-500" />,
-      title: "Flexible remote and hybrid work options",
-    },
-    {
-      icon: <Heart className="h-8 w-8 text-green-500" />,
-      title: "Comprehensive health and wellness benefits",
-    },
-    {
-      icon: <Coffee className="h-8 w-8 text-purple-500" />,
-      title: "Professional development and learning opportunities",
-    },
-    {
-      icon: <Users className="h-8 w-8 text-orange-500" />,
-      title: "Equity participation and performance bonuses",
-    },
-    {
-      icon: <Zap className="h-8 w-8 text-yellow-500" />,
-      title: "Inclusive and diverse workplace culture",
-    },
-  ];
+
 
   return (
     <div className="min-h-screen pt-16">
@@ -240,8 +198,14 @@ export default function Partners() {
         }}
       />
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600 to-purple-700 dark:from-brand-navy dark:to-purple-900 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative bg-gradient-to-br from-blue-600 to-purple-700 dark:from-brand-navy dark:to-purple-900 min-h-screen flex items-center overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80')`,
+          }}
+        ></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div ref={headerRef} className="text-center text-white">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
               Join the <span className="text-yellow-300">Future</span> of
@@ -260,8 +224,14 @@ export default function Partners() {
                 Become a Partner
               </a>
               <Link
-                to="/careers"
-                className="border-2 border-white dark:border-gray-300 text-white dark:text-white px-8 py-4 rounded-full font-semibold hover:bg-white dark:hover:bg-gray-300 hover:text-blue-600 dark:hover:text-gray-900 transition-colors duration-300 inline-block text-center"
+                to="/careers#open-positions"
+                onClick={() => {
+                  // Smooth scroll to top first, then let the hash handle the section scroll
+                  setTimeout(() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }, 100);
+                }}
+                className="border-2 border-white dark:border-gray-300 text-white dark:text-white px-8 py-4 rounded-full font-semibold hover:bg-white dark:hover:bg-gray-300 hover:text-blue-600 dark:hover:text-gray-900 transition-colors duration-300 inline-block text-center transform hover:scale-105"
               >
                 View Open Positions
               </Link>
@@ -418,38 +388,6 @@ export default function Partners() {
         </div>
       </section>
 
-      {/* Life at IntelliDelve */}
-      <section className="py-20 bg-primary text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Life at IntelliDelve
-              </h2>
-              <div ref={cultureRef} className="space-y-4">
-                {culturePerks.map((perk, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center space-x-4 bg-white/10 backdrop-blur-sm rounded-2xl p-4"
-                  >
-                    {perk.icon}
-                    <span className="text-lg">{perk.title}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="relative">
-              <img
-                src="/istockphoto-932275488-612x612.jpg"
-                alt="Partnership and Team Collaboration at IntelliDelve"
-                className="w-full h-auto rounded-2xl shadow-2xl"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent rounded-2xl"></div>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

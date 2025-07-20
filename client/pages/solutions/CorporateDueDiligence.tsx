@@ -24,6 +24,7 @@ const CorporateDueDiligence: React.FC = () => {
         "Executive leadership screening and reputation analysis",
         "Regulatory compliance verification across multiple jurisdictions",
         "Anti-Money Laundering (AML) and Know Your Customer (KYC) screening",
+        "Citizen by Investment (CBI) due diligence and compliance verification",
         "Sanctions and watchlist screening with real-time monitoring",
         "Corporate structure analysis and beneficial ownership identification",
         "Litigation history and legal risk assessment",
@@ -65,7 +66,7 @@ const CorporateDueDiligence: React.FC = () => {
       <SEO
         title="Corporate Due Diligence & Risk Compliance - IntelliDelve"
         description="Comprehensive business intelligence and due diligence services for partnerships, acquisitions, and investments. Expert AML, KYC, and regulatory compliance solutions."
-        keywords="corporate due diligence, business intelligence, AML compliance, KYC screening, regulatory compliance, risk assessment, executive screening"
+        keywords="corporate due diligence, business intelligence, AML compliance, KYC screening, CBI due diligence, citizen by investment, regulatory compliance, risk assessment, executive screening"
       />
       <SolutionPage solution={solutionData} />
     </>

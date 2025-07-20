@@ -25,7 +25,7 @@ const BackgroundScreening: React.FC = () => {
         "Professional Reference Verification with structured interviews",
         "Global Watchlist and Sanctions Screening",
         "Address Verification and Residency Confirmation",
-        "Continuous Workforce Risk Monitoring",
+
         "Real-time Status Updates and Reporting Dashboard",
       ],
     },
@@ -34,12 +34,30 @@ const BackgroundScreening: React.FC = () => {
       description:
         "Our screening solutions combine cutting-edge technology with human expertise to deliver the most accurate and comprehensive results in the industry.",
       benefits: [
-        "Fastest turnaround time in the industry with 24-hour average completion",
-        "99.8% accuracy rate verified by independent audits and client feedback",
-        "Global coverage across 100+ countries with local compliance expertise",
-        "AI-powered risk scoring and pattern analysis for enhanced decision making",
-        "FCRA, GDPR, and SOC 2 Type II compliant processes and data handling",
-        "24/7 customer support with dedicated account management",
+        {
+          name: "Lightning-Fast Processing",
+          description: "Fastest turnaround time in the industry with 24-hour average completion"
+        },
+        {
+          name: "Unmatched Accuracy",
+          description: "99.8% accuracy rate verified by independent audits and client feedback"
+        },
+        {
+          name: "Global Reach",
+          description: "Global coverage across 100+ countries with local compliance expertise"
+        },
+        {
+          name: "AI-Powered Intelligence",
+          description: "AI-powered risk scoring and pattern analysis for enhanced decision making"
+        },
+        {
+          name: "Full Compliance",
+          description: "FCRA, GDPR, and SOC 2 Type II compliant processes and data handling"
+        },
+        {
+          name: "Dedicated Support",
+          description: "24/7 customer support with dedicated account management"
+        },
       ],
     },
     how: {

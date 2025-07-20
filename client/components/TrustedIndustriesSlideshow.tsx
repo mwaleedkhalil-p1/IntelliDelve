@@ -179,20 +179,20 @@ const TrustedIndustriesSlideshow = memo<TrustedIndustriesSlideshowProps>(
           </div>
 
           {/* Mobile Continuous Scroll (for smaller screens) */}
-          <div className="lg:hidden mt-12">
-            <div className="flex animate-scroll-infinite space-x-6 overflow-hidden">
+          <div className="lg:hidden mt-12 mobile-full-width">
+            <div className="flex animate-scroll-infinite space-x-4 md:space-x-6 overflow-hidden px-4">
               {/* First set */}
               {industries.map((industry, index) => (
                 <div
                   key={`mobile-first-${index}`}
-                  className="flex-shrink-0 bg-gray-50 dark:bg-brand-navy/50 rounded-xl p-4 text-center w-48"
+                  className="flex-shrink-0 bg-gray-50 dark:bg-brand-navy/50 rounded-xl p-3 md:p-4 text-center w-40 md:w-48"
                 >
-                  <div className="flex justify-center mb-3">
+                  <div className="flex justify-center mb-2 md:mb-3">
                     {React.cloneElement(industry.icon, {
-                      className: "h-8 w-8 text-primary dark:text-sky-300",
+                      className: "h-6 w-6 md:h-8 md:w-8 text-primary dark:text-sky-300",
                     })}
                   </div>
-                  <h3 className="text-sm font-semibold text-gray-900 dark:text-white leading-tight">
+                  <h3 className="text-xs md:text-sm font-semibold text-gray-900 dark:text-white leading-tight mobile-text-responsive">
                     {industry.title}
                   </h3>
                 </div>

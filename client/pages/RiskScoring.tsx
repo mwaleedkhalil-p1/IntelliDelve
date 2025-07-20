@@ -13,6 +13,7 @@ const RiskScoring: React.FC = () => {
       subtext:
         "Make informed decisions with advanced risk assessment, scoring, and profiling solutions powered by AI and machine learning.",
     },
+    heroImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=85",
     features: [
       "AI-powered risk scoring algorithms",
       "Comprehensive risk profiling and assessment",

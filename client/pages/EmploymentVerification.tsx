@@ -13,6 +13,7 @@ const EmploymentVerification: React.FC = () => {
       subtext:
         "Ensure accurate employment history with comprehensive verification of positions, dates, responsibilities, and reasons for leaving.",
     },
+    heroImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=85",
     features: [
       "Direct contact with previous employers and HR departments",
       "Verification of job titles, dates of employment, and salary information",
@@ -21,7 +22,6 @@ const EmploymentVerification: React.FC = () => {
       "Global employment verification across 100+ countries",
       "Real-time status updates and detailed reporting",
       "Automated reference collection and verification",
-      "Integration with HRIS and ATS systems",
     ],
     benefits: [
       "Reduce hiring risks by verifying candidate employment claims",
@@ -33,9 +33,9 @@ const EmploymentVerification: React.FC = () => {
     ],
     process: [
       "Submit employment verification request with candidate details",
-      "Our team contacts previous employers and HR departments",
-      "Verification of employment details and collection of references",
-      "Comprehensive report delivered with verified employment history",
+      "Initiation of Investigation Process",
+      "Confidential validation using industry best practices",
+      "A detailed verification report is shared with confirmed insights",
     ],
     icon: <Briefcase className="h-6 w-6" />,
     color: "bg-blue-500/10 text-blue-600",

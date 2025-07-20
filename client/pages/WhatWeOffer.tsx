@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -28,6 +28,13 @@ import {
   Lock,
   Cloud,
   Smartphone,
+  Building2,
+  Stethoscope,
+  Rocket,
+  Landmark,
+  Factory,
+  GraduationCap,
+  Home,
   Monitor,
   Settings,
   Network,
@@ -88,13 +95,7 @@ const allSolutions = [
         link: "/watchlist-screening",
         features: ["Sanctions screening", "PEP screening", "Adverse media checks", "Global database access"]
       },
-      {
-        title: "Continuous Workforce Monitoring",
-        description: "Ongoing monitoring of employee backgrounds post-hire.",
-        icon: Target,
-        link: "/workforce-monitoring",
-        features: ["Real-time alerts", "Ongoing monitoring", "Risk assessment updates", "Compliance tracking"]
-      }
+
     ]
   },
   // Corporate Due Diligence & Risk Compliance
@@ -242,6 +243,7 @@ const stats = [
 const WhatWeOffer = memo(() => {
   const { openCalendly } = useCalendlyContext();
   const heroRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
   const statsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -289,6 +291,30 @@ const WhatWeOffer = memo(() => {
     return () => ctx.revert();
   }, []);
 
+  // Handle hash scrolling
+  useEffect(() => {
+    if (location.hash) {
+      const hash = location.hash.substring(1); // Remove the #
+      console.log('Looking for element with ID:', hash); // Debug log
+      const element = document.getElementById(hash);
+      console.log('Found element:', element); // Debug log
+      if (element) {
+        // Wait a bit for the page to render, then scroll
+        setTimeout(() => {
+          const headerOffset = 120; // Account for fixed header + padding
+          const elementPosition = element.offsetTop;
+          const offsetPosition = elementPosition - headerOffset;
+
+          console.log('Scrolling to position:', offsetPosition); // Debug log
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }, 300); // Increased timeout to ensure page is fully rendered
+      }
+    }
+  }, [location.hash]);
+
   return (
     <div className="min-h-screen">
       <SEO
@@ -300,44 +326,104 @@ const WhatWeOffer = memo(() => {
       {/* Hero Section */}
       <section
         ref={heroRef}
-        className="relative pt-20 pb-16 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-brand-navy dark:via-brand-navy/90 dark:to-purple-900/20 overflow-hidden"
+        className="relative min-h-screen flex items-center overflow-hidden"
       >
-        {/* Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-400/10 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-400/10 rounded-full blur-3xl"></div>
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+            alt="Modern Business Solutions"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-purple-900/85 to-indigo-900/90"></div>
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-              Comprehensive Solutions for
-              <span className="text-primary dark:text-sky-300">
-                {" "}
-                Modern Business Challenges
-              </span>
-            </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-              Four integrated service pillars delivering complete risk
-              management, compliance solutions, and cutting-edge technology
-              services tailored to your industry needs.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={() =>
-                  openCalendly("What We Offer - Schedule Consultation")
-                }
-                className="inline-flex items-center px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-              >
-                Schedule Consultation
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </button>
-              <Link
-                to="/case-studies"
-                className="inline-flex items-center px-8 py-4 border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-white transition-all duration-300"
-              >
-                View Case Studies
-              </Link>
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 z-10 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-cyan-400/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-400/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl animate-pulse"></div>
+        </div>
+
+        {/* Pattern Overlay */}
+        <div className="absolute inset-0 z-20">
+          <div className="absolute inset-0 bg-[linear-gradient(45deg,_transparent_25%,_rgba(255,255,255,0.02)_25%,_rgba(255,255,255,0.02)_50%,_transparent_50%,_transparent_75%,_rgba(255,255,255,0.02)_75%)] bg-[length:32px_32px]"></div>
+        </div>
+
+        <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="text-center lg:text-left">
+              <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white text-sm font-medium mb-6">
+                <Shield className="w-4 h-4 mr-2" />
+                Comprehensive Solutions
+              </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400">
+                  Comprehensive Solutions
+                </span>
+                <br />
+                <span className="text-white">for</span>
+                <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-teal-400 to-cyan-400">
+                  Modern Business
+                </span>
+                <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400">
+                  Challenges
+                </span>
+              </h1>
+              <p className="text-xl text-gray-100 mb-8 leading-relaxed">
+                Four integrated service pillars delivering complete risk management, compliance solutions, and cutting-edge technology services tailored to your industry needs.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <button
+                  onClick={() =>
+                    openCalendly("What We Offer - Schedule Consultation")
+                  }
+                  className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-full hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                >
+                  Schedule Consultation
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </button>
+                <Link
+                  to="/case-studies"
+                  className="inline-flex items-center px-8 py-4 border-2 border-cyan-400 text-cyan-400 font-semibold rounded-full hover:bg-cyan-400 hover:text-white transition-all duration-300"
+                >
+                  View Case Studies
+                </Link>
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Code className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-2">25+ Specialized Solutions</h3>
+                  <p className="text-gray-200">Across four integrated service pillars</p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-white/10 rounded-xl p-4 text-center">
+                    <Shield className="w-6 h-6 text-blue-400 mx-auto mb-2" />
+                    <div className="text-white font-semibold text-sm">Background Screening</div>
+                  </div>
+                  <div className="bg-white/10 rounded-xl p-4 text-center">
+                    <Search className="w-6 h-6 text-green-400 mx-auto mb-2" />
+                    <div className="text-white font-semibold text-sm">Due Diligence</div>
+                  </div>
+                  <div className="bg-white/10 rounded-xl p-4 text-center">
+                    <Brain className="w-6 h-6 text-purple-400 mx-auto mb-2" />
+                    <div className="text-white font-semibold text-sm">AI Solutions</div>
+                  </div>
+                  <div className="bg-white/10 rounded-xl p-4 text-center">
+                    <Code className="w-6 h-6 text-orange-400 mx-auto mb-2" />
+                    <div className="text-white font-semibold text-sm">Tech Innovation</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -380,8 +466,14 @@ const WhatWeOffer = memo(() => {
           </div>
 
           <div className="solutions-grid space-y-16">
-            {allSolutions.map((category, categoryIndex) => (
-              <div key={categoryIndex} className="solution-category">
+            {allSolutions.map((category, categoryIndex) => {
+              const sectionId = category.category.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and');
+              return (
+                <div
+                  key={categoryIndex}
+                  id={sectionId}
+                  className="solution-category scroll-mt-24"
+                >
                 {/* Category Header */}
                 <div className="text-center mb-12">
                   <div className="flex justify-center mb-4">
@@ -446,7 +538,8 @@ const WhatWeOffer = memo(() => {
                   ))}
                 </div>
               </div>
-            ))}
+            );
+            })}
           </div>
         </div>
       </section>
@@ -467,25 +560,28 @@ const WhatWeOffer = memo(() => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              "Financial Services",
-              "Healthcare & Medical",
-              "Technology & Startups",
-              "Government & Public",
-              "Manufacturing",
-              "Education",
-              "Insurance",
-              "Real Estate",
-            ].map((industry, index) => (
-              <div
-                key={index}
-                className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 text-center border border-gray-200 dark:border-gray-700"
-              >
-                <Star className="h-8 w-8 text-primary dark:text-accent mx-auto mb-3" />
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                  {industry}
-                </h3>
-              </div>
-            ))}
+              { name: "Financial Services", icon: Building2 },
+              { name: "Healthcare & Medical", icon: Stethoscope },
+              { name: "Technology & Startups", icon: Rocket },
+              { name: "Government & Public", icon: Landmark },
+              { name: "Manufacturing", icon: Factory },
+              { name: "Education", icon: GraduationCap },
+              { name: "Insurance", icon: Shield },
+              { name: "Real Estate", icon: Home },
+            ].map((industry, index) => {
+              const IconComponent = industry.icon;
+              return (
+                <div
+                  key={index}
+                  className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 text-center border border-gray-200 dark:border-gray-700"
+                >
+                  <IconComponent className="h-8 w-8 text-primary dark:text-accent mx-auto mb-3" />
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                    {industry.name}
+                  </h3>
+                </div>
+              );
+            })}
           </div>
 
           <div className="text-center mt-12">

@@ -23,6 +23,7 @@ import {
   Bot,
   Cpu,
   Cog,
+  Globe,
 } from "lucide-react";
 
 const whatWeOfferMegaMenuData = {
@@ -35,9 +36,9 @@ const whatWeOfferMegaMenuData = {
       icon: Shield,
       items: [
         {
-          name: "Employment History Verification",
-          path: "/employment-verification",
-          icon: Briefcase,
+          name: "Background Screening Process",
+          path: "/background-screening",
+          icon: Shield,
         },
         {
           name: "Criminal Record & Identity Checks",
@@ -50,19 +51,9 @@ const whatWeOfferMegaMenuData = {
           icon: BadgeCheck,
         },
         {
-          name: "Background Screening Process",
-          path: "/background-screening",
-          icon: Shield,
-        },
-        {
-          name: "Reference and Credential Validation",
-          path: "/reference-validation",
-          icon: FileCheck,
-        },
-        {
-          name: "Physical and Digital Address Verification",
-          path: "/address-verification",
-          icon: Building2,
+          name: "Employment History Verification",
+          path: "/employment-verification",
+          icon: Briefcase,
         },
         {
           name: "Global Watchlist and Sanctions Screening",
@@ -70,10 +61,16 @@ const whatWeOfferMegaMenuData = {
           icon: Search,
         },
         {
-          name: "Continuous Workforce Risk Monitoring",
-          path: "/workforce-monitoring",
-          icon: UserCheck,
+          name: "Physical and Digital Address Verification",
+          path: "/address-verification",
+          icon: Building2,
         },
+        {
+          name: "Reference and Credential Validation",
+          path: "/reference-validation",
+          icon: FileCheck,
+        },
+
       ],
     },
     {
@@ -90,6 +87,11 @@ const whatWeOfferMegaMenuData = {
           path: "/kyc-compliance",
           icon: Shield,
         },
+        {
+          name: "Citizen by Investment (CBI)",
+          path: "/citizen-by-investment",
+          icon: Globe,
+        },
       ],
     },
     {
@@ -97,9 +99,19 @@ const whatWeOfferMegaMenuData = {
       icon: Brain,
       items: [
         {
-          name: "Predictive Analytics & Forecasting",
-          path: "/predictive-analytics",
-          icon: LineChart,
+          name: "AI-Powered Resume Ranking & Candidate Scoring",
+          path: "/resume-ranking",
+          icon: UserCheck,
+        },
+        {
+          name: "Computer Vision Systems",
+          path: "/computer-vision",
+          icon: Cpu,
+        },
+        {
+          name: "Document Intelligence & OCR",
+          path: "/document-intelligence",
+          icon: FileCheck,
         },
         {
           name: "Interactive Dashboards & Business Intelligence",
@@ -112,14 +124,9 @@ const whatWeOfferMegaMenuData = {
           icon: Bot,
         },
         {
-          name: "Computer Vision Systems",
-          path: "/computer-vision",
-          icon: Cpu,
-        },
-        {
-          name: "Retrieval-Augmented Generation (RAG)",
-          path: "/rag",
-          icon: Brain,
+          name: "Predictive Analytics & Forecasting",
+          path: "/predictive-analytics",
+          icon: LineChart,
         },
         {
           name: "Recommendation Engines",
@@ -127,19 +134,14 @@ const whatWeOfferMegaMenuData = {
           icon: Cog,
         },
         {
-          name: "Document Intelligence & OCR",
-          path: "/document-intelligence",
-          icon: FileCheck,
+          name: "Retrieval-Augmented Generation (RAG)",
+          path: "/rag",
+          icon: Brain,
         },
         {
           name: "Sentiment & Intent Analysis",
           path: "/sentiment-analysis",
           icon: Brain,
-        },
-        {
-          name: "AI-Powered Resume Ranking & Candidate Scoring",
-          path: "/resume-ranking",
-          icon: UserCheck,
         },
       ],
     },
@@ -148,14 +150,14 @@ const whatWeOfferMegaMenuData = {
       icon: Code,
       items: [
         {
+          name: "Cloud Infrastructure & DevOps",
+          path: "/cloud-infrastructure",
+          icon: Cpu,
+        },
+        {
           name: "Custom Software Development",
           path: "/custom-software",
           icon: Code,
-        },
-        {
-          name: "System Integration & API Development",
-          path: "/system-integration",
-          icon: Cog,
         },
         {
           name: "Data Migration & Analytics Platform",
@@ -163,9 +165,9 @@ const whatWeOfferMegaMenuData = {
           icon: Database,
         },
         {
-          name: "Cloud Infrastructure & DevOps",
-          path: "/cloud-infrastructure",
-          icon: Cpu,
+          name: "System Integration & API Development",
+          path: "/system-integration",
+          icon: Cog,
         },
       ],
     },
@@ -182,19 +184,24 @@ const industriesMegaMenuData = {
       icon: Building2,
       items: [
         {
+          name: "Accounting & Financial Advisory",
+          path: "/industries/accounting-advisory",
+          icon: LineChart,
+        },
+        {
           name: "Banking & Financial Services",
           path: "/industries/banking-financial",
           icon: Building2,
         },
         {
-          name: "Insurance Companies",
-          path: "/industries/insurance",
-          icon: Shield,
-        },
-        {
           name: "Corporate & Professional Sector",
           path: "/industries/corporate-professional",
           icon: Briefcase,
+        },
+        {
+          name: "Insurance Companies",
+          path: "/industries/insurance",
+          icon: Shield,
         },
         {
           name: "Legal Services & Law Firms",
@@ -205,11 +212,6 @@ const industriesMegaMenuData = {
           name: "Real Estate & Property Management",
           path: "/industries/real-estate",
           icon: Building2,
-        },
-        {
-          name: "Accounting & Financial Advisory",
-          path: "/industries/accounting-advisory",
-          icon: LineChart,
         },
       ],
     },
@@ -294,6 +296,24 @@ const industriesMegaMenuData = {
   ],
 };
 
+/**
+ * Utility function to check if mouse coordinates are within element bounds with buffer
+ */
+const isMouseWithinBounds = (
+  mouseX: number,
+  mouseY: number,
+  rect: DOMRect,
+  horizontalBuffer = 0,
+  verticalBuffer = 0
+): boolean => {
+  return (
+    mouseX >= rect.left - horizontalBuffer &&
+    mouseX <= rect.right + horizontalBuffer &&
+    mouseY >= rect.top - verticalBuffer &&
+    mouseY <= rect.bottom + verticalBuffer
+  );
+};
+
 const Navigation = memo(() => {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -314,9 +334,13 @@ const Navigation = memo(() => {
     setMobileSubMenuOpen(null);
   }, []);
 
+  /**
+   * Enhanced menu hover handler with improved state management
+   * Handles opening menus and clearing any pending close timeouts
+   */
   const handleMenuHover = useCallback((menuType: string) => {
     if (window.innerWidth >= 1024) {
-      // Clear any pending close timeout
+      // Clear any pending close timeout immediately
       if (closeTimeoutRef.current) {
         clearTimeout(closeTimeoutRef.current);
         closeTimeoutRef.current = null;
@@ -348,15 +372,61 @@ const Navigation = memo(() => {
     [closeAllMenus],
   );
 
-  const handleMouseLeave = useCallback(() => {
+  /**
+   * Enhanced mouse leave handler with comprehensive related target checking
+   * Prevents premature closing when moving between menu elements
+   */
+  const handleMouseLeave = useCallback((event: React.MouseEvent) => {
+    // Clear any existing timeout first
     if (closeTimeoutRef.current) {
       clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
     }
+
+    const relatedTarget = event.relatedTarget as Element;
+    const currentTarget = event.currentTarget as Element;
+
+    // Enhanced related target checking to prevent flickering
+    if (relatedTarget) {
+      // Check if moving to a child element
+      if (currentTarget.contains(relatedTarget)) {
+        return;
+      }
+
+      // Check if moving to any mega menu area
+      if (relatedTarget.closest('[data-mega-menu-area]')) {
+        return;
+      }
+
+      // Check if moving to mega menu content
+      if (relatedTarget.closest('[data-mega-menu-content]')) {
+        return;
+      }
+
+      // Check if moving to the mega menu dropdown itself
+      if (megaMenuRef.current && megaMenuRef.current.contains(relatedTarget)) {
+        return;
+      }
+
+      // Check if moving to navigation elements
+      if (navRef.current && navRef.current.contains(relatedTarget)) {
+        return;
+      }
+    }
+
+    // Set a delayed close with appropriate timeout for smooth UX
     closeTimeoutRef.current = setTimeout(() => {
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Closing menu via mouse leave handler');
+      }
       setActiveMenu(null);
-    }, 100);
+    }, 150); // Balanced timeout for responsive closing
   }, []);
 
+  /**
+   * Mouse enter handler to cancel any pending close operations
+   * Ensures menu stays open when re-entering the menu area
+   */
   const handleMouseEnter = useCallback(() => {
     if (closeTimeoutRef.current) {
       clearTimeout(closeTimeoutRef.current);
@@ -364,15 +434,120 @@ const Navigation = memo(() => {
     }
   }, []);
 
+
+
+  /**
+   * Enhanced global mouse move listener for reliable menu closing
+   * Detects when mouse leaves the entire mega menu area
+   */
   useEffect(() => {
+    const handleGlobalMouseMove = (event: MouseEvent) => {
+      // Only track when a menu is active
+      if (!activeMenu) return;
+
+      const nav = navRef.current;
+      const megaMenu = megaMenuRef.current;
+
+      if (!nav) return;
+
+      const navRect = nav.getBoundingClientRect();
+      const mouseX = event.clientX;
+      const mouseY = event.clientY;
+
+      // Reasonable buffer for smooth interaction
+      const buffer = 30;
+
+      // Check if mouse is within navigation bounds
+      const isInsideNav = (
+        mouseX >= navRect.left - buffer &&
+        mouseX <= navRect.right + buffer &&
+        mouseY >= navRect.top - buffer &&
+        mouseY <= navRect.bottom + buffer
+      );
+
+      // Check if mouse is within mega menu bounds
+      let isInsideMegaMenu = false;
+      if (megaMenu && activeMenu) {
+        const megaMenuContent = megaMenu.querySelector('[data-mega-menu-content]');
+        if (megaMenuContent) {
+          const contentRect = megaMenuContent.getBoundingClientRect();
+          isInsideMegaMenu = (
+            mouseX >= contentRect.left - buffer &&
+            mouseX <= contentRect.right + buffer &&
+            mouseY >= contentRect.top - buffer &&
+            mouseY <= contentRect.bottom + buffer
+          );
+        }
+      }
+
+      // Check if mouse is in the gap between nav and mega menu
+      let isInGap = false;
+      if (megaMenu && activeMenu) {
+        const megaMenuContent = megaMenu.querySelector('[data-mega-menu-content]');
+        if (megaMenuContent) {
+          const contentRect = megaMenuContent.getBoundingClientRect();
+          const gapHeight = contentRect.top - navRect.bottom;
+
+          // Allow for reasonable gap between nav and mega menu
+          if (gapHeight > 0 && gapHeight <= 50) {
+            isInGap = (
+              mouseX >= Math.min(navRect.left, contentRect.left) - buffer &&
+              mouseX <= Math.max(navRect.right, contentRect.right) + buffer &&
+              mouseY >= navRect.bottom &&
+              mouseY <= contentRect.top
+            );
+          }
+        }
+      }
+
+      // Debug logging in development
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Mouse tracking:', {
+          mouseX,
+          mouseY,
+          isInsideNav,
+          isInsideMegaMenu,
+          isInGap,
+          activeMenu,
+          shouldClose: !isInsideNav && !isInsideMegaMenu && !isInGap
+        });
+      }
+
+      // Close menu if mouse is outside all relevant areas
+      if (!isInsideNav && !isInsideMegaMenu && !isInGap) {
+        if (closeTimeoutRef.current) {
+          clearTimeout(closeTimeoutRef.current);
+        }
+        closeTimeoutRef.current = setTimeout(() => {
+          if (process.env.NODE_ENV === 'development') {
+            console.log('Closing menu via global mouse tracking');
+          }
+          setActiveMenu(null);
+        }, 200); // Reasonable timeout for smooth UX
+      } else {
+        // Cancel any pending close if mouse re-enters valid area
+        if (closeTimeoutRef.current) {
+          clearTimeout(closeTimeoutRef.current);
+          closeTimeoutRef.current = null;
+        }
+      }
+    };
+
+    document.addEventListener('mousemove', handleGlobalMouseMove);
+    return () => document.removeEventListener('mousemove', handleGlobalMouseMove);
+
+
     document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("mousemove", handleGlobalMouseMove);
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("mousemove", handleGlobalMouseMove);
       if (closeTimeoutRef.current) {
         clearTimeout(closeTimeoutRef.current);
       }
     };
-  }, [handleClickOutside]);
+  }, [handleClickOutside, activeMenu]);
 
   useEffect(() => {
     if (navRef.current) {
@@ -413,28 +588,32 @@ const Navigation = memo(() => {
         ref={navRef}
         className="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-brand-navy/95 backdrop-blur-lg border-b border-gray-200 dark:border-gray-700 shadow-sm"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
           <div className="flex justify-between items-center h-16">
             <Link
               to="/"
-              className="flex items-center flex-shrink-0"
+              className="flex items-center flex-shrink-0 -ml-2 sm:-ml-1"
               onClick={closeAllMenus}
             >
               <div className="relative">
                 <img
                   src="/Main logo TM.png"
                   alt="IntelliDelve"
-                  className="h-8 w-auto dark:hidden"
+                  className="h-10 w-auto dark:hidden"
                 />
                 <img
                   src="/logo.png"
                   alt="IntelliDelve"
-                  className="h-8 w-auto hidden dark:block"
+                  className="h-10 w-auto hidden dark:block"
                 />
               </div>
             </Link>
 
-            <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+            <div
+              className="hidden lg:flex items-center space-x-6 xl:space-x-8"
+              data-mega-menu-area
+              onMouseLeave={handleMouseLeave}
+            >
               {navItems.map((item) => (
                 <div key={item.name} className="relative">
                   {item.hasMegaMenu ? (
@@ -445,9 +624,7 @@ const Navigation = memo(() => {
                           ? "text-primary dark:text-sky-300"
                           : ""
                       }`}
-                      onMouseEnter={() =>
-                        handleMenuHover(item.name.toLowerCase())
-                      }
+                      onMouseEnter={() => handleMenuHover(item.name.toLowerCase())}
                       onClick={closeAllMenus}
                     >
                       <span>{item.name}</span>
@@ -462,6 +639,18 @@ const Navigation = memo(() => {
                           : ""
                       }`}
                       onClick={closeAllMenus}
+                      onMouseEnter={() => {
+                        // Close any open mega menu when hovering over non-mega menu items
+                        if (activeMenu) {
+                          // Clear any pending timeouts first
+                          if (closeTimeoutRef.current) {
+                            clearTimeout(closeTimeoutRef.current);
+                            closeTimeoutRef.current = null;
+                          }
+                          // Close immediately for better UX
+                          setActiveMenu(null);
+                        }
+                      }}
                     >
                       {item.name}
                     </Link>
@@ -472,7 +661,7 @@ const Navigation = memo(() => {
               <Link
                 to="/contact"
                 onClick={closeAllMenus}
-                className="bg-primary text-white px-4 py-2 xl:px-6 xl:py-3 rounded-full hover:bg-primary/90 transition-all duration-300 font-medium transform hover:scale-105 shadow-lg hover:shadow-xl text-sm xl:text-base inline-block text-center"
+                className="bg-primary text-white px-3 py-1.5 rounded-full hover:bg-primary/90 transition-all duration-300 font-medium transform hover:scale-105 shadow-lg hover:shadow-xl text-sm inline-block text-center"
               >
                 Get Started
               </Link>
@@ -585,7 +774,7 @@ const Navigation = memo(() => {
                 <Link
                   to="/contact"
                   onClick={closeAllMenus}
-                  className="block w-full text-center bg-primary text-white py-3 px-4 rounded-lg hover:bg-primary/90 transition-all duration-300 font-medium shadow-lg"
+                  className="block w-full text-center bg-primary text-white py-2 px-3 rounded-lg hover:bg-primary/90 transition-all duration-300 font-medium shadow-lg text-sm"
                 >
                   Get Started
                 </Link>
@@ -595,28 +784,31 @@ const Navigation = memo(() => {
         </div>
       </nav>
 
-      {/* Desktop Mega Menu */}
-      <div
-        ref={megaMenuRef}
-        className="relative z-40 hidden lg:block"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        {activeMenu === "what we offer?" && (
-          <MegaMenu
-            isOpen={true}
-            onClose={() => setActiveMenu(null)}
-            {...whatWeOfferMegaMenuData}
-          />
-        )}
-        {activeMenu === "industries" && (
-          <MegaMenu
-            isOpen={true}
-            onClose={() => setActiveMenu(null)}
-            {...industriesMegaMenuData}
-          />
-        )}
-      </div>
+      {/* Desktop Mega Menu with Enhanced Mouse Handling */}
+      {(activeMenu === "what we offer?" || activeMenu === "industries") && (
+        <div
+          ref={megaMenuRef}
+          className="relative z-40 hidden lg:block"
+          data-mega-menu-area
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          {activeMenu === "what we offer?" && (
+            <MegaMenu
+              isOpen={true}
+              onClose={() => setActiveMenu(null)}
+              {...whatWeOfferMegaMenuData}
+            />
+          )}
+          {activeMenu === "industries" && (
+            <MegaMenu
+              isOpen={true}
+              onClose={() => setActiveMenu(null)}
+              {...industriesMegaMenuData}
+            />
+          )}
+        </div>
+      )}
 
       {/* Mobile Mega Menu */}
       <div className="lg:hidden">

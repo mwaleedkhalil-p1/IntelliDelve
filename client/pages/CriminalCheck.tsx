@@ -13,6 +13,7 @@ const CriminalCheck: React.FC = () => {
       subtext:
         "Protect your organization with comprehensive criminal background checks and identity verification across multiple jurisdictions.",
     },
+    heroImage: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=85",
     features: [
       "Multi-jurisdictional criminal record searches",
       "Federal, state, and county court record checks",
@@ -32,10 +33,10 @@ const CriminalCheck: React.FC = () => {
       "Receive fast, accurate results with detailed reporting",
     ],
     process: [
-      "Submit criminal check request with candidate information",
-      "Comprehensive search across criminal databases and court records",
-      "Identity verification and document authentication",
-      "Detailed criminal background report with findings and recommendations",
+      "Submit candidate mandatory information",
+      "Initiate a secure investigation through authorized sources and records",
+      "Validate identity and perform multi-layered data authentication",
+      "Receive a comprehensive report with verified findings and compliance-ready insights",
     ],
     icon: <AlertCircle className="h-6 w-6" />,
     color: "bg-red-500/10 text-red-600",

@@ -26,6 +26,7 @@ interface ServiceData {
   icon: React.ReactNode;
   color: string;
   bgColor: string;
+  heroImage?: string;
   stats?: {
     accuracy?: string;
     speed?: string;
@@ -50,8 +51,16 @@ export const ServicePage: React.FC<ServicePageProps> = ({ service }) => {
 
       {/* Hero Section */}
       <section
-        className={`relative pt-24 pb-16 md:pt-32 md:pb-24 px-4 sm:px-6 lg:px-8 ${service.bgColor}`}
+        className={`relative min-h-screen flex items-center px-4 sm:px-6 lg:px-8 ${service.bgColor} overflow-hidden`}
       >
+        {service.heroImage && (
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 dark:opacity-50"
+            style={{
+              backgroundImage: `url('${service.heroImage}')`,
+            }}
+          ></div>
+        )}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-[linear-gradient(45deg,_transparent_25%,_rgba(59,130,246,0.02)_25%,_rgba(59,130,246,0.02)_50%,_transparent_50%,_transparent_75%,_rgba(59,130,246,0.02)_75%)] bg-[length:32px_32px]"></div>
         </div>

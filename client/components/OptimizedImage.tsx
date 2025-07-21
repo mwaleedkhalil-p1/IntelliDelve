@@ -84,6 +84,7 @@ export function OptimizedImage({
   };
 
   const handleError = () => {
+    console.warn(`Failed to load image: ${src}`);
     setHasError(true);
     onError?.();
   };

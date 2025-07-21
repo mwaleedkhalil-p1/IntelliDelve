@@ -88,11 +88,17 @@ export class ImagePreloaderService {
         resolve();
       };
 
-      img.onerror = () => {
+      img.onerror = (error) => {
         clearTimeout(timeout);
         this.failedImages.add(src);
         this.loadingImages.delete(src);
-        console.warn(`Failed to preload image: ${src}`);
+        console.warn(`Failed to preload image: ${src}`, error);
+        console.warn(`Image error details:`, {
+          src,
+          naturalWidth: img.naturalWidth,
+          naturalHeight: img.naturalHeight,
+          complete: img.complete
+        });
         reject(new Error(`Failed to load image: ${src}`));
       };
 

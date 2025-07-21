@@ -34,15 +34,19 @@ export class ImageOptimizationService {
     let optimizedUrl = src;
 
     try {
+      // Handle local images first to avoid unnecessary processing
+      if (src.startsWith('/') || src.startsWith('./') || src.startsWith('../')) {
+        optimizedUrl = src; // Return local images as-is
+      }
       // Handle Unsplash images
-      if (src.includes('unsplash.com')) {
+      else if (src.includes('unsplash.com')) {
         optimizedUrl = this.optimizeUnsplashUrl(src, options);
       }
       // Handle other CDN images (can be extended)
       else if (src.includes('cloudinary.com')) {
         optimizedUrl = this.optimizeCloudinaryUrl(src, options);
       }
-      // Handle local images or other sources
+      // Handle other external sources
       else {
         optimizedUrl = this.optimizeGenericUrl(src, options);
       }
@@ -117,6 +121,16 @@ export class ImageOptimizationService {
    * Generic URL optimization (for local images or other sources)
    */
   private optimizeGenericUrl(src: string, options: ImageOptimizationOptions): string {
+    // For local images starting with /images/, return as-is to avoid Cloudinary processing
+    if (src.startsWith('/images/') || src.startsWith('./images/') || src.startsWith('../images/')) {
+      return src;
+    }
+
+    // For other local images, return as-is
+    if (src.startsWith('/') || src.startsWith('./') || src.startsWith('../')) {
+      return src;
+    }
+
     // For local images, we can't modify the URL, but we can provide sizing hints
     return src;
   }

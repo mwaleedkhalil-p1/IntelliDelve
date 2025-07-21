@@ -75,6 +75,7 @@ export const LazyImage: React.FC<LazyImageProps> = ({
     };
     
     img.onerror = () => {
+      console.warn(`Failed to load image: ${src}`);
       setHasError(true);
       setIsLoading(false);
       onError?.();
@@ -160,6 +161,7 @@ export const LazyImage: React.FC<LazyImageProps> = ({
           onLoad?.();
         }}
         onError={() => {
+          console.warn(`Failed to load image in img element: ${src}`);
           setHasError(true);
           setIsLoading(false);
           onError?.();

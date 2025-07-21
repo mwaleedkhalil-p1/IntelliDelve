@@ -81,6 +81,16 @@ const App: React.FC = () => {
   // Initialize image preloading on app startup
   useEffect(() => {
     imagePreloader.initialize().catch(console.error);
+
+    // Run image diagnostics in development
+    if (process.env.NODE_ENV === 'development') {
+      import('./utils/imageDebugger').then(({ ImageDebugger }) => {
+        // Delay to let the app load first
+        setTimeout(() => {
+          ImageDebugger.runDiagnostics();
+        }, 2000);
+      });
+    }
   }, []);
 
   return (

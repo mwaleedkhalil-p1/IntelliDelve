@@ -5,6 +5,8 @@
 [build.environment]
   NODE_VERSION = "18"
   REACT_APP_RECAPTCHA_SITE_KEY = "6LcSroYrAAAAAJh8Ajoke276g40T0iR6ccgoe0h9"
+  # Disable automatic image optimization
+  DISABLE_NETLIFY_IMAGE_OPTIMIZATION = "true"
 
 [[redirects]]
   from = "/*"
@@ -19,3 +21,11 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.netlify.app https://unpkg.com https://www.google.com https://www.gstatic.com https://assets.calendly.com https://calendly.com; style-src 'self' 'unsafe-inline' https: https://assets.calendly.com; img-src 'self' data: https: https://assets.calendly.com https://calendly.com; font-src 'self' data: https: https://fonts.gstatic.com https://assets.calendly.com; connect-src 'self' https: https://calendly.com https://api.calendly.com; frame-src https://www.google.com https://calendly.com;"
+
+# Specific headers for images to prevent automatic optimization
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    # Prevent automatic image optimization
+    X-Netlify-Image-Optimization = "disabled"

@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useRef } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -28,6 +28,8 @@ import {
   Lock,
   Cloud,
   Smartphone,
+  ChevronLeft,
+  ChevronRight,
   Building2,
   Stethoscope,
   Rocket,
@@ -118,6 +120,13 @@ const allSolutions = [
         icon: Lock,
         link: "/kyc-compliance",
         features: ["Identity verification", "Document validation", "Compliance reporting", "Regulatory adherence"]
+      },
+      {
+        title: "Citizen by Investment (CBI)",
+        description: "Comprehensive due diligence for citizenship and investment programs.",
+        icon: Search,
+        link: "/citizen-by-investment",
+        features: ["CBI program verification", "Investment due diligence", "Source of funds analysis", "Regulatory compliance"]
       }
     ]
   },
@@ -246,6 +255,9 @@ const WhatWeOffer = memo(() => {
   const location = useLocation();
   const statsRef = useRef<HTMLDivElement>(null);
 
+  // Mobile carousel states
+  const [currentIndustrySlide, setCurrentIndustrySlide] = useState(0);
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Hero animation
@@ -291,29 +303,7 @@ const WhatWeOffer = memo(() => {
     return () => ctx.revert();
   }, []);
 
-  // Handle hash scrolling
-  useEffect(() => {
-    if (location.hash) {
-      const hash = location.hash.substring(1); // Remove the #
-      console.log('Looking for element with ID:', hash); // Debug log
-      const element = document.getElementById(hash);
-      console.log('Found element:', element); // Debug log
-      if (element) {
-        // Wait a bit for the page to render, then scroll
-        setTimeout(() => {
-          const headerOffset = 120; // Account for fixed header + padding
-          const elementPosition = element.offsetTop;
-          const offsetPosition = elementPosition - headerOffset;
-
-          console.log('Scrolling to position:', offsetPosition); // Debug log
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-        }, 300); // Increased timeout to ensure page is fully rendered
-      }
-    }
-  }, [location.hash]);
+  // Hash navigation is now handled globally by HashNavigation component
 
   return (
     <div className="min-h-screen">
@@ -558,7 +548,8 @@ const WhatWeOffer = memo(() => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Desktop Grid */}
+          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { name: "Financial Services", icon: Building2 },
               { name: "Healthcare & Medical", icon: Stethoscope },
@@ -582,6 +573,70 @@ const WhatWeOffer = memo(() => {
                 </div>
               );
             })}
+          </div>
+
+          {/* Mobile Carousel */}
+          <div className="md:hidden relative">
+            <div className="overflow-hidden">
+              <div
+                className="flex transition-transform duration-300 ease-in-out"
+                style={{ transform: `translateX(-${currentIndustrySlide * 50}%)` }}
+              >
+                {[
+                  { name: "Financial Services", icon: Building2 },
+                  { name: "Healthcare & Medical", icon: Stethoscope },
+                  { name: "Technology & Startups", icon: Rocket },
+                  { name: "Government & Public", icon: Landmark },
+                  { name: "Manufacturing", icon: Factory },
+                  { name: "Education", icon: GraduationCap },
+                  { name: "Insurance", icon: Shield },
+                  { name: "Real Estate", icon: Home },
+                ].map((industry, index) => {
+                  const IconComponent = industry.icon;
+                  return (
+                    <div key={index} className="w-1/2 flex-shrink-0 px-2">
+                      <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 text-center border border-gray-200 dark:border-gray-700">
+                        <IconComponent className="h-8 w-8 text-primary dark:text-accent mx-auto mb-3" />
+                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                          {industry.name}
+                        </h3>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Carousel Controls */}
+            <div className="flex justify-between items-center mt-6">
+              <button
+                onClick={() => setCurrentIndustrySlide(Math.max(0, currentIndustrySlide - 1))}
+                disabled={currentIndustrySlide === 0}
+                className="p-2 rounded-full bg-primary text-white disabled:bg-gray-300 disabled:text-gray-500 transition-colors"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+
+              <div className="flex space-x-2">
+                {Array.from({ length: 4 }).map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentIndustrySlide(index)}
+                    className={`w-2 h-2 rounded-full transition-colors ${
+                      index === currentIndustrySlide ? 'bg-primary' : 'bg-gray-300'
+                    }`}
+                  />
+                ))}
+              </div>
+
+              <button
+                onClick={() => setCurrentIndustrySlide(Math.min(3, currentIndustrySlide + 1))}
+                disabled={currentIndustrySlide === 3}
+                className="p-2 rounded-full bg-primary text-white disabled:bg-gray-300 disabled:text-gray-500 transition-colors"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
           </div>
 
           <div className="text-center mt-12">

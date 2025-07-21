@@ -21,12 +21,16 @@ import {
   Shield,
   TrendingUp
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SEO } from "../components/SEO";
+import { useCalendlyContext } from "../App";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function DocumentIntelligence() {
+  const { openCalendly } = useCalendlyContext();
   const headerRef = useRef<HTMLDivElement>(null);
   const capabilitiesRef = useRef<HTMLDivElement>(null);
   const platformRef = useRef<HTMLDivElement>(null);
@@ -116,7 +120,14 @@ export default function DocumentIntelligence() {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <>
+      <SEO
+        title="Document Intelligence & OCR Solutions - IntelliDelve"
+        description="Advanced document intelligence and OCR solutions for automated data extraction, document processing, and intelligent content analysis."
+        keywords="document intelligence, OCR, automated data extraction, document processing, intelligent content analysis, AI document processing"
+        canonicalUrl="/document-intelligence"
+      />
+      <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Background Image */}
@@ -139,6 +150,24 @@ export default function DocumentIntelligence() {
             <p className="text-xl md:text-2xl mb-8 opacity-90 max-w-4xl mx-auto">
               IntelliDelve's Document Intelligence platform combines advanced Optical Character Recognition (OCR) with AI-driven analysis to transform unstructured and structured documents into actionable, searchable data — quickly, accurately, and at scale.
             </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={() => openCalendly("Document Intelligence & OCR - Schedule Meeting")}
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-gray-600 to-blue-600 text-white font-semibold rounded-full hover:from-gray-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                Schedule a Meeting
+                <Users className="ml-2 h-5 w-5" />
+              </button>
+              <Link
+                to="/partners"
+                className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-gray-600 transition-all duration-300"
+              >
+                Partner with Us
+                <FileText className="ml-2 h-5 w-5" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -501,5 +530,6 @@ export default function DocumentIntelligence() {
         </div>
       </section>
     </div>
+    </>
   );
 }

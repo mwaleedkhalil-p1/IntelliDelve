@@ -19,12 +19,16 @@ import {
   GraduationCap,
   Briefcase
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SEO } from "../components/SEO";
+import { useCalendlyContext } from "../App";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ResumeRanking() {
+  const { openCalendly } = useCalendlyContext();
   const headerRef = useRef<HTMLDivElement>(null);
   const capabilitiesRef = useRef<HTMLDivElement>(null);
   const featuresRef = useRef<HTMLDivElement>(null);
@@ -114,7 +118,14 @@ export default function ResumeRanking() {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <>
+      <SEO
+        title="AI-Powered Resume Ranking & Candidate Scoring - IntelliDelve"
+        description="Advanced AI-powered resume ranking and candidate scoring solutions for automated recruitment, talent assessment, and hiring optimization."
+        keywords="AI resume ranking, candidate scoring, automated recruitment, talent assessment, hiring optimization, AI recruitment tools"
+        canonicalUrl="/resume-ranking"
+      />
+      <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Background Image */}
@@ -140,6 +151,24 @@ export default function ResumeRanking() {
             <p className="text-xl md:text-2xl mb-8 opacity-90 max-w-4xl mx-auto">
               IntelliDelve's AI-driven resume scoring and candidate ranking platform transforms your recruitment process by automating the evaluation of resumes and identifying top candidates — all based on your specific role requirements, without bias or delays.
             </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={() => openCalendly("AI-Powered Resume Ranking & Candidate Scoring - Schedule Meeting")}
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-green-500 to-blue-600 text-white font-semibold rounded-full hover:from-green-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                Schedule a Meeting
+                <Users className="ml-2 h-5 w-5" />
+              </button>
+              <Link
+                to="/partners"
+                className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-green-600 transition-all duration-300"
+              >
+                Partner with Us
+                <UserCheck className="ml-2 h-5 w-5" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -488,5 +517,6 @@ export default function ResumeRanking() {
         </div>
       </section>
     </div>
+    </>
   );
 }

@@ -147,7 +147,7 @@ export default function Partners() {
   const partnerships = [
     {
       icon: <Laptop className="h-12 w-12 text-blue-500" />,
-      title: "Background Screening Dashboard",
+      title: "Background Screening",
       description:
         "Integrate our comprehensive background screening solutions into your platform.",
       color: "bg-blue-50 dark:bg-blue-900/20 border-blue-500",
@@ -319,7 +319,7 @@ export default function Partners() {
                   required
                   className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-brand-navy focus:ring-2 focus:ring-primary focus:border-transparent"
                 >
-                  <option value="background_screening">Background Screening Dashboard</option>
+                  <option value="background_screening">Background Screening</option>
                   <option value="ai_data_intelligence">AI & Data Intelligence</option>
                   <option value="business_tech_solutions">Business Technological Solutions</option>
                   <option value="others">Others</option>

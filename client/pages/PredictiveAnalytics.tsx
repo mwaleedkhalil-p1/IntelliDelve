@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -10,11 +11,14 @@ import {
   Clock,
   Shield,
   Database,
+  Users,
 } from "lucide-react";
+import { useCalendlyContext } from "../App";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function PredictiveAnalytics() {
+  const { openCalendly } = useCalendlyContext();
   const headerRef = useRef<HTMLDivElement>(null);
   const featuresRef = useRef<HTMLDivElement>(null);
 
@@ -158,13 +162,20 @@ export default function PredictiveAnalytics() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <button className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-500 to-violet-600 text-white font-semibold rounded-full hover:from-purple-600 hover:to-violet-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-                  Explore Analytics
+                <button
+                  onClick={() => openCalendly("Predictive Analytics & Forecasting - Schedule Meeting")}
+                  className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-500 to-violet-600 text-white font-semibold rounded-full hover:from-purple-600 hover:to-violet-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                >
+                  Schedule a Meeting
+                  <Users className="ml-2 h-5 w-5" />
+                </button>
+                <Link
+                  to="/partners"
+                  className="inline-flex items-center px-8 py-4 border-2 border-purple-400 text-purple-400 font-semibold rounded-full hover:bg-purple-400 hover:text-white transition-all duration-300"
+                >
+                  Partner with Us
                   <TrendingUp className="ml-2 h-5 w-5" />
-                </button>
-                <button className="inline-flex items-center px-8 py-4 border-2 border-purple-400 text-purple-400 font-semibold rounded-full hover:bg-purple-400 hover:text-white transition-all duration-300">
-                  View Predictions
-                </button>
+                </Link>
               </div>
             </div>
 

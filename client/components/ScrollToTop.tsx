@@ -1,17 +1,22 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
+  const previousPathnameRef = useRef<string>('');
 
   useEffect(() => {
-    // Scroll to top when route changes
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
+    // COMPLETELY DISABLED FOR DEBUGGING - NO SCROLLING AT ALL
+    console.log('ScrollToTop: Effect triggered but DISABLED', {
+      pathname,
+      previousPath: previousPathnameRef.current,
+      hash,
+      hasFocus: document.hasFocus()
     });
-  }, [pathname]);
+
+    // Just update the pathname without any scrolling
+    previousPathnameRef.current = pathname;
+  }, [pathname, hash]);
 
   return null;
 };

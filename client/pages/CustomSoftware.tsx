@@ -27,12 +27,16 @@ import {
   Truck,
   Briefcase
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { gsap } from "gsap";
+import { useCalendlyContext } from "../App";
+import { SEO } from "../components/SEO";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const CustomSoftware = memo(() => {
+  const { openCalendly } = useCalendlyContext();
   const headerRef = useRef<HTMLDivElement>(null);
   const featuresRef = useRef<HTMLDivElement>(null);
   const benefitsRef = useRef<HTMLDivElement>(null);
@@ -223,7 +227,14 @@ const CustomSoftware = memo(() => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <>
+      <SEO
+        title="Custom Software Development Services - IntelliDelve"
+        description="Professional custom software development services. Tailored solutions, scalable architecture, and cutting-edge technology for your business needs."
+        keywords="custom software development, bespoke software, software solutions, application development, web development, mobile development"
+        canonicalUrl="/custom-software"
+      />
+      <div className="min-h-screen">
       {/* Hero Section - Modern Gradient Design */}
       <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
         {/* Animated Background Pattern */}
@@ -269,16 +280,22 @@ const CustomSoftware = memo(() => {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl font-bold text-white overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                <Link
+                  to="/partners"
+                  className="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl font-bold text-white overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl inline-flex items-center justify-center"
+                >
                   <span className="relative z-10 flex items-center justify-center">
                     Start Your Project
                     <Rocket className="ml-3 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                </button>
+                </Link>
 
-                <button className="px-8 py-4 border-2 border-white/30 rounded-2xl font-bold text-white backdrop-blur-sm hover:bg-white/10 transition-all duration-300">
-                  View Portfolio
+                <button
+                  onClick={() => openCalendly("Custom Software Development - Schedule Meeting")}
+                  className="px-8 py-4 border-2 border-white/30 rounded-2xl font-bold text-white backdrop-blur-sm hover:bg-white/10 transition-all duration-300"
+                >
+                  Schedule Meeting
                 </button>
               </div>
 
@@ -468,14 +485,9 @@ const CustomSoftware = memo(() => {
                     {feature.title}
                   </h3>
 
-                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                     {feature.description}
                   </p>
-
-                  {/* Hover Arrow */}
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <ArrowRight className="w-5 h-5 text-purple-600 transform group-hover:translate-x-2 transition-transform duration-300" />
-                  </div>
                 </div>
 
                 {/* Decorative Corner */}
@@ -545,79 +557,7 @@ const CustomSoftware = memo(() => {
         </div>
       </section>
 
-      {/* Development Process - Unique Timeline */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-purple-900/20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center px-4 py-2 bg-purple-100 dark:bg-purple-900/30 rounded-full mb-6">
-              <Workflow className="w-4 h-4 mr-2 text-purple-600 dark:text-purple-400" />
-              <span className="text-sm font-medium text-purple-700 dark:text-purple-300">Our Process</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-              From Concept to
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
-                Reality
-              </span>
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Our proven development methodology ensures your project succeeds at every stage
-            </p>
-          </div>
-
-          <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute top-10 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full hidden lg:block"></div>
-
-            <div ref={processRef} className="grid lg:grid-cols-4 gap-8 lg:gap-4">
-              {developmentProcess.map((step, index) => (
-                <div key={index} className="relative">
-                  {/* Timeline Node */}
-                  <div className="w-20 h-20 mx-auto mb-6 relative z-10">
-                    <div className={`w-full h-full bg-gradient-to-br ${
-                      step.color === 'blue' ? 'from-blue-500 to-cyan-500' :
-                      step.color === 'purple' ? 'from-purple-500 to-indigo-500' :
-                      step.color === 'green' ? 'from-green-500 to-emerald-500' :
-                      'from-orange-500 to-red-500'
-                    } rounded-2xl flex items-center justify-center shadow-xl transform hover:scale-110 transition-transform duration-300`}>
-                      <step.icon className="w-10 h-10 text-white" />
-                    </div>
-
-                    {/* Step Number */}
-                    <div className="absolute -top-3 -right-3 w-8 h-8 bg-white dark:bg-gray-800 rounded-full border-4 border-gray-100 dark:border-gray-700 flex items-center justify-center shadow-lg">
-                      <span className="text-sm font-bold text-gray-900 dark:text-white">{step.step}</span>
-                    </div>
-                  </div>
-
-                  {/* Content Card */}
-                  <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl border border-gray-100 dark:border-gray-700 hover:shadow-2xl transition-all duration-300">
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                      {step.title}
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                      {step.description}
-                    </p>
-
-                    {/* Progress Indicator */}
-                    <div className="mt-4 flex items-center space-x-2">
-                      <div className="flex-1 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                        <div className={`h-full bg-gradient-to-r ${
-                          step.color === 'blue' ? 'from-blue-500 to-cyan-500' :
-                          step.color === 'purple' ? 'from-purple-500 to-indigo-500' :
-                          step.color === 'green' ? 'from-green-500 to-emerald-500' :
-                          'from-orange-500 to-red-500'
-                        } rounded-full`} style={{ width: `${(index + 1) * 25}%` }}></div>
-                      </div>
-                      <span className="text-sm font-medium text-gray-500 dark:text-gray-400">{(index + 1) * 25}%</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Benefits Section */}
       <section className="py-20 bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50 dark:from-gray-900 dark:via-purple-900/20 dark:to-indigo-900/20">
@@ -739,14 +679,20 @@ const CustomSoftware = memo(() => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
-              <button className="group relative px-10 py-5 bg-white text-gray-900 rounded-2xl font-bold text-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+              <Link
+                to="/partners"
+                className="group relative px-10 py-5 bg-white text-gray-900 rounded-2xl font-bold text-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl inline-flex items-center justify-center"
+              >
                 <span className="relative z-10 flex items-center justify-center">
                   Start Your Project
                   <Rocket className="ml-3 w-6 h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </span>
-              </button>
+              </Link>
 
-              <button className="px-10 py-5 border-2 border-white/30 text-white rounded-2xl font-bold text-lg backdrop-blur-sm hover:bg-white/10 transition-all duration-300">
+              <button
+                onClick={() => openCalendly("Custom Software Development - Schedule Consultation")}
+                className="px-10 py-5 border-2 border-white/30 text-white rounded-2xl font-bold text-lg backdrop-blur-sm hover:bg-white/10 transition-all duration-300"
+              >
                 Schedule Consultation
               </button>
             </div>
@@ -769,6 +715,7 @@ const CustomSoftware = memo(() => {
         </div>
       </section>
     </div>
+    </>
   );
 });
 

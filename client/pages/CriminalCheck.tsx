@@ -44,7 +44,7 @@ const CriminalCheck: React.FC = () => {
       "bg-gradient-to-br from-red-50 via-white to-orange-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800",
     stats: {
       accuracy: "99.8%",
-      speed: "2-24h",
+      speed: "24hr - 72hr",
       coverage: "200+",
     },
   };

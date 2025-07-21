@@ -5,7 +5,6 @@ import { gsap } from "gsap";
 import { DarkModeToggle } from "./DarkModeToggle";
 import { MegaMenu } from "./MegaMenu";
 import { MobileMegaMenu } from "./MobileMegaMenu";
-import { useCalendlyContext } from "../App";
 
 import {
   Shield,
@@ -70,7 +69,6 @@ const whatWeOfferMegaMenuData = {
           path: "/reference-validation",
           icon: FileCheck,
         },
-
       ],
     },
     {
@@ -296,33 +294,12 @@ const industriesMegaMenuData = {
   ],
 };
 
-/**
- * Utility function to check if mouse coordinates are within element bounds with buffer
- */
-const isMouseWithinBounds = (
-  mouseX: number,
-  mouseY: number,
-  rect: DOMRect,
-  horizontalBuffer = 0,
-  verticalBuffer = 0
-): boolean => {
-  return (
-    mouseX >= rect.left - horizontalBuffer &&
-    mouseX <= rect.right + horizontalBuffer &&
-    mouseY >= rect.top - verticalBuffer &&
-    mouseY <= rect.bottom + verticalBuffer
-  );
-};
-
 const Navigation = memo(() => {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [mobileSubMenuOpen, setMobileSubMenuOpen] = useState<string | null>(
-    null,
-  );
+  const [mobileSubMenuOpen, setMobileSubMenuOpen] = useState<string | null>(null);
 
   const location = useLocation();
-  const { openCalendly } = useCalendlyContext();
   const navRef = useRef<HTMLElement>(null);
   const megaMenuRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
@@ -334,20 +311,20 @@ const Navigation = memo(() => {
     setMobileSubMenuOpen(null);
   }, []);
 
-  /**
-   * Enhanced menu hover handler with improved state management
-   * Handles opening menus and clearing any pending close timeouts
-   */
-  const handleMenuHover = useCallback((menuType: string) => {
-    if (window.innerWidth >= 1024) {
-      // Clear any pending close timeout immediately
-      if (closeTimeoutRef.current) {
-        clearTimeout(closeTimeoutRef.current);
-        closeTimeoutRef.current = null;
-      }
-      setActiveMenu(menuType);
+  const clearCloseTimeout = useCallback(() => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
     }
   }, []);
+
+  // Simple hover handler without any scroll manipulation
+  const handleMenuItemHover = useCallback((menuName: string) => {
+    if (window.innerWidth >= 1024) {
+      clearCloseTimeout();
+      setActiveMenu(menuName);
+    }
+  }, [clearCloseTimeout]);
 
   const handleMobileSubMenu = useCallback(
     (menuType: string) => {
@@ -356,22 +333,33 @@ const Navigation = memo(() => {
     [mobileSubMenuOpen],
   );
 
-  /**
-   * Handle mega menu clicks for mobile/tablet screens
-   * Opens mega menu on click for touch devices
-   */
-  const handleMegaMenuClick = useCallback((menuType: string, event: React.MouseEvent) => {
-    event.preventDefault();
+  const handleMouseLeave = useCallback((event: React.MouseEvent) => {
+    clearCloseTimeout();
 
-    // For mobile/tablet screens, toggle the mega menu
-    if (window.innerWidth < 1024) {
-      if (activeMenu === menuType) {
-        setActiveMenu(null);
-      } else {
-        setActiveMenu(menuType);
+    const relatedTarget = event.relatedTarget as Element;
+    const currentTarget = event.currentTarget as Element;
+
+    if (relatedTarget) {
+      // Check if moving to a child element or mega menu area
+      if (
+        currentTarget.contains(relatedTarget) ||
+        relatedTarget.closest('[data-mega-menu-area]') ||
+        relatedTarget.closest('[data-mega-menu-content]') ||
+        (megaMenuRef.current && megaMenuRef.current.contains(relatedTarget)) ||
+        (navRef.current && navRef.current.contains(relatedTarget))
+      ) {
+        return;
       }
     }
-  }, [activeMenu]);
+
+    closeTimeoutRef.current = setTimeout(() => {
+      setActiveMenu(null);
+    }, 150);
+  }, [clearCloseTimeout]);
+
+  const handleMouseEnter = useCallback(() => {
+    clearCloseTimeout();
+  }, [clearCloseTimeout]);
 
   const handleClickOutside = useCallback(
     (event: MouseEvent) => {
@@ -389,77 +377,9 @@ const Navigation = memo(() => {
     [closeAllMenus],
   );
 
-  /**
-   * Enhanced mouse leave handler with comprehensive related target checking
-   * Prevents premature closing when moving between menu elements
-   */
-  const handleMouseLeave = useCallback((event: React.MouseEvent) => {
-    // Clear any existing timeout first
-    if (closeTimeoutRef.current) {
-      clearTimeout(closeTimeoutRef.current);
-      closeTimeoutRef.current = null;
-    }
-
-    const relatedTarget = event.relatedTarget as Element;
-    const currentTarget = event.currentTarget as Element;
-
-    // Enhanced related target checking to prevent flickering
-    if (relatedTarget) {
-      // Check if moving to a child element
-      if (currentTarget.contains(relatedTarget)) {
-        return;
-      }
-
-      // Check if moving to any mega menu area
-      if (relatedTarget.closest('[data-mega-menu-area]')) {
-        return;
-      }
-
-      // Check if moving to mega menu content
-      if (relatedTarget.closest('[data-mega-menu-content]')) {
-        return;
-      }
-
-      // Check if moving to the mega menu dropdown itself
-      if (megaMenuRef.current && megaMenuRef.current.contains(relatedTarget)) {
-        return;
-      }
-
-      // Check if moving to navigation elements
-      if (navRef.current && navRef.current.contains(relatedTarget)) {
-        return;
-      }
-    }
-
-    // Set a delayed close with appropriate timeout for smooth UX
-    closeTimeoutRef.current = setTimeout(() => {
-      if (process.env.NODE_ENV === 'development') {
-        console.log('Closing menu via mouse leave handler');
-      }
-      setActiveMenu(null);
-    }, 150); // Balanced timeout for responsive closing
-  }, []);
-
-  /**
-   * Mouse enter handler to cancel any pending close operations
-   * Ensures menu stays open when re-entering the menu area
-   */
-  const handleMouseEnter = useCallback(() => {
-    if (closeTimeoutRef.current) {
-      clearTimeout(closeTimeoutRef.current);
-      closeTimeoutRef.current = null;
-    }
-  }, []);
-
-
-
-  /**
-   * Enhanced global mouse move listener for reliable menu closing
-   * Detects when mouse leaves the entire mega menu area
-   */
+  // Global mouse tracking for menu closing
   useEffect(() => {
     const handleGlobalMouseMove = (event: MouseEvent) => {
-      // Only track when a menu is active
       if (!activeMenu) return;
 
       const nav = navRef.current;
@@ -470,11 +390,8 @@ const Navigation = memo(() => {
       const navRect = nav.getBoundingClientRect();
       const mouseX = event.clientX;
       const mouseY = event.clientY;
-
-      // Reasonable buffer for smooth interaction
       const buffer = 30;
 
-      // Check if mouse is within navigation bounds
       const isInsideNav = (
         mouseX >= navRect.left - buffer &&
         mouseX <= navRect.right + buffer &&
@@ -482,9 +399,8 @@ const Navigation = memo(() => {
         mouseY <= navRect.bottom + buffer
       );
 
-      // Check if mouse is within mega menu bounds
       let isInsideMegaMenu = false;
-      if (megaMenu && activeMenu) {
+      if (megaMenu) {
         const megaMenuContent = megaMenu.querySelector('[data-mega-menu-content]');
         if (megaMenuContent) {
           const contentRect = megaMenuContent.getBoundingClientRect();
@@ -497,75 +413,27 @@ const Navigation = memo(() => {
         }
       }
 
-      // Check if mouse is in the gap between nav and mega menu
-      let isInGap = false;
-      if (megaMenu && activeMenu) {
-        const megaMenuContent = megaMenu.querySelector('[data-mega-menu-content]');
-        if (megaMenuContent) {
-          const contentRect = megaMenuContent.getBoundingClientRect();
-          const gapHeight = contentRect.top - navRect.bottom;
-
-          // Allow for reasonable gap between nav and mega menu
-          if (gapHeight > 0 && gapHeight <= 50) {
-            isInGap = (
-              mouseX >= Math.min(navRect.left, contentRect.left) - buffer &&
-              mouseX <= Math.max(navRect.right, contentRect.right) + buffer &&
-              mouseY >= navRect.bottom &&
-              mouseY <= contentRect.top
-            );
-          }
-        }
-      }
-
-      // Debug logging in development
-      if (process.env.NODE_ENV === 'development') {
-        console.log('Mouse tracking:', {
-          mouseX,
-          mouseY,
-          isInsideNav,
-          isInsideMegaMenu,
-          isInGap,
-          activeMenu,
-          shouldClose: !isInsideNav && !isInsideMegaMenu && !isInGap
-        });
-      }
-
-      // Close menu if mouse is outside all relevant areas
-      if (!isInsideNav && !isInsideMegaMenu && !isInGap) {
-        if (closeTimeoutRef.current) {
-          clearTimeout(closeTimeoutRef.current);
-        }
+      if (!isInsideNav && !isInsideMegaMenu) {
+        clearCloseTimeout();
         closeTimeoutRef.current = setTimeout(() => {
-          if (process.env.NODE_ENV === 'development') {
-            console.log('Closing menu via global mouse tracking');
-          }
           setActiveMenu(null);
-        }, 200); // Reasonable timeout for smooth UX
+        }, 200);
       } else {
-        // Cancel any pending close if mouse re-enters valid area
-        if (closeTimeoutRef.current) {
-          clearTimeout(closeTimeoutRef.current);
-          closeTimeoutRef.current = null;
-        }
+        clearCloseTimeout();
       }
     };
 
     document.addEventListener('mousemove', handleGlobalMouseMove);
-    return () => document.removeEventListener('mousemove', handleGlobalMouseMove);
-
-
     document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("mousemove", handleGlobalMouseMove);
 
     return () => {
+      document.removeEventListener('mousemove', handleGlobalMouseMove);
       document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("mousemove", handleGlobalMouseMove);
-      if (closeTimeoutRef.current) {
-        clearTimeout(closeTimeoutRef.current);
-      }
+      clearCloseTimeout();
     };
-  }, [handleClickOutside, activeMenu]);
+  }, [handleClickOutside, activeMenu, clearCloseTimeout]);
 
+  // GSAP animation
   useEffect(() => {
     if (navRef.current) {
       gsap.fromTo(
@@ -576,6 +444,7 @@ const Navigation = memo(() => {
     }
   }, []);
 
+  // Handle window resize
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
@@ -603,69 +472,69 @@ const Navigation = memo(() => {
     <>
       <nav
         ref={navRef}
-        className="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-brand-navy/95 backdrop-blur-lg border-b border-gray-200 dark:border-gray-700 shadow-sm"
+        className="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-brand-navy/95 backdrop-blur-lg border-b border-gray-200 dark:border-gray-700 shadow-sm overscroll-contain"
+        style={{
+          overscrollBehavior: 'contain',
+          touchAction: 'manipulation',
+          willChange: 'transform'
+        }}
       >
         <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
           <div className="flex justify-between items-center h-16">
+            {/* Logo - moved further left */}
             <Link
               to="/"
-              className="flex items-center flex-shrink-0 -ml-2 sm:-ml-1"
+              className="flex items-center flex-shrink-0 -ml-16 sm:-ml-14 md:-ml-12 lg:-ml-10"
               onClick={closeAllMenus}
             >
               <div className="relative">
                 <img
                   src="/Main logo TM.png"
                   alt="IntelliDelve"
-                  className="h-10 w-auto dark:hidden"
+                  className="h-12 sm:h-13 md:h-14 w-auto dark:hidden"
                 />
                 <img
                   src="/logo.png"
                   alt="IntelliDelve"
-                  className="h-10 w-auto hidden dark:block"
+                  className="h-12 sm:h-13 md:h-14 w-auto hidden dark:block"
                 />
               </div>
             </Link>
 
+            {/* Desktop Navigation - adjusted spacing */}
             <div
-              className="hidden lg:flex items-center space-x-6 xl:space-x-8"
+              className="hidden lg:flex items-center space-x-4 xl:space-x-6 2xl:space-x-8"
               data-mega-menu-area
               onMouseLeave={handleMouseLeave}
             >
               {navItems.map((item) => (
                 <div key={item.name} className="relative">
                   {item.hasMegaMenu ? (
-                    <div className="flex items-center">
+                    <div
+                      className="flex items-center"
+                      onMouseEnter={() => handleMenuItemHover(item.name.toLowerCase())}
+                    >
+                      {/* Clickable link for mega menu items */}
                       <Link
                         to={item.path}
-                        className={`flex items-center text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-sky-300 transition-colors duration-200 font-medium py-2 px-1 ${
+                        className={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-sky-300 transition-colors duration-200 font-medium py-2 px-1 whitespace-nowrap ${
                           location.pathname === item.path
                             ? "text-primary dark:text-sky-300"
                             : ""
                         }`}
-                        onMouseEnter={() => handleMenuHover(item.name.toLowerCase())}
-                        onClick={() => {
-                          // Always navigate to the page when clicking the text
-                          closeAllMenus();
-                        }}
+                        onClick={closeAllMenus}
                       >
-                        <span>{item.name}</span>
+                        {item.name}
                       </Link>
 
-                      {/* Separate clickable arrow for mega menu */}
                       <button
                         className={`ml-1 p-1 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-sky-300 transition-all duration-200 ${
                           activeMenu === item.name.toLowerCase() ? 'text-primary dark:text-sky-300' : ''
                         }`}
-                        onMouseEnter={() => handleMenuHover(item.name.toLowerCase())}
                         onClick={(e) => {
                           e.preventDefault();
                           e.stopPropagation();
-                          // Toggle mega menu on both desktop and mobile when clicking arrow
-                          if (activeMenu === item.name.toLowerCase()) {
-                            setActiveMenu(null);
-                          } else {
-                            setActiveMenu(item.name.toLowerCase());
-                          }
+                          setActiveMenu(activeMenu === item.name.toLowerCase() ? null : item.name.toLowerCase());
                         }}
                         aria-label={`Toggle ${item.name} menu`}
                       >
@@ -675,29 +544,26 @@ const Navigation = memo(() => {
                       </button>
                     </div>
                   ) : (
-                    <Link
-                      to={item.path}
-                      className={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-sky-300 transition-colors duration-200 font-medium py-2 px-1 ${
-                        location.pathname === item.path
-                          ? "text-primary dark:text-sky-300"
-                          : ""
-                      }`}
-                      onClick={closeAllMenus}
+                    <div
                       onMouseEnter={() => {
-                        // Close any open mega menu when hovering over non-mega menu items
                         if (activeMenu) {
-                          // Clear any pending timeouts first
-                          if (closeTimeoutRef.current) {
-                            clearTimeout(closeTimeoutRef.current);
-                            closeTimeoutRef.current = null;
-                          }
-                          // Close immediately for better UX
+                          clearCloseTimeout();
                           setActiveMenu(null);
                         }
                       }}
                     >
-                      {item.name}
-                    </Link>
+                      <Link
+                        to={item.path}
+                        className={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-sky-300 transition-colors duration-200 font-medium py-2 px-1 whitespace-nowrap ${
+                          location.pathname === item.path
+                            ? "text-primary dark:text-sky-300"
+                            : ""
+                        }`}
+                        onClick={closeAllMenus}
+                      >
+                        {item.name}
+                      </Link>
+                    </div>
                   )}
                 </div>
               ))}
@@ -705,16 +571,30 @@ const Navigation = memo(() => {
               <Link
                 to="/contact"
                 onClick={closeAllMenus}
-                className="bg-primary text-white px-3 py-1.5 rounded-full hover:bg-primary/90 transition-all duration-300 font-medium transform hover:scale-105 shadow-lg hover:shadow-xl text-sm inline-block text-center"
+                className="bg-primary text-white px-3 py-1.5 rounded-full hover:bg-primary/90 transition-all duration-300 font-medium transform hover:scale-105 shadow-lg hover:shadow-xl text-sm inline-block text-center whitespace-nowrap"
               >
                 Get Started
               </Link>
             </div>
 
+            {/* Mobile menu button */}
             <div className="lg:hidden flex items-center space-x-3">
               <DarkModeToggle />
               <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                onClick={() => {
+                  const scrollX = window.scrollX;
+                  const scrollY = window.scrollY;
+                  setIsMobileMenuOpen(prev => {
+                    const newState = !prev;
+                    if (!newState) {
+                      // When closing mobile menu, restore scroll position
+                      requestAnimationFrame(() => {
+                        window.scrollTo(scrollX, scrollY);
+                      });
+                    }
+                    return newState;
+                  });
+                }}
                 className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 text-gray-700 dark:text-gray-300"
                 aria-label="Toggle mobile menu"
               >
@@ -727,6 +607,7 @@ const Navigation = memo(() => {
             </div>
           </div>
 
+          {/* Mobile Menu */}
           <div
             ref={mobileMenuRef}
             className={`lg:hidden transition-all duration-300 ease-in-out ${
@@ -753,9 +634,7 @@ const Navigation = memo(() => {
                           {item.name}
                         </Link>
                         <button
-                          onClick={() =>
-                            handleMobileSubMenu(item.name.toLowerCase())
-                          }
+                          onClick={() => handleMobileSubMenu(item.name.toLowerCase())}
                           className="py-3 px-3 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-sky-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200"
                           aria-label={`Toggle ${item.name} submenu`}
                         >
@@ -837,7 +716,7 @@ const Navigation = memo(() => {
         </div>
       </nav>
 
-      {/* Mega Menu - Responsive for all screen sizes */}
+      {/* Desktop Mega Menu */}
       {(activeMenu === "what we offer?" || activeMenu === "industries") && (
         <div
           ref={megaMenuRef}

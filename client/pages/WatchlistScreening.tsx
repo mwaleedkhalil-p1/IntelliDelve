@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -10,11 +11,14 @@ import {
   Database,
   Eye,
   Lock,
+  ArrowRight,
 } from "lucide-react";
+import { useCalendlyContext } from "../App";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function WatchlistScreening() {
+  const { openCalendly } = useCalendlyContext();
   const headerRef = useRef<HTMLDivElement>(null);
   const featuresRef = useRef<HTMLDivElement>(null);
 
@@ -132,12 +136,12 @@ export default function WatchlistScreening() {
               compliance with international regulations, AML requirements, and
               counter-terrorism measures through real-time database monitoring.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-red-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-300 transform hover:scale-105 shadow-lg">
+            <div className="flex justify-center">
+              <button
+                onClick={() => openCalendly("Global Watchlist & Sanctions Screening - Start Screening")}
+                className="bg-white text-red-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-300 transform hover:scale-105 shadow-lg"
+              >
                 Start Screening
-              </button>
-              <button className="border-2 border-white dark:border-gray-300 text-white dark:text-white px-8 py-4 rounded-full font-semibold hover:bg-white dark:hover:bg-gray-300 hover:text-red-600 dark:hover:text-gray-900 transition-colors duration-300">
-                View Coverage
               </button>
             </div>
           </div>
@@ -269,9 +273,13 @@ export default function WatchlistScreening() {
             Protect your organization with comprehensive watchlist and sanctions
             screening services
           </p>
-          <button className="bg-white text-red-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-300 transform hover:scale-105 shadow-lg">
-            Start Compliance Check
-          </button>
+          <Link
+            to="/partners"
+            className="bg-white text-red-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-300 transform hover:scale-105 shadow-lg inline-flex items-center"
+          >
+            Request Screening Service
+            <ArrowRight className="ml-2 h-5 w-5" />
+          </Link>
         </div>
       </section>
     </div>

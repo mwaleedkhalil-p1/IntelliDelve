@@ -17,12 +17,16 @@ import {
   Monitor,
   Lock
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SEO } from "../components/SEO";
+import { useCalendlyContext } from "../App";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ComputerVision() {
+  const { openCalendly } = useCalendlyContext();
   const headerRef = useRef<HTMLDivElement>(null);
   const capabilitiesRef = useRef<HTMLDivElement>(null);
   const featuresRef = useRef<HTMLDivElement>(null);
@@ -93,7 +97,14 @@ export default function ComputerVision() {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <>
+      <SEO
+        title="Computer Vision Solutions - IntelliDelve"
+        description="Advanced computer vision and AI-powered visual analysis solutions. Facial recognition, object detection, visual quality inspection, and automated image processing."
+        keywords="computer vision, AI visual analysis, facial recognition, object detection, image processing, visual inspection, automated analysis"
+        canonicalUrl="/computer-vision"
+      />
+      <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Background Image */}
@@ -116,6 +127,24 @@ export default function ComputerVision() {
             <p className="text-xl md:text-2xl mb-8 opacity-90 max-w-4xl mx-auto">
               IntelliDelve's Computer Vision solutions empower organizations to extract actionable insights from images, video, and real-time visual data. From facial recognition to visual quality inspection, our AI-powered vision platform automates complex visual tasks with speed, consistency, and unmatched accuracy.
             </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={() => openCalendly("Computer Vision Solutions - Schedule Meeting")}
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold rounded-full hover:from-blue-600 hover:to-indigo-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                Schedule a Meeting
+                <Users className="ml-2 h-5 w-5" />
+              </button>
+              <Link
+                to="/partners"
+                className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-blue-600 transition-all duration-300"
+              >
+                Partner with Us
+                <Eye className="ml-2 h-5 w-5" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -409,5 +438,6 @@ export default function ComputerVision() {
 
 
     </div>
+    </>
   );
 }

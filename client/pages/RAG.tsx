@@ -15,12 +15,16 @@ import {
   BookOpen,
   MessageSquare
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SEO } from "../components/SEO";
+import { useCalendlyContext } from "../App";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function RAG() {
+  const { openCalendly } = useCalendlyContext();
   const headerRef = useRef<HTMLDivElement>(null);
   const capabilitiesRef = useRef<HTMLDivElement>(null);
   const featuresRef = useRef<HTMLDivElement>(null);
@@ -110,7 +114,14 @@ export default function RAG() {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <>
+      <SEO
+        title="RAG (Retrieval-Augmented Generation) Solutions - IntelliDelve"
+        description="Advanced RAG solutions combining retrieval and generation for intelligent document processing, knowledge management, and AI-powered information systems."
+        keywords="RAG, retrieval augmented generation, AI document processing, knowledge management, intelligent search, document intelligence, AI information systems"
+        canonicalUrl="/rag"
+      />
+      <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Background Image */}
@@ -136,6 +147,24 @@ export default function RAG() {
             <p className="text-xl md:text-2xl mb-8 opacity-90 max-w-4xl mx-auto">
               IntelliDelve's Retrieval-Augmented Generation (RAG) system elevates traditional AI by combining large language models with live, context-aware information retrieval. This ensures every response is not just fluent — but fact-based, current, and hyper-relevant.
             </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={() => openCalendly("RAG (Retrieval-Augmented Generation) - Schedule Meeting")}
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-semibold rounded-full hover:from-purple-600 hover:to-indigo-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                Schedule a Meeting
+                <Users className="ml-2 h-5 w-5" />
+              </button>
+              <Link
+                to="/partners"
+                className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-purple-600 transition-all duration-300"
+              >
+                Partner with Us
+                <Brain className="ml-2 h-5 w-5" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -550,5 +579,6 @@ export default function RAG() {
         </div>
       </section>
     </div>
+    </>
   );
 }

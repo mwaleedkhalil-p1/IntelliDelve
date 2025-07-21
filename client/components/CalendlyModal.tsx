@@ -160,7 +160,7 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
     >
       <div
         ref={modalRef}
-        className={getContentClasses("relative bg-white dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-4xl mx-4 max-h-[90vh] overflow-hidden")}
+        className={getContentClasses("relative bg-white dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-4xl mx-4 max-h-[90vh] overflow-hidden flex flex-col")}
       >
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
@@ -177,7 +177,7 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
         </div>
 
         {/* Calendly Widget */}
-        <div className="p-6">
+        <div className="p-6 overflow-auto max-h-[calc(90vh-120px)]">
           {isLoading && (
             <div className="flex items-center justify-center" style={{ height: "600px" }}>
               <div className="text-center">
@@ -236,9 +236,9 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
 
           {!isLoading && !hasError && !useIframeFallback && (
             <div
-              className="calendly-inline-widget"
+              className="calendly-inline-widget overflow-auto"
               data-url="https://calendly.com/mwaleedkhalil/30min"
-              style={{ minWidth: "320px", height: "600px" }}
+              style={{ minWidth: "320px", height: "600px", overflow: "auto" }}
             />
           )}
         </div>

@@ -6,7 +6,7 @@ import {
   BarChart3,
   ArrowRight,
   CheckCircle,
-  Link,
+  Link as LinkIcon,
   Database,
   Cloud,
   Settings,
@@ -28,12 +28,16 @@ import {
   FileCheck,
   Laptop
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { gsap } from "gsap";
+import { useCalendlyContext } from "../App";
+import { SEO } from "../components/SEO";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const SystemIntegration = memo(() => {
+  const { openCalendly } = useCalendlyContext();
   const headerRef = useRef<HTMLDivElement>(null);
   const featuresRef = useRef<HTMLDivElement>(null);
   const benefitsRef = useRef<HTMLDivElement>(null);
@@ -227,7 +231,14 @@ const SystemIntegration = memo(() => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <>
+      <SEO
+        title="System Integration Services - IntelliDelve"
+        description="Professional system integration services connecting your business applications, databases, and platforms for seamless data flow and operational efficiency."
+        keywords="system integration, API integration, enterprise integration, data integration, application connectivity, system architecture"
+        canonicalUrl="/system-integration"
+      />
+      <div className="min-h-screen">
       {/* Hero Section - Tech Network Design */}
       <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-gray-900 via-emerald-900 to-teal-900">
         {/* Tech Background */}
@@ -283,17 +294,24 @@ const SystemIntegration = memo(() => {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="group relative px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl font-bold text-white overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                <button
+                  onClick={() => openCalendly("System Integration Services - Schedule Meeting")}
+                  className="group relative px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl font-bold text-white overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                >
                   <span className="relative z-10 flex items-center justify-center">
-                    Start Integration
-                    <Network className="ml-3 w-5 h-5 group-hover:rotate-12 transition-transform" />
+                    Schedule a Meeting
+                    <Users className="ml-3 w-5 h-5 group-hover:rotate-12 transition-transform" />
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-teal-600 to-cyan-600 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 </button>
 
-                <button className="px-8 py-4 border-2 border-emerald-400/50 rounded-2xl font-bold text-emerald-300 backdrop-blur-sm hover:bg-emerald-400/10 transition-all duration-300">
-                  View Architecture
-                </button>
+                <Link
+                  to="/partners"
+                  className="px-8 py-4 border-2 border-emerald-400/50 rounded-2xl font-bold text-emerald-300 backdrop-blur-sm hover:bg-emerald-400/10 transition-all duration-300 inline-flex items-center justify-center"
+                >
+                  Partner with Us
+                  <Network className="ml-3 w-5 h-5" />
+                </Link>
               </div>
 
               {/* Tech Stats */}
@@ -611,16 +629,23 @@ const SystemIntegration = memo(() => {
             Let's discuss your integration needs and create a unified technology ecosystem for your business.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-yellow-400 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors">
-              Get Started Today
+            <button
+              onClick={() => openCalendly("System Integration Services - Schedule Meeting")}
+              className="bg-yellow-400 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors"
+            >
+              Schedule a Meeting
             </button>
-            <button className="border border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-colors">
-              Schedule Consultation
-            </button>
+            <Link
+              to="/partners"
+              className="border border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-colors inline-flex items-center justify-center"
+            >
+              Partner with Us
+            </Link>
           </div>
         </div>
       </section>
     </div>
+    </>
   );
 });
 

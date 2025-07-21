@@ -13,12 +13,15 @@ import {
   Lightbulb
 } from "lucide-react";
 import React, { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useCalendlyContext } from "../App";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function NLP() {
+  const { openCalendly } = useCalendlyContext();
   const headerRef = useRef<HTMLDivElement>(null);
   const capabilitiesRef = useRef<HTMLDivElement>(null);
   const applicationsRef = useRef<HTMLDivElement>(null);
@@ -93,6 +96,24 @@ export default function NLP() {
             <p className="text-xl md:text-2xl mb-8 opacity-90 max-w-4xl mx-auto">
               IntelliDelve's NLP solutions harness the power of advanced language models to transform text data into actionable insights. From document parsing to semantic understanding, our AI-driven tools streamline and automate language-based analysis at scale.
             </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={() => openCalendly("Natural Language Processing (NLP) - Schedule Meeting")}
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-full hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                Schedule a Meeting
+                <Users className="ml-2 h-5 w-5" />
+              </button>
+              <Link
+                to="/partners"
+                className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-indigo-600 transition-all duration-300"
+              >
+                Partner with Us
+                <MessageSquare className="ml-2 h-5 w-5" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>

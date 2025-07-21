@@ -298,7 +298,7 @@ const CloudInfrastructure = memo(() => {
                     </div>
                   </div>
 
-                  <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
+                  <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 min-h-[120px] flex flex-col justify-center">
                     <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
                       {step.title}
                     </h3>

@@ -38,14 +38,19 @@ const MegaMenu = memo(
 
     const handleMouseLeave = useCallback((event: React.MouseEvent) => {
       // Only close if mouse is leaving to an area outside the mega menu system
-      const relatedTarget = event.relatedTarget as Element;
+      const relatedTarget = event.relatedTarget as Element | null;
 
-      if (relatedTarget) {
-        // Don't close if moving to navigation or other mega menu areas
-        if (relatedTarget.closest('[data-mega-menu-area]') ||
-            relatedTarget.closest('[data-mega-menu-content]') ||
-            relatedTarget.closest('nav')) {
-          return;
+      if (relatedTarget && relatedTarget.closest) {
+        try {
+          // Don't close if moving to navigation or other mega menu areas
+          if (relatedTarget.closest('[data-mega-menu-area]') ||
+              relatedTarget.closest('[data-mega-menu-content]') ||
+              relatedTarget.closest('nav')) {
+            return;
+          }
+        } catch (error) {
+          // If there's an error with closest, just continue with closing
+          console.warn('MegaMenu: Error checking relatedTarget:', error);
         }
       }
 
@@ -138,15 +143,37 @@ const MegaMenu = memo(
       };
     }, [isOpen, activeKeyboardIndex, onClose]);
 
-    // Focus management for keyboard navigation
+    // Focus management for keyboard navigation with scroll prevention
     useEffect(() => {
+      // Only run this effect if we're actually using keyboard navigation
+      // activeKeyboardIndex should only be >= 0 when user is actively using keyboard
       if (isOpen && activeKeyboardIndex >= 0) {
         const allLinks = Array.from(
           menuRef.current?.querySelectorAll('a[href]') || []
         ) as HTMLAnchorElement[];
 
         if (allLinks[activeKeyboardIndex]) {
-          allLinks[activeKeyboardIndex].focus();
+          // Focus the element without scrolling - no window scroll manipulation
+          allLinks[activeKeyboardIndex].focus({ preventScroll: true });
+
+          // Only scroll within the menu container, never the main window
+          requestAnimationFrame(() => {
+            const menuContainer = menuRef.current?.querySelector('.overflow-y-auto');
+            const item = allLinks[activeKeyboardIndex];
+
+            if (menuContainer && item) {
+              const itemRect = item.getBoundingClientRect();
+              const containerRect = menuContainer.getBoundingClientRect();
+
+              if (itemRect.bottom > containerRect.bottom) {
+                // Item is below the visible area
+                menuContainer.scrollTop += (itemRect.bottom - containerRect.bottom) + 10;
+              } else if (itemRect.top < containerRect.top) {
+                // Item is above the visible area
+                menuContainer.scrollTop -= (containerRect.top - itemRect.top) + 10;
+              }
+            }
+          });
         }
       }
     }, [activeKeyboardIndex, isOpen]);
@@ -163,7 +190,11 @@ const MegaMenu = memo(
         <div
           className="fixed inset-0 z-40"
           onClick={onClose}
-          style={{ pointerEvents: isOpen ? "auto" : "none" }}
+          style={{
+            pointerEvents: isOpen ? "auto" : "none",
+            touchAction: 'manipulation',
+            overscrollBehavior: 'contain'
+          }}
         />
 
         {/* Menu content - positioned absolutely to avoid overlay interference */}
@@ -172,7 +203,12 @@ const MegaMenu = memo(
           role="dialog"
           aria-modal="true"
           aria-labelledby="mega-menu-title"
-          style={{ pointerEvents: isOpen ? "auto" : "none" }}
+          style={{
+            pointerEvents: isOpen ? "auto" : "none",
+            touchAction: 'manipulation',
+            overscrollBehavior: 'contain',
+            willChange: 'transform'
+          }}
         >
           <div
             ref={menuRef}
@@ -210,7 +246,14 @@ const MegaMenu = memo(
             </div>
 
             {/* Content - Scrollable with custom scrollbar */}
-            <div className="relative flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent hover:scrollbar-thumb-gray-400 dark:hover:scrollbar-thumb-gray-500">
+            <div 
+              className="relative flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent hover:scrollbar-thumb-gray-400 dark:hover:scrollbar-thumb-gray-500"
+              style={{
+                overscrollBehavior: 'contain',
+                touchAction: 'manipulation',
+                WebkitOverflowScrolling: 'touch'
+              }}
+            >
               <div
                 ref={contentRef}
                 className="p-4 sm:p-5 lg:p-6"

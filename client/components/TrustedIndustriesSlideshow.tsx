@@ -93,40 +93,7 @@ const TrustedIndustriesSlideshow = memo<TrustedIndustriesSlideshowProps>(
 
           {/* Slideshow Container */}
           <div className="relative">
-            {/* Navigation Controls */}
-            <div className="flex justify-center items-center mb-8 space-x-4">
-              <button
-                onClick={prevSlide}
-                className="p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 border border-gray-200 dark:border-gray-700"
-                aria-label="Previous industries"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              >
-                <ChevronLeft className="h-6 w-6 text-gray-700 dark:text-gray-300" />
-              </button>
 
-              <button
-                onClick={togglePlayPause}
-                className="p-3 bg-primary dark:bg-sky-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
-                aria-label={isPlaying ? "Pause slideshow" : "Play slideshow"}
-              >
-                {isPlaying ? (
-                  <Pause className="h-6 w-6" />
-                ) : (
-                  <Play className="h-6 w-6" />
-                )}
-              </button>
-
-              <button
-                onClick={nextSlide}
-                className="p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 border border-gray-200 dark:border-gray-700"
-                aria-label="Next industries"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              >
-                <ChevronRight className="h-6 w-6 text-gray-700 dark:text-gray-300" />
-              </button>
-            </div>
 
             {/* Industries Grid */}
             <div 

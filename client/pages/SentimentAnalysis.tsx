@@ -21,12 +21,16 @@ import {
   Star,
   CheckCircle
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SEO } from "../components/SEO";
+import { useCalendlyContext } from "../App";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function SentimentAnalysis() {
+  const { openCalendly } = useCalendlyContext();
   const headerRef = useRef<HTMLDivElement>(null);
   const capabilitiesRef = useRef<HTMLDivElement>(null);
   const featuresRef = useRef<HTMLDivElement>(null);
@@ -116,7 +120,14 @@ export default function SentimentAnalysis() {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <>
+      <SEO
+        title="Sentiment & Intent Analysis Solutions - IntelliDelve"
+        description="Advanced sentiment and intent analysis solutions for customer feedback, social media monitoring, and emotional intelligence insights."
+        keywords="sentiment analysis, intent analysis, emotional intelligence, customer feedback analysis, social media monitoring, AI sentiment detection"
+        canonicalUrl="/sentiment-analysis"
+      />
+      <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Background Image */}
@@ -142,6 +153,24 @@ export default function SentimentAnalysis() {
             <p className="text-xl md:text-2xl mb-8 opacity-90 max-w-4xl mx-auto">
               IntelliDelve's Sentiment & Intent Analysis platform leverages cutting-edge natural language processing (NLP) to decode human emotion, intent, and tone from written or spoken communication. Whether you're analyzing support tickets, chat logs, or reviews, our system helps you uncover what matters most — instantly and accurately.
             </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={() => openCalendly("Sentiment & Intent Analysis - Schedule Meeting")}
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-semibold rounded-full hover:from-pink-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                Schedule a Meeting
+                <Users className="ml-2 h-5 w-5" />
+              </button>
+              <Link
+                to="/partners"
+                className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-pink-600 transition-all duration-300"
+              >
+                Partner with Us
+                <Heart className="ml-2 h-5 w-5" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -504,5 +533,6 @@ export default function SentimentAnalysis() {
         </div>
       </section>
     </div>
+    </>
   );
 }

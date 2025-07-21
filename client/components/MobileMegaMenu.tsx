@@ -143,7 +143,8 @@ export const MobileMegaMenu = ({ isOpen, title, sections, onClose }: MobileMegaM
 
   const scrollToTop = () => {
     if (scrollRef.current) {
-      scrollRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+      // Disabled smooth scrolling to prevent auto-scroll issues
+      scrollRef.current.scrollTo({ top: 0, behavior: 'auto' });
     }
   };
 

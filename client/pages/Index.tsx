@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SEO } from "../components/SEO";
@@ -14,6 +14,8 @@ import {
   GraduationCap,
   Briefcase,
   FileCheck,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { HeroCarousel } from "../components/HeroCarousel";
 import { ServiceCard } from "../components/ServiceCard";
@@ -27,6 +29,9 @@ export default function Index() {
   const statsRef = useRef<HTMLDivElement>(null);
   const servicesRef = useRef<HTMLDivElement>(null);
   const certificationsRef = useRef<HTMLDivElement>(null);
+
+  // Mobile carousel state for services
+  const [currentServiceSlide, setCurrentServiceSlide] = useState(0);
 
   useEffect(() => {
     if (statsRef.current) {
@@ -122,7 +127,7 @@ export default function Index() {
       ],
       color: "bg-purple-500",
       textColor: "text-purple-500",
-      learnMoreLink: "/solutions/due-diligence",
+      learnMoreLink: "/solutions/corporate-due-diligence",
     },
     {
       icon: <BarChart3 className="h-8 w-8 text-white" />,
@@ -391,8 +396,7 @@ export default function Index() {
       <HeroCarousel />
 
       {/* Animated Stats */}
-      <section className="py-12 bg-primary text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600"></div>
+      <section className="py-12 bg-gradient-to-r from-blue-600 to-purple-600 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 left-10 w-32 h-32 bg-yellow-300 rounded-full animate-float"></div>
           <div className="absolute top-20 right-20 w-24 h-24 bg-pink-400 rounded-full animate-float"></div>
@@ -407,29 +411,29 @@ export default function Index() {
                   data-chart-icon
                 />
               </div>
-              <div className="text-4xl md:text-5xl font-bold mb-2">99.8%</div>
-              <div className="text-lg opacity-90">Accuracy Rate</div>
+              <div className="text-4xl md:text-5xl font-bold mb-2 font-mono tracking-tight text-white">99.8%</div>
+              <div className="text-lg text-white/90 font-medium">Accuracy Rate</div>
             </div>
             <div className="text-center">
               <div className="flex justify-center mb-4">
                 <Users className="h-16 w-16 text-yellow-300" data-chart-icon />
               </div>
-              <div className="text-4xl md:text-5xl font-bold mb-2">50+</div>
-              <div className="text-lg opacity-90">Enterprise Clients</div>
+              <div className="text-4xl md:text-5xl font-bold mb-2 font-mono tracking-tight text-white">50+</div>
+              <div className="text-lg text-white/90 font-medium">Enterprise Clients</div>
             </div>
             <div className="text-center">
               <div className="flex justify-center mb-4">
                 <Shield className="h-16 w-16 text-yellow-300" data-chart-icon />
               </div>
-              <div className="text-4xl md:text-5xl font-bold mb-2">1M+</div>
-              <div className="text-lg opacity-90">Background Checks</div>
+              <div className="text-4xl md:text-5xl font-bold mb-2 font-mono tracking-tight text-white">1M+</div>
+              <div className="text-lg text-white/90 font-medium">Background Checks</div>
             </div>
             <div className="text-center">
               <div className="flex justify-center mb-4">
                 <Search className="h-16 w-16 text-yellow-300" data-chart-icon />
               </div>
-              <div className="text-4xl md:text-5xl font-bold mb-2">24hr</div>
-              <div className="text-lg opacity-90">Average Turnaround</div>
+              <div className="text-4xl md:text-5xl font-bold mb-2 font-mono tracking-tight text-white">24hr</div>
+              <div className="text-lg text-white/90 font-medium">Average Turnaround</div>
             </div>
           </div>
         </div>
@@ -455,10 +459,58 @@ export default function Index() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
+          {/* Desktop Grid */}
+          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
             {services.map((service, index) => (
               <ServiceCard key={index} {...service} delay={index * 0.2} />
             ))}
+          </div>
+
+          {/* Mobile Carousel */}
+          <div className="md:hidden relative">
+            <div className="overflow-hidden">
+              <div
+                className="flex transition-transform duration-300 ease-in-out"
+                style={{ transform: `translateX(-${currentServiceSlide * 100}%)` }}
+              >
+                {services.map((service, index) => (
+                  <div key={index} className="w-full flex-shrink-0 px-4">
+                    <ServiceCard {...service} delay={0} />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Carousel Controls */}
+            <div className="flex justify-between items-center mt-6">
+              <button
+                onClick={() => setCurrentServiceSlide(Math.max(0, currentServiceSlide - 1))}
+                disabled={currentServiceSlide === 0}
+                className="p-2 rounded-full bg-primary text-white disabled:bg-gray-300 disabled:text-gray-500 transition-colors"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+
+              <div className="flex space-x-2">
+                {services.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentServiceSlide(index)}
+                    className={`w-2 h-2 rounded-full transition-colors ${
+                      index === currentServiceSlide ? 'bg-primary' : 'bg-gray-300'
+                    }`}
+                  />
+                ))}
+              </div>
+
+              <button
+                onClick={() => setCurrentServiceSlide(Math.min(services.length - 1, currentServiceSlide + 1))}
+                disabled={currentServiceSlide === services.length - 1}
+                className="p-2 rounded-full bg-primary text-white disabled:bg-gray-300 disabled:text-gray-500 transition-colors"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
           </div>
         </div>
       </section>

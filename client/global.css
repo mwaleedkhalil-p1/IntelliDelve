@@ -790,7 +790,8 @@
   .mobile-mega-menu-scrollbar {
     scrollbar-width: thin;
     scrollbar-color: rgb(59 130 246) rgba(156 163 175, 0.1);
-    scroll-behavior: smooth;
+    /* Disabled smooth scrolling to prevent auto-scroll issues */
+    /* scroll-behavior: smooth; */
     scroll-padding: 20px;
   }
 
@@ -1046,7 +1047,8 @@
   .mobile-mega-menu-scrollbar {
     scrollbar-width: thin;
     scrollbar-color: rgba(59, 130, 246, 0.3) transparent;
-    scroll-behavior: smooth;
+    /* Disabled smooth scrolling to prevent auto-scroll issues */
+    /* scroll-behavior: smooth; */
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
   }
@@ -1195,7 +1197,7 @@
   }
 }
 
-/* Smooth scrolling for anchor links */
-html {
+/* Smooth scrolling for anchor links - TEMPORARILY DISABLED */
+/* html {
   scroll-behavior: smooth;
-}
+} */

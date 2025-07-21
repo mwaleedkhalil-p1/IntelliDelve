@@ -15,8 +15,10 @@ import { PageLoader } from "./components/PageLoader";
 import { CalendlyModal } from "./components/CalendlyModal";
 import { BackToTopButton } from "./components/BackToTopButton";
 import { NavigationButtons } from "./components/NavigationButtons";
+import { DelversBot } from "./components/DelversBot";
 import AccessibilityMenu from "./components/AccessibilityMenu";
 import ScrollToTop from "./components/ScrollToTop";
+import HashNavigation from "./components/HashNavigation";
 import { queryClient } from "./lib/queryClient";
 import { imagePreloader } from "./services/imagePreloader";
 import { routes } from "./routes";
@@ -41,7 +43,8 @@ const AppContent: React.FC<{ calendly: ReturnType<typeof useCalendly> }> = ({
     <Toaster />
     <Sonner />
     <BrowserRouter>
-      <ScrollToTop />
+      {/* <ScrollToTop /> TEMPORARILY DISABLED */}
+      <HashNavigation />
       <div className="flex flex-col min-h-screen">
         <Navigation />
         <main className="flex-1">
@@ -66,8 +69,7 @@ const AppContent: React.FC<{ calendly: ReturnType<typeof useCalendly> }> = ({
         <BackToTopButton />
         <NavigationButtons />
         <AccessibilityMenu />
-        {/* Chatbot placeholder - positioned to avoid conflicts with other floating elements */}
-        <div id="chatbot-mount" className="fixed bottom-4 right-20 z-40"></div>
+        <DelversBot />
       </div>
     </BrowserRouter>
   </CalendlyContext.Provider>

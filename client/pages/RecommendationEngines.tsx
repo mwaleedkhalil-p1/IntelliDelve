@@ -19,12 +19,16 @@ import {
   Clock,
   BarChart3
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useCalendlyContext } from "../App";
+import { SEO } from "../components/SEO";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function RecommendationEngines() {
+  const { openCalendly } = useCalendlyContext();
   const headerRef = useRef<HTMLDivElement>(null);
   const capabilitiesRef = useRef<HTMLDivElement>(null);
   const featuresRef = useRef<HTMLDivElement>(null);
@@ -114,7 +118,14 @@ export default function RecommendationEngines() {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <>
+      <SEO
+        title="Recommendation Engine Solutions - IntelliDelve"
+        description="Advanced AI-powered recommendation engines for personalized user experiences, product recommendations, and intelligent content delivery systems."
+        keywords="recommendation engine, AI recommendations, personalized recommendations, machine learning recommendations, content recommendation, product recommendations"
+        canonicalUrl="/recommendation-engines"
+      />
+      <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Background Image */}
@@ -140,6 +151,24 @@ export default function RecommendationEngines() {
             <p className="text-xl md:text-2xl mb-8 opacity-90 max-w-4xl mx-auto">
               IntelliDelve's AI-powered recommendation systems personalize every interaction by analyzing user behavior, preferences, and intent. From product suggestions to content recommendations, we help you drive engagement, retention, and conversion with precision.
             </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={() => openCalendly("Recommendation Engine Solutions - Schedule Meeting")}
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-yellow-500 to-orange-600 text-white font-semibold rounded-full hover:from-yellow-600 hover:to-orange-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                Schedule a Meeting
+                <Users className="ml-2 h-5 w-5" />
+              </button>
+              <Link
+                to="/partners"
+                className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-yellow-600 transition-all duration-300"
+              >
+                Partner with Us
+                <Target className="ml-2 h-5 w-5" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -488,5 +517,6 @@ export default function RecommendationEngines() {
         </div>
       </section>
     </div>
+    </>
   );
 }

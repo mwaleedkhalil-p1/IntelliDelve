@@ -18,14 +18,19 @@ import {
   Lock,
   Activity,
   TrendingUp,
-  Globe
+  Globe,
+  Users
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useCalendlyContext } from "../App";
+import { SEO } from "../components/SEO";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const DataMigration = memo(() => {
+  const { openCalendly } = useCalendlyContext();
   const headerRef = useRef<HTMLDivElement>(null);
   const featuresRef = useRef<HTMLDivElement>(null);
   const benefitsRef = useRef<HTMLDivElement>(null);
@@ -218,7 +223,14 @@ const DataMigration = memo(() => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <>
+      <SEO
+        title="Data Migration & Analytics Services - IntelliDelve"
+        description="Professional data migration and analytics services. Seamless data transfer, cloud migration, and advanced analytics platform development."
+        keywords="data migration, cloud migration, data analytics, database migration, data transfer, analytics platform, data warehouse"
+        canonicalUrl="/data-migration"
+      />
+      <div className="min-h-screen">
       {/* Hero Section - Data Dashboard Design */}
       <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-gray-900 via-orange-900 to-red-900">
         {/* Data Visualization Background */}
@@ -274,16 +286,22 @@ const DataMigration = memo(() => {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="group relative px-8 py-4 bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl font-bold text-white overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                <Link
+                  to="/partners"
+                  className="group relative px-8 py-4 bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl font-bold text-white overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl inline-flex items-center justify-center"
+                >
                   <span className="relative z-10 flex items-center justify-center">
                     Start Migration
                     <Upload className="ml-3 w-5 h-5 group-hover:translate-y-1 transition-transform" />
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-amber-600 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                </button>
+                </Link>
 
-                <button className="px-8 py-4 border-2 border-orange-400/50 rounded-2xl font-bold text-orange-300 backdrop-blur-sm hover:bg-orange-400/10 transition-all duration-300">
-                  View Case Studies
+                <button
+                  onClick={() => openCalendly("Data Migration & Analytics - Schedule Meeting")}
+                  className="px-8 py-4 border-2 border-orange-400/50 rounded-2xl font-bold text-orange-300 backdrop-blur-sm hover:bg-orange-400/10 transition-all duration-300"
+                >
+                  Schedule Meeting
                 </button>
               </div>
 
@@ -504,14 +522,9 @@ const DataMigration = memo(() => {
                     {feature.title}
                   </h3>
 
-                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                     {feature.description}
                   </p>
-
-                  {/* Hover Arrow */}
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <ArrowRight className="w-5 h-5 text-orange-600 transform group-hover:translate-x-2 transition-transform duration-300" />
-                  </div>
                 </div>
 
                 {/* Decorative Corner */}
@@ -540,14 +553,20 @@ const DataMigration = memo(() => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
-              <button className="group relative px-10 py-5 bg-white text-gray-900 rounded-2xl font-bold text-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+              <Link
+                to="/partners"
+                className="group relative px-10 py-5 bg-white text-gray-900 rounded-2xl font-bold text-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl inline-flex items-center justify-center"
+              >
                 <span className="relative z-10 flex items-center justify-center">
                   Start Migration
                   <Upload className="ml-3 w-6 h-6 group-hover:translate-y-1 transition-transform" />
                 </span>
-              </button>
+              </Link>
 
-              <button className="px-10 py-5 border-2 border-white/30 text-white rounded-2xl font-bold text-lg backdrop-blur-sm hover:bg-white/10 transition-all duration-300">
+              <button
+                onClick={() => openCalendly("Data Migration & Analytics - Schedule Assessment")}
+                className="px-10 py-5 border-2 border-white/30 text-white rounded-2xl font-bold text-lg backdrop-blur-sm hover:bg-white/10 transition-all duration-300"
+              >
                 Schedule Assessment
               </button>
             </div>
@@ -570,6 +589,7 @@ const DataMigration = memo(() => {
         </div>
       </section>
     </div>
+    </>
   );
 });
 

@@ -4,6 +4,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TrendingUp, Shield, Users, Building, Eye, Brain, Zap, Globe, Lock, Database, ArrowRight } from "lucide-react";
 import { CaseStudyPopup } from "../components/CaseStudyPopup";
+import { SEO } from "../components/SEO";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -321,7 +322,14 @@ export default function CaseStudies() {
   ];
 
   return (
-    <div className="min-h-screen">
+    <>
+      <SEO
+        title="Case Studies - IntelliDelve Background Screening Success Stories"
+        description="Explore real-world case studies showing how IntelliDelve's AI-powered background screening helped organizations improve compliance, reduce fraud, and accelerate hiring."
+        keywords="background screening case studies, client success stories, compliance improvement, fraud reduction, hiring acceleration, ROI background checks"
+        canonicalUrl="/case-studies"
+      />
+      <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-600 to-purple-700 dark:from-brand-navy dark:to-purple-900 min-h-screen flex items-center overflow-hidden">
         <div
@@ -441,7 +449,7 @@ export default function CaseStudies() {
                     </div>
                     <button
                       onClick={() => openCaseStudy(study)}
-                      className="w-full mt-6 bg-primary dark:bg-sky-500 text-white py-3 rounded-xl font-semibold hover:bg-primary/90 dark:hover:bg-sky-400 transition-colors transform hover:scale-105"
+                      className="mt-6 bg-primary dark:bg-sky-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-primary/90 dark:hover:bg-sky-400 transition-colors transform hover:scale-105 mx-auto block"
                     >
                       View Full Case Study
                     </button>
@@ -489,7 +497,7 @@ export default function CaseStudies() {
                 <Link
                   to={`/industries/${industry.slug}`}
                   onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                  className="inline-flex items-center justify-center w-full mt-6 px-4 py-2 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                  className="inline-flex items-center justify-center mt-6 px-6 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                 >
                   Learn More
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -507,5 +515,6 @@ export default function CaseStudies() {
         caseStudy={selectedCaseStudy}
       />
     </div>
+    </>
   );
 }

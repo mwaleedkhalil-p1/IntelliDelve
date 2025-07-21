@@ -44,7 +44,7 @@ const SunsetPrompt: React.FC<SunsetPromptProps> = ({ onAccept, onDecline, onAlwa
 export function DarkModeToggle() {
   const [isDark, setIsDark] = useState(false);
   const [showSunsetPrompt, setShowSunsetPrompt] = useState(false);
-  const [userPreference, setUserPreference] = useState<'manual' | 'system' | 'time-based'>('time-based');
+  const [userPreference, setUserPreference] = useState<'manual' | 'system' | 'time-based'>('system');
 
   // Get user's timezone and calculate if it's currently day or night
   const isNightTime = () => {
@@ -72,7 +72,7 @@ export function DarkModeToggle() {
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
-    const savedPreference = localStorage.getItem("themePreference") as 'manual' | 'system' | 'time-based' || 'time-based';
+    const savedPreference = localStorage.getItem("themePreference") as 'manual' | 'system' | 'time-based' || 'system';
 
     setUserPreference(savedPreference);
 
@@ -90,8 +90,8 @@ export function DarkModeToggle() {
       if (prefersDark) {
         document.documentElement.classList.add("dark");
       }
-    } else {
-      // Time-based theme (default)
+    } else if (savedPreference === 'time-based') {
+      // Time-based theme
       const shouldBeDark = isNightTime();
       setIsDark(shouldBeDark);
       if (shouldBeDark) {
@@ -101,6 +101,13 @@ export function DarkModeToggle() {
       // Check for sunset prompt
       if (checkForSunset() && !shouldBeDark) {
         setTimeout(() => setShowSunsetPrompt(true), 2000); // Show after 2 seconds
+      }
+    } else {
+      // System preference (default)
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      setIsDark(prefersDark);
+      if (prefersDark) {
+        document.documentElement.classList.add("dark");
       }
     }
 

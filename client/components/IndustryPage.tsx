@@ -197,7 +197,7 @@ const getIndustryAssets = (slug: string) => {
   };
 
   return assets[slug] || {
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    image: "/images/downloaded/unsplash-photo-1497366216548-37526070297c.jpg",
     color: "blue",
     icon: Building,
     gradient: "from-blue-600 via-indigo-600 to-purple-600"

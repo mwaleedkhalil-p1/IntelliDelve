@@ -81,22 +81,8 @@ export const LazyImage: React.FC<LazyImageProps> = ({
       onError?.();
     };
 
-    // Optimize image URL with quality parameter if it's from Unsplash
-    let optimizedSrc = src;
-    if (src.includes('unsplash.com')) {
-      const url = new URL(src);
-      url.searchParams.set('q', quality.toString());
-      if (sizes) {
-        // Extract width from sizes or use a default
-        const width = sizes.includes('px') ? sizes.match(/(\d+)px/)?.[1] : '800';
-        if (width) {
-          url.searchParams.set('w', width);
-        }
-      }
-      optimizedSrc = url.toString();
-    }
-
-    img.src = optimizedSrc;
+    // Use the source directly since we're now using local images
+    img.src = src;
   }, [isInView, src, quality, sizes, onLoad, onError, isLoaded]);
 
   // Generate placeholder with blur effect

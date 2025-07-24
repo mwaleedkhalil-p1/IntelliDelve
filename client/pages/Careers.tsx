@@ -24,7 +24,6 @@ export default function Careers() {
   const heroRef = useRef<HTMLDivElement>(null);
   const benefitsRef = useRef<HTMLDivElement>(null);
 
-  // Handle hash navigation for direct links to sections
   useEffect(() => {
     const hash = window.location.hash;
     if (hash === '#open-positions') {
@@ -33,20 +32,19 @@ export default function Careers() {
         if (element) {
           element.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-      }, 500); // Wait for page to load
+      }, 500);
     }
   }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Hero animation
+
       gsap.fromTo(
         heroRef.current,
         { opacity: 0, y: 50 },
         { opacity: 1, y: 0, duration: 1, ease: "power2.out" }
       );
 
-      // Benefits animation
       gsap.fromTo(
         ".benefit-card",
         { opacity: 0, y: 30 },
@@ -62,7 +60,6 @@ export default function Careers() {
         }
       );
 
-      // Job cards animation
       gsap.fromTo(
         ".job-card",
         { opacity: 0, scale: 0.9 },
@@ -176,7 +173,6 @@ export default function Careers() {
         keywords="careers, jobs, employment, AI jobs, machine learning careers, remote work, software engineer jobs, data scientist positions"
       />
 
-      {/* Hero Section */}
       <section
         ref={heroRef}
         className="relative min-h-screen flex items-center bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-brand-navy dark:via-brand-navy/90 dark:to-purple-900/20 overflow-hidden"
@@ -193,7 +189,7 @@ export default function Careers() {
               Build the Future of <span className="text-primary dark:text-sky-300">Verification</span>
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
-              Join our mission to revolutionize background verification with AI. Work with cutting-edge technology 
+              Join our mission to revolutionize background verification with AI. Work with cutting-edge technology
               in a remote-first environment that values innovation, growth, and work-life balance.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -214,7 +210,6 @@ export default function Careers() {
         </div>
       </section>
 
-      {/* Company Values */}
       <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -246,7 +241,6 @@ export default function Careers() {
         </div>
       </section>
 
-      {/* Benefits */}
       <section ref={benefitsRef} className="py-20 bg-gray-50 dark:bg-brand-navy/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -281,7 +275,6 @@ export default function Careers() {
         </div>
       </section>
 
-      {/* Open Positions */}
       <section id="open-positions" className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -333,11 +326,11 @@ export default function Careers() {
                     </a>
                   </div>
                 </div>
-                
+
                 <p className="text-gray-700 dark:text-gray-300 mb-4">
                   {job.description}
                 </p>
-                
+
                 <div>
                   <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
                     Key Requirements:
@@ -359,7 +352,6 @@ export default function Careers() {
         </div>
       </section>
 
-      {/* Life at IntelliDelve */}
       <section className="py-20 bg-primary text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

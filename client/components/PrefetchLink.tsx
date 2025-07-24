@@ -22,31 +22,28 @@ export const PrefetchLink: React.FC<PrefetchLinkProps> = ({
     if (hasPrefetched.current) return;
     hasPrefetched.current = true;
 
-    // Prefetch images
     if (prefetchImages.length > 0) {
-      const promises = prefetchImages.map(src => 
-        imagePreloader.isImagePreloaded(src) 
+      const promises = prefetchImages.map(src =>
+        imagePreloader.isImagePreloaded(src)
           ? Promise.resolve()
           : new Promise<void>((resolve) => {
               const img = new Image();
               img.onload = () => resolve();
-              img.onerror = () => resolve(); // Don't fail the whole prefetch
+              img.onerror = () => resolve();
               img.src = src;
             })
       );
-      
+
       await Promise.allSettled(promises);
     }
   };
 
-  // Prefetch on hover
   const handleMouseEnter = () => {
     if (prefetchOnHover) {
       prefetchResources();
     }
   };
 
-  // Prefetch when visible (intersection observer)
   useEffect(() => {
     if (!prefetchOnVisible || !linkRef.current) return;
 

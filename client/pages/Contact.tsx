@@ -74,7 +74,6 @@ export default function Contact() {
     setIsSubmitting(true);
     setSubmitStatus({ type: null, message: "" });
 
-    // Verify CAPTCHA
     if (!captchaToken) {
       toast.error("Please complete the CAPTCHA verification");
       setIsSubmitting(false);
@@ -199,7 +198,7 @@ export default function Contact() {
           content="Get in touch with IntelliDelve for comprehensive background verification, due diligence, and risk management solutions. Schedule a demo or consultation today."
         />
       </Helmet>
-      {/* Hero Section */}
+
       <section className="relative bg-gradient-to-br from-blue-600 to-purple-700 dark:from-brand-navy dark:to-purple-900 min-h-screen flex items-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15"
@@ -220,11 +219,10 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Contact Form & Info */}
       <section className="py-20 bg-white dark:bg-brand-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16">
-            {/* Contact Form */}
+
             <div>
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
                 Send us a Message
@@ -237,7 +235,7 @@ export default function Contact() {
                     </label>
                     <input
                       type="text"
-                      name="firstName" // State key is camelCase
+                      name="firstName"
                       value={formData.firstName}
                       onChange={handleChange}
                       required
@@ -251,7 +249,7 @@ export default function Contact() {
                     </label>
                     <input
                       type="text"
-                      name="lastName" // State key is camelCase
+                      name="lastName"
                       value={formData.lastName}
                       onChange={handleChange}
                       required
@@ -319,7 +317,6 @@ export default function Contact() {
                   ></textarea>
                 </div>
 
-                {/* Google reCAPTCHA */}
                 <ReCaptcha
                   ref={recaptchaRef}
                   onVerify={setCaptchaToken}
@@ -346,7 +343,6 @@ export default function Contact() {
               </form>
             </div>
 
-            {/* Contact Information */}
             <div>
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
                 Get in Touch

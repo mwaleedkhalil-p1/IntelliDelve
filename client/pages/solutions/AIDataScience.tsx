@@ -71,22 +71,30 @@ const AIDataScience: React.FC = () => {
         keywords="AI solutions, data science, machine learning, predictive analytics, NLP, computer vision, business intelligence, automation"
       />
 
-      {/* Custom AI & Data Science Solution Page */}
       <div className={`min-h-screen ${solutionData.bgColor}`}>
-        {/* Hero Section */}
-        <section className="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className={`inline-flex items-center justify-center w-20 h-20 ${solutionData.color} rounded-2xl mb-8`}>
+
+        <section className="relative min-h-screen flex items-center px-4 sm:px-6 lg:px-8 overflow-hidden">
+
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2125&q=80')`,
+            }}
+          ></div>
+
+          <div className="absolute inset-0 bg-gradient-to-br from-red-900/80 via-red-800/70 to-orange-900/80"></div>
+
+          <div className="max-w-4xl mx-auto text-center relative z-10">
+            <div className={`inline-flex items-center justify-center w-20 h-20 ${solutionData.color} bg-white/90 rounded-2xl mb-8`}>
               {solutionData.icon}
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6 font-primary">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 font-primary">
               {solutionData.hero.headline}
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 font-secondary leading-relaxed">
+            <p className="text-xl text-white/90 mb-8 font-secondary leading-relaxed">
               {solutionData.hero.subtext}
             </p>
 
-            {/* Hero CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => openCalendly(`${solutionData.title} - Consultation`)}
@@ -98,9 +106,9 @@ const AIDataScience: React.FC = () => {
 
               <Link
                 to="/what-we-offer#ai-and-data-science-solutions"
-                className="bg-transparent border-2 border-primary text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-primary hover:text-white transition-all duration-300 font-primary inline-flex items-center justify-center gap-2"
+                className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-primary transition-all duration-300 font-primary inline-flex items-center justify-center gap-2"
                 onClick={() => {
-                  // Scroll to the section after navigation
+
                   setTimeout(() => {
                     const element = document.getElementById('ai-and-data-science-solutions');
                     if (element) {
@@ -116,7 +124,6 @@ const AIDataScience: React.FC = () => {
           </div>
         </section>
 
-        {/* What We Offer Section */}
         <section className="py-16 bg-white dark:bg-gray-900">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
@@ -140,7 +147,6 @@ const AIDataScience: React.FC = () => {
           </div>
         </section>
 
-        {/* Why Choose Us Section */}
         <section className="py-16 bg-gray-50 dark:bg-gray-800">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
@@ -163,7 +169,6 @@ const AIDataScience: React.FC = () => {
           </div>
         </section>
 
-        {/* How It Works Section */}
         <section className="py-16 bg-white dark:bg-gray-900">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
@@ -189,7 +194,6 @@ const AIDataScience: React.FC = () => {
           </div>
         </section>
 
-        {/* Custom CTA Section with Two Buttons */}
         <section className="py-16 bg-primary text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <Users className="h-12 w-12 mx-auto mb-6" />
@@ -213,7 +217,7 @@ const AIDataScience: React.FC = () => {
                 to="/what-we-offer#ai-and-data-science-solutions"
                 className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-primary transition-all duration-300 font-primary inline-flex items-center justify-center gap-2"
                 onClick={() => {
-                  // Scroll to the section after navigation
+
                   setTimeout(() => {
                     const element = document.getElementById('ai-and-data-science-solutions');
                     if (element) {

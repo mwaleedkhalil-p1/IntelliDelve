@@ -1,17 +1,14 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 
-// Environment-based configuration
 const getBaseURL = (): string => {
-  // Check if we're in development, staging, or production
+
   if (import.meta.env.DEV) {
     return import.meta.env.VITE_API_BASE_URL || 'https://informed-bluebird-right.ngrok-free.app';
   }
-  
-  // Production URL - should be set via environment variables
+
   return import.meta.env.VITE_API_BASE_URL || 'https://api.intellidelve.com';
 };
 
-// Form data interfaces
 export interface ContactFormData {
   first_name: string;
   last_name: string;
@@ -37,7 +34,6 @@ export interface NewsletterFormData {
   recaptcha_token: string;
 }
 
-// Response interfaces
 export interface FormSubmissionResponse {
   success: boolean;
   message: string;
@@ -50,11 +46,10 @@ export interface FormError {
   code?: string;
 }
 
-// Form service class
 export class FormService {
   private static instance: FormService;
   private baseURL: string;
-  private timeout: number = 10000; // 10 seconds
+  private timeout: number = 10000;
 
   constructor() {
     this.baseURL = getBaseURL();
@@ -67,14 +62,13 @@ export class FormService {
     return FormService.instance;
   }
 
-  // Generic form submission method
   private async submitForm<T>(
     endpoint: string,
     data: T,
     options: {
       timeout?: number;
       retries?: number;
-    } = {}
+    } =
   ): Promise<FormSubmissionResponse> {
     const { timeout = this.timeout, retries = 2 } = options;
 
@@ -94,12 +88,11 @@ export class FormService {
 
         return response.data;
       } catch (error) {
-        // If this is the last attempt, throw the error
+
         if (attempt === retries) {
           throw this.handleFormError(error as AxiosError);
         }
 
-        // Wait before retrying (exponential backoff)
         await new Promise(resolve => setTimeout(resolve, Math.pow(2, attempt) * 1000));
       }
     }
@@ -107,10 +100,9 @@ export class FormService {
     throw new Error('Maximum retries exceeded');
   }
 
-  // Handle form submission errors
   private handleFormError(error: AxiosError): FormError {
     if (error.response) {
-      // Server responded with error status
+
       const status = error.response.status;
       const data = error.response.data as any;
 
@@ -138,13 +130,13 @@ export class FormService {
           };
       }
     } else if (error.request) {
-      // Network error
+
       return {
         message: 'Network error. Please check your connection and try again.',
         code: 'NETWORK_ERROR',
       };
     } else {
-      // Other error
+
       return {
         message: 'An unexpected error occurred. Please try again.',
         code: 'UNKNOWN_ERROR',
@@ -152,33 +144,29 @@ export class FormService {
     }
   }
 
-  // Contact form submission
   async submitContactForm(data: ContactFormData): Promise<FormSubmissionResponse> {
-    // Validate required fields
+
     this.validateContactForm(data);
 
     return this.submitForm('/contact', data, {
-      timeout: 15000, // Contact forms might take longer
+      timeout: 15000,
     });
   }
 
-  // Partnership form submission
   async submitPartnershipForm(data: PartnershipFormData): Promise<FormSubmissionResponse> {
-    // Validate required fields
+
     this.validatePartnershipForm(data);
 
     return this.submitForm('/partnership', data);
   }
 
-  // Newsletter subscription
   async submitNewsletterForm(data: NewsletterFormData): Promise<FormSubmissionResponse> {
-    // Validate required fields
+
     this.validateNewsletterForm(data);
 
     return this.submitForm('/newsletter', data);
   }
 
-  // Validation methods
   private validateContactForm(data: ContactFormData): void {
     const errors: string[] = [];
 
@@ -225,13 +213,11 @@ export class FormService {
     }
   }
 
-  // Email validation
   private isValidEmail(email: string): boolean {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   }
 
-  // Health check method
   async healthCheck(): Promise<boolean> {
     try {
       const response = await axios.get(`${this.baseURL}/health`, {
@@ -239,12 +225,11 @@ export class FormService {
       });
       return response.status === 200;
     } catch (error) {
-      console.warn('API health check failed:', error);
+
       return false;
     }
   }
 
-  // Get service status
   getServiceInfo(): {
     baseURL: string;
     environment: string;
@@ -257,7 +242,6 @@ export class FormService {
     };
   }
 
-  // Update configuration
   updateConfig(config: {
     baseURL?: string;
     timeout?: number;
@@ -271,15 +255,12 @@ export class FormService {
   }
 }
 
-// Export singleton instance
 export const formService = FormService.getInstance();
 
-// Utility functions for common form operations
 export const submitContactForm = (data: ContactFormData) => formService.submitContactForm(data);
 export const submitPartnershipForm = (data: PartnershipFormData) => formService.submitPartnershipForm(data);
 export const submitNewsletterForm = (data: NewsletterFormData) => formService.submitNewsletterForm(data);
 
-// Form validation utilities
 export const validateEmail = (email: string): boolean => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);

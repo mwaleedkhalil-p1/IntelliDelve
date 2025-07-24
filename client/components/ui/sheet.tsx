@@ -17,7 +17,7 @@ const SheetOverlay = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Overlay>,
   React.ComponentPropsWithoutRef<typeof SheetPrimitive.Overlay>
 >(({ className, ...props }, ref) => {
-  // Detect Safari browser
+
   const isSafari = React.useMemo(() => {
     if (typeof navigator === 'undefined') return false;
     return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
@@ -58,8 +58,7 @@ const sheetVariants = cva(
 
 interface SheetContentProps
   extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
-    VariantProps<typeof sheetVariants> {}
-
+    VariantProps<typeof sheetVariants>
 const SheetContent = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Content>,
   SheetContentProps

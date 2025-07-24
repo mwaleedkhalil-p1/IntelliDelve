@@ -65,7 +65,6 @@ export default function Partners() {
       );
     }
 
-
   }, []);
 
   const handleFormChange = (
@@ -84,14 +83,11 @@ export default function Partners() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Verify CAPTCHA
     if (!captchaToken) {
       toast.error("Please complete the CAPTCHA verification");
       setIsSubmitting(false);
       return;
     }
-
-    console.log("Submitting partnership form with data:", formData);
 
     try {
       const response = await axios.post(
@@ -107,8 +103,6 @@ export default function Partners() {
         },
       );
 
-      console.log("Partnership submission successful:", response.data);
-
       setFormData({
         company_name: "",
         partnership_type: "background_screening",
@@ -120,19 +114,18 @@ export default function Partners() {
 
       toast.success("Partnership request submitted successfully!");
     } catch (error) {
-      console.error("Error submitting partnership form:", error);
 
       let errorMessage =
         "Failed to submit partnership request. Please try again.";
 
       if (axios.isAxiosError(error)) {
         if (error.response) {
-          console.error("Server error response:", error.response.data);
+
           if (error.response.status === 400) {
             errorMessage = "Please check your input and try again.";
           }
         } else if (error.request) {
-          console.error("No response received:", error.request);
+
           errorMessage =
             "No response from server. Please check your connection.";
         }
@@ -168,8 +161,6 @@ export default function Partners() {
     },
   ];
 
-
-
   return (
     <div className="min-h-screen pt-16">
       <Toaster
@@ -197,7 +188,7 @@ export default function Partners() {
           },
         }}
       />
-      {/* Hero Section */}
+
       <section className="relative bg-gradient-to-br from-blue-600 to-purple-700 dark:from-brand-navy dark:to-purple-900 min-h-screen flex items-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15"
@@ -226,7 +217,7 @@ export default function Partners() {
               <Link
                 to="/careers#open-positions"
                 onClick={() => {
-                  // Smooth scroll to top first, then let the hash handle the section scroll
+
                   setTimeout(() => {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }, 100);
@@ -240,7 +231,6 @@ export default function Partners() {
         </div>
       </section>
 
-      {/* Strategic Partnerships */}
       <section className="py-20 bg-white dark:bg-brand-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -275,7 +265,6 @@ export default function Partners() {
             ))}
           </div>
 
-          {/* Partnership Application Form */}
           <form
             id="partnership-form"
             ref={formRef}
@@ -362,7 +351,6 @@ export default function Partners() {
                 ></textarea>
               </div>
 
-              {/* Google reCAPTCHA */}
               <ReCaptcha
                 ref={recaptchaRef}
                 onVerify={setCaptchaToken}

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { gsap } from "gsap";
 import { LucideIcon } from "lucide-react";
@@ -32,9 +32,10 @@ interface AccordionSectionProps {
   isExpanded: boolean;
   onToggle: () => void;
   onItemClick: () => void;
+  navigate: (path: string, options: any) => void;
 }
 
-const AccordionSection = ({ section, isExpanded, onToggle, onItemClick }: AccordionSectionProps) => {
+const AccordionSection = ({ section, isExpanded, onToggle, onItemClick, navigate }: AccordionSectionProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -84,7 +85,7 @@ const AccordionSection = ({ section, isExpanded, onToggle, onItemClick }: Accord
           </span>
         </div>
       </button>
-      
+
       <div
         ref={contentRef}
         id={`section-${section.title.replace(/\s+/g, '-').toLowerCase()}`}
@@ -97,7 +98,25 @@ const AccordionSection = ({ section, isExpanded, onToggle, onItemClick }: Accord
               <li key={itemIndex} role="listitem">
                 <Link
                   to={item.path}
-                  onClick={onItemClick}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    // Close menu first
+                    onItemClick();
+
+                    // Delay navigation slightly to ensure menu closes
+                    setTimeout(() => {
+                      navigate(item.path, {});
+                      // Scroll to top after navigation
+                      requestAnimationFrame(() => {
+                        window.scrollTo({
+                          top: 0,
+                          behavior: 'instant'
+                        });
+                      });
+                    }, 0);
+                  }}
                   className="flex items-center gap-3 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-sky-300 transition-all duration-300 py-3 px-4 hover:bg-white dark:hover:bg-gray-800 rounded-xl group text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-800 shadow-sm hover:shadow-md transform hover:translate-x-1"
                 >
                   {item.icon && (
@@ -123,6 +142,7 @@ export const MobileMegaMenu = ({ isOpen, title, sections, onClose }: MobileMegaM
   const [canScrollDown, setCanScrollDown] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   const toggleSection = (index: number) => {
     setExpandedSections(prev => {
@@ -143,8 +163,11 @@ export const MobileMegaMenu = ({ isOpen, title, sections, onClose }: MobileMegaM
 
   const scrollToTop = () => {
     if (scrollRef.current) {
-      // Disabled smooth scrolling to prevent auto-scroll issues
-      scrollRef.current.scrollTo({ top: 0, behavior: 'auto' });
+      // Use instant behavior to prevent unwanted smooth scrolling
+      scrollRef.current.scrollTo({
+        top: 0,
+        behavior: 'instant'
+      });
     }
   };
 
@@ -193,8 +216,9 @@ export const MobileMegaMenu = ({ isOpen, title, sections, onClose }: MobileMegaM
   useEffect(() => {
     if (menuRef.current) {
       if (isOpen) {
-        // Prevent body scroll
-        document.body.classList.add('mobile-mega-menu-open');
+        // Prevent body scroll with inline styles for more reliable control
+        document.body.style.overflow = 'hidden';
+        document.body.style.height = '100vh';
 
         gsap.fromTo(
           menuRef.current,
@@ -203,13 +227,13 @@ export const MobileMegaMenu = ({ isOpen, title, sections, onClose }: MobileMegaM
         );
       } else {
         // Restore body scroll
-        document.body.classList.remove('mobile-mega-menu-open');
+        document.body.style.overflow = '';
+        document.body.style.height = '';
       }
-    }
-
-    // Cleanup on unmount
+    }
     return () => {
-      document.body.classList.remove('mobile-mega-menu-open');
+      document.body.style.overflow = '';
+      document.body.style.height = '';
     };
   }, [isOpen]);
 
@@ -222,7 +246,7 @@ export const MobileMegaMenu = ({ isOpen, title, sections, onClose }: MobileMegaM
       role="region"
       aria-label={`${title} mobile menu`}
     >
-      {/* Header with gradient */}
+
       <div className="flex-shrink-0 bg-gradient-to-r from-primary/5 to-purple-500/5 dark:from-sky-500/10 dark:to-purple-500/10 p-4 border-b border-gray-100 dark:border-gray-700">
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-bold text-gray-900 dark:text-white flex items-center">
@@ -235,16 +259,14 @@ export const MobileMegaMenu = ({ isOpen, title, sections, onClose }: MobileMegaM
         </div>
       </div>
 
-      {/* Scrollable Content with Modern Design */}
       <div
         ref={scrollRef}
         className="flex-1 overflow-y-auto mobile-mega-menu-scrollbar relative scroll-smooth"
         style={{ scrollBehavior: 'smooth' }}
       >
-        {/* Scroll Indicator */}
+
         <div className="absolute top-0 right-0 w-1 bg-gradient-to-b from-primary/20 to-purple-500/20 dark:from-sky-400/20 dark:to-purple-400/20 z-10 rounded-full"></div>
 
-        {/* Scroll to Top Button */}
         {canScrollUp && (
           <button
             onClick={scrollToTop}
@@ -257,27 +279,25 @@ export const MobileMegaMenu = ({ isOpen, title, sections, onClose }: MobileMegaM
           </button>
         )}
 
-        {/* Top fade indicator */}
         <div className={`sticky top-0 h-4 bg-gradient-to-b from-white dark:from-gray-900 to-transparent z-20 pointer-events-none transition-opacity duration-300 ${canScrollUp ? 'opacity-100' : 'opacity-0'}`}></div>
 
         <div className="px-2 pb-2">
           {sections.map((section, index) => (
             <div key={index} className="mb-2">
-              <AccordionSection
-                section={section}
-                isExpanded={expandedSections.has(index)}
-                onToggle={() => toggleSection(index)}
-                onItemClick={handleItemClick}
-              />
+                <AccordionSection
+                  section={section}
+                  isExpanded={expandedSections.has(index)}
+                  onToggle={() => toggleSection(index)}
+                  onItemClick={handleItemClick}
+                  navigate={navigate}
+                />
             </div>
           ))}
         </div>
 
-        {/* Bottom fade indicator */}
         <div className={`sticky bottom-0 h-4 bg-gradient-to-t from-white dark:from-gray-900 to-transparent z-20 pointer-events-none transition-opacity duration-300 ${canScrollDown ? 'opacity-100' : 'opacity-0'}`}></div>
       </div>
 
-      {/* Scroll to Top Button */}
       {canScrollUp && (
         <button
           onClick={scrollToTop}

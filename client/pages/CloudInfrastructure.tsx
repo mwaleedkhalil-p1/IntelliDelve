@@ -93,9 +93,9 @@ const CloudInfrastructure = memo(() => {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
-      {/* Hero Section */}
+
       <section ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background Image */}
+
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
@@ -118,7 +118,6 @@ const CloudInfrastructure = memo(() => {
                 Build scalable, secure, and efficient cloud infrastructure with our comprehensive DevOps solutions and automation services.
               </p>
 
-              {/* Stats */}
               <div className="grid grid-cols-2 gap-6 mb-8">
                 {infrastructureStats.map((stat, index) => (
                   <div key={index} className="text-center">
@@ -173,7 +172,7 @@ const CloudInfrastructure = memo(() => {
           </div>
         </div>
       </section>
-      {/* Cloud Services Section */}
+
       <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -225,7 +224,6 @@ const CloudInfrastructure = memo(() => {
         </div>
       </section>
 
-      {/* Cloud Platforms Section */}
       <section className="py-20 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-purple-900/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -259,7 +257,6 @@ const CloudInfrastructure = memo(() => {
         </div>
       </section>
 
-      {/* DevOps Workflow Section */}
       <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -313,7 +310,6 @@ const CloudInfrastructure = memo(() => {
         </div>
       </section>
 
-      {/* Benefits Section */}
       <section className="py-20 bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 dark:from-gray-800 dark:via-gray-900 dark:to-blue-900/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -356,7 +352,6 @@ const CloudInfrastructure = memo(() => {
         </div>
       </section>
 
-      {/* Industries Section */}
       <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -390,7 +385,6 @@ const CloudInfrastructure = memo(() => {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 relative overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

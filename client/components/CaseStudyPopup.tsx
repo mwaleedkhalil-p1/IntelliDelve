@@ -55,7 +55,6 @@ export function CaseStudyPopup({ isOpen, onClose, caseStudy }: CaseStudyPopupPro
   const [shouldRender, setShouldRender] = useState(false);
   const [isSafari, setIsSafari] = useState(false);
 
-  // Detect Safari browser
   useEffect(() => {
     const userAgent = navigator.userAgent;
     const isSafariBrowser = /^((?!chrome|android).)*safari/i.test(userAgent);
@@ -66,23 +65,20 @@ export function CaseStudyPopup({ isOpen, onClose, caseStudy }: CaseStudyPopupPro
     if (isOpen && caseStudy) {
       setShouldRender(true);
 
-      // Safari-specific body scroll lock
       if (isSafari) {
         document.body.classList.add("modal-open-safari");
       } else {
         document.body.style.overflow = 'hidden';
       }
-      
+
       gsap.killTweensOf([overlayRef.current, modalRef.current]);
-      
-      // Animate overlay
+
       gsap.fromTo(
         overlayRef.current,
         { opacity: 0 },
         { opacity: 1, duration: 0.3, ease: "power2.out" }
       );
-      
-      // Animate modal
+
       gsap.fromTo(
         modalRef.current,
         { opacity: 0, scale: 0.8, y: 50 },
@@ -90,7 +86,7 @@ export function CaseStudyPopup({ isOpen, onClose, caseStudy }: CaseStudyPopupPro
       );
     } else {
       gsap.killTweensOf([overlayRef.current, modalRef.current]);
-      
+
       if (modalRef.current && overlayRef.current) {
         gsap.to(modalRef.current, {
           opacity: 0,
@@ -99,7 +95,7 @@ export function CaseStudyPopup({ isOpen, onClose, caseStudy }: CaseStudyPopupPro
           duration: 0.3,
           ease: "power2.in"
         });
-        
+
         gsap.to(overlayRef.current, {
           opacity: 0,
           duration: 0.3,
@@ -133,7 +129,6 @@ export function CaseStudyPopup({ isOpen, onClose, caseStudy }: CaseStudyPopupPro
     };
   }, [isOpen, caseStudy, isSafari]);
 
-  // Handle escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isOpen) {
@@ -157,10 +152,9 @@ export function CaseStudyPopup({ isOpen, onClose, caseStudy }: CaseStudyPopupPro
       }`}
       onClick={onClose}
     >
-      {/* Backdrop */}
+
       {!isSafari && <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />}
 
-      {/* Modal */}
       <div
         ref={modalRef}
         className={`relative w-full max-w-4xl max-h-[90vh] bg-white dark:bg-slate-900 rounded-2xl shadow-2xl overflow-hidden ${
@@ -168,7 +162,7 @@ export function CaseStudyPopup({ isOpen, onClose, caseStudy }: CaseStudyPopupPro
         }`}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
+
         <div className={`relative ${caseStudy.bgGradient} p-6 text-white`}>
           <button
             onClick={onClose}
@@ -177,7 +171,7 @@ export function CaseStudyPopup({ isOpen, onClose, caseStudy }: CaseStudyPopupPro
           >
             <X className="w-5 h-5" />
           </button>
-          
+
           <div className="flex items-start gap-4">
             <div className={`p-3 rounded-xl ${caseStudy.color} bg-white/20`}>
               {caseStudy.icon}
@@ -202,10 +196,9 @@ export function CaseStudyPopup({ isOpen, onClose, caseStudy }: CaseStudyPopupPro
           </div>
         </div>
 
-        {/* Content */}
         <div className="overflow-y-auto max-h-[calc(90vh-200px)]">
           <div className="p-6 space-y-8">
-            {/* Industry & Duration Info */}
+
             <div className="grid md:grid-cols-2 gap-4">
               <div className="bg-gray-50 dark:bg-slate-800 rounded-xl p-4">
                 <div className="flex items-center gap-2 mb-2">
@@ -223,7 +216,6 @@ export function CaseStudyPopup({ isOpen, onClose, caseStudy }: CaseStudyPopupPro
               </div>
             </div>
 
-            {/* Challenge */}
             <div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
                 <Shield className="w-6 h-6 text-red-500" />
@@ -232,14 +224,13 @@ export function CaseStudyPopup({ isOpen, onClose, caseStudy }: CaseStudyPopupPro
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{caseStudy.challenge}</p>
             </div>
 
-            {/* Solution */}
             <div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
                 <CheckCircle className="w-6 h-6 text-green-500" />
                 Solution
               </h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">{caseStudy.solution}</p>
-              
+
               <h4 className="font-semibold text-gray-900 dark:text-white mb-3">Implementation Steps:</h4>
               <ul className="space-y-2">
                 {caseStudy.implementation.map((step, index) => (
@@ -253,7 +244,6 @@ export function CaseStudyPopup({ isOpen, onClose, caseStudy }: CaseStudyPopupPro
               </ul>
             </div>
 
-            {/* Results */}
             <div>
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                 <BarChart3 className="w-6 h-6 text-blue-500" />
@@ -270,7 +260,6 @@ export function CaseStudyPopup({ isOpen, onClose, caseStudy }: CaseStudyPopupPro
               </div>
             </div>
 
-            {/* Testimonial */}
             <div className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-slate-800 dark:to-slate-700 rounded-xl p-6">
               <div className="flex items-center gap-2 mb-4">
                 <Award className="w-6 h-6 text-yellow-500" />
@@ -290,7 +279,6 @@ export function CaseStudyPopup({ isOpen, onClose, caseStudy }: CaseStudyPopupPro
               </div>
             </div>
 
-            {/* Tags */}
             <div>
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Technologies & Services</h3>
               <div className="flex flex-wrap gap-2">

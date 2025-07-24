@@ -90,7 +90,7 @@ export default function Solutions() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
+
       <section className="relative bg-gradient-to-br from-blue-600 to-purple-700 dark:from-brand-navy dark:to-purple-900 min-h-screen flex items-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
@@ -111,7 +111,6 @@ export default function Solutions() {
         </div>
       </section>
 
-      {/* AI Solutions */}
       <section className="py-20 bg-white dark:bg-brand-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -172,7 +171,6 @@ export default function Solutions() {
         </div>
       </section>
 
-      {/* Technology Stack */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-brand-navy/50 dark:to-purple-900/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -225,7 +223,6 @@ export default function Solutions() {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-20 bg-primary text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

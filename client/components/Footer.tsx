@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from "lucide-react";
 
 export function Footer() {
-  // Function to scroll to top when clicking footer links
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -64,14 +64,14 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-2 mb-6">
-              {/* Use white logo for better visibility on dark background */}
+
               <img
                 src="/logo.png"
                 alt="IntelliDelve"
                 className="h-10 w-auto"
               />
             </div>
-            {/* Removed "A Background Checker Company™" text */}
+
             <p className="text-gray-400 text-sm mb-6">
               IntelliDelve empowers organizations with intelligent background screening,
               fraud detection, and compliance solutions across 100+ countries. Our
@@ -91,7 +91,7 @@ export function Footer() {
                 </a>
               ))}
             </div>
-            {/* Privacy Policy and Cookies moved below social icons */}
+
             <div className="space-y-2">
               <Link
                 to="/privacy-policy"
@@ -180,7 +180,6 @@ export function Footer() {
               <li>info@intellidelve.com</li>
             </ul>
           </div>
-
 
         </div>
 

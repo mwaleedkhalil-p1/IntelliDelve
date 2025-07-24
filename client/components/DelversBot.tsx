@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { 
-  MessageCircle, 
-  X, 
-  Send, 
-  Bot, 
-  User, 
+import {
+  MessageCircle,
+  X,
+  Send,
+  Bot,
+  User,
   Minimize2,
   Maximize2,
   Phone,
@@ -44,13 +44,13 @@ export const DelversBot: React.FC<DelversBotProps> = ({ className = '' }) => {
 
   useEffect(() => {
     if (isOpen && messages.length === 0) {
-      // Initial greeting
+
       setTimeout(() => {
         addBotMessage(
           "👋 Hi! I'm Delver, your AI assistant at IntelliDelve. I'm here to help you with background screening, AI solutions, and any questions about our services. How can I assist you today?",
           [
             "Background Screening Services",
-            "AI & Data Science Solutions", 
+            "AI & Data Science Solutions",
             "Schedule a Meeting",
             "Get a Quote"
           ]
@@ -89,50 +89,49 @@ export const DelversBot: React.FC<DelversBotProps> = ({ className = '' }) => {
 
   const getBotResponse = (userMessage: string): { text: string; quickReplies?: string[] } => {
     const message = userMessage.toLowerCase();
-    
+
     if (message.includes('background') || message.includes('screening') || message.includes('verification')) {
       return {
         text: "🔍 Our background screening services include employment verification, criminal checks, education verification, and more. We serve clients globally with 99.7% accuracy and fast turnaround times. Would you like to learn more about a specific service?",
         quickReplies: ["Employment Verification", "Criminal Background Check", "Education Verification", "Schedule Consultation"]
       };
     }
-    
+
     if (message.includes('ai') || message.includes('data science') || message.includes('machine learning')) {
       return {
         text: "🤖 We offer cutting-edge AI solutions including NLP, computer vision, predictive analytics, recommendation engines, and custom AI development. Our AI-powered tools help businesses automate processes and gain valuable insights. What AI solution interests you?",
         quickReplies: ["Natural Language Processing", "Computer Vision", "Predictive Analytics", "Custom AI Development"]
       };
     }
-    
+
     if (message.includes('price') || message.includes('cost') || message.includes('quote') || message.includes('pricing')) {
       return {
         text: "💰 Our pricing varies based on your specific needs and volume. We offer competitive rates and flexible packages. I'd recommend scheduling a consultation with our team to get a personalized quote. Would you like me to set that up?",
         quickReplies: ["Schedule Consultation", "Get Quote", "View Packages", "Contact Sales"]
       };
     }
-    
+
     if (message.includes('meeting') || message.includes('consultation') || message.includes('schedule') || message.includes('appointment')) {
       return {
         text: "📅 I'd be happy to help you schedule a meeting with our experts! You can book a consultation directly through our calendar system. What type of consultation are you looking for?",
         quickReplies: ["Background Screening Consultation", "AI Solutions Meeting", "General Consultation", "Technical Demo"]
       };
     }
-    
+
     if (message.includes('contact') || message.includes('support') || message.includes('help')) {
       return {
         text: "📞 You can reach our team through multiple channels:\n\n• Schedule a meeting: Use our calendar system\n• Email: contact@intellidelve.com\n• Phone: Available during business hours\n• Live chat: Right here with me!\n\nHow would you prefer to connect?",
         quickReplies: ["Schedule Meeting", "Send Email", "Continue Chat", "View Contact Page"]
       };
     }
-    
+
     if (message.includes('hello') || message.includes('hi') || message.includes('hey')) {
       return {
         text: "Hello! 👋 Great to meet you! I'm here to help you learn about IntelliDelve's background screening and AI solutions. What would you like to know more about?",
         quickReplies: ["Our Services", "Background Screening", "AI Solutions", "Get Started"]
       };
     }
-    
-    // Default response
+
     return {
       text: "I'd be happy to help you with that! For detailed information about our services, I recommend speaking with one of our specialists. You can also explore our website or schedule a consultation. What would work best for you?",
       quickReplies: ["Schedule Consultation", "Browse Services", "Contact Support", "Learn More"]
@@ -141,13 +140,13 @@ export const DelversBot: React.FC<DelversBotProps> = ({ className = '' }) => {
 
   const handleSendMessage = () => {
     if (!inputValue.trim()) return;
-    
+
     addUserMessage(inputValue);
     const userMessage = inputValue;
     setInputValue('');
-    
+
     simulateTyping();
-    
+
     setTimeout(() => {
       const response = getBotResponse(userMessage);
       addBotMessage(response.text, response.quickReplies);
@@ -156,12 +155,12 @@ export const DelversBot: React.FC<DelversBotProps> = ({ className = '' }) => {
 
   const handleQuickReply = (reply: string) => {
     addUserMessage(reply);
-    
+
     simulateTyping();
-    
+
     setTimeout(() => {
       let response;
-      
+
       if (reply.includes('Schedule') || reply.includes('Consultation') || reply.includes('Meeting')) {
         openCalendly("Delver's Bot - Schedule Consultation");
         response = { text: "Perfect! I've opened our scheduling system for you. You can book a time that works best for your schedule. Our team will be ready to discuss your specific needs!" };
@@ -172,7 +171,7 @@ export const DelversBot: React.FC<DelversBotProps> = ({ className = '' }) => {
       } else {
         response = getBotResponse(reply);
       }
-      
+
       addBotMessage(response.text, response.quickReplies);
     }, 1000);
   };
@@ -197,8 +196,7 @@ export const DelversBot: React.FC<DelversBotProps> = ({ className = '' }) => {
             1
           </div>
         </button>
-        
-        {/* Tooltip */}
+
         <div className="absolute bottom-full right-0 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
           <div className="bg-gray-900 text-white text-sm px-3 py-2 rounded-lg whitespace-nowrap">
             Chat with Delver's Bot
@@ -214,7 +212,7 @@ export const DelversBot: React.FC<DelversBotProps> = ({ className = '' }) => {
       <div className={`bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 transition-all duration-300 ${
         isMinimized ? 'w-80 h-16' : 'w-96 h-[500px]'
       }`}>
-        {/* Header */}
+
         <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-primary to-blue-600 text-white rounded-t-2xl">
           <div className="flex items-center space-x-3">
             <div className="relative">
@@ -226,7 +224,7 @@ export const DelversBot: React.FC<DelversBotProps> = ({ className = '' }) => {
               <p className="text-xs opacity-90">AI Assistant • Online</p>
             </div>
           </div>
-          
+
           <div className="flex items-center space-x-2">
             <button
               onClick={() => setIsMinimized(!isMinimized)}
@@ -247,7 +245,7 @@ export const DelversBot: React.FC<DelversBotProps> = ({ className = '' }) => {
 
         {!isMinimized && (
           <>
-            {/* Messages */}
+
             <div className="flex-1 overflow-y-auto p-4 space-y-4 h-80">
               {messages.map((message) => (
                 <div key={message.id} className={`flex ${message.isBot ? 'justify-start' : 'justify-end'}`}>
@@ -259,8 +257,8 @@ export const DelversBot: React.FC<DelversBotProps> = ({ className = '' }) => {
                     </div>
                     <div>
                       <div className={`px-4 py-2 rounded-2xl ${
-                        message.isBot 
-                          ? 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white' 
+                        message.isBot
+                          ? 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white'
                           : 'bg-primary text-white'
                       }`}>
                         <p className="text-sm whitespace-pre-line">{message.text}</p>
@@ -282,7 +280,7 @@ export const DelversBot: React.FC<DelversBotProps> = ({ className = '' }) => {
                   </div>
                 </div>
               ))}
-              
+
               {isTyping && (
                 <div className="flex justify-start">
                   <div className="flex items-start space-x-2">
@@ -299,11 +297,10 @@ export const DelversBot: React.FC<DelversBotProps> = ({ className = '' }) => {
                   </div>
                 </div>
               )}
-              
+
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Input */}
             <div className="p-4 border-t border-gray-200 dark:border-gray-700">
               <div className="flex items-center space-x-2">
                 <input

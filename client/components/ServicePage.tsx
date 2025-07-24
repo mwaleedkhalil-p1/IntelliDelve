@@ -49,7 +49,6 @@ export const ServicePage: React.FC<ServicePageProps> = ({ service }) => {
         keywords={`${service.title.toLowerCase()}, background verification, screening services, IntelliDelve`}
       />
 
-      {/* Hero Section */}
       <section
         className={`relative min-h-screen flex items-center px-4 sm:px-6 lg:px-8 ${service.bgColor} overflow-hidden`}
       >
@@ -89,7 +88,6 @@ export const ServicePage: React.FC<ServicePageProps> = ({ service }) => {
               </button>
             </div>
 
-            {/* Stats Card */}
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-2xl">
               <div className="text-center mb-6">
                 <div
@@ -138,7 +136,6 @@ export const ServicePage: React.FC<ServicePageProps> = ({ service }) => {
         </div>
       </section>
 
-      {/* Features Section */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -177,7 +174,6 @@ export const ServicePage: React.FC<ServicePageProps> = ({ service }) => {
         </div>
       </section>
 
-      {/* Benefits Section */}
       <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -207,7 +203,6 @@ export const ServicePage: React.FC<ServicePageProps> = ({ service }) => {
         </div>
       </section>
 
-      {/* Process Section */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -237,7 +232,6 @@ export const ServicePage: React.FC<ServicePageProps> = ({ service }) => {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-16 bg-primary text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Users className="h-12 w-12 mx-auto mb-6" />

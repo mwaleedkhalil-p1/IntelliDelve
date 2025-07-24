@@ -24,7 +24,7 @@ const Blogs = () => {
   const [selectedCategory, setSelectedCategory] = useState("All Posts");
 
   useEffect(() => {
-    // Animate hero section
+
     if (heroRef.current) {
       gsap.fromTo(
         heroRef.current.children,
@@ -33,7 +33,6 @@ const Blogs = () => {
       );
     }
 
-    // Animate blog cards
     if (cardsRef.current) {
       gsap.fromTo(
         cardsRef.current.children,
@@ -97,16 +96,13 @@ const Blogs = () => {
     "Technology"
   ];
 
-  // Filter posts based on search query and selected category
   const filteredPosts = useMemo(() => {
     let filtered = blogPosts;
 
-    // Filter by category
     if (selectedCategory !== "All Posts") {
       filtered = filtered.filter(post => post.category === selectedCategory);
     }
 
-    // Filter by search query
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
       filtered = filtered.filter(post =>
@@ -120,12 +116,10 @@ const Blogs = () => {
     return filtered;
   }, [searchQuery, selectedCategory]);
 
-  // Clear search
   const clearSearch = () => {
     setSearchQuery("");
   };
 
-  // Handle category selection
   const handleCategorySelect = (category: string) => {
     setSelectedCategory(category);
   };
@@ -139,7 +133,6 @@ const Blogs = () => {
         canonicalUrl="/blogs"
       />
 
-      {/* Hero Section */}
       <section
         ref={heroRef}
         className="relative bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-brand-navy dark:via-brand-navy/90 dark:to-purple-900/20 pt-20 pb-16 overflow-hidden"
@@ -150,14 +143,14 @@ const Blogs = () => {
             backgroundImage: `url('/images/downloaded/unsplash-photo-1497366216548-37526070297c.jpg')`,
           }}
         ></div>
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             <div className="inline-flex items-center gap-2 bg-white/20 text-white backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium mb-6">
               <Search className="w-4 h-4" />
               Expert Insights & Industry Knowledge
             </div>
-            
+
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
               IntelliDelve
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-purple-300">
@@ -200,12 +193,10 @@ const Blogs = () => {
           </div>
         </div>
 
-        {/* Floating elements */}
         <div className="absolute top-20 left-10 w-20 h-20 bg-primary/10 rounded-full animate-pulse"></div>
         <div className="absolute bottom-20 right-10 w-32 h-32 bg-purple-500/10 rounded-full animate-pulse delay-1000"></div>
       </section>
 
-      {/* Categories Filter */}
       <section className="py-8 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap gap-3 justify-center">
@@ -226,7 +217,6 @@ const Blogs = () => {
         </div>
       </section>
 
-      {/* Featured Posts */}
       <section className="py-16 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -260,7 +250,7 @@ const Blogs = () => {
                     <span className="text-sm">{post.views}</span>
                   </div>
                 </div>
-                
+
                 <div className="p-6">
                   <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-3">
                     <div className="flex items-center gap-1">
@@ -276,15 +266,15 @@ const Blogs = () => {
                       {post.readTime}
                     </div>
                   </div>
-                  
+
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-primary dark:group-hover:text-sky-300 transition-colors">
                     {post.title}
                   </h3>
-                  
+
                   <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
                     {post.excerpt}
                   </p>
-                  
+
                   <div className="flex flex-wrap gap-2 mb-4">
                     {post.tags.slice(0, 3).map((tag) => (
                       <span
@@ -295,7 +285,7 @@ const Blogs = () => {
                       </span>
                     ))}
                   </div>
-                  
+
                   <div className="flex items-center justify-between">
                     <Link
                       to={`/blogs/${post.id}`}
@@ -315,7 +305,6 @@ const Blogs = () => {
         </div>
       </section>
 
-      {/* All Posts Section */}
       <section className="py-16 bg-white dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -413,7 +402,6 @@ const Blogs = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-16 bg-gradient-to-r from-primary to-purple-600 dark:from-brand-navy dark:to-purple-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8">

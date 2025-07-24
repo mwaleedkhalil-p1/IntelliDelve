@@ -1,5 +1,6 @@
-// Image Preloader Service for IntelliDelve
-// Preloads all hero section images and critical assets
+
+
+import { DirectImageLoader } from '../utils/imageLoader';
 
 export class ImagePreloaderService {
   private static instance: ImagePreloaderService;
@@ -7,8 +8,7 @@ export class ImagePreloaderService {
   private loadingImages: Map<string, Promise<void>> = new Map();
   private failedImages: Set<string> = new Set();
 
-  private constructor() {}
-
+  private constructor()
   public static getInstance(): ImagePreloaderService {
     if (!ImagePreloaderService.instance) {
       ImagePreloaderService.instance = new ImagePreloaderService();
@@ -16,10 +16,9 @@ export class ImagePreloaderService {
     return ImagePreloaderService.instance;
   }
 
-  // All hero section images across the website
   private getAllHeroImages(): string[] {
     return [
-      // Local images (downloaded from external sources)
+
       '/images/downloaded/unsplash-photo-1507003211169-0a1dd7228f2d.jpg',
       '/images/downloaded/unsplash-photo-1677442136019-21780ecad995.jpg',
       '/images/downloaded/unsplash-photo-1519389950473-47ba0277781c.jpg',
@@ -55,10 +54,9 @@ export class ImagePreloaderService {
     ];
   }
 
-  // Critical images that should load first
   private getCriticalImages(): string[] {
     return [
-      // Critical local images for immediate loading
+
       '/images/downloaded/unsplash-photo-1507003211169-0a1dd7228f2d.jpg',
       '/images/downloaded/unsplash-photo-1677442136019-21780ecad995.jpg',
       '/images/downloaded/unsplash-photo-1519389950473-47ba0277781c.jpg',
@@ -92,17 +90,10 @@ export class ImagePreloaderService {
         clearTimeout(timeout);
         this.failedImages.add(src);
         this.loadingImages.delete(src);
-        console.warn(`Failed to preload image: ${src}`, error);
-        console.warn(`Image error details:`, {
-          src,
-          naturalWidth: img.naturalWidth,
-          naturalHeight: img.naturalHeight,
-          complete: img.complete
-        });
+
         reject(new Error(`Failed to load image: ${src}`));
       };
 
-      // Optimize loading
       if (priority === 'high') {
         img.loading = 'eager';
         img.fetchPriority = 'high';
@@ -118,30 +109,24 @@ export class ImagePreloaderService {
     return loadPromise;
   }
 
-  // Preload critical images immediately
   public async preloadCriticalImages(): Promise<void> {
     const criticalImages = this.getCriticalImages();
-    console.log('🚀 Preloading critical images...', criticalImages.length);
-    
-    const promises = criticalImages.map(src => 
+
+    const promises = criticalImages.map(src =>
       this.preloadImage(src, 'high').catch(err => {
-        console.warn(`Critical image failed to load: ${src}`, err);
+
       })
     );
 
     await Promise.allSettled(promises);
-    console.log('✅ Critical images preloaded');
+
   }
 
-  // Preload all hero images with controlled concurrency
   public async preloadAllHeroImages(): Promise<void> {
     const allImages = this.getAllHeroImages();
     const criticalImages = this.getCriticalImages();
     const nonCriticalImages = allImages.filter(img => !criticalImages.includes(img));
-    
-    console.log('🖼️ Preloading all hero images...', allImages.length);
 
-    // Load in batches to avoid overwhelming the browser
     const batchSize = 6;
     const batches = [];
     for (let i = 0; i < nonCriticalImages.length; i += batchSize) {
@@ -149,31 +134,27 @@ export class ImagePreloaderService {
     }
 
     for (const batch of batches) {
-      const promises = batch.map(src => 
+      const promises = batch.map(src =>
         this.preloadImage(src, 'low').catch(err => {
-          console.warn(`Image failed to load: ${src}`, err);
+
         })
       );
-      
+
       await Promise.allSettled(promises);
-      // Small delay between batches to prevent blocking
+
       await new Promise(resolve => setTimeout(resolve, 100));
     }
 
-    console.log('✅ All hero images preloaded');
   }
 
-  // Check if image is preloaded
   public isImagePreloaded(src: string): boolean {
     return this.preloadedImages.has(src);
   }
 
-  // Check if image failed to load
   public hasImageFailed(src: string): boolean {
     return this.failedImages.has(src);
   }
 
-  // Get preloading statistics
   public getStats() {
     const totalImages = this.getAllHeroImages().length;
     return {
@@ -185,22 +166,19 @@ export class ImagePreloaderService {
     };
   }
 
-  // Initialize preloading (call this on app startup)
   public async initialize(): Promise<void> {
     try {
-      // First load critical images
+
       await this.preloadCriticalImages();
-      
-      // Then load all other images in background
+
       setTimeout(() => {
         this.preloadAllHeroImages();
-      }, 1000); // Delay to not interfere with initial page load
-      
+      }, 1000);
+
     } catch (error) {
-      console.error('Image preloader initialization failed:', error);
+
     }
   }
 }
 
-// Export singleton instance
 export const imagePreloader = ImagePreloaderService.getInstance();

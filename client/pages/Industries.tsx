@@ -50,9 +50,8 @@ const Industries: React.FC = () => {
         keywords="industry background screening, sector-specific verification, banking screening, healthcare verification, technology background checks"
       />
 
-      {/* Hero Section */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background Image */}
+
         <div className="absolute inset-0 z-0">
           <img
             src="/images/downloaded/unsplash-photo-1486406146926-c627a92ad1ab.jpg"
@@ -62,7 +61,6 @@ const Industries: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-indigo-900/80 to-purple-900/90"></div>
         </div>
 
-        {/* Pattern Overlay */}
         <div className="absolute inset-0 z-10">
           <div className="absolute inset-0 bg-[linear-gradient(45deg,_transparent_25%,_rgba(255,255,255,0.02)_25%,_rgba(255,255,255,0.02)_50%,_transparent_50%,_transparent_75%,_rgba(255,255,255,0.02)_75%)] bg-[length:32px_32px]"></div>
         </div>
@@ -132,7 +130,6 @@ const Industries: React.FC = () => {
         </div>
       </section>
 
-      {/* Industries Grid */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 industries-mobile-grid md:industries-tablet-grid mobile-full-width">
@@ -180,7 +177,6 @@ const Industries: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-16 bg-primary text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-6 font-primary">

@@ -48,7 +48,7 @@ import { SEO } from "../components/SEO";
 gsap.registerPlugin(ScrollTrigger);
 
 const allSolutions = [
-  // Background Screening & Risk Mitigation
+
   {
     category: "Background Screening & Risk Mitigation",
     categoryIcon: Shield,
@@ -100,7 +100,7 @@ const allSolutions = [
 
     ]
   },
-  // Corporate Due Diligence & Risk Compliance
+
   {
     category: "Corporate Due Diligence & Risk Compliance",
     categoryIcon: Search,
@@ -130,7 +130,7 @@ const allSolutions = [
       }
     ]
   },
-  // AI & Data Science Solutions
+
   {
     category: "AI & Data Science Solutions",
     categoryIcon: Brain,
@@ -202,7 +202,7 @@ const allSolutions = [
       }
     ]
   },
-  // Tech & Innovation Services
+
   {
     category: "Tech & Innovation Services",
     categoryIcon: Code,
@@ -255,19 +255,17 @@ const WhatWeOffer = memo(() => {
   const location = useLocation();
   const statsRef = useRef<HTMLDivElement>(null);
 
-  // Mobile carousel states
   const [currentIndustrySlide, setCurrentIndustrySlide] = useState(0);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Hero animation
+
       gsap.fromTo(
         heroRef.current,
         { opacity: 0, y: 50 },
         { opacity: 1, y: 0, duration: 1, ease: "power2.out" }
       );
 
-      // Stats animation
       gsap.fromTo(
         ".stat-item",
         { opacity: 0, y: 30 },
@@ -283,7 +281,6 @@ const WhatWeOffer = memo(() => {
         }
       );
 
-      // Solution cards animation
       gsap.fromTo(
         ".solution-card",
         { opacity: 0, scale: 0.9 },
@@ -303,8 +300,6 @@ const WhatWeOffer = memo(() => {
     return () => ctx.revert();
   }, []);
 
-  // Hash navigation is now handled globally by HashNavigation component
-
   return (
     <div className="min-h-screen">
       <SEO
@@ -313,12 +308,11 @@ const WhatWeOffer = memo(() => {
         keywords="background screening, risk management, AI solutions, data science, technology services, compliance, verification"
       />
 
-      {/* Hero Section */}
       <section
         ref={heroRef}
         className="relative min-h-screen flex items-center overflow-hidden"
       >
-        {/* Background Image */}
+
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
@@ -328,14 +322,12 @@ const WhatWeOffer = memo(() => {
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-purple-900/85 to-indigo-900/90"></div>
         </div>
 
-        {/* Animated Background Elements */}
         <div className="absolute inset-0 z-10 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-cyan-400/20 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-400/20 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl animate-pulse"></div>
         </div>
 
-        {/* Pattern Overlay */}
         <div className="absolute inset-0 z-20">
           <div className="absolute inset-0 bg-[linear-gradient(45deg,_transparent_25%,_rgba(255,255,255,0.02)_25%,_rgba(255,255,255,0.02)_50%,_transparent_50%,_transparent_75%,_rgba(255,255,255,0.02)_75%)] bg-[length:32px_32px]"></div>
         </div>
@@ -419,7 +411,6 @@ const WhatWeOffer = memo(() => {
         </div>
       </section>
 
-      {/* Stats Section */}
       <section ref={statsRef} className="py-16 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-5 gap-8">
@@ -442,7 +433,6 @@ const WhatWeOffer = memo(() => {
         </div>
       </section>
 
-      {/* Comprehensive Solutions */}
       <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -464,7 +454,7 @@ const WhatWeOffer = memo(() => {
                   id={sectionId}
                   className="solution-category scroll-mt-24"
                 >
-                {/* Category Header */}
+
                 <div className="text-center mb-12">
                   <div className="flex justify-center mb-4">
                     <div className={`${category.categoryColor} p-4 rounded-2xl`}>
@@ -479,7 +469,6 @@ const WhatWeOffer = memo(() => {
                   </p>
                 </div>
 
-                {/* Solutions Grid */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {category.solutions.map((solution, solutionIndex) => (
                     <div
@@ -534,7 +523,6 @@ const WhatWeOffer = memo(() => {
         </div>
       </section>
 
-      {/* Industry Focus */}
       <section className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -548,7 +536,6 @@ const WhatWeOffer = memo(() => {
             </p>
           </div>
 
-          {/* Desktop Grid */}
           <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { name: "Financial Services", icon: Building2 },
@@ -575,7 +562,6 @@ const WhatWeOffer = memo(() => {
             })}
           </div>
 
-          {/* Mobile Carousel */}
           <div className="md:hidden relative">
             <div className="overflow-hidden">
               <div
@@ -607,7 +593,6 @@ const WhatWeOffer = memo(() => {
               </div>
             </div>
 
-            {/* Carousel Controls */}
             <div className="flex justify-between items-center mt-6">
               <button
                 onClick={() => setCurrentIndustrySlide(Math.max(0, currentIndustrySlide - 1))}
@@ -651,7 +636,6 @@ const WhatWeOffer = memo(() => {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">

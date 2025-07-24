@@ -54,7 +54,7 @@ const ServicePageTemplate = memo<ServicePageProps>(
 
     return (
       <div className="min-h-screen bg-white dark:bg-gray-900">
-        {/* Hero Section */}
+
         <section className="pt-24 pb-12 lg:pt-32 lg:pb-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -102,7 +102,6 @@ const ServicePageTemplate = memo<ServicePageProps>(
           </div>
         </section>
 
-        {/* What Section */}
         <section className="py-20 bg-gray-50 dark:bg-gray-800">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
@@ -123,7 +122,6 @@ const ServicePageTemplate = memo<ServicePageProps>(
           </div>
         </section>
 
-        {/* Why Section */}
         <section className="py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
@@ -161,7 +159,6 @@ const ServicePageTemplate = memo<ServicePageProps>(
           </div>
         </section>
 
-        {/* How Section */}
         <section className="py-20 bg-gray-50 dark:bg-gray-800">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
@@ -201,7 +198,6 @@ const ServicePageTemplate = memo<ServicePageProps>(
           </div>
         </section>
 
-        {/* Industries Section */}
         <section className="py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
@@ -230,7 +226,6 @@ const ServicePageTemplate = memo<ServicePageProps>(
           </div>
         </section>
 
-        {/* CTA Section */}
         <section className="py-20 bg-primary text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">{ctaTitle}</h2>

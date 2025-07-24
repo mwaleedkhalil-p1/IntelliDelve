@@ -64,7 +64,7 @@ const TestimonialSlideshow = memo<TestimonialSlideshowProps>(
           </div>
 
           <div className="relative">
-            {/* Main Testimonial */}
+
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 md:p-12 max-w-4xl mx-auto">
               <div className="text-center">
                 <Quote className="w-12 h-12 text-primary dark:text-accent mx-auto mb-6 opacity-20" />
@@ -103,7 +103,6 @@ const TestimonialSlideshow = memo<TestimonialSlideshowProps>(
               </div>
             </div>
 
-            {/* Navigation Buttons */}
             <button
               onClick={prevSlide}
               onMouseEnter={() => setIsPlaying(false)}
@@ -125,7 +124,6 @@ const TestimonialSlideshow = memo<TestimonialSlideshowProps>(
             </button>
           </div>
 
-          {/* Pagination Dots */}
           <div className="flex justify-center mt-8 space-x-2">
             {testimonials.map((_, index) => (
               <button
@@ -143,7 +141,6 @@ const TestimonialSlideshow = memo<TestimonialSlideshowProps>(
             ))}
           </div>
 
-          {/* Thumbnail Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mt-12">
             {testimonials.map((testimonial, index) => (
               <button
@@ -172,7 +169,6 @@ const TestimonialSlideshow = memo<TestimonialSlideshowProps>(
             ))}
           </div>
 
-          {/* Enhanced Auto-play controls */}
           <div className="flex justify-center items-center mt-8 space-x-4">
             <button
               onClick={() => setIsPlaying(!isPlaying)}

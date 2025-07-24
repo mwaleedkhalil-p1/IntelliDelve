@@ -6,12 +6,12 @@ const HashNavigation = () => {
 
   useEffect(() => {
     if (hash) {
-      // Wait for the page to render, then scroll to the hash
+
       const timer = setTimeout(() => {
         const element = document.getElementById(hash.substring(1));
         if (element) {
-          // Calculate offset for fixed navigation
-          const navHeight = 80; // Approximate navigation height
+
+          const navHeight = 80;
           const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
           const offsetPosition = elementPosition - navHeight;
 
@@ -24,7 +24,7 @@ const HashNavigation = () => {
 
       return () => clearTimeout(timer);
     }
-    // Removed automatic scroll to top when no hash - this was causing unwanted scrolling
+
   }, [hash, pathname]);
 
   return null;

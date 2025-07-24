@@ -71,22 +71,19 @@ const TechInnovation: React.FC = () => {
         keywords="custom software development, system integration, cloud infrastructure, DevOps, digital transformation, mobile apps, web development"
       />
 
-      {/* Custom Tech & Innovation Solution Page */}
       <div className="min-h-screen">
-        {/* Full-Height Hero Section with Background Image */}
+
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-          {/* Background Image */}
+
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{
-              backgroundImage: 'url("https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80")'
+              backgroundImage: 'url("/images/downloaded/unsplash-photo-1518186285589-2f7649de83e0.jpg")'
             }}
           />
 
-          {/* Overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-green-900/80 via-teal-900/70 to-blue-900/80"></div>
 
-          {/* Content */}
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="mb-8">
               <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl mb-6">
@@ -109,7 +106,6 @@ const TechInnovation: React.FC = () => {
               Transform your business with cutting-edge technology solutions, custom software development, and innovative digital platforms designed to accelerate growth and efficiency.
             </p>
 
-            {/* Stats */}
             <div className="grid grid-cols-3 gap-6 mb-8 max-w-md mx-auto">
               <div className="text-center">
                 <div className="text-3xl font-bold text-white mb-2">100+</div>
@@ -151,7 +147,6 @@ const TechInnovation: React.FC = () => {
             </div>
           </div>
 
-          {/* Scroll indicator */}
           <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
             <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
               <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
@@ -159,7 +154,6 @@ const TechInnovation: React.FC = () => {
           </div>
         </section>
 
-        {/* What We Offer Section */}
         <section className="py-16 bg-white dark:bg-gray-900">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
@@ -183,7 +177,6 @@ const TechInnovation: React.FC = () => {
           </div>
         </section>
 
-        {/* Why Choose Us Section */}
         <section className="py-16 bg-gray-50 dark:bg-gray-800">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
@@ -206,7 +199,6 @@ const TechInnovation: React.FC = () => {
           </div>
         </section>
 
-        {/* How It Works Section */}
         <section className="py-16 bg-white dark:bg-gray-900">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
@@ -232,7 +224,6 @@ const TechInnovation: React.FC = () => {
           </div>
         </section>
 
-        {/* Custom CTA Section with Two Buttons */}
         <section className="py-16 bg-primary text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <Users className="h-12 w-12 mx-auto mb-6" />
@@ -256,7 +247,7 @@ const TechInnovation: React.FC = () => {
                 to="/what-we-offer#tech-and-innovation-services"
                 className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-primary transition-all duration-300 font-primary inline-flex items-center justify-center gap-2"
                 onClick={() => {
-                  // Scroll to the section after navigation
+
                   setTimeout(() => {
                     const element = document.getElementById('tech-and-innovation-services');
                     if (element) {
@@ -273,7 +264,6 @@ const TechInnovation: React.FC = () => {
         </section>
       </div>
 
-      {/* Scroll to Top Button */}
       <ScrollToTopButton />
     </>
   );

@@ -5,8 +5,10 @@
 [build.environment]
   NODE_VERSION = "18"
   REACT_APP_RECAPTCHA_SITE_KEY = "6LcSroYrAAAAAJh8Ajoke276g40T0iR6ccgoe0h9"
-  # Disable automatic image optimization
+  # Disable all automatic image optimization
   DISABLE_NETLIFY_IMAGE_OPTIMIZATION = "true"
+  NETLIFY_IMAGE_CDN = "false"
+  NETLIFY_LARGE_MEDIA = "false"
 
 [[redirects]]
   from = "/*"
@@ -29,3 +31,15 @@
     Cache-Control = "public, max-age=31536000, immutable"
     # Prevent automatic image optimization
     X-Netlify-Image-Optimization = "disabled"
+    X-Netlify-Large-Media = "disabled"
+    X-Netlify-Transform = "disabled"
+
+# Additional headers for downloaded images specifically
+[[headers]]
+  for = "/images/downloaded/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    X-Netlify-Image-Optimization = "disabled"
+    X-Netlify-Large-Media = "disabled"
+    X-Netlify-Transform = "disabled"
+    Content-Type = "image/jpeg"

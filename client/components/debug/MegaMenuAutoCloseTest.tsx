@@ -32,20 +32,20 @@ export const MegaMenuAutoCloseTest: React.FC = () => {
   const handleMouseLeave = useCallback((area: string, event: React.MouseEvent) => {
     const relatedTarget = event.relatedTarget as Element;
     addLog(`Mouse left ${area} (going to: ${relatedTarget?.tagName || 'unknown'})`);
-    
+
     // Check if moving to related elements
     if (relatedTarget) {
-      if (navRef.current?.contains(relatedTarget) || 
+      if (navRef.current?.contains(relatedTarget) ||
           megaMenuRef.current?.contains(relatedTarget)) {
         addLog('Moving to related element - not closing');
         return;
       }
     }
-    
+
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
-    
+
     timeoutRef.current = setTimeout(() => {
       setIsOpen(false);
       addLog('Menu closed by timeout');
@@ -55,12 +55,12 @@ export const MegaMenuAutoCloseTest: React.FC = () => {
 
   const handleGlobalMouseMove = useCallback((event: React.MouseEvent) => {
     setMousePos({ x: event.clientX, y: event.clientY });
-    
+
     if (!isOpen) return;
 
     const nav = navRef.current;
     const megaMenu = megaMenuRef.current;
-    
+
     if (!nav || !megaMenu) return;
 
     const navRect = nav.getBoundingClientRect();
@@ -98,14 +98,13 @@ export const MegaMenuAutoCloseTest: React.FC = () => {
   }, [isOpen]);
 
   return (
-    <div 
+    <div
       className="min-h-screen bg-gray-50 p-8"
       onMouseMove={handleGlobalMouseMove}
     >
       <div className="max-w-6xl mx-auto">
         <h1 className="text-3xl font-bold mb-6">Mega Menu Auto-Close Test</h1>
-        
-        {/* Status Panel */}
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           <div className="bg-white p-4 rounded-lg shadow">
             <h3 className="font-semibold mb-2">Menu Status</h3>
@@ -113,12 +112,12 @@ export const MegaMenuAutoCloseTest: React.FC = () => {
               {isOpen ? 'OPEN' : 'CLOSED'}
             </p>
           </div>
-          
+
           <div className="bg-white p-4 rounded-lg shadow">
             <h3 className="font-semibold mb-2">Mouse Position</h3>
             <p className="text-sm">X: {mousePos.x}, Y: {mousePos.y}</p>
           </div>
-          
+
           <div className="bg-white p-4 rounded-lg shadow">
             <h3 className="font-semibold mb-2">Timeout Status</h3>
             <p className={`text-sm ${timeoutRef.current ? 'text-orange-600' : 'text-gray-600'}`}>
@@ -127,7 +126,6 @@ export const MegaMenuAutoCloseTest: React.FC = () => {
           </div>
         </div>
 
-        {/* Event Log */}
         <div className="bg-white p-4 rounded-lg shadow mb-8">
           <h3 className="font-semibold mb-3">Event Log</h3>
           <div className="space-y-1 text-sm font-mono max-h-40 overflow-y-auto">
@@ -137,8 +135,7 @@ export const MegaMenuAutoCloseTest: React.FC = () => {
           </div>
         </div>
 
-        {/* Test Navigation */}
-        <div 
+        <div
           ref={navRef}
           className="bg-blue-600 text-white p-4 rounded-lg shadow-lg relative mb-4"
           data-mega-menu-area
@@ -147,7 +144,7 @@ export const MegaMenuAutoCloseTest: React.FC = () => {
             <button className="hover:text-blue-200 px-2 py-1">Home</button>
             <button className="hover:text-blue-200 px-2 py-1">About</button>
             <div className="relative">
-              <button 
+              <button
                 className="hover:text-blue-200 flex items-center px-2 py-1"
                 onMouseEnter={() => handleMouseEnter('trigger')}
                 onMouseLeave={(e) => handleMouseLeave('nav', e)}
@@ -159,9 +156,8 @@ export const MegaMenuAutoCloseTest: React.FC = () => {
           </div>
         </div>
 
-        {/* Mega Menu */}
         {isOpen && (
-          <div 
+          <div
             ref={megaMenuRef}
             className="bg-white rounded-lg shadow-xl p-6 relative z-10"
             data-mega-menu-content
@@ -197,7 +193,6 @@ export const MegaMenuAutoCloseTest: React.FC = () => {
           </div>
         )}
 
-        {/* Test Instructions */}
         <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mt-8">
           <h3 className="font-semibold text-yellow-800 mb-3">Test Scenarios</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-yellow-700 text-sm">

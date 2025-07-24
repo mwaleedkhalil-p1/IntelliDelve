@@ -26,7 +26,7 @@ export class ImageOptimizationService {
    */
   optimizeImageUrl(src: string, options: ImageOptimizationOptions = {}): string {
     const cacheKey = `${src}-${JSON.stringify(options)}`;
-    
+
     if (this.cache.has(cacheKey)) {
       return this.cache.get(cacheKey)!;
     }
@@ -53,7 +53,7 @@ export class ImageOptimizationService {
 
       this.cache.set(cacheKey, optimizedUrl);
     } catch (error) {
-      console.warn('Failed to optimize image URL:', error);
+
       optimizedUrl = src; // Fallback to original
     }
 
@@ -65,7 +65,7 @@ export class ImageOptimizationService {
    */
   private optimizeUnsplashUrl(src: string, options: ImageOptimizationOptions): string {
     const url = new URL(src);
-    
+
     if (options.width) {
       url.searchParams.set('w', options.width.toString());
     }
@@ -97,15 +97,15 @@ export class ImageOptimizationService {
     // Basic Cloudinary optimization
     // This can be extended based on Cloudinary's transformation API
     let optimizedUrl = src;
-    
+
     if (options.width || options.height || options.quality) {
       const transformations = [];
-      
+
       if (options.width) transformations.push(`w_${options.width}`);
       if (options.height) transformations.push(`h_${options.height}`);
       if (options.quality) transformations.push(`q_${options.quality}`);
       if (options.format && options.format !== 'auto') transformations.push(`f_${options.format}`);
-      
+
       if (options.format === 'auto' && this.supportsWebP()) {
         transformations.push('f_webp');
       }
@@ -140,11 +140,11 @@ export class ImageOptimizationService {
    */
   private supportsWebP(): boolean {
     if (typeof window === 'undefined') return false;
-    
+
     const canvas = document.createElement('canvas');
     canvas.width = 1;
     canvas.height = 1;
-    
+
     return canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0;
   }
 
@@ -154,7 +154,7 @@ export class ImageOptimizationService {
   async preloadImages(urls: string[], options: ImageOptimizationOptions = {}): Promise<void> {
     const preloadPromises = urls.map(url => {
       const optimizedUrl = this.optimizeImageUrl(url, options);
-      
+
       if (this.preloadedImages.has(optimizedUrl)) {
         return Promise.resolve();
       }
@@ -173,7 +173,7 @@ export class ImageOptimizationService {
     try {
       await Promise.allSettled(preloadPromises);
     } catch (error) {
-      console.warn('Some images failed to preload:', error);
+
     }
   }
 
@@ -207,18 +207,18 @@ export class ImageOptimizationService {
     if (ctx) {
       ctx.fillStyle = color;
       ctx.fillRect(0, 0, width, height);
-      
+
       // Add some noise for a more realistic blur effect
       const imageData = ctx.getImageData(0, 0, width, height);
       const data = imageData.data;
-      
+
       for (let i = 0; i < data.length; i += 4) {
         const noise = Math.random() * 20 - 10;
         data[i] = Math.max(0, Math.min(255, data[i] + noise));     // Red
         data[i + 1] = Math.max(0, Math.min(255, data[i + 1] + noise)); // Green
         data[i + 2] = Math.max(0, Math.min(255, data[i + 2] + noise)); // Blue
       }
-      
+
       ctx.putImageData(imageData, 0, 0);
     }
 
@@ -233,7 +233,7 @@ export class ImageOptimizationService {
     height: number;
   } {
     const dpr = Math.min(devicePixelRatio, 2); // Cap at 2x for performance
-    
+
     return {
       width: Math.ceil(containerWidth * dpr),
       height: Math.ceil(containerHeight * dpr),
@@ -263,7 +263,7 @@ export class ImageOptimizationService {
 export const imageOptimizer = ImageOptimizationService.getInstance();
 
 // Utility functions for common use cases
-export const optimizeHeroImage = (src: string) => 
+export const optimizeHeroImage = (src: string) =>
   imageOptimizer.optimizeImageUrl(src, {
     width: 1920,
     height: 1080,
@@ -272,7 +272,7 @@ export const optimizeHeroImage = (src: string) =>
     fit: 'cover'
   });
 
-export const optimizeCardImage = (src: string) => 
+export const optimizeCardImage = (src: string) =>
   imageOptimizer.optimizeImageUrl(src, {
     width: 400,
     height: 300,
@@ -281,7 +281,7 @@ export const optimizeCardImage = (src: string) =>
     fit: 'cover'
   });
 
-export const optimizeThumbnail = (src: string) => 
+export const optimizeThumbnail = (src: string) =>
   imageOptimizer.optimizeImageUrl(src, {
     width: 150,
     height: 150,
@@ -290,7 +290,7 @@ export const optimizeThumbnail = (src: string) =>
     fit: 'cover'
   });
 
-export const preloadCriticalImages = (urls: string[]) => 
+export const preloadCriticalImages = (urls: string[]) =>
   imageOptimizer.preloadImages(urls, {
     quality: 85,
     format: 'auto'

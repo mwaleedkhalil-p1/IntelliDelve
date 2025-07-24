@@ -77,9 +77,8 @@ const CitizenByInvestment = memo(() => {
         keywords="citizen by investment, CBI due diligence, investment citizenship, passport programs, compliance screening, document verification"
       />
 
-      {/* Hero Section */}
       <section ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background Image */}
+
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85"
@@ -105,8 +104,7 @@ const CitizenByInvestment = memo(() => {
               <p className="text-xl text-gray-200 mb-8 leading-relaxed">
                 Comprehensive due diligence and compliance services for Citizen by Investment programs, ensuring secure and compliant pathways to global citizenship.
               </p>
-              
-              {/* Stats */}
+
               <div className="grid grid-cols-3 gap-6 mb-8">
                 <div className="text-center">
                   <div className="text-3xl font-bold text-white mb-2">15+</div>
@@ -146,7 +144,7 @@ const CitizenByInvestment = memo(() => {
                   <h3 className="text-xl font-bold text-white mb-2">Global Citizenship Solutions</h3>
                   <p className="text-gray-200">Expert guidance for investment citizenship programs</p>
                 </div>
-                
+
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-white/10 rounded-xl p-4 text-center">
                     <Award className="w-6 h-6 text-yellow-400 mx-auto mb-2" />
@@ -171,7 +169,6 @@ const CitizenByInvestment = memo(() => {
         </div>
       </section>
 
-      {/* CBI Services Section */}
       <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -199,11 +196,11 @@ const CitizenByInvestment = memo(() => {
                       {service.title}
                     </h3>
                   </div>
-                  
+
                   <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
                     {service.description}
                   </p>
-                  
+
                   <div className="space-y-2">
                     {service.features.map((feature, featureIndex) => (
                       <div key={featureIndex} className="flex items-center">
@@ -219,7 +216,6 @@ const CitizenByInvestment = memo(() => {
         </div>
       </section>
 
-      {/* CBI Programs Section */}
       <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -260,7 +256,6 @@ const CitizenByInvestment = memo(() => {
         </div>
       </section>
 
-      {/* Benefits Section */}
       <section className="py-20 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-800 dark:via-gray-900 dark:to-blue-900/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -275,7 +270,7 @@ const CitizenByInvestment = memo(() => {
               <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
                 Citizen by Investment programs offer numerous advantages for individuals and families seeking global mobility and opportunities.
               </p>
-              
+
               <div className="space-y-4">
                 {benefits.map((benefit, index) => (
                   <div key={index} className="flex items-start">
@@ -285,7 +280,7 @@ const CitizenByInvestment = memo(() => {
                 ))}
               </div>
             </div>
-            
+
             <div className="relative">
               <img
                 src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
@@ -298,7 +293,6 @@ const CitizenByInvestment = memo(() => {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 relative overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -308,7 +302,7 @@ const CitizenByInvestment = memo(() => {
           <p className="text-xl text-gray-200 mb-8 max-w-3xl mx-auto">
             Let our experts guide you through the Citizen by Investment process with comprehensive due diligence and compliance support.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => openCalendly("CBI Due Diligence - Ready to Explore")}

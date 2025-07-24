@@ -14,7 +14,7 @@ export function InteractiveCharts() {
 
   useEffect(() => {
     if (chartsRef.current) {
-      // Animate charts on scroll with futuristic effects
+
       gsap.fromTo(
         chartsRef.current.children,
         { opacity: 0, y: 100, rotationX: -15, scale: 0.8 },
@@ -33,7 +33,6 @@ export function InteractiveCharts() {
         },
       );
 
-      // Futuristic animated bar chart with glow effect
       if (barChartRef.current) {
         const bars = barChartRef.current.querySelectorAll("[data-bar]");
         gsap.fromTo(
@@ -53,7 +52,6 @@ export function InteractiveCharts() {
           },
         );
 
-        // Add continuous glow pulse animation
         gsap.to(bars, {
           boxShadow:
             "0 0 20px rgba(59, 130, 246, 0.8), 0 0 40px rgba(59, 130, 246, 0.4)",
@@ -65,7 +63,6 @@ export function InteractiveCharts() {
         });
       }
 
-      // Futuristic animated pie chart with holographic effect
       if (pieChartRef.current) {
         const segments = pieChartRef.current.querySelectorAll("[data-segment]");
         gsap.fromTo(
@@ -88,7 +85,6 @@ export function InteractiveCharts() {
           },
         );
 
-        // Add rotating holographic effect
         gsap.to(pieChartRef.current, {
           rotation: 360,
           duration: 20,
@@ -98,7 +94,6 @@ export function InteractiveCharts() {
         });
       }
 
-      // Futuristic animated line chart with particle trail
       if (lineChartRef.current) {
         const lines = lineChartRef.current.querySelectorAll("[data-line]");
         const particles =
@@ -124,7 +119,6 @@ export function InteractiveCharts() {
           },
         );
 
-        // Animate particles along the path
         gsap.fromTo(
           particles,
           { scale: 0, opacity: 0 },
@@ -143,7 +137,6 @@ export function InteractiveCharts() {
         );
       }
 
-      // Futuristic radar chart with energy pulse
       if (radarChartRef.current) {
         const radarPoints =
           radarChartRef.current.querySelectorAll("[data-radar-point]");
@@ -183,7 +176,6 @@ export function InteractiveCharts() {
           },
         );
 
-        // Add energy pulse effect
         gsap.to(radarPoints, {
           scale: 1.3,
           duration: 1.5,
@@ -233,7 +225,7 @@ export function InteractiveCharts() {
           ref={chartsRef}
           className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
         >
-          {/* Futuristic Bar Chart - Verification Speed */}
+
           <div
             ref={barChartRef}
             className="relative bg-white/10 dark:bg-white/5 backdrop-blur-xl rounded-3xl p-6 border border-white/20 dark:border-white/10 cursor-pointer overflow-hidden group"
@@ -286,7 +278,6 @@ export function InteractiveCharts() {
             </div>
           </div>
 
-          {/* Holographic Pie Chart - Industry Distribution */}
           <div
             ref={pieChartRef}
             className="relative bg-white/10 dark:bg-white/5 backdrop-blur-xl rounded-3xl p-6 border border-white/20 dark:border-white/10 cursor-pointer overflow-hidden group"
@@ -412,7 +403,6 @@ export function InteractiveCharts() {
             </div>
           </div>
 
-          {/* Quantum Line Chart - Growth Trend */}
           <div
             ref={lineChartRef}
             className="relative bg-white/10 dark:bg-white/5 backdrop-blur-xl rounded-3xl p-6 border border-white/20 dark:border-white/10 cursor-pointer overflow-hidden group"
@@ -491,7 +481,7 @@ export function InteractiveCharts() {
                     data-line
                     filter="drop-shadow(0 0 8px rgba(6, 182, 212, 0.6))"
                   />
-                  {/* Particle Trail Points */}
+
                   <circle
                     cx="20"
                     cy="80"
@@ -586,7 +576,6 @@ export function InteractiveCharts() {
             </div>
           </div>
 
-          {/* Neural Radar Chart - Performance Metrics */}
           <div
             ref={radarChartRef}
             className="relative bg-white/10 dark:bg-white/5 backdrop-blur-xl rounded-3xl p-6 border border-white/20 dark:border-white/10 cursor-pointer overflow-hidden group"
@@ -632,7 +621,6 @@ export function InteractiveCharts() {
                     </filter>
                   </defs>
 
-                  {/* Grid Lines */}
                   <g
                     stroke="rgba(249, 115, 22, 0.3)"
                     strokeWidth="1"
@@ -646,7 +634,6 @@ export function InteractiveCharts() {
                     <line x1="19.6" y1="65" x2="80.4" y2="35" data-radar-line />
                   </g>
 
-                  {/* Data Polygon */}
                   <polygon
                     fill="url(#radarGrad)"
                     stroke="#F97316"
@@ -655,7 +642,6 @@ export function InteractiveCharts() {
                     filter="url(#glow)"
                   />
 
-                  {/* Neural Nodes */}
                   {[
                     { x: 50, y: 20, label: "Speed" },
                     { x: 75, y: 35, label: "Accuracy" },
@@ -683,7 +669,6 @@ export function InteractiveCharts() {
                     </g>
                   ))}
 
-                  {/* Center Core */}
                   <circle
                     cx="50"
                     cy="50"

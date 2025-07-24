@@ -117,7 +117,7 @@ export default function WatchlistScreening() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
+
       <section className="relative bg-gradient-to-br from-red-600 to-orange-700 dark:from-brand-navy dark:to-red-900 min-h-screen flex items-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
@@ -148,7 +148,6 @@ export default function WatchlistScreening() {
         </div>
       </section>
 
-      {/* Features */}
       <section className="py-20 bg-white dark:bg-brand-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -183,7 +182,6 @@ export default function WatchlistScreening() {
         </div>
       </section>
 
-      {/* Watchlist Coverage */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-red-50 dark:from-brand-navy/50 dark:to-red-900/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -221,7 +219,6 @@ export default function WatchlistScreening() {
         </div>
       </section>
 
-      {/* Compliance Benefits */}
       <section className="py-20 bg-white dark:bg-brand-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -263,7 +260,6 @@ export default function WatchlistScreening() {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-red-600 to-orange-600 text-white relative overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">

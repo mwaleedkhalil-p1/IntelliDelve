@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom scrollbar styles for mega menu */
 .scrollbar-thin {
   scrollbar-width: thin;
 }
@@ -65,7 +64,6 @@
 
     --radius: 0.5rem;
 
-    /* Brand colors */
     --brand-blue: 214 100% 29%;
     --brand-pink: 330 81% 60%;
     --brand-purple: 258 90% 66%;
@@ -130,7 +128,6 @@
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
 
-    /* Brand colors for dark mode - brighter versions */
     --brand-blue: 214 100% 60%;
     --brand-pink: 330 81% 75%;
     --brand-purple: 271 90% 70%;
@@ -167,7 +164,6 @@
       color 0.2s ease;
   }
 
-  /* Enhanced dark mode support for form elements */
   .dark input,
   .dark textarea,
   .dark select {
@@ -176,296 +172,270 @@
 
   .dark input::-webkit-input-placeholder,
   .dark textarea::-webkit-input-placeholder {
-    color: rgb(156, 163, 175); /* gray-400 */
+    color: rgb(156, 163, 175);
   }
 
   .dark input::placeholder,
   .dark textarea::placeholder {
-    color: rgb(156, 163, 175); /* gray-400 */
+    color: rgb(156, 163, 175);
   }
 
-  /* Ensure proper border visibility in dark mode */
   .dark [class*="border-gray-300"] {
-    border-color: rgb(75, 85, 99); /* gray-600 */
+    border-color: rgb(75, 85, 99);
   }
 
-  /* Comprehensive dark mode text fixes */
   .dark .text-gray-900:not([class*="dark:text-"]) {
-    color: rgb(243, 244, 246) !important; /* gray-100 */
+    color: rgb(243, 244, 246) !important;
   }
 
   .dark .text-gray-800:not([class*="dark:text-"]) {
-    color: rgb(229, 231, 235) !important; /* gray-200 */
+    color: rgb(229, 231, 235) !important;
   }
 
   .dark .text-gray-700:not([class*="dark:text-"]) {
-    color: rgb(209, 213, 219) !important; /* gray-300 */
+    color: rgb(209, 213, 219) !important;
   }
 
   .dark .text-gray-600:not([class*="dark:text-"]) {
-    color: rgb(156, 163, 175) !important; /* gray-400 */
+    color: rgb(156, 163, 175) !important;
   }
 
   .dark .text-gray-500:not([class*="dark:text-"]) {
-    color: rgb(107, 114, 128) !important; /* gray-500 */
+    color: rgb(107, 114, 128) !important;
   }
 
-  /* Fix primary color text in dark mode */
   .dark .text-primary:not([class*="dark:text-"]) {
-    color: rgb(56, 189, 248) !important; /* sky-400 - better contrast */
+    color: rgb(56, 189, 248) !important;
   }
 
-  /* Fix primary color backgrounds and borders in dark mode */
   .dark .bg-primary:not([class*="dark:bg-"]) {
-    background-color: rgb(56, 189, 248) !important; /* sky-400 */
-    color: rgb(15, 23, 42) !important; /* slate-900 for text */
+    background-color: rgb(56, 189, 248) !important;
+    color: rgb(15, 23, 42) !important;
   }
 
   .dark .bg-primary\/10:not([class*="dark:bg-"]) {
-    background-color: rgba(56, 189, 248, 0.1) !important; /* sky-400/10 */
+    background-color: rgba(56, 189, 248, 0.1) !important;
   }
 
   .dark .bg-primary\/20:not([class*="dark:bg-"]) {
-    background-color: rgba(56, 189, 248, 0.2) !important; /* sky-400/20 */
+    background-color: rgba(56, 189, 248, 0.2) !important;
   }
 
   .dark .bg-primary\/90:not([class*="dark:bg-"]) {
-    background-color: rgba(56, 189, 248, 0.9) !important; /* sky-400/90 */
-    color: rgb(15, 23, 42) !important; /* slate-900 for text */
+    background-color: rgba(56, 189, 248, 0.9) !important;
+    color: rgb(15, 23, 42) !important;
   }
 
   .dark .border-primary:not([class*="dark:border-"]) {
-    border-color: rgb(56, 189, 248) !important; /* sky-400 */
+    border-color: rgb(56, 189, 248) !important;
   }
 
   .dark .hover\:bg-primary\/90:hover:not([class*="dark:hover:bg-"]) {
-    background-color: rgba(56, 189, 248, 0.9) !important; /* sky-400/90 */
-    color: rgb(15, 23, 42) !important; /* slate-900 for text */
+    background-color: rgba(56, 189, 248, 0.9) !important;
+    color: rgb(15, 23, 42) !important;
   }
 
-  /* Fix headings in dark mode */
   .dark h1,
   .dark h2,
   .dark h3,
   .dark h4,
   .dark h5,
   .dark h6 {
-    color: rgb(243, 244, 246) !important; /* gray-100 */
+    color: rgb(243, 244, 246) !important;
   }
 
   .dark p:not([class*="text-"]):not([class*="dark:text-"]) {
-    color: rgb(209, 213, 219) !important; /* gray-300 */
+    color: rgb(209, 213, 219) !important;
   }
 
   .dark span:not([class*="text-"]):not([class*="dark:text-"]) {
-    color: rgb(209, 213, 219) !important; /* gray-300 */
+    color: rgb(209, 213, 219) !important;
   }
 
-  /* Fix borders in dark mode */
   .dark [class*="border-gray-"]:not([class*="dark:border-"]) {
-    border-color: rgb(75, 85, 99) !important; /* gray-600 */
+    border-color: rgb(75, 85, 99) !important;
   }
 
   .dark .border:not([class*="dark:border-"]) {
-    border-color: rgb(75, 85, 99) !important; /* gray-600 */
+    border-color: rgb(75, 85, 99) !important;
   }
 
-  /* Fix button colors in dark mode */
   .dark .bg-gray-50:not([class*="dark:bg-"]) {
-    background-color: rgb(31, 41, 55) !important; /* gray-800 */
+    background-color: rgb(31, 41, 55) !important;
   }
 
   .dark .bg-gray-100:not([class*="dark:bg-"]) {
-    background-color: rgb(17, 24, 39) !important; /* gray-900 */
+    background-color: rgb(17, 24, 39) !important;
   }
 
   .dark .bg-white:not([class*="dark:bg-"]) {
-    background-color: rgb(31, 41, 55) !important; /* gray-800 */
+    background-color: rgb(31, 41, 55) !important;
   }
 
-  /* Ensure good contrast for interactive elements */
   .dark .hover\:bg-gray-50:hover:not([class*="dark:hover:bg-"]) {
-    background-color: rgb(75, 85, 99) !important; /* gray-600 */
+    background-color: rgb(75, 85, 99) !important;
   }
 
   .dark .hover\:bg-gray-100:hover:not([class*="dark:hover:bg-"]) {
-    background-color: rgb(55, 65, 81) !important; /* gray-700 */
+    background-color: rgb(55, 65, 81) !important;
   }
 
-  /* Fix secondary button styles in dark mode */
   .dark .bg-secondary:not([class*="dark:bg-"]) {
-    background-color: rgb(51, 65, 85) !important; /* slate-600 */
-    color: rgb(248, 250, 252) !important; /* slate-50 */
+    background-color: rgb(51, 65, 85) !important;
+    color: rgb(248, 250, 252) !important;
   }
 
   .dark .hover\:bg-secondary\/80:hover:not([class*="dark:hover:bg-"]) {
-    background-color: rgba(51, 65, 85, 0.8) !important; /* slate-600/80 */
+    background-color: rgba(51, 65, 85, 0.8) !important;
   }
 
-  /* Fix outline button styles in dark mode */
   .dark .border-input:not([class*="dark:border-"]) {
-    border-color: rgb(71, 85, 105) !important; /* slate-500 */
+    border-color: rgb(71, 85, 105) !important;
   }
 
   .dark .hover\:bg-accent:hover:not([class*="dark:hover:bg-"]) {
-    background-color: rgb(51, 65, 85) !important; /* slate-600 */
+    background-color: rgb(51, 65, 85) !important;
   }
 
   .dark .hover\:text-accent-foreground:hover:not([class*="dark:hover:text-"]) {
-    color: rgb(248, 250, 252) !important; /* slate-50 */
+    color: rgb(248, 250, 252) !important;
   }
 
-  /* Fix ghost button styles in dark mode */
   .dark .hover\:bg-accent:hover:not([class*="dark:hover:bg-"]) {
-    background-color: rgb(51, 65, 85) !important; /* slate-600 */
+    background-color: rgb(51, 65, 85) !important;
   }
 
-  /* Fix destructive button styles in dark mode */
   .dark .bg-destructive:not([class*="dark:bg-"]) {
-    background-color: rgb(239, 68, 68) !important; /* red-500 */
-    color: rgb(255, 255, 255) !important; /* white */
+    background-color: rgb(239, 68, 68) !important;
+    color: rgb(255, 255, 255) !important;
   }
 
   .dark .hover\:bg-destructive\/90:hover:not([class*="dark:hover:bg-"]) {
-    background-color: rgba(239, 68, 68, 0.9) !important; /* red-500/90 */
+    background-color: rgba(239, 68, 68, 0.9) !important;
   }
 
-  /* Fix icon colors in dark mode */
   .dark .text-gray-400:not([class*="dark:text-"]) {
-    color: rgb(156, 163, 175) !important; /* gray-400 */
+    color: rgb(156, 163, 175) !important;
   }
 
   .dark .text-gray-300:not([class*="dark:text-"]) {
-    color: rgb(209, 213, 219) !important; /* gray-300 */
+    color: rgb(209, 213, 219) !important;
   }
 
-  /* Fix link colors in dark mode */
   .dark .text-blue-600:not([class*="dark:text-"]) {
-    color: rgb(56, 189, 248) !important; /* sky-400 */
+    color: rgb(56, 189, 248) !important;
   }
 
   .dark .hover\:text-blue-800:hover:not([class*="dark:hover:text-"]) {
-    color: rgb(125, 211, 252) !important; /* sky-300 */
+    color: rgb(125, 211, 252) !important;
   }
 
-  /* Fix focus ring colors in dark mode */
   .dark .focus\:ring-primary:focus:not([class*="dark:focus:ring-"]) {
-    --tw-ring-color: rgb(56, 189, 248) !important; /* sky-400 */
+    --tw-ring-color: rgb(56, 189, 248) !important;
   }
 
   .dark .focus-visible\:ring-ring:focus-visible:not([class*="dark:focus-visible:ring-"]) {
-    --tw-ring-color: rgb(56, 189, 248) !important; /* sky-400 */
+    --tw-ring-color: rgb(56, 189, 248) !important;
   }
 
-  /* Fix disabled state colors in dark mode */
   .dark .disabled\:opacity-50:disabled:not([class*="dark:disabled:opacity-"]) {
     opacity: 0.5 !important;
   }
 
-  /* Fix placeholder text in dark mode */
   .dark .placeholder\:text-muted-foreground::placeholder:not([class*="dark:placeholder:text-"]) {
-    color: rgb(156, 163, 175) !important; /* gray-400 */
+    color: rgb(156, 163, 175) !important;
   }
 
-  /* Fix selection colors in dark mode */
   .dark ::selection {
-    background-color: rgba(56, 189, 248, 0.3) !important; /* sky-400/30 */
-    color: rgb(248, 250, 252) !important; /* slate-50 */
+    background-color: rgba(56, 189, 248, 0.3) !important;
+    color: rgb(248, 250, 252) !important;
   }
 
-  /* Fix scrollbar in dark mode */
   .dark ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
   }
 
   .dark ::-webkit-scrollbar-track {
-    background: rgb(30, 41, 59); /* slate-800 */
+    background: rgb(30, 41, 59);
   }
 
   .dark ::-webkit-scrollbar-thumb {
-    background: rgb(71, 85, 105); /* slate-500 */
+    background: rgb(71, 85, 105);
     border-radius: 4px;
   }
 
   .dark ::-webkit-scrollbar-thumb:hover {
-    background: rgb(100, 116, 139); /* slate-400 */
+    background: rgb(100, 116, 139);
   }
 
-  /* Fix brand navy background in dark mode */
   .dark .bg-brand-navy:not([class*="dark:bg-"]) {
-    background-color: rgb(15, 23, 42) !important; /* slate-900 */
+    background-color: rgb(15, 23, 42) !important;
   }
 
   .dark .bg-brand-navy\/95:not([class*="dark:bg-"]) {
-    background-color: rgba(15, 23, 42, 0.95) !important; /* slate-900/95 */
+    background-color: rgba(15, 23, 42, 0.95) !important;
   }
 
   .dark .bg-brand-navy\/50:not([class*="dark:bg-"]) {
-    background-color: rgba(15, 23, 42, 0.5) !important; /* slate-900/50 */
+    background-color: rgba(15, 23, 42, 0.5) !important;
   }
 
-  /* Fix navigation specific styles */
   .dark .dark\:bg-brand-navy\/95 {
-    background-color: rgba(15, 23, 42, 0.95) !important; /* slate-900/95 */
+    background-color: rgba(15, 23, 42, 0.95) !important;
   }
 
   .dark .dark\:border-gray-700 {
-    border-color: rgb(55, 65, 81) !important; /* gray-700 */
+    border-color: rgb(55, 65, 81) !important;
   }
 
   .dark .dark\:text-gray-300 {
-    color: rgb(209, 213, 219) !important; /* gray-300 */
+    color: rgb(209, 213, 219) !important;
   }
 
   .dark .dark\:hover\:text-primary:hover {
-    color: rgb(56, 189, 248) !important; /* sky-400 */
+    color: rgb(56, 189, 248) !important;
   }
 
   .dark .dark\:text-primary {
-    color: rgb(56, 189, 248) !important; /* sky-400 */
+    color: rgb(56, 189, 248) !important;
   }
 
-  /* Fix form elements specific to dark mode */
   .dark select:not([class*="dark:bg-"]) {
-    background-color: rgb(30, 41, 59) !important; /* slate-800 */
-    color: rgb(248, 250, 252) !important; /* slate-50 */
-    border-color: rgb(71, 85, 105) !important; /* slate-500 */
+    background-color: rgb(30, 41, 59) !important;
+    color: rgb(248, 250, 252) !important;
+    border-color: rgb(71, 85, 105) !important;
   }
 
   .dark select option {
-    background-color: rgb(30, 41, 59) !important; /* slate-800 */
-    color: rgb(248, 250, 252) !important; /* slate-50 */
+    background-color: rgb(30, 41, 59) !important;
+    color: rgb(248, 250, 252) !important;
   }
 
-  /* Fix textarea specific styles */
   .dark textarea:not([class*="dark:bg-"]) {
-    background-color: rgb(30, 41, 59) !important; /* slate-800 */
-    color: rgb(248, 250, 252) !important; /* slate-50 */
-    border-color: rgb(71, 85, 105) !important; /* slate-500 */
+    background-color: rgb(30, 41, 59) !important;
+    color: rgb(248, 250, 252) !important;
+    border-color: rgb(71, 85, 105) !important;
   }
 
-  /* Fix input specific styles */
   .dark input[type="text"]:not([class*="dark:bg-"]),
   .dark input[type="email"]:not([class*="dark:bg-"]),
   .dark input[type="password"]:not([class*="dark:bg-"]),
   .dark input[type="number"]:not([class*="dark:bg-"]),
   .dark input[type="tel"]:not([class*="dark:bg-"]),
   .dark input[type="url"]:not([class*="dark:bg-"]) {
-    background-color: rgb(30, 41, 59) !important; /* slate-800 */
-    color: rgb(248, 250, 252) !important; /* slate-50 */
-    border-color: rgb(71, 85, 105) !important; /* slate-500 */
+    background-color: rgb(30, 41, 59) !important;
+    color: rgb(248, 250, 252) !important;
+    border-color: rgb(71, 85, 105) !important;
   }
 
-  /* Fix focus states for inputs in dark mode */
   .dark input:focus:not([class*="dark:focus:"]),
   .dark textarea:focus:not([class*="dark:focus:"]),
   .dark select:focus:not([class*="dark:focus:"]) {
-    border-color: rgb(56, 189, 248) !important; /* sky-400 */
+    border-color: rgb(56, 189, 248) !important;
     box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2) !important;
   }
 
-  /* Fix card shadows in dark mode */
   .dark .shadow-sm:not([class*="dark:shadow-"]) {
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3) !important;
   }
@@ -482,7 +452,6 @@
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4) !important;
   }
 
-  /* Fix hover shadow effects in dark mode */
   .dark .hover\:shadow-2xl:hover:not([class*="dark:hover:shadow-"]) {
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4) !important;
   }
@@ -491,7 +460,6 @@
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2) !important;
   }
 
-  /* Fix backdrop blur effects in dark mode */
   .dark .backdrop-blur-sm:not([class*="dark:backdrop-blur-"]) {
     backdrop-filter: blur(4px) !important;
   }
@@ -500,111 +468,97 @@
     backdrop-filter: blur(16px) !important;
   }
 
-  /* Fix ring colors for focus states */
   .dark .focus\:ring-2:focus:not([class*="dark:focus:ring-"]) {
     --tw-ring-width: 2px !important;
     --tw-ring-color: rgba(56, 189, 248, 0.5) !important;
   }
 
-  /* Fix text selection in dark mode */
   .dark *::selection {
     background-color: rgba(56, 189, 248, 0.3) !important;
     color: rgb(248, 250, 252) !important;
   }
 
-  /* Fix divider colors in dark mode */
   .dark .divide-gray-200 > :not([hidden]) ~ :not([hidden]):not([class*="dark:divide-"]) {
-    border-color: rgb(71, 85, 105) !important; /* slate-500 */
+    border-color: rgb(71, 85, 105) !important;
   }
 
-  /* Fix ring offset colors in dark mode */
   .dark .focus\:ring-offset-2:focus:not([class*="dark:focus:ring-offset-"]) {
     --tw-ring-offset-width: 2px !important;
-    --tw-ring-offset-color: rgb(15, 23, 42) !important; /* slate-900 */
+    --tw-ring-offset-color: rgb(15, 23, 42) !important;
   }
 
-  /* Additional fixes for specific UI elements */
   .dark .text-slate-900:not([class*="dark:text-"]) {
-    color: rgb(248, 250, 252) !important; /* slate-50 */
+    color: rgb(248, 250, 252) !important;
   }
 
   .dark .text-slate-800:not([class*="dark:text-"]) {
-    color: rgb(226, 232, 240) !important; /* slate-200 */
+    color: rgb(226, 232, 240) !important;
   }
 
   .dark .text-slate-700:not([class*="dark:text-"]) {
-    color: rgb(203, 213, 225) !important; /* slate-300 */
+    color: rgb(203, 213, 225) !important;
   }
 
   .dark .text-slate-600:not([class*="dark:text-"]) {
-    color: rgb(148, 163, 184) !important; /* slate-400 */
+    color: rgb(148, 163, 184) !important;
   }
 
   .dark .text-slate-500:not([class*="dark:text-"]) {
-    color: rgb(100, 116, 139) !important; /* slate-500 */
+    color: rgb(100, 116, 139) !important;
   }
 
-  /* Fix specific dark mode issues for testimonials and hero text */
   .dark .dark\:text-accent {
-    color: rgb(56, 189, 248) !important; /* sky-400 for better contrast */
+    color: rgb(56, 189, 248) !important;
   }
 
-  /* Ensure testimonial company names are visible */
   .dark .text-primary.dark\:text-accent {
-    color: rgb(56, 189, 248) !important; /* sky-400 */
+    color: rgb(56, 189, 248) !important;
   }
 
-  /* Fix hero text contrast in dark mode */
   .dark .text-primary.dark\:text-accent,
   .dark span.text-primary.dark\:text-accent {
-    color: rgb(125, 211, 252) !important; /* sky-300 for even better contrast */
+    color: rgb(125, 211, 252) !important;
   }
 
-  /* Additional fixes for accent colors */
   .dark .text-accent:not([class*="dark:text-"]) {
-    color: rgb(56, 189, 248) !important; /* sky-400 */
+    color: rgb(56, 189, 248) !important;
   }
 
-  /* Fix any remaining primary text issues in dark mode */
   .dark .text-primary:not(.bg-primary):not([class*="dark:text-"]) {
-    color: rgb(125, 211, 252) !important; /* sky-300 for maximum contrast */
+    color: rgb(125, 211, 252) !important;
   }
 
-  /* Ensure proper contrast for all accent text */
   .dark [class*="text-accent"]:not([class*="bg-"]) {
-    color: rgb(56, 189, 248) !important; /* sky-400 */
+    color: rgb(56, 189, 248) !important;
   }
 
-  /* Fix any text that might be using brand colors */
   .dark .text-intellidelve-primary:not([class*="dark:text-"]) {
-    color: rgb(125, 211, 252) !important; /* sky-300 */
+    color: rgb(125, 211, 252) !important;
   }
 
   .dark .text-intellidelve-accent:not([class*="dark:text-"]) {
-    color: rgb(56, 189, 248) !important; /* sky-400 */
+    color: rgb(56, 189, 248) !important;
   }
 
   .dark .text-intellidelve-lightblue:not([class*="dark:text-"]) {
-    color: rgb(56, 189, 248) !important; /* sky-400 */
+    color: rgb(56, 189, 248) !important;
   }
 
-  /* Fix any remaining blue text variants */
   .dark .text-blue-500:not([class*="dark:text-"]) {
-    color: rgb(59, 130, 246) !important; /* blue-500 */
+    color: rgb(59, 130, 246) !important;
   }
 
   .dark .text-blue-400:not([class*="dark:text-"]) {
-    color: rgb(96, 165, 250) !important; /* blue-400 */
+    color: rgb(96, 165, 250) !important;
   }
 
   .dark .text-blue-300:not([class*="dark:text-"]) {
-    color: rgb(147, 197, 253) !important; /* blue-300 */
+    color: rgb(147, 197, 253) !important;
   }
 
-  /* Ensure all span elements with primary/accent colors are visible */
   .dark span.text-primary:not([class*="dark:text-"]),
   .dark span.text-accent:not([class*="dark:text-"]) {
-    color: rgb(125, 211, 252) !important; /* sky-300 */
+    color: rgb(125, 211, 252) !important;
   }
 }
 
@@ -639,7 +593,6 @@
     -webkit-line-clamp: 2;
   }
 
-  /* Continuous scroll animation for industries slideshow */
   .animate-scroll-infinite {
     animation: scroll-infinite 15s linear infinite;
   }
@@ -681,7 +634,6 @@
       overflow-y: auto;
     }
 
-    /* Mobile Services Grid Improvements */
     .services-mobile-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -695,7 +647,6 @@
       border-radius: 1rem;
     }
 
-    /* Mobile Industries Grid Improvements */
     .industries-mobile-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -709,7 +660,6 @@
       min-height: 200px;
     }
 
-    /* Mobile Case Studies Grid Improvements */
     .case-studies-mobile-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -723,7 +673,6 @@
       min-height: auto;
     }
 
-    /* Ensure full width display on mobile */
     .mobile-full-width {
       width: 100%;
       max-width: 100%;
@@ -733,7 +682,6 @@
     }
   }
 
-  /* Enhanced Mega Menu Scrollbar Styles */
   .mega-menu-scrollbar {
     scrollbar-width: thin;
     scrollbar-color: rgb(156 163 175) transparent;
@@ -770,7 +718,6 @@
     background: rgb(107 114 128);
   }
 
-  /* Mega Menu Animation Improvements */
   .mega-menu-item {
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -779,19 +726,16 @@
     transform: translateX(4px);
   }
 
-  /* Focus styles for better accessibility */
   .mega-menu-item:focus-visible {
     outline: 2px solid rgb(59 130 246);
     outline-offset: 2px;
     border-radius: 0.5rem;
   }
 
-  /* Mobile Mega Menu Scrollbar - Ultra Modern Style */
   .mobile-mega-menu-scrollbar {
     scrollbar-width: thin;
     scrollbar-color: rgb(59 130 246) rgba(156 163 175, 0.1);
-    /* Disabled smooth scrolling to prevent auto-scroll issues */
-    /* scroll-behavior: smooth; */
+
     scroll-padding: 20px;
   }
 
@@ -825,7 +769,6 @@
     transform: scaleX(1.1);
   }
 
-  /* Dark mode mobile scrollbar */
   .dark .mobile-mega-menu-scrollbar {
     scrollbar-color: rgb(56 189 248) rgba(75 85 99, 0.2);
   }
@@ -852,7 +795,6 @@
     transform: scaleX(1.1);
   }
 
-  /* Mobile mega menu animations */
   @keyframes slideInFromTop {
     from {
       opacity: 0;
@@ -868,7 +810,6 @@
     animation: slideInFromTop 0.3s ease-out;
   }
 
-  /* Hero Carousel Mobile Improvements */
   @media (max-width: 640px) {
     .hero-carousel-mobile {
       padding: 1rem;
@@ -898,7 +839,6 @@
       font-size: 0.875rem;
     }
 
-    /* Ensure proper mobile layout */
     .hero-carousel-grid {
       display: grid;
       grid-template-rows: 250px 1fr;
@@ -918,13 +858,11 @@
       min-height: 300px;
     }
 
-    /* Fix mobile viewport height issues */
     .hero-carousel-mobile-height {
       height: 100vh;
-      height: 100dvh; /* Dynamic viewport height for mobile browsers */
+      height: 100dvh;
     }
 
-    /* Improve mobile text readability */
     .hero-carousel-mobile-text {
       font-size: 1rem;
       line-height: 1.4;
@@ -946,7 +884,6 @@
       padding-bottom: 2rem;
     }
 
-    /* Tablet-specific improvements */
     .hero-carousel-tablet {
       height: 80vh;
     }
@@ -960,7 +897,6 @@
       height: 300px;
     }
 
-    /* Tablet Services Grid */
     .services-tablet-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -968,7 +904,6 @@
       padding: 0 1.5rem;
     }
 
-    /* Tablet Industries Grid */
     .industries-tablet-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -976,7 +911,6 @@
       padding: 0 1.5rem;
     }
 
-    /* Tablet Case Studies Grid */
     .case-studies-tablet-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -985,7 +919,6 @@
     }
   }
 
-  /* Small mobile screens (iPhone SE, etc.) */
   @media (max-width: 375px) {
     .services-mobile-card,
     .industries-mobile-card,
@@ -999,7 +932,6 @@
       padding-right: 0.5rem;
     }
 
-    /* Ensure text is readable on small screens */
     .mobile-text-responsive {
       font-size: 0.875rem;
       line-height: 1.4;
@@ -1011,7 +943,6 @@
     }
   }
 
-  /* Landscape mobile improvements */
   @media (max-width: 640px) and (orientation: landscape) {
     .hero-carousel-landscape {
       height: 100vh;
@@ -1034,7 +965,6 @@
     }
   }
 
-  /* Touch-friendly mobile interactions */
   @media (max-width: 1024px) {
     .mega-menu-item {
       min-height: 44px;
@@ -1043,17 +973,14 @@
     }
   }
 
-  /* Mobile Mega Menu Scrollbar Improvements */
   .mobile-mega-menu-scrollbar {
     scrollbar-width: thin;
     scrollbar-color: rgba(59, 130, 246, 0.3) transparent;
-    /* Disabled smooth scrolling to prevent auto-scroll issues */
-    /* scroll-behavior: smooth; */
+
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
   }
 
-  /* Mobile and Tablet Mega Menu Height Fixes */
   @media (max-width: 768px) {
     .mobile-mega-menu-scrollbar {
       max-height: calc(100vh - 100px) !important;
@@ -1068,7 +995,6 @@
     }
   }
 
-  /* Tablet landscape mode */
   @media (min-width: 481px) and (max-width: 1024px) and (orientation: landscape) {
     .mobile-mega-menu-scrollbar {
       max-height: calc(100vh - 120px) !important;
@@ -1076,20 +1002,17 @@
     }
   }
 
-  /* Enhanced touch scrolling for mobile mega menu */
   .mobile-mega-menu-enter {
     touch-action: pan-y;
     -webkit-overflow-scrolling: touch;
   }
 
-  /* Prevent body scroll when mega menu is open */
   .mobile-mega-menu-open {
     overflow: hidden;
     position: fixed;
     width: 100%;
   }
 
-  /* Improved accordion section spacing on mobile */
   @media (max-width: 640px) {
     .mobile-mega-menu-scrollbar .mb-2 {
       margin-bottom: 0.75rem;
@@ -1105,9 +1028,8 @@
     }
   }
 
-  /* Safari-specific modal and overlay fixes */
   @supports (-webkit-appearance: none) {
-    /* Safari modal overlay fixes */
+
     .modal-overlay-safari {
       position: fixed;
       top: 0;
@@ -1118,23 +1040,21 @@
       background-color: rgba(0, 0, 0, 0.6) !important;
       -webkit-backdrop-filter: blur(4px);
       backdrop-filter: blur(4px);
-      /* Force hardware acceleration */
+
       -webkit-transform: translateZ(0);
       transform: translateZ(0);
       will-change: opacity;
     }
 
-    /* Safari modal content fixes */
     .modal-content-safari {
       position: relative;
       z-index: 10000 !important;
-      /* Force hardware acceleration */
+
       -webkit-transform: translateZ(0);
       transform: translateZ(0);
       will-change: transform, opacity;
     }
 
-    /* Safari body scroll lock */
     body.modal-open-safari {
       position: fixed !important;
       top: 0;
@@ -1146,19 +1066,17 @@
       width: 100vw !important;
     }
 
-    /* Safari backdrop blur fallback */
     .backdrop-blur-safari {
       -webkit-backdrop-filter: blur(4px);
       backdrop-filter: blur(4px);
     }
 
-    /* Ensure proper stacking context for Safari */
     .safari-modal-container {
       position: fixed;
       inset: 0;
       z-index: 9999;
       isolation: isolate;
-      /* Create new stacking context */
+
       transform: translateZ(0);
       -webkit-transform: translateZ(0);
     }
@@ -1183,7 +1101,6 @@
     background: linear-gradient(180deg, rgba(59, 130, 246, 0.8), rgba(147, 51, 234, 0.8));
   }
 
-  /* Dark mode scrollbar */
   .dark .mobile-mega-menu-scrollbar {
     scrollbar-color: rgba(14, 165, 233, 0.4) transparent;
   }
@@ -1197,7 +1114,5 @@
   }
 }
 
-/* Smooth scrolling for anchor links - TEMPORARILY DISABLED */
-/* html {
-  scroll-behavior: smooth;
-} */
+
+

@@ -6,15 +6,16 @@ const ScrollToTop = () => {
   const previousPathnameRef = useRef<string>('');
 
   useEffect(() => {
-    // COMPLETELY DISABLED FOR DEBUGGING - NO SCROLLING AT ALL
-    console.log('ScrollToTop: Effect triggered but DISABLED', {
-      pathname,
-      previousPath: previousPathnameRef.current,
-      hash,
-      hasFocus: document.hasFocus()
-    });
+    
+    if (previousPathnameRef.current !== pathname) {
+    
+      window.scrollTo({
+        top: 0,
+        behavior: 'instant'
+      });
+    }
 
-    // Just update the pathname without any scrolling
+    
     previousPathnameRef.current = pathname;
   }, [pathname, hash]);
 

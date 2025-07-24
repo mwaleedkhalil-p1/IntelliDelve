@@ -23,16 +23,14 @@ const AccessibilityMenu: React.FC = () => {
     resetSettings,
   } = useAccessibility();
 
-  // Handle keyboard navigation
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      // Close menu on Escape
+
       if (event.key === 'Escape' && isOpen) {
         setIsOpen(false);
         buttonRef.current?.focus();
       }
 
-      // Toggle menu with Alt + A
       if (event.altKey && event.key === 'a') {
         event.preventDefault();
         setIsOpen(!isOpen);
@@ -43,10 +41,9 @@ const AccessibilityMenu: React.FC = () => {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [isOpen]);
 
-  // Focus management
   useEffect(() => {
     if (isOpen && menuRef.current) {
-      // Focus first focusable element in menu
+
       const focusableElements = menuRef.current.querySelectorAll(
         'button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
       );
@@ -56,14 +53,13 @@ const AccessibilityMenu: React.FC = () => {
     }
   }, [isOpen]);
 
-  // Don't render until settings are loaded
   if (!isLoaded) {
     return null;
   }
 
   return (
     <>
-      {/* Floating Button - Positioned above other buttons */}
+
       <div className="fixed bottom-44 right-6 z-50">
         <button
           ref={buttonRef}
@@ -81,7 +77,6 @@ const AccessibilityMenu: React.FC = () => {
           )}
         </button>
 
-        {/* Accessibility Panel */}
         {isOpen && (
           <div
             ref={menuRef}
@@ -89,7 +84,7 @@ const AccessibilityMenu: React.FC = () => {
             role="dialog"
             aria-labelledby="accessibility-menu-title"
           >
-            {/* Header */}
+
             <div className="flex items-center justify-between mb-4">
               <h3 id="accessibility-menu-title" className="text-lg font-semibold text-gray-900 dark:text-white flex items-center">
                 <Settings className="h-5 w-5 mr-2" />
@@ -104,7 +99,6 @@ const AccessibilityMenu: React.FC = () => {
               </button>
             </div>
 
-            {/* Font Size Controls */}
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Font Size ({settings.fontSize}%)
@@ -118,14 +112,14 @@ const AccessibilityMenu: React.FC = () => {
                 >
                   <Minus className="h-4 w-4" />
                 </button>
-                
+
                 <div className="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                   <div
                     className="bg-blue-600 h-2 rounded-full transition-all duration-300"
                     style={{ width: `${((settings.fontSize - 80) / 70) * 100}%` }}
                   />
                 </div>
-                
+
                 <button
                   onClick={increaseFontSize}
                   disabled={settings.fontSize >= 150}
@@ -137,7 +131,6 @@ const AccessibilityMenu: React.FC = () => {
               </div>
             </div>
 
-            {/* Color Blind Mode Toggle */}
             <div className="mb-4">
               <label className="flex items-center justify-between">
                 <span className="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center">
@@ -162,7 +155,6 @@ const AccessibilityMenu: React.FC = () => {
               </label>
             </div>
 
-            {/* Reset Button */}
             <button
               onClick={resetSettings}
               className="w-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 py-2 px-4 rounded-lg text-sm font-medium transition-colors"
@@ -170,7 +162,6 @@ const AccessibilityMenu: React.FC = () => {
               Reset to Default
             </button>
 
-            {/* Info Text */}
             <p className="text-xs text-gray-500 dark:text-gray-400 mt-3 text-center">
               Settings are saved automatically
             </p>
@@ -178,7 +169,6 @@ const AccessibilityMenu: React.FC = () => {
         )}
       </div>
 
-      {/* Click outside to close */}
       {isOpen && (
         <div
           className="fixed inset-0 z-40"

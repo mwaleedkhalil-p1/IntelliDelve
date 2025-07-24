@@ -74,11 +74,10 @@ const CorporateDueDiligence: React.FC = () => {
         keywords="corporate due diligence, business intelligence, AML compliance, KYC screening, CBI due diligence, citizen by investment, regulatory compliance, risk assessment, executive screening"
       />
 
-      {/* Custom Corporate Due Diligence Solution Page */}
       <div className="min-h-screen">
-        {/* Full-Height Hero Section with Background Image */}
+
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-          {/* Background Image */}
+
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{
@@ -86,10 +85,8 @@ const CorporateDueDiligence: React.FC = () => {
             }}
           />
 
-          {/* Overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 via-purple-900/70 to-indigo-900/80"></div>
 
-          {/* Content */}
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="mb-8">
               <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl mb-6">
@@ -112,7 +109,6 @@ const CorporateDueDiligence: React.FC = () => {
               Make informed business decisions with comprehensive due diligence investigations and regulatory compliance assessments for partnerships, acquisitions, and investments.
             </p>
 
-            {/* Stats */}
             <div className="grid grid-cols-3 gap-6 mb-8 max-w-md mx-auto">
               <div className="text-center">
                 <div className="text-3xl font-bold text-white mb-2">500+</div>
@@ -154,7 +150,6 @@ const CorporateDueDiligence: React.FC = () => {
             </div>
           </div>
 
-          {/* Scroll indicator */}
           <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
             <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
               <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
@@ -162,7 +157,6 @@ const CorporateDueDiligence: React.FC = () => {
           </div>
         </section>
 
-        {/* What We Offer Section */}
         <section className="py-16 bg-white dark:bg-gray-900">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
@@ -186,7 +180,6 @@ const CorporateDueDiligence: React.FC = () => {
           </div>
         </section>
 
-        {/* Why Choose Us Section */}
         <section className="py-16 bg-gray-50 dark:bg-gray-800">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
@@ -209,7 +202,6 @@ const CorporateDueDiligence: React.FC = () => {
           </div>
         </section>
 
-        {/* How It Works Section */}
         <section className="py-16 bg-white dark:bg-gray-900">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
@@ -235,7 +227,6 @@ const CorporateDueDiligence: React.FC = () => {
           </div>
         </section>
 
-        {/* Custom CTA Section with Two Buttons */}
         <section className="py-16 bg-primary text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <Users className="h-12 w-12 mx-auto mb-6" />
@@ -259,7 +250,7 @@ const CorporateDueDiligence: React.FC = () => {
                 to="/what-we-offer#corporate-due-diligence-and-risk-compliance"
                 className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-primary transition-all duration-300 font-primary inline-flex items-center justify-center gap-2"
                 onClick={() => {
-                  // Scroll to the section after navigation
+
                   setTimeout(() => {
                     const element = document.getElementById('corporate-due-diligence-and-risk-compliance');
                     if (element) {
@@ -276,7 +267,6 @@ const CorporateDueDiligence: React.FC = () => {
         </section>
       </div>
 
-      {/* Scroll to Top Button */}
       <ScrollToTopButton />
     </>
   );

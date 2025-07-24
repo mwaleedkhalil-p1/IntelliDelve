@@ -63,7 +63,6 @@ function LineChart({ title, value, change, data, color }: LineChartProps) {
         },
       );
 
-      // Animate the line drawing
       const path = chartRef.current.querySelector("[data-line-path]");
       if (path) {
         const pathLength = (path as SVGPathElement).getTotalLength();
@@ -184,14 +183,12 @@ function LineChart({ title, value, change, data, color }: LineChartProps) {
             </linearGradient>
           </defs>
 
-          {/* Background fill */}
           <rect
             width="800"
             height="120"
             className="fill-white dark:fill-gray-900 transition-all duration-500"
           />
 
-          {/* Purple line data */}
           {(() => {
             const purpleData = [25, 15, 35, 20, 45, 35];
             const purplePath = createSmoothPath(purpleData);
@@ -218,7 +215,6 @@ function LineChart({ title, value, change, data, color }: LineChartProps) {
                   strokeWidth="2"
                 />
 
-                {/* Interactive hover points for purple line */}
                 {purpleData.map((point, index) => {
                   const x = (index / (purpleData.length - 1)) * 280;
                   const y =
@@ -251,7 +247,6 @@ function LineChart({ title, value, change, data, color }: LineChartProps) {
             );
           })()}
 
-          {/* Cyan line data */}
           {(() => {
             const cyanData = [30, 25, 20, 30, 25, 20];
             const cyanPath = createSmoothPath(cyanData);
@@ -270,7 +265,6 @@ function LineChart({ title, value, change, data, color }: LineChartProps) {
                   data-line-path
                 />
 
-                {/* Interactive hover points for cyan line */}
                 {cyanData.map((point, index) => {
                   const x = (index / (cyanData.length - 1)) * 280;
                   const y =
@@ -304,7 +298,6 @@ function LineChart({ title, value, change, data, color }: LineChartProps) {
           })()}
         </svg>
 
-        {/* Tooltip */}
         {tooltip.show && (
           <div
             className="fixed z-50 bg-gray-900 text-white px-3 py-2 rounded-lg text-sm pointer-events-none transform -translate-x-1/2 -translate-y-full"
@@ -367,7 +360,6 @@ function PieChartComponent({ title, data }: PieChartProps) {
         },
       );
 
-      // Animate pie segments
       const segments = chartRef.current.querySelectorAll("[data-pie-segment]");
       segments.forEach((segment, index) => {
         gsap.fromTo(
@@ -435,7 +427,7 @@ function PieChartComponent({ title, data }: PieChartProps) {
             viewBox="0 0 100 100"
             className="w-full h-full transform -rotate-90"
           >
-            {/* Background circle */}
+
             <circle
               cx="50"
               cy="50"
@@ -445,7 +437,6 @@ function PieChartComponent({ title, data }: PieChartProps) {
               strokeWidth="12"
             />
 
-            {/* Blue segment (63%) */}
             <circle
               cx="50"
               cy="50"
@@ -474,7 +465,6 @@ function PieChartComponent({ title, data }: PieChartProps) {
               }}
             />
 
-            {/* Cyan segment (25%) */}
             <circle
               cx="50"
               cy="50"
@@ -547,7 +537,6 @@ function PieChartComponent({ title, data }: PieChartProps) {
         </div>
       </div>
 
-      {/* Tooltip */}
       {tooltip.show && (
         <div
           className="fixed z-50 bg-gray-900 text-white px-3 py-2 rounded-lg text-sm pointer-events-none transform -translate-x-1/2 -translate-y-1/2"
@@ -602,7 +591,6 @@ function BarChart({ title, value, subtitle, change, data }: BarChartProps) {
         },
       );
 
-      // Animate bars
       const bars = chartRef.current.querySelectorAll("[data-bar]");
       bars.forEach((bar, index) => {
         gsap.fromTo(
@@ -687,7 +675,6 @@ function BarChart({ title, value, subtitle, change, data }: BarChartProps) {
         ))}
       </div>
 
-      {/* Tooltip */}
       {tooltip.show && (
         <div
           className="fixed z-50 bg-gray-900 text-white px-3 py-2 rounded-lg text-sm pointer-events-none transform -translate-x-1/2 -translate-y-full"
@@ -839,7 +826,6 @@ function CircularProgress({
         </div>
       </div>
 
-      {/* Tooltip */}
       {tooltip.show && (
         <div
           className="fixed z-50 bg-gray-900 text-white px-3 py-2 rounded-lg text-sm pointer-events-none transform -translate-x-1/2 -translate-y-full"

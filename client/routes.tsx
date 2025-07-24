@@ -16,7 +16,6 @@ const Careers = lazy(() => import("./pages/Careers"));
 const Blogs = lazy(() => import("./pages/Blogs"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
 
-// Solution pages
 const BackgroundScreeningSolution = lazy(
   () => import("./pages/solutions/BackgroundScreening"),
 );
@@ -27,7 +26,6 @@ const AIDataScience = lazy(() => import("./pages/solutions/AIDataScience"));
 const TechInnovation = lazy(() => import("./pages/solutions/TechInnovation"));
 const CitizenByInvestment = lazy(() => import("./pages/CitizenByInvestment"));
 
-// Industry pages
 const BankingFinancial = lazy(
   () => import("./pages/industries/BankingFinancial"),
 );
@@ -131,7 +129,6 @@ export const routes: RouteObject[] = [
   { path: "/blogs", element: <Blogs /> },
   { path: "/blogs/:id", element: <BlogPost /> },
 
-  // Solution pages
   {
     path: "/solutions/background-screening",
     element: <BackgroundScreeningSolution />,
@@ -143,7 +140,6 @@ export const routes: RouteObject[] = [
   { path: "/solutions/ai-data-science", element: <AIDataScience /> },
   { path: "/solutions/tech-innovation", element: <TechInnovation /> },
 
-  // Industry pages
   { path: "/industries/banking-financial", element: <BankingFinancial /> },
   { path: "/industries/healthcare-medical", element: <HealthcareMedical /> },
   {

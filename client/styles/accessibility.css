@@ -1,6 +1,5 @@
-/* Accessibility Styles */
 
-/* Accessibility Menu Animations */
+
 @keyframes slideInFromBottom {
   from {
     opacity: 0;
@@ -20,7 +19,6 @@
   animation: slideInFromBottom 0.2s ease-out;
 }
 
-/* Floating button pulse effect */
 @keyframes pulse {
   0%, 100% {
     transform: scale(1);
@@ -34,9 +32,8 @@
   animation: pulse 2s infinite;
 }
 
-/* Color Blind Mode Styles */
 .color-blind-mode {
-  /* High contrast background and text */
+
   --accessibility-bg-primary: #000000;
   --accessibility-bg-secondary: #1a1a1a;
   --accessibility-text-primary: #ffffff;
@@ -49,7 +46,6 @@
   --accessibility-border: #444444;
 }
 
-/* Apply color blind mode styles */
 .color-blind-mode {
   background-color: var(--accessibility-bg-primary) !important;
   color: var(--accessibility-text-primary) !important;
@@ -59,7 +55,6 @@
   border-color: var(--accessibility-border) !important;
 }
 
-/* Text elements */
 .color-blind-mode h1,
 .color-blind-mode h2,
 .color-blind-mode h3,
@@ -79,7 +74,6 @@
   color: var(--accessibility-text-secondary) !important;
 }
 
-/* Links */
 .color-blind-mode a {
   color: var(--accessibility-accent) !important;
   text-decoration: underline !important;
@@ -90,7 +84,6 @@
   background-color: var(--accessibility-bg-secondary) !important;
 }
 
-/* Buttons */
 .color-blind-mode button {
   background-color: var(--accessibility-bg-secondary) !important;
   color: var(--accessibility-text-primary) !important;
@@ -109,7 +102,6 @@
   opacity: 0.6 !important;
 }
 
-/* Forms */
 .color-blind-mode input,
 .color-blind-mode textarea,
 .color-blind-mode select {
@@ -126,7 +118,6 @@
   outline-offset: 2px !important;
 }
 
-/* Cards and containers */
 .color-blind-mode .bg-white,
 .color-blind-mode .bg-gray-50,
 .color-blind-mode .bg-gray-100,
@@ -139,7 +130,6 @@
   background-color: var(--accessibility-bg-primary) !important;
 }
 
-/* Status colors */
 .color-blind-mode .text-green-500,
 .color-blind-mode .text-green-600,
 .color-blind-mode .bg-green-500,
@@ -172,20 +162,17 @@
   background-color: var(--accessibility-info) !important;
 }
 
-/* Primary brand colors */
 .color-blind-mode .bg-primary,
 .color-blind-mode .text-primary {
   background-color: var(--accessibility-accent) !important;
   color: var(--accessibility-bg-primary) !important;
 }
 
-/* Navigation */
 .color-blind-mode nav {
   background-color: var(--accessibility-bg-primary) !important;
   border-bottom: 2px solid var(--accessibility-border) !important;
 }
 
-/* Shadows and borders */
 .color-blind-mode .shadow,
 .color-blind-mode .shadow-sm,
 .color-blind-mode .shadow-md,
@@ -195,25 +182,21 @@
   box-shadow: 0 0 0 2px var(--accessibility-border) !important;
 }
 
-/* Images - add high contrast filter */
 .color-blind-mode img {
   filter: contrast(1.2) brightness(1.1) !important;
 }
 
-/* Focus indicators */
 .color-blind-mode *:focus {
   outline: 3px solid var(--accessibility-accent) !important;
   outline-offset: 2px !important;
 }
 
-/* Ensure text is always readable */
 .color-blind-mode .text-gray-400,
 .color-blind-mode .text-gray-500,
 .color-blind-mode .text-gray-600 {
   color: var(--accessibility-text-secondary) !important;
 }
 
-/* Tables */
 .color-blind-mode table {
   border: 2px solid var(--accessibility-border) !important;
 }
@@ -229,13 +212,11 @@
   font-weight: bold !important;
 }
 
-/* Animations - reduce motion for accessibility */
 .color-blind-mode * {
   animation-duration: 0.1s !important;
   transition-duration: 0.1s !important;
 }
 
-/* Ensure accessibility menu itself is visible */
 .color-blind-mode .fixed.bottom-6.right-6 button {
   background-color: var(--accessibility-accent) !important;
   color: var(--accessibility-bg-primary) !important;

@@ -15,7 +15,7 @@ export class ImageDebugger {
    */
   static async testImage(src: string, timeout: number = 5000): Promise<ImageTestResult> {
     const startTime = Date.now();
-    
+
     return new Promise((resolve) => {
       const img = new Image();
       const timeoutId = setTimeout(() => {
@@ -81,13 +81,10 @@ export class ImageDebugger {
    */
   static logResults(results: ImageTestResult[]): void {
     console.group('🖼️ Image Loading Test Results');
-    
+
     const successful = results.filter(r => r.success);
     const failed = results.filter(r => !r.success);
-    
-    console.log(`✅ Successful: ${successful.length}/${results.length}`);
-    console.log(`❌ Failed: ${failed.length}/${results.length}`);
-    
+
     if (failed.length > 0) {
       console.group('❌ Failed Images');
       failed.forEach(result => {
@@ -95,7 +92,7 @@ export class ImageDebugger {
       });
       console.groupEnd();
     }
-    
+
     if (successful.length > 0) {
       console.group('✅ Successful Images');
       successful.forEach(result => {
@@ -103,7 +100,7 @@ export class ImageDebugger {
       });
       console.groupEnd();
     }
-    
+
     console.groupEnd();
   }
 
@@ -111,21 +108,18 @@ export class ImageDebugger {
    * Run a comprehensive image test and log results
    */
   static async runDiagnostics(): Promise<void> {
-    console.log('🔍 Running image diagnostics...');
-    
+
     try {
       const results = await this.testCriticalImages();
       this.logResults(results);
-      
+
       // Additional debugging info
       console.group('🔧 Environment Info');
-      console.log('User Agent:', navigator.userAgent);
-      console.log('Base URL:', window.location.origin);
-      console.log('Current Path:', window.location.pathname);
+
       console.groupEnd();
-      
+
     } catch (error) {
-      console.error('Failed to run image diagnostics:', error);
+
     }
   }
 }

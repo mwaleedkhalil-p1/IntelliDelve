@@ -12,7 +12,7 @@ export const ImagePreloadStatus: React.FC<ImagePreloadStatusProps> = ({
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Only show in development mode
+
     if (process.env.NODE_ENV === 'development' && showInDevelopment) {
       setIsVisible(true);
     }
@@ -38,7 +38,7 @@ export const ImagePreloadStatus: React.FC<ImagePreloadStatusProps> = ({
           <span>{Math.round(stats.progress)}%</span>
         </div>
         <div className="w-32 h-1 bg-gray-600 rounded-full mt-1">
-          <div 
+          <div
             className="h-full bg-blue-400 rounded-full transition-all duration-300"
             style={{ width: `${stats.progress}%` }}
           />

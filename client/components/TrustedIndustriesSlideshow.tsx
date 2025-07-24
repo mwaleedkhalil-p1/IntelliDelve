@@ -19,10 +19,9 @@ const TrustedIndustriesSlideshow = memo<TrustedIndustriesSlideshowProps>(
     const slideshowRef = useRef<HTMLDivElement>(null);
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-    const itemsPerView = 4; // Show 4 items at a time
+    const itemsPerView = 4;
     const maxIndex = Math.max(0, industries.length - itemsPerView);
 
-    // Auto-play functionality
     useEffect(() => {
       if (isPlaying && !isPaused) {
         intervalRef.current = setInterval(() => {
@@ -61,17 +60,16 @@ const TrustedIndustriesSlideshow = memo<TrustedIndustriesSlideshowProps>(
       setIsPaused(false);
     };
 
-    // Animation for slide transitions
     useEffect(() => {
       if (slideshowRef.current) {
         const items = slideshowRef.current.querySelectorAll('.industry-item');
         gsap.fromTo(
           items,
           { opacity: 0, y: 20 },
-          { 
-            opacity: 1, 
-            y: 0, 
-            duration: 0.5, 
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
             stagger: 0.1,
             ease: "power2.out"
           }
@@ -91,12 +89,9 @@ const TrustedIndustriesSlideshow = memo<TrustedIndustriesSlideshowProps>(
             </p>
           </div>
 
-          {/* Slideshow Container */}
           <div className="relative">
 
-
-            {/* Industries Grid */}
-            <div 
+            <div
               ref={slideshowRef}
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
               onMouseEnter={handleMouseEnter}
@@ -119,7 +114,6 @@ const TrustedIndustriesSlideshow = memo<TrustedIndustriesSlideshowProps>(
               ))}
             </div>
 
-            {/* Progress Indicators */}
             <div className="flex justify-center mt-8 space-x-2">
               {Array.from({ length: maxIndex + 1 }).map((_, index) => (
                 <button
@@ -137,7 +131,6 @@ const TrustedIndustriesSlideshow = memo<TrustedIndustriesSlideshowProps>(
               ))}
             </div>
 
-            {/* Status Indicator */}
             <div className="text-center mt-4">
               <span className="text-sm text-gray-500 dark:text-gray-400">
                 {isPlaying ? "Auto-playing" : "Paused"} • {currentIndex + 1} of {maxIndex + 1}
@@ -145,10 +138,9 @@ const TrustedIndustriesSlideshow = memo<TrustedIndustriesSlideshowProps>(
             </div>
           </div>
 
-          {/* Mobile Continuous Scroll (for smaller screens) */}
           <div className="lg:hidden mt-12 mobile-full-width">
             <div className="flex animate-scroll-infinite space-x-4 md:space-x-6 overflow-hidden px-4">
-              {/* First set */}
+
               {industries.map((industry, index) => (
                 <div
                   key={`mobile-first-${index}`}
@@ -164,7 +156,7 @@ const TrustedIndustriesSlideshow = memo<TrustedIndustriesSlideshowProps>(
                   </h3>
                 </div>
               ))}
-              {/* Duplicate set for seamless loop */}
+
               {industries.map((industry, index) => (
                 <div
                   key={`mobile-second-${index}`}

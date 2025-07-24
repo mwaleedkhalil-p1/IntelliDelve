@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { useImagePreloader } from '../hooks/useImagePreloader';
 
 interface OptimizedImageProps {
@@ -13,12 +13,11 @@ interface OptimizedImageProps {
   placeholder?: string;
   fallback?: string;
   onLoad?: () => void;
-  onError?: () => void;
+  onError?: (error: Error) => void;
   sizes?: string;
   quality?: number;
-  placeholder?: string;
-  onLoad?: () => void;
-  onError?: () => void;
+  retries?: number;
+  retryDelay?: number;
 }
 
 export function OptimizedImage({
@@ -28,21 +27,66 @@ export function OptimizedImage({
   height,
   className = "",
   loading = "lazy",
-  priority = false,
+  priority = 'low',
   sizes,
   quality = 75,
   placeholder = "/placeholder.svg",
+  fallback = "/fallback-image.png",
   onLoad,
   onError,
+  retries = 2,
+  retryDelay = 1000,
 }: OptimizedImageProps) {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [currentSrc, setCurrentSrc] = useState(placeholder);
+  const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
-  const [isInView, setIsInView] = useState(priority || loading === "eager");
+  const [retryCount, setRetryCount] = useState(0);
   const imgRef = useRef<HTMLImageElement>(null);
+  const retryTimeout = useRef<NodeJS.Timeout>();
 
-  // Intersection Observer for lazy loading
   useEffect(() => {
-    if (priority || loading === "eager") return;
+    return () => {
+      if (retryTimeout.current) {
+        clearTimeout(retryTimeout.current);
+      }
+    };
+  }, []);
+
+  const handleImageLoad = useCallback(() => {
+    setIsLoading(false);
+    setHasError(false);
+    onLoad?.();
+  }, [onLoad]);
+
+  const handleImageError = useCallback(() => {
+    const error = new Error(`Failed to load image: ${src}`);
+
+    if (retryCount < retries) {
+
+      setRetryCount(prev => prev + 1);
+      retryTimeout.current = setTimeout(() => {
+        setCurrentSrc(`${src}${src.includes('?') ? '&' : '?'}retry=${retryCount}`);
+      }, retryDelay * (retryCount + 1));
+    } else {
+
+      setHasError(true);
+      setCurrentSrc(fallback);
+      onError?.(error);
+    }
+  }, [src, fallback, retryCount, retries, retryDelay, onError]);
+
+  useEffect(() => {
+    setCurrentSrc(src);
+    setIsLoading(true);
+    setHasError(false);
+    setRetryCount(0);
+  }, [src]);
+
+  useEffect(() => {
+    if (priority === 'high' || loading === "eager") {
+      setIsInView(true);
+      return;
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -54,7 +98,7 @@ export function OptimizedImage({
         });
       },
       {
-        rootMargin: "50px", // Start loading 50px before entering viewport
+        rootMargin: "50px",
         threshold: 0.1,
       },
     );
@@ -66,14 +110,12 @@ export function OptimizedImage({
     return () => observer.disconnect();
   }, [priority, loading]);
 
-  // Generate responsive image sources
   const generateSrcSet = (baseSrc: string) => {
     if (baseSrc.includes("placeholder.svg")) return "";
 
     const ext = baseSrc.split(".").pop()?.toLowerCase();
     const basePath = baseSrc.replace(`.${ext}`, "");
 
-    // Generate different sizes for responsive images
     const sizes = [320, 640, 768, 1024, 1280, 1920];
     return sizes.map((size) => `${basePath}-${size}w.webp ${size}w`).join(", ");
   };
@@ -84,7 +126,7 @@ export function OptimizedImage({
   };
 
   const handleError = () => {
-    console.warn(`Failed to load image: ${src}`);
+
     setHasError(true);
     onError?.();
   };
@@ -98,7 +140,7 @@ export function OptimizedImage({
       className={`relative overflow-hidden ${className}`}
       style={{ width, height }}
     >
-      {/* Placeholder background */}
+
       {!isLoaded && (
         <div
           className="absolute inset-0 bg-gray-200 dark:bg-gray-700 animate-pulse"
@@ -106,10 +148,9 @@ export function OptimizedImage({
         />
       )}
 
-      {/* Actual image */}
       {isInView && (
         <>
-          {/* Modern WebP format */}
+
           <picture>
             {srcSet && (
               <source
@@ -119,30 +160,6 @@ export function OptimizedImage({
                   "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 }
                 type="image/webp"
-              />
-            )}
-            <img
-              src={imageSrc}
-              alt={alt}
-              width={width}
-              height={height}
-              loading={loading}
-              decoding="async"
-              className={`transition-opacity duration-300 ${
-                isLoaded ? "opacity-100" : "opacity-0"
-              }`}
-              onLoad={handleLoad}
-              onError={handleError}
-              style={{
-                objectFit: "cover",
-                width: "100%",
-                height: "100%",
-              }}
-            />
-          </picture>
-
-          {/* Preload critical images */}
-          {priority && (
             <link
               rel="preload"
               as="image"
@@ -154,7 +171,6 @@ export function OptimizedImage({
         </>
       )}
 
-      {/* Loading indicator */}
       {!isLoaded && isInView && (
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
@@ -164,7 +180,6 @@ export function OptimizedImage({
   );
 }
 
-// Hook for preloading critical images
 export function useImagePreload(src: string, priority = false) {
   useEffect(() => {
     if (!priority) return;

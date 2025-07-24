@@ -124,7 +124,7 @@ const PrivacyPolicy = memo(() => {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
-      {/* Hero Section */}
+
       <section className="pt-24 pb-12 lg:pt-32 lg:pb-20 bg-gradient-to-br from-primary/5 to-accent/5 dark:from-primary/20 dark:to-accent/20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -150,7 +150,6 @@ const PrivacyPolicy = memo(() => {
         </div>
       </section>
 
-      {/* Commitment Statement */}
       <section className="py-16 bg-white dark:bg-gray-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -163,7 +162,6 @@ const PrivacyPolicy = memo(() => {
         </div>
       </section>
 
-      {/* Policy Sections */}
       <section className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-12">
@@ -216,7 +214,6 @@ const PrivacyPolicy = memo(() => {
           </div>
         </div>
       </section>
-
 
     </div>
   );

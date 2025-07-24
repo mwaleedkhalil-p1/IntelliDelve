@@ -24,10 +24,9 @@ interface IndustryPageProps {
   industry: IndustryData;
 }
 
-// Industry-specific images and colors
 const getIndustryAssets = (slug: string) => {
   const assets: { [key: string]: { image: string; color: string; icon: any; gradient: string } } = {
-    // Financial Services
+
     "banking-financial": {
       image: "/images/downloaded/unsplash-photo-1554224155-6726b3ff858f.jpg",
       color: "blue",
@@ -53,7 +52,6 @@ const getIndustryAssets = (slug: string) => {
       gradient: "from-indigo-600 via-blue-600 to-purple-600"
     },
 
-    // Healthcare & Medical
     "healthcare-medical": {
       image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=85",
       color: "green",
@@ -61,7 +59,6 @@ const getIndustryAssets = (slug: string) => {
       gradient: "from-green-600 via-emerald-600 to-teal-600"
     },
 
-    // Technology & Innovation
     "it-software": {
       image: "/images/downloaded/unsplash-photo-1517077304055-6e89abbf09b0.jpg",
       color: "purple",
@@ -81,7 +78,6 @@ const getIndustryAssets = (slug: string) => {
       gradient: "from-cyan-600 via-blue-600 to-indigo-600"
     },
 
-    // Education
     "education-academic": {
       image: "/images/downloaded/unsplash-photo-1541339907198-e08756dedf3f.jpg",
       color: "orange",
@@ -95,7 +91,6 @@ const getIndustryAssets = (slug: string) => {
       gradient: "from-orange-600 via-red-600 to-pink-600"
     },
 
-    // Government & Public
     "government-public": {
       image: "/images/downloaded/unsplash-photo-1486406146926-c627a92ad1ab.jpg",
       color: "slate",
@@ -103,7 +98,6 @@ const getIndustryAssets = (slug: string) => {
       gradient: "from-slate-600 via-gray-600 to-zinc-600"
     },
 
-    // Corporate & Professional
     "corporate-professional": {
       image: "/images/downloaded/unsplash-photo-1497366216548-37526070297c.jpg",
       color: "blue",
@@ -111,7 +105,6 @@ const getIndustryAssets = (slug: string) => {
       gradient: "from-blue-600 via-sky-600 to-cyan-600"
     },
 
-    // Legal Services
     "legal-services": {
       image: "/images/downloaded/unsplash-photo-1589829545856-d10d557cf95f.jpg",
       color: "red",
@@ -119,7 +112,6 @@ const getIndustryAssets = (slug: string) => {
       gradient: "from-red-600 via-rose-600 to-pink-600"
     },
 
-    // Manufacturing & Industrial
     "manufacturing-industrial": {
       image: "/images/downloaded/unsplash-photo-1581091226825-a6a2a5aee158.jpg",
       color: "gray",
@@ -133,7 +125,6 @@ const getIndustryAssets = (slug: string) => {
       gradient: "from-gray-700 via-slate-700 to-zinc-700"
     },
 
-    // Energy & Utilities
     "energy-utilities": {
       image: "/images/downloaded/unsplash-photo-1473341304170-971dccb5ac1e.jpg",
       color: "yellow",
@@ -141,7 +132,6 @@ const getIndustryAssets = (slug: string) => {
       gradient: "from-yellow-600 via-orange-600 to-red-600"
     },
 
-    // Retail & Consumer
     "retail-consumer": {
       image: "/images/downloaded/unsplash-photo-1441986300917-64674bd600d8.jpg",
       color: "pink",
@@ -155,7 +145,6 @@ const getIndustryAssets = (slug: string) => {
       gradient: "from-purple-600 via-violet-600 to-pink-600"
     },
 
-    // Real Estate
     "real-estate": {
       image: "/images/downloaded/unsplash-photo-1560518883-ce09059eeffa.jpg",
       color: "emerald",
@@ -163,7 +152,6 @@ const getIndustryAssets = (slug: string) => {
       gradient: "from-emerald-600 via-green-600 to-teal-600"
     },
 
-    // Transportation & Logistics
     "transportation-logistics": {
       image: "/images/downloaded/unsplash-photo-1586528116311-ad8dd3c8310d.jpg",
       color: "amber",
@@ -171,7 +159,6 @@ const getIndustryAssets = (slug: string) => {
       gradient: "from-amber-600 via-orange-600 to-red-600"
     },
 
-    // Hospitality & Food
     "hospitality-food-leisure": {
       image: "/images/downloaded/unsplash-photo-1414235077428-338989a2e8c0.jpg",
       color: "orange",
@@ -179,7 +166,6 @@ const getIndustryAssets = (slug: string) => {
       gradient: "from-orange-600 via-red-600 to-pink-600"
     },
 
-    // Gig Workers
     "gig-workers": {
       image: "/images/downloaded/unsplash-photo-1521737604893-d14cc237f11d.jpg",
       color: "teal",
@@ -187,7 +173,6 @@ const getIndustryAssets = (slug: string) => {
       gradient: "from-teal-600 via-cyan-600 to-blue-600"
     },
 
-    // Non-Profit
     "non-profit": {
       image: "/images/downloaded/unsplash-photo-1559027615-cd4628902d4a.jpg",
       color: "green",
@@ -211,9 +196,9 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry }) => {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
-      {/* Hero Section */}
+
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background Image */}
+
         <div className="absolute inset-0 z-0">
           <img
             src={assets.image}
@@ -223,7 +208,6 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry }) => {
           <div className={`absolute inset-0 bg-gradient-to-r ${assets.gradient} opacity-50`}></div>
         </div>
 
-        {/* Pattern Overlay */}
         <div className="absolute inset-0 z-10">
           <div className="absolute inset-0 bg-[linear-gradient(45deg,_transparent_25%,_rgba(255,255,255,0.02)_25%,_rgba(255,255,255,0.02)_50%,_transparent_50%,_transparent_75%,_rgba(255,255,255,0.02)_75%)] bg-[length:32px_32px]"></div>
         </div>
@@ -290,7 +274,6 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry }) => {
         </div>
       </section>
 
-      {/* Industry Overview */}
       <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -337,7 +320,6 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry }) => {
         </div>
       </section>
 
-      {/* Key Screening Services */}
       <section className={`py-20 bg-gradient-to-br from-${assets.color}-50 via-gray-50 to-white dark:from-gray-800 dark:via-gray-900 dark:to-gray-900`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -379,7 +361,6 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry }) => {
         </div>
       </section>
 
-      {/* Compliance Standards */}
       <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -440,7 +421,6 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry }) => {
         </div>
       </section>
 
-      {/* Client Success Story */}
       <section className={`py-20 bg-gradient-to-br from-${assets.color}-50 via-gray-50 to-white dark:from-gray-800 dark:via-gray-900 dark:to-gray-900`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -491,7 +471,6 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry }) => {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className={`py-20 bg-gradient-to-r ${assets.gradient} relative overflow-hidden`}>
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

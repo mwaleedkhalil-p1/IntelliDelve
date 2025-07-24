@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState, memo, useCallback } from "react";
 import { gsap } from "gsap";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 
 import { LucideIcon } from "lucide-react";
 
@@ -21,14 +20,13 @@ interface MegaMenuProps {
   }[];
 }
 
-
-
 const MegaMenu = memo(
   ({ isOpen, onClose, title, description, sections }: MegaMenuProps) => {
-    const menuRef = useRef<HTMLDivElement>(null);
-    const contentRef = useRef<HTMLDivElement>(null);
-    const [shouldRender, setShouldRender] = useState(false);
-    const [activeKeyboardIndex, setActiveKeyboardIndex] = useState(-1);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [shouldRender, setShouldRender] = useState(false);
+  const [activeKeyboardIndex, setActiveKeyboardIndex] = useState(-1);
+  const navigate = useNavigate();
 
     // Prevent menu from closing when mouse is inside the mega menu content
     const handleMouseEnter = useCallback(() => {
@@ -50,7 +48,6 @@ const MegaMenu = memo(
           }
         } catch (error) {
           // If there's an error with closest, just continue with closing
-          console.warn('MegaMenu: Error checking relatedTarget:', error);
         }
       }
 
@@ -178,17 +175,15 @@ const MegaMenu = memo(
       }
     }, [activeKeyboardIndex, isOpen]);
 
-
-
     if (!shouldRender && !isOpen) return null;
 
     const optimalColumns = getOptimalColumns();
 
     return (
       <>
-        {/* Background overlay - only captures clicks outside menu */}
+
         <div
-          className="fixed inset-0 z-40"
+          className="absolute inset-0 z-40"
           onClick={onClose}
           style={{
             pointerEvents: isOpen ? "auto" : "none",
@@ -197,9 +192,8 @@ const MegaMenu = memo(
           }}
         />
 
-        {/* Menu content - positioned absolutely to avoid overlay interference */}
         <div
-          className="absolute top-16 left-1/2 transform -translate-x-1/2 w-full max-w-[95vw] sm:max-w-5xl lg:max-w-6xl xl:max-w-7xl px-2 sm:px-4 z-50 max-h-[calc(100vh-6rem)] lg:max-h-[calc(100vh-5rem)] overflow-hidden"
+          className="relative left-1/2 transform -translate-x-1/2 w-full max-w-[95vw] sm:max-w-5xl lg:max-w-6xl xl:max-w-7xl px-2 sm:px-4 z-50 max-h-[calc(100vh-6rem)] lg:max-h-[calc(100vh-5rem)] overflow-hidden"
           role="dialog"
           aria-modal="true"
           aria-labelledby="mega-menu-title"
@@ -218,7 +212,7 @@ const MegaMenu = memo(
             onMouseLeave={handleMouseLeave}
             data-mega-menu-content
           >
-            {/* Header */}
+
             <div className="p-4 sm:p-5 lg:p-6 border-b border-gray-100 dark:border-gray-700 flex-shrink-0">
               <div className="flex items-start justify-between">
                 <div className="flex-1">
@@ -232,7 +226,7 @@ const MegaMenu = memo(
                     {description}
                   </p>
                 </div>
-                {/* Close button for mobile/tablet */}
+
                 <button
                   onClick={onClose}
                   className="lg:hidden ml-4 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
@@ -245,8 +239,7 @@ const MegaMenu = memo(
               </div>
             </div>
 
-            {/* Content - Scrollable with custom scrollbar */}
-            <div 
+            <div
               className="relative flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent hover:scrollbar-thumb-gray-400 dark:hover:scrollbar-thumb-gray-500"
               style={{
                 overscrollBehavior: 'contain',
@@ -277,12 +270,30 @@ const MegaMenu = memo(
                       <ul className="space-y-1" role="list">
                         {section.items.slice(0, 6).map((item, itemIndex) => (
                           <li key={itemIndex} role="listitem">
-                            <Link
-                              to={item.path}
-                              onClick={onClose}
-                              className="flex items-center gap-2 sm:gap-3 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-sky-300 transition-all duration-200 py-3 sm:py-2 px-3 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg group text-sm touch-manipulation focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-800"
-                              tabIndex={0}
-                            >
+                <Link
+                  to={item.path}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    // Close menu first
+                    onClose();
+
+                    // Delay navigation slightly to ensure menu closes
+                    setTimeout(() => {
+                      navigate(item.path);
+                      // Scroll to top after navigation
+                      requestAnimationFrame(() => {
+                        window.scrollTo({
+                          top: 0,
+                          behavior: 'instant'
+                        });
+                      });
+                    }, 0);
+                  }}
+                  className="flex items-center gap-2 sm:gap-3 text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-sky-300 transition-all duration-200 py-3 sm:py-2 px-3 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg group text-sm touch-manipulation focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-800"
+                  tabIndex={0}
+                >
                               {item.icon && (
                                 <item.icon className="w-4 h-4 text-gray-400 group-hover:text-primary dark:group-hover:text-sky-300 transition-colors duration-200 flex-shrink-0" />
                               )}
@@ -296,7 +307,27 @@ const MegaMenu = memo(
                           <li role="listitem">
                             <Link
                               to={`/what-we-offer#${section.title.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')}`}
-                              onClick={onClose}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                const currentScroll = window.scrollY;
+                                const path = `/what-we-offer#${section.title.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')}`;
+
+                                // Close menu first
+                                onClose();
+
+                                // Delay navigation slightly to ensure menu closes
+                                setTimeout(() => {
+                                  navigate(path);
+                                  // Restore scroll position after navigation
+                                  requestAnimationFrame(() => {
+                                    window.scrollTo({
+                                      top: currentScroll,
+                                      behavior: 'instant'
+                                    });
+                                  });
+                                }, 0);
+                              }}
                               className="text-primary dark:text-sky-300 hover:text-primary/80 dark:hover:text-sky-300/80 transition-colors duration-200 py-2 px-3 text-sm font-medium block focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-800"
                             >
                               View All {section.title}
@@ -308,7 +339,6 @@ const MegaMenu = memo(
                   ))}
                 </nav>
               </div>
-
 
             </div>
           </div>

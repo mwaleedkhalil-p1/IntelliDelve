@@ -38,7 +38,7 @@ const DataMigration = memo(() => {
   const dashboardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Hero animation with data flow effect
+
     if (headerRef.current) {
       gsap.fromTo(
         headerRef.current,
@@ -47,7 +47,6 @@ const DataMigration = memo(() => {
       );
     }
 
-    // Dashboard animation
     if (dashboardRef.current) {
       gsap.fromTo(
         dashboardRef.current.children,
@@ -67,7 +66,6 @@ const DataMigration = memo(() => {
       );
     }
 
-    // Features with data transfer animation
     if (featuresRef.current) {
       gsap.fromTo(
         featuresRef.current.children,
@@ -87,7 +85,6 @@ const DataMigration = memo(() => {
       );
     }
 
-    // Benefits with progressive reveal
     if (benefitsRef.current) {
       gsap.fromTo(
         benefitsRef.current.children,
@@ -107,7 +104,6 @@ const DataMigration = memo(() => {
       );
     }
 
-    // Process with data flow timeline
     if (processRef.current) {
       gsap.fromTo(
         processRef.current.children,
@@ -231,13 +227,12 @@ const DataMigration = memo(() => {
         canonicalUrl="/data-migration"
       />
       <div className="min-h-screen">
-      {/* Hero Section - Data Dashboard Design */}
+
       <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-gray-900 via-orange-900 to-red-900">
-        {/* Data Visualization Background */}
+
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center opacity-10"></div>
 
-          {/* Data Flow Pattern */}
           <div className="absolute inset-0 opacity-20">
             <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
               <defs>
@@ -251,12 +246,10 @@ const DataMigration = memo(() => {
             </svg>
           </div>
 
-          {/* Floating Data Points */}
           <div className="absolute top-20 left-20 w-3 h-3 bg-orange-400 rounded-full animate-pulse"></div>
           <div className="absolute top-1/3 right-1/4 w-2 h-2 bg-red-400 rounded-full animate-pulse delay-1000"></div>
           <div className="absolute bottom-1/3 left-1/3 w-4 h-4 bg-amber-400 rounded-full animate-pulse delay-2000"></div>
 
-          {/* Data Transfer Lines */}
           <svg className="absolute inset-0 w-full h-full opacity-30" viewBox="0 0 1000 1000">
             <path d="M100,300 Q300,200 500,300 T900,300" stroke="#f97316" strokeWidth="3" fill="none" className="animate-pulse"/>
             <path d="M100,500 Q300,400 500,500 T900,500" stroke="#ef4444" strokeWidth="3" fill="none" className="animate-pulse delay-1000"/>
@@ -305,7 +298,6 @@ const DataMigration = memo(() => {
                 </button>
               </div>
 
-              {/* Migration Stats */}
               <div className="grid grid-cols-3 gap-6 pt-8 border-t border-orange-400/20">
                 <div className="text-center">
                   <div className="text-3xl font-bold text-orange-400">10PB+</div>
@@ -323,9 +315,9 @@ const DataMigration = memo(() => {
             </div>
 
             <div className="relative">
-              {/* Migration Dashboard */}
+
               <div ref={dashboardRef} className="relative w-full h-96 bg-gradient-to-br from-orange-900/30 to-red-900/30 rounded-3xl border border-orange-400/20 backdrop-blur-sm p-6">
-                {/* Dashboard Header */}
+
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-white font-bold text-lg">Migration Dashboard</h3>
                   <div className="flex items-center space-x-2">
@@ -334,7 +326,6 @@ const DataMigration = memo(() => {
                   </div>
                 </div>
 
-                {/* Metrics Grid */}
                 <div className="grid grid-cols-2 gap-4 mb-6">
                   {dashboardMetrics.map((metric, index) => (
                     <div key={index} className="bg-gradient-to-r from-orange-500/20 to-red-600/20 rounded-xl p-4 border border-orange-400/30">
@@ -347,7 +338,6 @@ const DataMigration = memo(() => {
                   ))}
                 </div>
 
-                {/* Progress Bar */}
                 <div className="space-y-3">
                   <div className="flex justify-between text-sm text-gray-400">
                     <span>Migration Progress</span>
@@ -358,7 +348,6 @@ const DataMigration = memo(() => {
                   </div>
                 </div>
 
-                {/* Data Flow Visualization */}
                 <div className="absolute bottom-4 right-4 flex items-center space-x-2">
                   <div className="flex space-x-1">
                     <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
@@ -370,7 +359,6 @@ const DataMigration = memo(() => {
                 </div>
               </div>
 
-              {/* Floating Migration Cards */}
               <div className="absolute -top-6 -left-6 bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
                 <div className="flex items-center space-x-3">
                   <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
@@ -389,7 +377,6 @@ const DataMigration = memo(() => {
         </div>
       </section>
 
-      {/* What We Do Section */}
       <section className="py-20 bg-white dark:bg-gray-900 relative">
         <div className="absolute inset-0 bg-gradient-to-br from-orange-50/50 to-red-50/50 dark:from-orange-900/10 dark:to-red-900/10"></div>
 
@@ -469,7 +456,6 @@ const DataMigration = memo(() => {
                 className="relative w-full h-auto rounded-2xl shadow-2xl"
               />
 
-              {/* Floating Data Stats */}
               <div className="absolute -top-6 -right-6 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-xl border border-gray-200 dark:border-gray-700">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-orange-600">10PB+</div>
@@ -488,7 +474,6 @@ const DataMigration = memo(() => {
         </div>
       </section>
 
-      {/* Features Section */}
       <section className="py-20 bg-gradient-to-br from-orange-50 via-red-50 to-amber-50 dark:from-gray-900 dark:via-orange-900/20 dark:to-red-900/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -510,7 +495,7 @@ const DataMigration = memo(() => {
           <div ref={featuresRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {keyFeatures.map((feature, index) => (
               <div key={index} className={`group relative ${feature.bgColor} rounded-3xl p-8 border border-gray-200 dark:border-gray-700 hover:border-orange-300 dark:hover:border-orange-600 transition-all duration-500 hover:scale-105 hover:shadow-2xl`}>
-                {/* Gradient Border Effect */}
+
                 <div className={`absolute inset-0 bg-gradient-to-r ${feature.gradient} rounded-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
 
                 <div className="relative z-10">
@@ -527,7 +512,6 @@ const DataMigration = memo(() => {
                   </p>
                 </div>
 
-                {/* Decorative Corner */}
                 <div className="absolute top-4 right-4 w-8 h-8 bg-gradient-to-br from-white/20 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
             ))}
@@ -535,7 +519,6 @@ const DataMigration = memo(() => {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-orange-600 via-red-600 to-amber-600"></div>
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center opacity-10"></div>

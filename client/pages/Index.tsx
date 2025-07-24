@@ -30,7 +30,6 @@ export default function Index() {
   const servicesRef = useRef<HTMLDivElement>(null);
   const certificationsRef = useRef<HTMLDivElement>(null);
 
-  // Mobile carousel state for services
   const [currentServiceSlide, setCurrentServiceSlide] = useState(0);
 
   useEffect(() => {
@@ -395,7 +394,6 @@ export default function Index() {
       />
       <HeroCarousel />
 
-      {/* Animated Stats */}
       <section className="py-12 bg-gradient-to-r from-blue-600 to-purple-600 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 left-10 w-32 h-32 bg-yellow-300 rounded-full animate-float"></div>
@@ -439,11 +437,8 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Trusted by Industries */}
       <TrustedIndustriesSlideshow industries={industries} />
 
-
-      {/* Core Services */}
       <section
         ref={servicesRef}
         className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-brand-navy/50 dark:to-purple-900/20"
@@ -459,14 +454,12 @@ export default function Index() {
             </p>
           </div>
 
-          {/* Desktop Grid */}
           <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
             {services.map((service, index) => (
               <ServiceCard key={index} {...service} delay={index * 0.2} />
             ))}
           </div>
 
-          {/* Mobile Carousel */}
           <div className="md:hidden relative">
             <div className="overflow-hidden">
               <div
@@ -481,7 +474,6 @@ export default function Index() {
               </div>
             </div>
 
-            {/* Carousel Controls */}
             <div className="flex justify-between items-center mt-6">
               <button
                 onClick={() => setCurrentServiceSlide(Math.max(0, currentServiceSlide - 1))}
@@ -515,10 +507,8 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Client Success Stories */}
       <TestimonialSlideshow testimonials={testimonials} />
 
-      {/* Certifications */}
       <section className="py-20 bg-gray-50 dark:bg-brand-navy/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">

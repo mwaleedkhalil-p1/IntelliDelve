@@ -16,10 +16,7 @@ const NotFound = () => {
   const location = useLocation();
 
   useEffect(() => {
-    console.error(
-      "404 Error: User attempted to access non-existent route:",
-      location.pathname,
-    );
+
   }, [location.pathname]);
 
   const quickLinks = [
@@ -40,7 +37,7 @@ const NotFound = () => {
 
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900 flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-8">
         <div className="max-w-4xl mx-auto text-center">
-          {/* 404 Illustration */}
+
           <div className="mb-8">
             <div className="relative">
               <div className="text-8xl md:text-9xl font-bold text-gray-200 dark:text-gray-700 select-none">
@@ -52,7 +49,6 @@ const NotFound = () => {
             </div>
           </div>
 
-          {/* Error Message */}
           <div className="mb-12">
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Oops! Page Not Found
@@ -65,7 +61,6 @@ const NotFound = () => {
             </p>
           </div>
 
-          {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Link
               to="/"
@@ -83,7 +78,6 @@ const NotFound = () => {
             </button>
           </div>
 
-          {/* Quick Links */}
           <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-700">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
               Explore Our Solutions
@@ -107,7 +101,6 @@ const NotFound = () => {
             </div>
           </div>
 
-          {/* Search Suggestion */}
           <div className="mt-8 text-center">
             <p className="text-gray-500 dark:text-gray-400 mb-4">
               Can't find what you're looking for?

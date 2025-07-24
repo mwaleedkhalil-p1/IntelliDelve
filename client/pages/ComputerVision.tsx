@@ -105,16 +105,16 @@ export default function ComputerVision() {
         canonicalUrl="/computer-vision"
       />
       <div className="min-h-screen">
-      {/* Hero Section */}
+
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background Image */}
+
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: `url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')`,
           }}
         >
-          {/* Dark overlay for text readability */}
+
           <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 to-indigo-900/70"></div>
         </div>
 
@@ -128,7 +128,6 @@ export default function ComputerVision() {
               IntelliDelve's Computer Vision solutions empower organizations to extract actionable insights from images, video, and real-time visual data. From facial recognition to visual quality inspection, our AI-powered vision platform automates complex visual tasks with speed, consistency, and unmatched accuracy.
             </p>
 
-            {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => openCalendly("Computer Vision Solutions - Schedule Meeting")}
@@ -149,7 +148,6 @@ export default function ComputerVision() {
         </div>
       </section>
 
-      {/* Core Capabilities */}
       <section className="py-20 bg-white dark:bg-brand-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -235,7 +233,6 @@ export default function ComputerVision() {
         </div>
       </section>
 
-      {/* Advanced Features */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-brand-navy/50 dark:to-purple-900/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -293,7 +290,6 @@ export default function ComputerVision() {
         </div>
       </section>
 
-      {/* Real-World Applications */}
       <section className="py-20 bg-white dark:bg-brand-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -391,7 +387,6 @@ export default function ComputerVision() {
             </div>
           </div>
 
-          {/* Additional Applications */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
             <div className="bg-gray-50 dark:bg-brand-navy/50 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700">
               <div className="flex items-center space-x-3 mb-4">
@@ -435,7 +430,6 @@ export default function ComputerVision() {
           </div>
         </div>
       </section>
-
 
     </div>
     </>

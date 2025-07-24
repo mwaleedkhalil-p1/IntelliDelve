@@ -45,7 +45,6 @@ export function SEO({
     ? ogImage
     : `${siteUrl}${ogImage}`;
 
-  // Default structured data for organization
   const defaultStructuredData = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -103,20 +102,18 @@ export function SEO({
 
   return (
     <Helmet>
-      {/* Basic meta tags */}
+
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <link rel="canonical" href={canonicalUrl} />
 
-      {/* Viewport and mobile optimization */}
       <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0, viewport-fit=cover"
       />
       <meta name="format-detection" content="telephone=no" />
 
-      {/* Robots */}
       <meta
         name="robots"
         content={
@@ -134,7 +131,6 @@ export function SEO({
         }
       />
 
-      {/* Open Graph */}
       <meta property="og:type" content={ogType} />
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
@@ -146,7 +142,6 @@ export function SEO({
       <meta property="og:site_name" content={siteName} />
       <meta property="og:locale" content="en_US" />
 
-      {/* Twitter Cards */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@intellidelve" />
       <meta name="twitter:creator" content="@intellidelve" />
@@ -155,7 +150,6 @@ export function SEO({
       <meta name="twitter:image" content={fullOgImage} />
       <meta name="twitter:image:alt" content={title || siteName} />
 
-      {/* Additional meta tags for SEO */}
       <meta name="author" content={siteName} />
       <meta name="publisher" content={siteName} />
       <meta name="copyright" content={siteName} />
@@ -164,7 +158,6 @@ export function SEO({
       <meta name="rating" content="general" />
       <meta name="distribution" content="global" />
 
-      {/* Favicon and icons */}
       <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       <link
         rel="icon"
@@ -187,7 +180,6 @@ export function SEO({
       <meta name="theme-color" content="#2563eb" />
       <meta name="msapplication-TileColor" content="#2563eb" />
 
-      {/* Preconnect to external domains */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link
         rel="preconnect"
@@ -199,14 +191,12 @@ export function SEO({
       <link rel="preconnect" href="https://assets.calendly.com" />
       <link rel="preconnect" href="https://calendly.com" />
 
-      {/* DNS prefetch for performance */}
       <link rel="dns-prefetch" href="//fonts.googleapis.com" />
       <link rel="dns-prefetch" href="//fonts.gstatic.com" />
       <link rel="dns-prefetch" href="//www.google-analytics.com" />
       <link rel="dns-prefetch" href="//assets.calendly.com" />
       <link rel="dns-prefetch" href="//calendly.com" />
 
-      {/* Preload critical Calendly resources */}
       <link
         rel="preload"
         href="https://assets.calendly.com/assets/external/widget.js"
@@ -218,7 +208,6 @@ export function SEO({
         href="https://calendly.com/mwaleedkhalil/30min"
       />
 
-      {/* Alternate languages */}
       {alternateLanguages.map((lang, index) => (
         <link
           key={index}
@@ -228,12 +217,10 @@ export function SEO({
         />
       ))}
 
-      {/* Structured Data */}
       <script type="application/ld+json">
         {JSON.stringify(structuredData || defaultStructuredData)}
       </script>
 
-      {/* Additional performance hints */}
       <meta httpEquiv="dns-prefetch-control" content="on" />
     </Helmet>
   );

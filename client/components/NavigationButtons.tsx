@@ -11,7 +11,6 @@ const NavigationButtons = memo(() => {
   const canGoBack = currentIndex > 0;
   const canGoForward = currentIndex < navigationHistory.length - 1;
 
-  // Track navigation history
   useEffect(() => {
     setNavigationHistory(prev => {
       const newHistory = [...prev.slice(0, currentIndex + 1), location.pathname];
@@ -38,14 +37,13 @@ const NavigationButtons = memo(() => {
     navigate("/");
   };
 
-  // Don't show on home page
   if (location.pathname === "/") {
     return null;
   }
 
   return (
     <div className="fixed bottom-6 left-6 z-40 flex flex-col space-y-2">
-      {/* Back Button */}
+
       <button
         onClick={handleBack}
         disabled={!canGoBack}
@@ -60,7 +58,6 @@ const NavigationButtons = memo(() => {
         <ChevronLeft className="h-5 w-5" />
       </button>
 
-      {/* Home Button */}
       <button
         onClick={handleHome}
         className="p-3 rounded-full bg-emerald-500 dark:bg-emerald-400 text-white dark:text-slate-900 shadow-lg hover:bg-emerald-600 dark:hover:bg-emerald-300 transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2 dark:focus:ring-offset-slate-900"
@@ -70,7 +67,6 @@ const NavigationButtons = memo(() => {
         <Home className="h-5 w-5" />
       </button>
 
-      {/* Forward Button - Only show when forward navigation is available */}
       {canGoForward && (
         <button
           onClick={handleForward}

@@ -8,10 +8,7 @@ export const useReCaptcha = () => {
   const verifyRecaptcha = useCallback(
     async (action: string = "form_submit") => {
       if (!executeRecaptcha) {
-        console.warn(
-          "ReCAPTCHA not available - using mock verification for development",
-        );
-        // Return a mock token for development when reCAPTCHA is disabled
+
         return "development_mock_token";
       }
 
@@ -19,7 +16,7 @@ export const useReCaptcha = () => {
         const token = await executeRecaptcha(action);
         return token;
       } catch (error) {
-        console.error("ReCAPTCHA execution failed:", error);
+
         return null;
       }
     },

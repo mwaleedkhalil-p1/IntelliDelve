@@ -121,10 +121,8 @@ function MetricCard({
           {title}
         </p>
 
-        {/* Animated border */}
         <div className="absolute inset-0 rounded-3xl border border-white/20 group-hover:border-white/40 transition-colors duration-500"></div>
 
-        {/* Glow effect on hover */}
         <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
       </div>
     </div>
@@ -224,7 +222,6 @@ export function AnimatedDashboard() {
           ))}
         </div>
 
-        {/* Futuristic Progress Bars Section */}
         <div
           ref={progressRef}
           className="relative bg-gray-50 dark:bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-gray-200 dark:border-white/10 overflow-hidden transition-all duration-300"
@@ -291,7 +288,6 @@ export function AnimatedDashboard() {
             </div>
           </div>
 
-          {/* Animated particles */}
           <div className="absolute top-4 left-4 w-2 h-2 bg-blue-400 rounded-full animate-ping"></div>
           <div
             className="absolute top-8 right-8 w-1.5 h-1.5 bg-purple-400 rounded-full animate-ping"

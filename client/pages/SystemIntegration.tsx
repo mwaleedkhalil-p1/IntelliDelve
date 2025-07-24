@@ -45,7 +45,7 @@ const SystemIntegration = memo(() => {
   const networkRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Hero animation with tech feel
+
     if (headerRef.current) {
       gsap.fromTo(
         headerRef.current,
@@ -54,7 +54,6 @@ const SystemIntegration = memo(() => {
       );
     }
 
-    // Network visualization animation
     if (networkRef.current) {
       gsap.fromTo(
         networkRef.current.children,
@@ -74,7 +73,6 @@ const SystemIntegration = memo(() => {
       );
     }
 
-    // Features slide in from different directions
     if (featuresRef.current) {
       gsap.fromTo(
         featuresRef.current.children,
@@ -94,7 +92,6 @@ const SystemIntegration = memo(() => {
       );
     }
 
-    // Benefits cascade animation
     if (benefitsRef.current) {
       gsap.fromTo(
         benefitsRef.current.children,
@@ -114,7 +111,6 @@ const SystemIntegration = memo(() => {
       );
     }
 
-    // Process timeline with tech animation
     if (processRef.current) {
       gsap.fromTo(
         processRef.current.children,
@@ -239,13 +235,12 @@ const SystemIntegration = memo(() => {
         canonicalUrl="/system-integration"
       />
       <div className="min-h-screen">
-      {/* Hero Section - Tech Network Design */}
+
       <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-gray-900 via-emerald-900 to-teal-900">
-        {/* Tech Background */}
+
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center opacity-5"></div>
 
-          {/* Circuit Pattern Overlay */}
           <div className="absolute inset-0 opacity-10">
             <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
               <defs>
@@ -258,12 +253,10 @@ const SystemIntegration = memo(() => {
             </svg>
           </div>
 
-          {/* Animated Network Nodes */}
           <div className="absolute top-20 left-20 w-4 h-4 bg-emerald-400 rounded-full animate-pulse"></div>
           <div className="absolute top-1/3 right-1/4 w-3 h-3 bg-teal-400 rounded-full animate-pulse delay-1000"></div>
           <div className="absolute bottom-1/3 left-1/3 w-5 h-5 bg-cyan-400 rounded-full animate-pulse delay-2000"></div>
 
-          {/* Connection Lines */}
           <svg className="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 1000 1000">
             <line x1="200" y1="200" x2="400" y2="350" stroke="#10b981" strokeWidth="2" className="animate-pulse"/>
             <line x1="400" y1="350" x2="700" y2="250" stroke="#14b8a6" strokeWidth="2" className="animate-pulse delay-500"/>
@@ -314,7 +307,6 @@ const SystemIntegration = memo(() => {
                 </Link>
               </div>
 
-              {/* Tech Stats */}
               <div className="grid grid-cols-3 gap-6 pt-8 border-t border-emerald-400/20">
                 <div className="text-center">
                   <div className="text-3xl font-bold text-emerald-400">500+</div>
@@ -332,14 +324,13 @@ const SystemIntegration = memo(() => {
             </div>
 
             <div className="relative">
-              {/* Network Visualization */}
+
               <div ref={networkRef} className="relative w-full h-96 bg-gradient-to-br from-emerald-900/30 to-teal-900/30 rounded-3xl border border-emerald-400/20 backdrop-blur-sm p-8">
-                {/* Central Hub */}
+
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-2xl flex items-center justify-center shadow-2xl">
                   <Network className="w-8 h-8 text-white" />
                 </div>
 
-                {/* Connected Nodes */}
                 {networkNodes.map((node, index) => (
                   <div
                     key={node.id}
@@ -355,7 +346,6 @@ const SystemIntegration = memo(() => {
                   </div>
                 ))}
 
-                {/* Connection Lines */}
                 <svg className="absolute inset-0 w-full h-full">
                   <line x1="50%" y1="50%" x2="20%" y2="20%" stroke="#10b981" strokeWidth="2" className="animate-pulse"/>
                   <line x1="50%" y1="50%" x2="80%" y2="20%" stroke="#14b8a6" strokeWidth="2" className="animate-pulse delay-500"/>
@@ -363,13 +353,11 @@ const SystemIntegration = memo(() => {
                   <line x1="50%" y1="50%" x2="80%" y2="80%" stroke="#0891b2" strokeWidth="2" className="animate-pulse delay-1500"/>
                 </svg>
 
-                {/* Floating Labels */}
                 <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-white/10 backdrop-blur-md rounded-lg px-3 py-1 border border-white/20">
                   <span className="text-xs text-white font-medium">API Gateway</span>
                 </div>
               </div>
 
-              {/* Floating Tech Cards */}
               <div className="absolute -top-6 -left-6 bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
                 <div className="flex items-center space-x-3">
                   <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
@@ -388,7 +376,6 @@ const SystemIntegration = memo(() => {
         </div>
       </section>
 
-      {/* What We Do Section */}
       <section className="py-20 bg-white dark:bg-gray-900 relative">
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 to-teal-50/50 dark:from-emerald-900/10 dark:to-teal-900/10"></div>
 
@@ -468,7 +455,6 @@ const SystemIntegration = memo(() => {
                 className="relative w-full h-auto rounded-2xl shadow-2xl"
               />
 
-              {/* Floating Tech Indicators */}
               <div className="absolute -top-6 -right-6 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-xl border border-gray-200 dark:border-gray-700">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-emerald-600">500+</div>
@@ -487,7 +473,6 @@ const SystemIntegration = memo(() => {
         </div>
       </section>
 
-      {/* Key Features */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-indigo-50 dark:from-brand-navy/50 dark:to-purple-900/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -519,7 +504,6 @@ const SystemIntegration = memo(() => {
         </div>
       </section>
 
-      {/* Integration Process */}
       <section className="py-20 bg-white dark:bg-brand-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -554,7 +538,6 @@ const SystemIntegration = memo(() => {
         </div>
       </section>
 
-      {/* Benefits Section */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-brand-navy/50 dark:to-indigo-900/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -585,7 +568,6 @@ const SystemIntegration = memo(() => {
         </div>
       </section>
 
-      {/* Industries Section */}
       <section className="py-20 bg-white dark:bg-brand-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -619,7 +601,6 @@ const SystemIntegration = memo(() => {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-indigo-600 to-blue-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">

@@ -45,7 +45,7 @@ export const SolutionPage: React.FC<SolutionPageProps> = ({ solution }) => {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
-      {/* Hero Section */}
+
       <section
         className={`relative pt-24 pb-16 md:pt-32 md:pb-24 px-4 sm:px-6 lg:px-8 ${solution.bgColor}`}
       >
@@ -98,7 +98,6 @@ export const SolutionPage: React.FC<SolutionPageProps> = ({ solution }) => {
         </div>
       </section>
 
-      {/* What Section */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -136,7 +135,6 @@ export const SolutionPage: React.FC<SolutionPageProps> = ({ solution }) => {
         </div>
       </section>
 
-      {/* Why Section */}
       <section className={`py-20 relative overflow-hidden ${!solution.why.backgroundImage ? 'bg-gray-50 dark:bg-gray-800' : ''}`}>
         {solution.why.backgroundImage && (
           <>
@@ -190,7 +188,6 @@ export const SolutionPage: React.FC<SolutionPageProps> = ({ solution }) => {
         </div>
       </section>
 
-      {/* How Section */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -220,7 +217,6 @@ export const SolutionPage: React.FC<SolutionPageProps> = ({ solution }) => {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-16 bg-primary text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Users className="h-12 w-12 mx-auto mb-6" />

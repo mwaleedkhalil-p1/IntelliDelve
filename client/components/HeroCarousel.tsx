@@ -225,18 +225,17 @@ export function HeroCarousel() {
               opacity: index === 0 ? 1 : 0,
             }}
           >
-            {/* Full-width background image */}
+
             <div
               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
               style={{
                 backgroundImage: `url(${slide.image})`,
               }}
             >
-              {/* Gradient overlay */}
+
               <div className={`absolute inset-0 bg-gradient-to-r ${slide.gradientFrom} ${slide.gradientTo}`}></div>
             </div>
 
-            {/* Content overlay */}
             <div className="relative h-full flex items-center">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
                 <div className="max-w-3xl">
@@ -287,7 +286,6 @@ export function HeroCarousel() {
               </div>
             </div>
 
-            {/* Progress bar at the bottom */}
             <div className="absolute bottom-0 left-0 right-0 px-4 sm:px-6 lg:px-8 pb-4">
               <div className="max-w-7xl mx-auto">
                 <div className="bg-white/20 rounded-full h-1 overflow-hidden backdrop-blur-sm">
@@ -317,9 +315,8 @@ export function HeroCarousel() {
         <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
       </button>
 
-      {/* Slide Indicators and Controls */}
       <div className="absolute bottom-16 sm:bottom-20 left-1/2 transform -translate-x-1/2 flex items-center space-x-4 z-20">
-        {/* Play/Pause Button */}
+
         <button
           onClick={togglePlayPause}
           className="p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-all duration-300 group"
@@ -332,7 +329,6 @@ export function HeroCarousel() {
           )}
         </button>
 
-        {/* Slide Indicators */}
         <div className="flex space-x-2 sm:space-x-3">
           {slides.map((_, index) => (
             <button

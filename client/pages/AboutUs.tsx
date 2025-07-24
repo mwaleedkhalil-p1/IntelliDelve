@@ -17,6 +17,7 @@ import {
   Pause,
 } from "lucide-react";
 import { useCalendlyContext } from "../App";
+import { useVideoScrollControl } from "../hooks/useVideoScrollControl";
 
 const AnimatedCounter = memo<{ value: number; suffix?: string }>(
   ({ value, suffix = "" }) => {
@@ -81,19 +82,34 @@ AnimatedCounter.displayName = "AnimatedCounter";
 const VideoPlayer = memo(() => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showControls, setShowControls] = useState(true);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const { videoRef, containerRef } = useVideoScrollControl({
+    volume: 0.4, // 40% volume
+    autoPauseOnScroll: true,
+    visibilityThreshold: 0.3,
+    autoResumeOnScroll: false,
+    onVisibilityChange: (isVisible) => {
+      if (!isVisible && isPlaying) {
+        setIsPlaying(false);
+      }
+    }
+  });
 
   const togglePlay = () => {
     if (videoRef.current) {
       if (isPlaying) {
         videoRef.current.pause();
       } else {
-        videoRef.current.play();
+        videoRef.current.play().catch(() => {
+          // Handle autoplay restrictions
+        });
       }
       setIsPlaying(!isPlaying);
     }
   };
+
+
 
   const handleMouseEnter = () => {
     setShowControls(true);
@@ -109,7 +125,6 @@ const VideoPlayer = memo(() => {
     }, 1000);
   };
 
-  // Cleanup timeout on unmount
   useEffect(() => {
     return () => {
       if (hideTimeoutRef.current) {
@@ -120,6 +135,7 @@ const VideoPlayer = memo(() => {
 
   return (
     <div
+      ref={containerRef}
       className="relative bg-gray-900 rounded-2xl overflow-hidden shadow-2xl"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -129,6 +145,7 @@ const VideoPlayer = memo(() => {
         className="w-full h-64 md:h-80 object-cover"
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
+        preload="metadata"
       >
         <source
           src="/ID promotion.mp4"
@@ -136,6 +153,8 @@ const VideoPlayer = memo(() => {
         />
         Your browser does not support the video tag.
       </video>
+
+      {/* Main Play/Pause Control */}
       <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0'}`}>
         <button
           onClick={togglePlay}
@@ -148,6 +167,8 @@ const VideoPlayer = memo(() => {
           )}
         </button>
       </div>
+
+
     </div>
   );
 });
@@ -208,7 +229,7 @@ const AboutUs = memo(() => {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
-      {/* Hero Section */}
+
       <section
         className="relative min-h-screen flex items-center bg-gradient-to-br from-primary/5 to-accent/5 dark:from-primary/20 dark:to-accent/20"
       >
@@ -244,7 +265,6 @@ const AboutUs = memo(() => {
         </div>
       </section>
 
-      {/* Stats Section */}
       <section className="py-16 bg-white dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -262,7 +282,6 @@ const AboutUs = memo(() => {
         </div>
       </section>
 
-      {/* About Content */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center mb-16">
@@ -287,7 +306,6 @@ const AboutUs = memo(() => {
         </div>
       </section>
 
-      {/* Core Solutions */}
       <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -325,7 +343,6 @@ const AboutUs = memo(() => {
         </div>
       </section>
 
-      {/* Global Reach */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -361,7 +378,6 @@ const AboutUs = memo(() => {
         </div>
       </section>
 
-      {/* Why Choose Us */}
       <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -386,7 +402,6 @@ const AboutUs = memo(() => {
         </div>
       </section>
 
-      {/* AI & Data Intelligence */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center mb-16">
@@ -444,7 +459,6 @@ const AboutUs = memo(() => {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-gray-800 to-gray-900 dark:from-gray-700 dark:to-gray-800 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">

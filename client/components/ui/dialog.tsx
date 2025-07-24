@@ -16,7 +16,7 @@ const DialogOverlay = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Overlay>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>
 >(({ className, ...props }, ref) => {
-  // Detect Safari browser
+
   const isSafari = React.useMemo(() => {
     if (typeof navigator === 'undefined') return false;
     return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
@@ -40,7 +40,7 @@ const DialogContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
 >(({ className, children, ...props }, ref) => {
-  // Detect Safari browser
+
   const isSafari = React.useMemo(() => {
     if (typeof navigator === 'undefined') return false;
     return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);

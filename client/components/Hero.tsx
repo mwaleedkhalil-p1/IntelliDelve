@@ -49,7 +49,7 @@ export function Hero() {
       ref={heroRef}
       className="relative min-h-screen flex items-center bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-brand-navy dark:via-brand-navy/90 dark:to-purple-900/20 overflow-hidden"
     >
-      {/* Background decoration */}
+
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-10 w-72 h-72 bg-brand-pink rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
         <div className="absolute top-40 right-10 w-72 h-72 bg-brand-purple rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-1000"></div>
@@ -96,7 +96,7 @@ export function Hero() {
                 className="w-full h-auto rounded-2xl shadow-2xl"
               />
             </div>
-            {/* Floating elements */}
+
             <div className="absolute -top-6 -right-6 w-24 h-24 bg-brand-pink rounded-full opacity-20 animate-bounce delay-300"></div>
             <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-brand-green rounded-full opacity-20 animate-bounce delay-700"></div>
           </div>

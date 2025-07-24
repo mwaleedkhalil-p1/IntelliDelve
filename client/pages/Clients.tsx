@@ -21,14 +21,13 @@ export default function Clients() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Hero animation
+
       gsap.fromTo(
         heroRef.current,
         { opacity: 0, y: 50 },
         { opacity: 1, y: 0, duration: 1, ease: "power2.out" }
       );
 
-      // Stats animation
       gsap.fromTo(
         ".stat-item",
         { opacity: 0, y: 30 },
@@ -44,7 +43,6 @@ export default function Clients() {
         }
       );
 
-      // Client cards animation
       gsap.fromTo(
         ".client-card",
         { opacity: 0, scale: 0.9 },
@@ -127,7 +125,6 @@ export default function Clients() {
         keywords="clients, testimonials, case studies, Fortune 500, government agencies, healthcare, financial services, background verification clients"
       />
 
-      {/* Hero Section */}
       <section
         ref={heroRef}
         className="relative pt-20 pb-16 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-brand-navy dark:via-brand-navy/90 dark:to-purple-900/20 overflow-hidden"
@@ -144,14 +141,13 @@ export default function Clients() {
               Trusted by <span className="text-primary dark:text-sky-300">Global Leaders</span>
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
-              From Fortune 500 companies to government agencies, organizations worldwide rely on IntelliDelve 
+              From Fortune 500 companies to government agencies, organizations worldwide rely on IntelliDelve
               for accurate, compliant, and efficient background verification solutions.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
       <section ref={statsRef} className="py-16 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
@@ -174,7 +170,6 @@ export default function Clients() {
         </div>
       </section>
 
-      {/* Client Categories */}
       <section className="py-20 bg-gray-50 dark:bg-brand-navy/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -217,7 +212,6 @@ export default function Clients() {
         </div>
       </section>
 
-      {/* Testimonials */}
       <section className="relative py-20 bg-white dark:bg-gray-900 overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-5 dark:opacity-10"

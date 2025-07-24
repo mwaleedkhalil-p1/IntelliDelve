@@ -122,16 +122,16 @@ export default function RAG() {
         canonicalUrl="/rag"
       />
       <div className="min-h-screen">
-      {/* Hero Section */}
+
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background Image */}
+
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: `url('https://images.unsplash.com/photo-1507146426996-ef05306b995a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=85')`,
           }}
         >
-          {/* Dark overlay for text readability */}
+
           <div className="absolute inset-0 bg-gradient-to-br from-purple-900/80 to-indigo-900/70"></div>
         </div>
 
@@ -148,7 +148,6 @@ export default function RAG() {
               IntelliDelve's Retrieval-Augmented Generation (RAG) system elevates traditional AI by combining large language models with live, context-aware information retrieval. This ensures every response is not just fluent — but fact-based, current, and hyper-relevant.
             </p>
 
-            {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => openCalendly("RAG (Retrieval-Augmented Generation) - Schedule Meeting")}
@@ -169,7 +168,6 @@ export default function RAG() {
         </div>
       </section>
 
-      {/* What Makes Our RAG System Powerful */}
       <section className="py-20 bg-white dark:bg-brand-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -255,7 +253,6 @@ export default function RAG() {
         </div>
       </section>
 
-      {/* Core Features */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-purple-50 dark:from-brand-navy/50 dark:to-purple-900/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -327,7 +324,6 @@ export default function RAG() {
         </div>
       </section>
 
-      {/* Real-World Applications */}
       <section className="py-20 bg-white dark:bg-brand-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -425,7 +421,6 @@ export default function RAG() {
             </div>
           </div>
 
-          {/* Additional Use Case */}
           <div className="mt-8">
             <div className="bg-gray-50 dark:bg-brand-navy/50 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700">
               <div className="flex items-center space-x-4 mb-4">
@@ -444,7 +439,6 @@ export default function RAG() {
         </div>
       </section>
 
-      {/* Why Businesses Choose IntelliDelve's RAG */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-indigo-50 dark:from-brand-navy/50 dark:to-purple-900/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -530,7 +524,6 @@ export default function RAG() {
         </div>
       </section>
 
-      {/* Imagine This Example */}
       <section className="py-20 bg-white dark:bg-brand-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">

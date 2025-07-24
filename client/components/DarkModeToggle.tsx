@@ -46,23 +46,19 @@ export function DarkModeToggle() {
   const [showSunsetPrompt, setShowSunsetPrompt] = useState(false);
   const [userPreference, setUserPreference] = useState<'manual' | 'system' | 'time-based'>('system');
 
-  // Get user's timezone and calculate if it's currently day or night
   const isNightTime = () => {
     const now = new Date();
     const hour = now.getHours();
 
-    // Consider night time as 6 PM to 6 AM (18:00 to 06:00)
     return hour >= 18 || hour < 6;
   };
 
-  // Check if sunset just occurred (within the last hour)
   const checkForSunset = () => {
     const now = new Date();
     const hour = now.getHours();
     const lastCheck = localStorage.getItem('lastSunsetCheck');
     const today = now.toDateString();
 
-    // If it's 6 PM (18:00) and we haven't shown the prompt today
     if (hour === 18 && lastCheck !== today) {
       localStorage.setItem('lastSunsetCheck', today);
       return true;
@@ -77,33 +73,32 @@ export function DarkModeToggle() {
     setUserPreference(savedPreference);
 
     if (savedPreference === 'manual' && savedTheme) {
-      // User has manually set a theme
+
       const isDarkMode = savedTheme === "dark";
       setIsDark(isDarkMode);
       if (isDarkMode) {
         document.documentElement.classList.add("dark");
       }
     } else if (savedPreference === 'system') {
-      // Follow system preference
+
       const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
       setIsDark(prefersDark);
       if (prefersDark) {
         document.documentElement.classList.add("dark");
       }
     } else if (savedPreference === 'time-based') {
-      // Time-based theme
+
       const shouldBeDark = isNightTime();
       setIsDark(shouldBeDark);
       if (shouldBeDark) {
         document.documentElement.classList.add("dark");
       }
 
-      // Check for sunset prompt
       if (checkForSunset() && !shouldBeDark) {
-        setTimeout(() => setShowSunsetPrompt(true), 2000); // Show after 2 seconds
+        setTimeout(() => setShowSunsetPrompt(true), 2000);
       }
     } else {
-      // System preference (default)
+
       const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
       setIsDark(prefersDark);
       if (prefersDark) {
@@ -111,7 +106,6 @@ export function DarkModeToggle() {
       }
     }
 
-    // Set up interval to check for time changes every minute
     const interval = setInterval(() => {
       if (savedPreference === 'time-based') {
         const shouldBeDark = isNightTime();
@@ -128,12 +122,11 @@ export function DarkModeToggle() {
           }, 200);
         }
 
-        // Check for sunset prompt
         if (checkForSunset() && !shouldBeDark) {
           setShowSunsetPrompt(true);
         }
       }
-    }, 60000); // Check every minute
+    }, 60000);
 
     return () => clearInterval(interval);
   }, [isDark]);

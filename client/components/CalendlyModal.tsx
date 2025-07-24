@@ -3,7 +3,6 @@ import { X, Loader2, AlertCircle } from "lucide-react";
 import { CalendlyIframe } from "./CalendlyIframe";
 import { useSafariModal } from "../hooks/useSafariModal";
 
-// Declare Calendly global type
 declare global {
   interface Window {
     Calendly?: {
@@ -28,10 +27,8 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
   const [hasError, setHasError] = useState(false);
   const [useIframeFallback, setUseIframeFallback] = useState(true);
 
-  // Use Safari modal hook
   const { getOverlayClasses, getContentClasses } = useSafariModal(isOpen);
 
-  // Preload Calendly script when component mounts
   useEffect(() => {
     const preloadScript = () => {
       const existingScript = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]');
@@ -45,7 +42,6 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
       }
     };
 
-    // Preload script after a short delay to not block initial page load
     const timer = setTimeout(preloadScript, 1000);
     return () => clearTimeout(timer);
   }, []);
@@ -54,13 +50,12 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
     setIsLoading(true);
     setHasError(false);
 
-    // Check if Calendly script is already loaded
     const existingScript = document.querySelector(
       'script[src="https://assets.calendly.com/assets/external/widget.js"]',
     );
 
     if (existingScript) {
-      // Script already exists, initialize immediately without delay
+
       setIsLoading(false);
       const widgetElement = document.querySelector(".calendly-inline-widget");
       if (window.Calendly && widgetElement) {
@@ -70,24 +65,24 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
             parentElement: widgetElement,
           });
         } catch (error) {
-          console.error("Failed to initialize Calendly widget:", error);
+
           setHasError(true);
         }
       } else {
         setHasError(true);
       }
     } else {
-      // Load Calendly script dynamically with optimizations
+
       const script = document.createElement("script");
       script.src = "https://assets.calendly.com/assets/external/widget.js";
       script.async = true;
       script.defer = true;
-      // Add preload hints for faster loading
+
       script.crossOrigin = "anonymous";
 
       script.onload = () => {
         setIsLoading(false);
-        // Initialize immediately without delay
+
         const widgetElement = document.querySelector(".calendly-inline-widget");
         if (window.Calendly && widgetElement) {
           try {
@@ -96,7 +91,7 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
               parentElement: widgetElement,
             });
           } catch (error) {
-            console.error("Failed to initialize Calendly widget:", error);
+
             setHasError(true);
           }
         } else {
@@ -107,16 +102,15 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
       script.onerror = () => {
         setIsLoading(false);
         setHasError(true);
-        console.error("Failed to load Calendly script");
+
       };
 
-      // Reduced timeout for faster fallback
       setTimeout(() => {
         if (isLoading) {
           setIsLoading(false);
           setHasError(true);
         }
-      }, 5000); // 5 second timeout (reduced from 10)
+      }, 5000);
 
       document.head.appendChild(script);
     }
@@ -132,11 +126,10 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
     if (isOpen) {
       document.addEventListener("keydown", handleEscape);
 
-      // Reset states when opening
       setIsLoading(false);
       setHasError(false);
       if (!useIframeFallback) {
-        setUseIframeFallback(true); // Default to iframe since it works
+        setUseIframeFallback(true);
       }
 
       return () => {
@@ -162,7 +155,7 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
         ref={modalRef}
         className={getContentClasses("relative bg-white dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-4xl mx-4 max-h-[90vh] overflow-hidden flex flex-col")}
       >
-        {/* Header */}
+
         <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white font-primary">
             {title}
@@ -176,7 +169,6 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
           </button>
         </div>
 
-        {/* Calendly Widget */}
         <div className="p-6 overflow-auto max-h-[calc(90vh-120px)]">
           {isLoading && (
             <div className="flex items-center justify-center" style={{ height: "600px" }}>
@@ -223,7 +215,7 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
                     setUseIframeFallback(false);
                     setIsLoading(true);
                     setHasError(false);
-                    // Try to load the widget method
+
                     loadCalendlyWidget();
                   }}
                   className="text-sm text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-sky-400 transition-colors"

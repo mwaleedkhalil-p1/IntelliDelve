@@ -111,9 +111,9 @@ export default function PredictiveAnalytics() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
+
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background Image */}
+
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80&blur=20"
@@ -123,14 +123,12 @@ export default function PredictiveAnalytics() {
           <div className="absolute inset-0 bg-gradient-to-r from-purple-900/95 via-violet-900/90 to-indigo-900/95"></div>
         </div>
 
-        {/* Animated Background Elements */}
         <div className="absolute inset-0 z-10 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-400/20 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-violet-400/20 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-400/10 rounded-full blur-3xl animate-pulse"></div>
         </div>
 
-        {/* Pattern Overlay */}
         <div className="absolute inset-0 z-20">
           <div className="absolute inset-0 bg-[linear-gradient(45deg,_transparent_25%,_rgba(255,255,255,0.02)_25%,_rgba(255,255,255,0.02)_50%,_transparent_50%,_transparent_75%,_rgba(255,255,255,0.02)_75%)] bg-[length:32px_32px]"></div>
         </div>
@@ -213,7 +211,6 @@ export default function PredictiveAnalytics() {
         </div>
       </section>
 
-      {/* Features */}
       <section className="py-20 bg-white dark:bg-brand-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -248,7 +245,6 @@ export default function PredictiveAnalytics() {
         </div>
       </section>
 
-      {/* Applications */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-violet-50 dark:from-brand-navy/50 dark:to-violet-900/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -284,7 +280,6 @@ export default function PredictiveAnalytics() {
         </div>
       </section>
 
-      {/* Benefits */}
       <section className="py-20 bg-white dark:bg-brand-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -327,7 +322,6 @@ export default function PredictiveAnalytics() {
         </div>
       </section>
 
-      {/* Key Capabilities */}
       <section className="py-20 bg-gradient-to-br from-violet-50 to-purple-50 dark:from-brand-navy/30 dark:to-violet-900/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">

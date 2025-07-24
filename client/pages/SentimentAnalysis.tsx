@@ -128,16 +128,16 @@ export default function SentimentAnalysis() {
         canonicalUrl="/sentiment-analysis"
       />
       <div className="min-h-screen">
-      {/* Hero Section */}
+
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background Image */}
+
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: `url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=85')`,
           }}
         >
-          {/* Dark overlay for text readability */}
+
           <div className="absolute inset-0 bg-gradient-to-br from-pink-900/80 to-purple-900/70"></div>
         </div>
 
@@ -154,7 +154,6 @@ export default function SentimentAnalysis() {
               IntelliDelve's Sentiment & Intent Analysis platform leverages cutting-edge natural language processing (NLP) to decode human emotion, intent, and tone from written or spoken communication. Whether you're analyzing support tickets, chat logs, or reviews, our system helps you uncover what matters most — instantly and accurately.
             </p>
 
-            {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => openCalendly("Sentiment & Intent Analysis - Schedule Meeting")}
@@ -175,7 +174,6 @@ export default function SentimentAnalysis() {
         </div>
       </section>
 
-      {/* Key Capabilities */}
       <section className="py-20 bg-white dark:bg-brand-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -261,7 +259,6 @@ export default function SentimentAnalysis() {
         </div>
       </section>
 
-      {/* Platform Features */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-pink-50 dark:from-brand-navy/50 dark:to-purple-900/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -333,7 +330,6 @@ export default function SentimentAnalysis() {
         </div>
       </section>
 
-      {/* Real-World Applications */}
       <section className="py-20 bg-white dark:bg-brand-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -433,7 +429,6 @@ export default function SentimentAnalysis() {
         </div>
       </section>
 
-      {/* Business Benefits */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-indigo-50 dark:from-brand-navy/50 dark:to-purple-900/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -519,7 +514,6 @@ export default function SentimentAnalysis() {
         </div>
       </section>
 
-      {/* Final CTA Section */}
       <section className="py-20 bg-white dark:bg-brand-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">

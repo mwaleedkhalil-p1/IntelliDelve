@@ -10,14 +10,14 @@ declare global {
 }
 
 window.initChatbot = (config) => {
-  console.log("Chatbot initialization requested with config:", config);
+
   // Backend team can inject their implementation here
   const chatbotMount = document.getElementById("chatbot-mount");
   if (chatbotMount) {
-    console.log("Chatbot mount point found:", chatbotMount);
+
     // Implementation will be provided by backend team
   } else {
-    console.warn("Chatbot mount point not found");
+
   }
 };
 
@@ -32,10 +32,10 @@ if ("serviceWorker" in navigator && import.meta.env.PROD) {
     navigator.serviceWorker
       .register("/sw.js")
       .then((registration) => {
-        console.log("SW registered: ", registration);
+
       })
       .catch((registrationError) => {
-        console.log("SW registration failed: ", registrationError);
+
       });
   });
 }

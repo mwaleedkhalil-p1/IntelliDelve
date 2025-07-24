@@ -33,7 +33,6 @@ export const LazyImage: React.FC<LazyImageProps> = ({
   const imgRef = useRef<HTMLImageElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
-  // Intersection Observer for lazy loading
   useEffect(() => {
     if (priority || isInView) return;
 
@@ -47,7 +46,7 @@ export const LazyImage: React.FC<LazyImageProps> = ({
         });
       },
       {
-        rootMargin: '50px', // Start loading 50px before the image comes into view
+        rootMargin: '50px',
         threshold: 0.1,
       }
     );
@@ -61,31 +60,28 @@ export const LazyImage: React.FC<LazyImageProps> = ({
     };
   }, [priority, isInView]);
 
-  // Handle image loading
   useEffect(() => {
     if (!isInView || isLoaded) return;
 
     setIsLoading(true);
     const img = new Image();
-    
+
     img.onload = () => {
       setIsLoaded(true);
       setIsLoading(false);
       onLoad?.();
     };
-    
+
     img.onerror = () => {
-      console.warn(`Failed to load image: ${src}`);
+
       setHasError(true);
       setIsLoading(false);
       onError?.();
     };
 
-    // Use the source directly since we're now using local images
     img.src = src;
   }, [isInView, src, quality, sizes, onLoad, onError, isLoaded]);
 
-  // Generate placeholder with blur effect
   const getPlaceholderStyle = () => {
     if (blurDataURL) {
       return {
@@ -100,7 +96,7 @@ export const LazyImage: React.FC<LazyImageProps> = ({
 
   if (hasError) {
     return (
-      <div 
+      <div
         ref={imgRef}
         className={`bg-gray-200 dark:bg-gray-700 flex items-center justify-center ${className}`}
       >
@@ -114,9 +110,9 @@ export const LazyImage: React.FC<LazyImageProps> = ({
 
   return (
     <div className={`relative overflow-hidden ${className}`}>
-      {/* Placeholder */}
+
       {!isLoaded && (
-        <div 
+        <div
           className="absolute inset-0 bg-gray-200 dark:bg-gray-700 flex items-center justify-center"
           style={getPlaceholderStyle()}
         >
@@ -130,7 +126,6 @@ export const LazyImage: React.FC<LazyImageProps> = ({
         </div>
       )}
 
-      {/* Actual Image */}
       <img
         ref={imgRef}
         src={isInView ? src : placeholder || ''}
@@ -147,7 +142,7 @@ export const LazyImage: React.FC<LazyImageProps> = ({
           onLoad?.();
         }}
         onError={() => {
-          console.warn(`Failed to load image in img element: ${src}`);
+
           setHasError(true);
           setIsLoading(false);
           onError?.();
@@ -157,7 +152,6 @@ export const LazyImage: React.FC<LazyImageProps> = ({
   );
 };
 
-// Higher-order component for easy migration from regular img tags
 export const withLazyLoading = <P extends object>(
   Component: React.ComponentType<P & { src: string; alt: string; className?: string }>
 ) => {
@@ -166,29 +160,27 @@ export const withLazyLoading = <P extends object>(
   });
 };
 
-// Utility function to generate blur data URL for better UX
 export const generateBlurDataURL = (width: number = 10, height: number = 10): string => {
   const canvas = document.createElement('canvas');
   canvas.width = width;
   canvas.height = height;
   const ctx = canvas.getContext('2d');
-  
+
   if (ctx) {
-    // Create a simple gradient as placeholder
+
     const gradient = ctx.createLinearGradient(0, 0, width, height);
     gradient.addColorStop(0, '#f3f4f6');
     gradient.addColorStop(1, '#e5e7eb');
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, width, height);
   }
-  
+
   return canvas.toDataURL();
 };
 
-// Hook for preloading critical images
 export const useImagePreloader = (urls: string[]) => {
   const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
-  
+
   useEffect(() => {
     const preloadImage = (url: string) => {
       return new Promise<string>((resolve, reject) => {
@@ -204,17 +196,17 @@ export const useImagePreloader = (urls: string[]) => {
         const results = await Promise.allSettled(
           urls.map(url => preloadImage(url))
         );
-        
+
         const loaded = new Set<string>();
         results.forEach((result, index) => {
           if (result.status === 'fulfilled') {
             loaded.add(urls[index]);
           }
         });
-        
+
         setLoadedImages(loaded);
       } catch (error) {
-        console.warn('Some images failed to preload:', error);
+
       }
     };
 

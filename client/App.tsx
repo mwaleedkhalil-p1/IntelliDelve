@@ -24,7 +24,6 @@ import { imagePreloader } from "./services/imagePreloader";
 import { routes } from "./routes";
 import { useCalendly } from "./hooks/useCalendly";
 
-
 export const CalendlyContext = createContext<{
   openCalendly: (title?: string) => void;
   closeCalendly: () => void;
@@ -43,7 +42,7 @@ const AppContent: React.FC<{ calendly: ReturnType<typeof useCalendly> }> = ({
     <Toaster />
     <Sonner />
     <BrowserRouter>
-      {/* <ScrollToTop /> TEMPORARILY DISABLED */}
+      <ScrollToTop />
       <HashNavigation />
       <div className="flex flex-col min-h-screen">
         <Navigation />

@@ -95,9 +95,9 @@ export default function InteractiveDashboards() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
+
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background Image */}
+
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
@@ -107,14 +107,12 @@ export default function InteractiveDashboards() {
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-purple-900/85 to-indigo-900/90"></div>
         </div>
 
-        {/* Animated Background Elements */}
         <div className="absolute inset-0 z-10 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-cyan-400/20 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-400/20 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl animate-pulse"></div>
         </div>
 
-        {/* Pattern Overlay */}
         <div className="absolute inset-0 z-20">
           <div className="absolute inset-0 bg-[linear-gradient(45deg,_transparent_25%,_rgba(255,255,255,0.02)_25%,_rgba(255,255,255,0.02)_50%,_transparent_50%,_transparent_75%,_rgba(255,255,255,0.02)_75%)] bg-[length:32px_32px]"></div>
         </div>
@@ -197,7 +195,6 @@ export default function InteractiveDashboards() {
         </div>
       </section>
 
-      {/* Key Capabilities */}
       <section className="py-20 bg-white dark:bg-brand-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -283,7 +280,6 @@ export default function InteractiveDashboards() {
         </div>
       </section>
 
-      {/* Platform Features */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-brand-navy/50 dark:to-purple-900/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -355,7 +351,6 @@ export default function InteractiveDashboards() {
         </div>
       </section>
 
-      {/* Use Cases */}
       <section className="py-20 bg-white dark:bg-brand-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -427,7 +422,6 @@ export default function InteractiveDashboards() {
         </div>
       </section>
 
-      {/* Dashboard Image Section */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-brand-navy/50 dark:to-purple-900/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -469,7 +463,6 @@ export default function InteractiveDashboards() {
             </div>
           </div>
 
-          {/* Additional Dashboard Examples */}
           <div className="grid md:grid-cols-3 gap-6 mt-12">
             <div className="relative group overflow-hidden rounded-xl shadow-lg">
               <img

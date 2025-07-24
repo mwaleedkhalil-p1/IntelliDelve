@@ -49,7 +49,6 @@ const ServiceCard = memo(
         ))}
       </ul>
 
-      {/* Learn More Button */}
       {learnMoreLink && (
         <div className="mt-auto">
           <Link

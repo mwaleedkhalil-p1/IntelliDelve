@@ -31,7 +31,7 @@ const AdminDashboard: React.FC = () => {
 
   // Debug authentication state
   React.useEffect(() => {
-    const token = localStorage.getItem('auth_token');
+    const token = localStorage.getItem('token');
     console.log('📊 AdminDashboard - Auth state changed:', {
       user: user ? { email: user.email, role: user.role } : null,
       isAuthenticated,
@@ -68,7 +68,9 @@ const AdminDashboard: React.FC = () => {
   if (!isAuthenticated) {
     // The LoginForm will trigger a re-render of this component on successful login
     // because the underlying auth query will be invalidated and refetched.
-    return <LoginForm />;
+    return <LoginForm onSuccess={() => {
+      console.log('🔐 Login success callback triggered in AdminDashboard');
+    }} />;
   }
 
   const blogs = blogsResponse?.success ? blogsResponse.data.data : [];

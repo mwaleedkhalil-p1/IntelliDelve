@@ -53,7 +53,7 @@ export const ApiTestComponent: React.FC = () => {
   };
 
   const clearToken = () => {
-    localStorage.removeItem('auth_token');
+    localStorage.removeItem('token');
     window.location.reload();
   };
 

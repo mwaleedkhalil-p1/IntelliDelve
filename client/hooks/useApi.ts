@@ -46,7 +46,10 @@ export const useLogin = () => {
     mutationFn: (credentials: LoginCredentials) => authService.login(credentials),
     onSuccess: (data) => {
       if (data.success) {
-        queryClient.setQueryData(queryKeys.auth.user, data.data?.user);
+        // Set the user data in the cache
+        queryClient.setQueryData(queryKeys.auth.user, data);
+        // Invalidate and refetch the auth query to trigger re-renders
+        queryClient.invalidateQueries({ queryKey: queryKeys.auth.user });
         toast({ title: 'Success', description: data.message || 'Login successful' });
       } else {
         toast({ title: 'Error', description: data.error || 'Login failed', variant: 'destructive' });
@@ -65,6 +68,8 @@ export const useValidateToken = () => {
     queryFn: () => authService.validateToken(),
     retry: false,
     staleTime: 1000 * 60 * 5, // 5 minutes
+    refetchOnWindowFocus: false,
+    refetchOnMount: true,
     enabled: !!localStorage.getItem('token'),
   });
 };

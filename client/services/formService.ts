@@ -1,11 +1,9 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 
 const getBaseURL = (): string => {
-
   if (import.meta.env.DEV) {
     return import.meta.env.VITE_API_BASE_URL || 'https://informed-bluebird-right.ngrok-free.app';
   }
-
   return import.meta.env.VITE_API_BASE_URL || 'https://api.intellidelve.com';
 };
 

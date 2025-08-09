@@ -820,3 +820,4 @@ const Navigation = memo(() => {
 Navigation.displayName = "Navigation";
 
 export { Navigation };
+export default Navigation;

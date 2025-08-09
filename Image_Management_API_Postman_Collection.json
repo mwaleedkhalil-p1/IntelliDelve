@@ -1,0 +1,208 @@
+{
+  "info": {
+    "name": "Image Management API",
+    "description": "API collection for managing images in blogs and case studies.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Upload Single Image",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <your-jwt-token>",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "image",
+              "type": "file",
+              "src": ""
+            },
+            {
+              "key": "alt_text",
+              "value": "Sample image description",
+              "type": "text"
+            },
+            {
+              "key": "caption",
+              "value": "This is a sample image",
+              "type": "text"
+            },
+            {
+              "key": "order",
+              "value": "1",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://informed-bluebird-right.ngrok-free.app/api/blog/{{object_id}}/images/upload/",
+          "host": [
+            "https://informed-bluebird-right.ngrok-free.app"
+          ],
+          "path": [
+            "api",
+            "blog",
+            "{{object_id}}",
+            "images",
+            "upload"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Bulk Upload Images",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <your-jwt-token>",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "images",
+              "type": "file",
+              "src": ""
+            },
+            {
+              "key": "images",
+              "type": "file",
+              "src": ""
+            },
+            {
+              "key": "images",
+              "type": "file",
+              "src": ""
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://informed-bluebird-right.ngrok-free.app/api/blog/{{object_id}}/images/bulk-upload/",
+          "host": [
+            "https://informed-bluebird-right.ngrok-free.app"
+          ],
+          "path": [
+            "api",
+            "blog",
+            "{{object_id}}",
+            "images",
+            "bulk-upload"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get All Images",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "https://informed-bluebird-right.ngrok-free.app/api/blog/{{object_id}}/images/",
+          "host": [
+            "https://informed-bluebird-right.ngrok-free.app"
+          ],
+          "path": [
+            "api",
+            "blog",
+            "{{object_id}}",
+            "images"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Single Image",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "https://informed-bluebird-right.ngrok-free.app/api/images/{{image_id}}/",
+          "host": [
+            "https://informed-bluebird-right.ngrok-free.app"
+          ],
+          "path": [
+            "api",
+            "images",
+            "{{image_id}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Update Image Metadata",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <your-jwt-token>",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"alt_text\": \"Updated alt text\",\n  \"caption\": \"Updated caption\",\n  \"order\": 2\n}"
+        },
+        "url": {
+          "raw": "https://informed-bluebird-right.ngrok-free.app/api/images/{{image_id}}/",
+          "host": [
+            "https://informed-bluebird-right.ngrok-free.app"
+          ],
+          "path": [
+            "api",
+            "images",
+            "{{image_id}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Delete Image",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer <your-jwt-token>",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://informed-bluebird-right.ngrok-free.app/api/images/{{image_id}}/",
+          "host": [
+            "https://informed-bluebird-right.ngrok-free.app"
+          ],
+          "path": [
+            "api",
+            "images",
+            "{{image_id}}"
+          ]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "object_id",
+      "value": "123e4567-e89b-12d3-a456-426614174000"
+    },
+    {
+      "key": "image_id",
+      "value": "456e7890-e89b-12d3-a456-426614174001"
+    }
+  ]
+}

@@ -31,10 +31,10 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
 
   useEffect(() => {
     const preloadScript = () => {
-      const existingScript = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]');
+      const existingScript = document.querySelector('script[src="/calendly-proxy/assets/external/widget.js"]');
       if (!existingScript) {
         const script = document.createElement("script");
-        script.src = "https://assets.calendly.com/assets/external/widget.js";
+        script.src = "/calendly-proxy/assets/external/widget.js";
         script.async = true;
         script.defer = true;
         script.crossOrigin = "anonymous";
@@ -51,7 +51,7 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
     setHasError(false);
 
     const existingScript = document.querySelector(
-      'script[src="https://assets.calendly.com/assets/external/widget.js"]',
+      'script[src="/calendly-proxy/assets/external/widget.js"]',
     );
 
     if (existingScript) {
@@ -74,7 +74,7 @@ export const CalendlyModal: React.FC<CalendlyModalProps> = ({
     } else {
 
       const script = document.createElement("script");
-      script.src = "https://assets.calendly.com/assets/external/widget.js";
+      script.src = "/calendly-proxy/assets/external/widget.js";
       script.async = true;
       script.defer = true;
 

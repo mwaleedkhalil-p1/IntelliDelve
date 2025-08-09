@@ -1,0 +1,152 @@
+{
+  "info": {
+    "name": "IntelliDelve API",
+    "description": "Postman Collection for IntelliDelve API Testing",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "https://informed-bluebird-right.ngrok-free.app" },
+    { "key": "access_token", "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU0MzM0Mjc5LCJpYXQiOjE3NTQyNDc4NzksImp0aSI6ImMzZDMzMDM0NDY1MTQ2Y2Q4ZDUyZjgzYzAzNWUxNzBlIiwidXNlcl9pZCI6IjQifQ.XGhllI3fJppsnxOzQJ5HDYwpr0miLmy8BUIp24wPi64" }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{base_url}}/api/auth/login/", "host": ["{{base_url}}"], "path": ["api", "auth", "login"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"shahmirkhan9181@gmail.com\",\n  \"password\": \"IntelliDelveIntern123@\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Validate Token",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{access_token}}" }],
+            "url": { "raw": "{{base_url}}/api/auth/validate/", "host": ["{{base_url}}"], "path": ["api", "auth", "validate"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Blogs",
+      "item": [
+        {
+          "name": "Get All Blogs",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/api/blogs/", "host": ["{{base_url}}"], "path": ["api", "blogs"] }
+          }
+        },
+        {
+          "name": "Create Blog",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{access_token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": { "raw": "{{base_url}}/api/blogs/", "host": ["{{base_url}}"], "path": ["api", "blogs"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Sample Blog\",\n  \"content\": \"<p>HTML content</p>\",\n  \"excerpt\": \"short preview\",\n  \"author\": \"Admin\",\n  \"status\": \"published\",\n  \"tags\": [\"tag1\", \"tag2\"],\n  \"category\": \"Tech\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Blog by UUID",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/api/blogs/:uuid/", "host": ["{{base_url}}"], "path": ["api", "blogs", ":uuid"] }
+          }
+        },
+        {
+          "name": "Update Blog",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{access_token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": { "raw": "{{base_url}}/api/blogs/:uuid/", "host": ["{{base_url}}"], "path": ["api", "blogs", ":uuid"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated Blog Title\",\n  \"status\": \"published\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Blog",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{access_token}}" }],
+            "url": { "raw": "{{base_url}}/api/blogs/:uuid/", "host": ["{{base_url}}"], "path": ["api", "blogs", ":uuid"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Case Studies",
+      "item": [
+        {
+          "name": "List Case Studies",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/api/case-studies/", "host": ["{{base_url}}"], "path": ["api", "case-studies"] }
+          }
+        },
+        {
+          "name": "Create Case Study",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{access_token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": { "raw": "{{base_url}}/api/case-studies/", "host": ["{{base_url}}"], "path": ["api", "case-studies"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Title\",\n  \"client\": \"Client Name\",\n  \"industry\": \"Retail\",\n  \"challenge\": \"...\",\n  \"solution\": \"...\",\n  \"results\": \"...\",\n  \"status\": \"published\",\n  \"tags\": [\"AI\", \"ML\"],\n  \"testimonial\": {\n    \"quote\": \"Amazing!\",\n    \"author\": \"CEO\",\n    \"position\": \"CTO\"\n  },\n  \"metrics\": [\n    {\"metric\": \"CTR\", \"label\": \"Click Rate\", \"improvement\": \"30%\"}\n  ]\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Case Study by UUID",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/api/case-studies/:uuid/", "host": ["{{base_url}}"], "path": ["api", "case-studies", ":uuid"] }
+          }
+        },
+        {
+          "name": "Update Case Study",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{access_token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": { "raw": "{{base_url}}/api/case-studies/:uuid/", "host": ["{{base_url}}"], "path": ["api", "case-studies", ":uuid"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated Title\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Case Study",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{access_token}}" }],
+            "url": { "raw": "{{base_url}}/api/case-studies/:uuid/", "host": ["{{base_url}}"], "path": ["api", "case-studies", ":uuid"] }
+          }
+        }
+      ]
+    }
+  ]
+}

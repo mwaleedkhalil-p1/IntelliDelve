@@ -23,6 +23,10 @@ import { queryClient } from "./lib/queryClient";
 import { imagePreloader } from "./services/imagePreloader";
 import { routes } from "./routes";
 import { useCalendly } from "./hooks/useCalendly";
+import { AuthProvider } from "./context/AuthContext";
+
+// Import API test utilities for debugging
+import "./utils/apiTest";
 
 export const CalendlyContext = createContext<{
   openCalendly: (title?: string) => void;
@@ -41,7 +45,7 @@ const AppContent: React.FC<{ calendly: ReturnType<typeof useCalendly> }> = ({
     <SEO />
     <Toaster />
     <Sonner />
-    <BrowserRouter>
+    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <ScrollToTop />
       <HashNavigation />
       <div className="flex flex-col min-h-screen">
@@ -96,7 +100,9 @@ const App: React.FC = () => {
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
         <TooltipProvider>
-          <AppContent calendly={calendly} />
+          <AuthProvider>
+            <AppContent calendly={calendly} />
+          </AuthProvider>
         </TooltipProvider>
       </HelmetProvider>
     </QueryClientProvider>

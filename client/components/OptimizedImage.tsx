@@ -37,11 +37,13 @@ export function OptimizedImage({
   retries = 2,
   retryDelay = 1000,
 }: OptimizedImageProps) {
-  const [currentSrc, setCurrentSrc] = useState(placeholder);
+  const [currentSrc, setCurrentSrc] = useState(src);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [retryCount, setRetryCount] = useState(0);
-  const imgRef = useRef<HTMLImageElement>(null);
+  const [isInView, setIsInView] = useState(false);
+  const imgRef = useRef<HTMLDivElement>(null);
   const retryTimeout = useRef<NodeJS.Timeout>();
 
   useEffect(() => {
@@ -54,6 +56,7 @@ export function OptimizedImage({
 
   const handleImageLoad = useCallback(() => {
     setIsLoading(false);
+    setIsLoaded(true);
     setHasError(false);
     onLoad?.();
   }, [onLoad]);
@@ -62,15 +65,14 @@ export function OptimizedImage({
     const error = new Error(`Failed to load image: ${src}`);
 
     if (retryCount < retries) {
-
       setRetryCount(prev => prev + 1);
       retryTimeout.current = setTimeout(() => {
-        setCurrentSrc(`${src}${src.includes('?') ? '&' : '?'}retry=${retryCount}`);
+        setCurrentSrc(`${src}${src.includes('?') ? '&' : '?'}retry=${retryCount + 1}`);
       }, retryDelay * (retryCount + 1));
     } else {
-
       setHasError(true);
       setCurrentSrc(fallback);
+      setIsLoaded(true);
       onError?.(error);
     }
   }, [src, fallback, retryCount, retries, retryDelay, onError]);
@@ -78,6 +80,7 @@ export function OptimizedImage({
   useEffect(() => {
     setCurrentSrc(src);
     setIsLoading(true);
+    setIsLoaded(false);
     setHasError(false);
     setRetryCount(0);
   }, [src]);
@@ -116,22 +119,11 @@ export function OptimizedImage({
     const ext = baseSrc.split(".").pop()?.toLowerCase();
     const basePath = baseSrc.replace(`.${ext}`, "");
 
-    const sizes = [320, 640, 768, 1024, 1280, 1920];
-    return sizes.map((size) => `${basePath}-${size}w.webp ${size}w`).join(", ");
+    const sizesArray = [320, 640, 768, 1024, 1280, 1920];
+    return sizesArray.map((size) => `${basePath}-${size}w.webp ${size}w`).join(", ");
   };
 
-  const handleLoad = () => {
-    setIsLoaded(true);
-    onLoad?.();
-  };
-
-  const handleError = () => {
-
-    setHasError(true);
-    onError?.();
-  };
-
-  const imageSrc = hasError ? placeholder : src;
+  const imageSrc = hasError ? fallback : currentSrc;
   const srcSet = generateSrcSet(imageSrc);
 
   return (
@@ -140,7 +132,6 @@ export function OptimizedImage({
       className={`relative overflow-hidden ${className}`}
       style={{ width, height }}
     >
-
       {!isLoaded && (
         <div
           className="absolute inset-0 bg-gray-200 dark:bg-gray-700 animate-pulse"
@@ -149,26 +140,27 @@ export function OptimizedImage({
       )}
 
       {isInView && (
-        <>
-
-          <picture>
-            {srcSet && (
-              <source
-                srcSet={srcSet}
-                sizes={
-                  sizes ||
-                  "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                }
-                type="image/webp"
-            <link
-              rel="preload"
-              as="image"
-              href={imageSrc}
-              imageSizes={sizes}
-              imageSrcSet={srcSet}
+        <picture>
+          {srcSet && (
+            <source
+              srcSet={srcSet}
+              sizes={
+                sizes ||
+                "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              }
+              type="image/webp"
             />
           )}
-        </>
+          <img
+            src={imageSrc}
+            alt={alt}
+            onLoad={handleImageLoad}
+            onError={handleImageError}
+            loading={loading}
+            className="w-full h-full object-cover"
+            style={{ width, height }}
+          />
+        </picture>
       )}
 
       {!isLoaded && isInView && (

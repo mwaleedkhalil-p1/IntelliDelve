@@ -2,9 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { TrendingUp, Shield, Users, Building, Eye, Brain, Zap, Globe, Lock, Database, ArrowRight } from "lucide-react";
+import { TrendingUp, Shield, Users, Building, Eye, Brain, Zap, Globe, Lock, Database, ArrowRight, Loader2, AlertTriangle } from "lucide-react";
 import { CaseStudyPopup } from "../components/CaseStudyPopup";
 import { SEO } from "../components/SEO";
+import { useCaseStudies } from "../hooks/useApi";
+import { CaseStudyFilters } from "../services/apiService";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,6 +17,10 @@ export default function CaseStudies() {
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<any>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
+  // API integration
+  const filters: CaseStudyFilters = { status: 'published', limit: 20 };
+  const { data: caseStudiesResponse, isLoading, error, refetch } = useCaseStudies(filters);
+
   const openCaseStudy = (caseStudy: any) => {
     setSelectedCaseStudy(caseStudy);
     setIsPopupOpen(true);
@@ -24,6 +30,47 @@ export default function CaseStudies() {
     setIsPopupOpen(false);
     setTimeout(() => setSelectedCaseStudy(null), 300);
   };
+
+  // Get case studies from API or use fallback data
+  const apiCaseStudies = caseStudiesResponse?.success ? caseStudiesResponse.data.data : [];
+
+  // Debug logging
+  React.useEffect(() => {
+    console.log('🔍 Case Studies API Response:', {
+      loading: isLoading,
+      error: error?.message,
+      response: caseStudiesResponse,
+      apiCaseStudiesLength: apiCaseStudies.length,
+      usingFallback: apiCaseStudies.length === 0
+    });
+  }, [caseStudiesResponse, isLoading, error, apiCaseStudies.length]);
+
+  // Loading component
+  const LoadingSpinner = () => (
+    <div className="flex items-center justify-center py-12">
+      <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      <span className="ml-2 text-gray-600 dark:text-gray-300">Loading case studies...</span>
+    </div>
+  );
+
+  // Error component
+  const ErrorMessage = () => (
+    <div className="text-center py-12">
+      <AlertTriangle className="w-12 h-12 text-red-500 mx-auto mb-4" />
+      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+        Unable to load case studies
+      </h3>
+      <p className="text-gray-600 dark:text-gray-300 mb-4">
+        {error?.message || 'Something went wrong while fetching case studies.'}
+      </p>
+      <button
+        onClick={() => refetch()}
+        className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors"
+      >
+        Try Again
+      </button>
+    </div>
+  );
 
   useEffect(() => {
     if (headerRef.current) {
@@ -78,7 +125,60 @@ export default function CaseStudies() {
     { number: "24hr", label: "Average Turnaround" },
   ];
 
-  const caseStudies = [
+  // Transform API case studies into display format with fallback
+  const transformCaseStudy = (apiCaseStudy: any, index: number) => {
+    const colors = [
+      { color: "text-blue-500", bgGradient: "bg-gradient-to-br from-blue-600 to-blue-800", icon: <Building className="h-8 w-8 text-white" /> },
+      { color: "text-green-500", bgGradient: "bg-gradient-to-br from-green-600 to-green-800", icon: <Shield className="h-8 w-8 text-white" /> },
+      { color: "text-purple-500", bgGradient: "bg-gradient-to-br from-purple-600 to-purple-800", icon: <Lock className="h-8 w-8 text-white" /> },
+      { color: "text-orange-500", bgGradient: "bg-gradient-to-br from-orange-600 to-orange-800", icon: <Zap className="h-8 w-8 text-white" /> },
+      { color: "text-indigo-500", bgGradient: "bg-gradient-to-br from-indigo-600 to-indigo-800", icon: <Users className="h-8 w-8 text-white" /> },
+      { color: "text-teal-500", bgGradient: "bg-gradient-to-br from-teal-600 to-teal-800", icon: <Globe className="h-8 w-8 text-white" /> },
+    ];
+    
+    const styleIndex = index % colors.length;
+    const style = colors[styleIndex];
+    
+    // Parse metrics if they're stored as JSON
+    let metrics = [];
+    try {
+      metrics = typeof apiCaseStudy.metrics === 'string' 
+        ? JSON.parse(apiCaseStudy.metrics) 
+        : (apiCaseStudy.metrics || []);
+    } catch (e) {
+      metrics = [];
+    }
+    
+    // Parse testimonial if it's stored as JSON
+    let testimonial = { quote: '', author: '', position: '' };
+    try {
+      testimonial = typeof apiCaseStudy.testimonial === 'string' 
+        ? JSON.parse(apiCaseStudy.testimonial) 
+        : (apiCaseStudy.testimonial || testimonial);
+    } catch (e) {
+      testimonial = { quote: '', author: '', position: '' };
+    }
+
+    return {
+      id: apiCaseStudy.uuid || apiCaseStudy.id,
+      title: apiCaseStudy.title,
+      ...style,
+      company: apiCaseStudy.client,
+      industry: apiCaseStudy.industry,
+      location: apiCaseStudy.location || 'Not specified',
+      duration: apiCaseStudy.duration || 'Not specified',
+      completedDate: apiCaseStudy.completed_date || new Date(apiCaseStudy.created_at || Date.now()).toLocaleDateString(),
+      challenge: apiCaseStudy.challenge,
+      solution: apiCaseStudy.solution,
+      implementation: [], // Implementation steps could be parsed from content if needed
+      results: metrics,
+      testimonial,
+      tags: apiCaseStudy.tags || [],
+    };
+  };
+  
+  // Fallback case studies for when API has no data
+  const fallbackCaseStudies = [
     {
       id: "techglobal-corp",
       title: "Global Workforce Screening Transformation",
@@ -290,6 +390,9 @@ export default function CaseStudies() {
       bgGradient: "bg-gradient-to-br from-teal-600 to-teal-800"
     }
   ];
+  
+  // Use API data if available, otherwise use fallback
+  const displayCaseStudies = apiCaseStudies.length > 0 ? apiCaseStudies.map(transformCaseStudy) : fallbackCaseStudies;
 
   const industries = [
     {
@@ -388,8 +491,11 @@ export default function CaseStudies() {
             </p>
           </div>
 
-          <div ref={casesRef} className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 case-studies-mobile-grid md:case-studies-tablet-grid mobile-full-width">
-            {caseStudies.map((study, index) => (
+          {isLoading && <LoadingSpinner />}
+          {error && <ErrorMessage />}
+          {!isLoading && !error && (
+            <div ref={casesRef} className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 case-studies-mobile-grid md:case-studies-tablet-grid mobile-full-width">
+              {displayCaseStudies.map((study, index) => (
               <div
                 key={study.id}
                 className={`bg-gray-50 dark:bg-slate-800/50 rounded-3xl p-6 md:p-8 border-l-8 border-l-blue-500 shadow-lg hover:shadow-xl transition-all duration-300 hover:transform hover:scale-[1.02] case-studies-mobile-card`}
@@ -413,18 +519,20 @@ export default function CaseStudies() {
                         <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
                           Challenge
                         </h4>
-                        <p className="text-gray-600 dark:text-gray-300">
-                          {study.challenge}
-                        </p>
+                        <div 
+                          className="text-gray-600 dark:text-gray-300 prose prose-sm dark:prose-invert max-w-none line-clamp-3"
+                          dangerouslySetInnerHTML={{ __html: study.challenge }}
+                        />
                       </div>
 
                       <div>
                         <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
                           Solution
                         </h4>
-                        <p className="text-gray-600 dark:text-gray-300">
-                          {study.solution}
-                        </p>
+                        <div 
+                          className="text-gray-600 dark:text-gray-300 prose prose-sm dark:prose-invert max-w-none line-clamp-3"
+                          dangerouslySetInnerHTML={{ __html: study.solution }}
+                        />
                       </div>
                     </div>
                   </div>
@@ -456,6 +564,7 @@ export default function CaseStudies() {
               </div>
             ))}
           </div>
+          )}
         </div>
       </section>
 

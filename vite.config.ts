@@ -17,8 +17,25 @@ export default defineConfig(({ mode }) => ({
     },
   },
   server: {
-    port: 3000,
+    port: 3004,
     open: true,
+    proxy: {
+      '/api': {
+        target: 'https://informed-bluebird-right.ngrok-free.app',
+        changeOrigin: true,
+        secure: false,
+        headers: {
+          'ngrok-skip-browser-warning': 'true',
+          Accept: 'application/json'
+        }
+      },
+      '/calendly-proxy': {
+        target: 'https://assets.calendly.com',
+        changeOrigin: true,
+        secure: true,
+        rewrite: (path) => path.replace(/^\/calendly-proxy/, '')
+      }
+    },
   },
   build: {
     outDir: 'dist/spa',

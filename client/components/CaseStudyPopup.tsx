@@ -221,7 +221,10 @@ export function CaseStudyPopup({ isOpen, onClose, caseStudy }: CaseStudyPopupPro
                 <Shield className="w-6 h-6 text-red-500" />
                 Challenge
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{caseStudy.challenge}</p>
+              <div 
+                className="text-gray-600 dark:text-gray-300 leading-relaxed prose prose-sm dark:prose-invert max-w-none"
+                dangerouslySetInnerHTML={{ __html: caseStudy.challenge }}
+              />
             </div>
 
             <div>
@@ -229,7 +232,10 @@ export function CaseStudyPopup({ isOpen, onClose, caseStudy }: CaseStudyPopupPro
                 <CheckCircle className="w-6 h-6 text-green-500" />
                 Solution
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">{caseStudy.solution}</p>
+              <div 
+                className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4 prose prose-sm dark:prose-invert max-w-none"
+                dangerouslySetInnerHTML={{ __html: caseStudy.solution }}
+              />
 
               <h4 className="font-semibold text-gray-900 dark:text-white mb-3">Implementation Steps:</h4>
               <ul className="space-y-2">

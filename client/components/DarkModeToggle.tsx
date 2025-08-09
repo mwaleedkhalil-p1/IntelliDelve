@@ -50,7 +50,8 @@ export function DarkModeToggle() {
     const now = new Date();
     const hour = now.getHours();
 
-    return hour >= 18 || hour < 6;
+    // Auto dark mode between 19:00 (7 PM) and 06:00 (6 AM)
+    return hour >= 19 || hour < 6;
   };
 
   const checkForSunset = () => {
@@ -59,7 +60,8 @@ export function DarkModeToggle() {
     const lastCheck = localStorage.getItem('lastSunsetCheck');
     const today = now.toDateString();
 
-    if (hour === 18 && lastCheck !== today) {
+    // Trigger sunset prompt at 19:00 (7 PM)
+    if (hour === 19 && lastCheck !== today) {
       localStorage.setItem('lastSunsetCheck', today);
       return true;
     }

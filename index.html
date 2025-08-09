@@ -17,7 +17,8 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
 
     <!-- Preload critical resources -->
-    <link rel="preload" href="/client/global.css" as="style">
+    <link rel="preload" href="/client/global.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/client/global.css"></noscript>
 
     <!-- Favicon and app icons -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">

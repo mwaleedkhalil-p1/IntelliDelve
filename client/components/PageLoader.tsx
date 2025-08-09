@@ -34,3 +34,4 @@ const PageLoader = memo(() => {
 PageLoader.displayName = "PageLoader";
 
 export { PageLoader };
+export default PageLoader;

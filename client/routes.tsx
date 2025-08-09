@@ -15,6 +15,11 @@ const Clients = lazy(() => import("./pages/Clients"));
 const Careers = lazy(() => import("./pages/Careers"));
 const Blogs = lazy(() => import("./pages/Blogs"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
+const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
+const BlogManagement = lazy(() => import("./pages/admin/BlogManagement"));
+const CaseStudyManagement = lazy(() => import("./pages/admin/CaseStudyManagement"));
+const CloudinaryTest = lazy(() => import("./pages/admin/CloudinaryTest"));
+const ApiTest = lazy(() => import("./pages/ApiTest"));
 
 const BackgroundScreeningSolution = lazy(
   () => import("./pages/solutions/BackgroundScreening"),
@@ -207,5 +212,10 @@ export const routes: RouteObject[] = [
   { path: "/data-migration", element: <DataMigration /> },
   { path: "/cloud-infrastructure", element: <CloudInfrastructure /> },
   { path: "/contact", element: <Contact /> },
-  { path: "*", element: <NotFound /> },
+  { path: "/admin", element: <AdminDashboard /> },
+  { path: "/admin/BlogManagement", element: <BlogManagement /> },
+  { path: "/admin/CaseStudyManagement", element: <CaseStudyManagement /> },
+  { path: "/admin/cloudinary-test", element: <CloudinaryTest /> },
+  { path: "/api-test", element: <ApiTest /> },
+  { path: "*", element: <NotFound /> }
 ];

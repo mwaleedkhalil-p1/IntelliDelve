@@ -8,7 +8,7 @@ interface CalendlyIframeProps {
 }
 
 export const CalendlyIframe: React.FC<CalendlyIframeProps> = ({
-  url = "https://calendly.com/mwaleedkhalil/30min?hide_landing_page_details=1&hide_gdpr_banner=1&embed_domain=localhost&embed_type=Inline&prefill_name=&prefill_email=",
+  url = "https://calendly.com/mwaleedkhalil/30min?hide_landing_page_details=1&hide_gdpr_banner=1&embed_domain=localhost:3001&embed_type=Inline&prefill_name=&prefill_email=",
   height = "600px",
   width = "100%",
 }) => {

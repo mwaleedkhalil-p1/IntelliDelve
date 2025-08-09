@@ -13,7 +13,7 @@ import {
 import { useAuth, useBlogs, useCaseStudies, useLogout } from '../../hooks/useApi';
 import { LoginForm } from '../../components/admin/LoginForm';
 import { SEO } from '../../components/SEO';
-import { ApiTestComponent } from '../../components/debug/ApiTestComponent';
+import { ApiTestComponent } from '@/components/debug/ApiTestComponent';
 
 const AdminDashboard: React.FC = () => {
   const { user, isAuthenticated, isLoading, error } = useAuth();

@@ -1,6 +1,6 @@
 import React from 'react';
-import { SEO } from '../components/SEO';
-import { ApiTestComponent } from '../components/debug/ApiTestComponent';
+import { SEO } from '@/components/SEO';
+import { ApiTestComponent } from '@/components/debug/ApiTestComponent';
 
 const ApiTest: React.FC = () => {
   return (

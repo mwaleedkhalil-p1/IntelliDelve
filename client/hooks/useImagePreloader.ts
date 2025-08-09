@@ -20,7 +20,7 @@ interface PreloadedImage {
 
 export const useImagePreloader = (
   images: string[],
-  options: ImagePreloaderOptions =
+  options: ImagePreloaderOptions = {}
 ) => {
   const {
     priority = 'high',

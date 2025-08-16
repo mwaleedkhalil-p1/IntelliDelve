@@ -119,6 +119,13 @@ const SystemIntegration = lazy(() => import("./pages/SystemIntegration"));
 const DataMigration = lazy(() => import("./pages/DataMigration"));
 const CloudInfrastructure = lazy(() => import("./pages/CloudInfrastructure"));
 
+// Sanity-powered pages
+const SanityBlogs = lazy(() => import("./pages/SanityBlogs"));
+const SanityBlogPost = lazy(() => import("./pages/SanityBlogPost"));
+const SanityCaseStudies = lazy(() => import("./pages/SanityCaseStudies"));
+const SanityTest = lazy(() => import("./pages/SanityTest"));
+const SanityDebug = lazy(() => import("./pages/SanityDebug"));
+
 export const routes: RouteObject[] = [
   { path: "/", element: <Index /> },
   { path: "/about", element: <AboutUs /> },
@@ -131,8 +138,13 @@ export const routes: RouteObject[] = [
   { path: "/partners", element: <Partners /> },
   { path: "/clients", element: <Clients /> },
   { path: "/careers", element: <Careers /> },
-  { path: "/blogs", element: <Blogs /> },
-  { path: "/blogs/:id", element: <BlogPost /> },
+  { path: "/blogs", element: <SanityBlogs /> },
+  { path: "/blogs/:id", element: <SanityBlogPost /> },
+  
+  // Sanity-powered routes (can be used for testing or as primary routes)
+  { path: "/sanity/blogs", element: <SanityBlogs /> },
+  { path: "/sanity/blogs/:id", element: <SanityBlogPost /> },
+  { path: "/sanity/case-studies", element: <SanityCaseStudies /> },
 
   {
     path: "/solutions/background-screening",
@@ -217,5 +229,7 @@ export const routes: RouteObject[] = [
   { path: "/admin/CaseStudyManagement", element: <CaseStudyManagement /> },
   { path: "/admin/cloudinary-test", element: <CloudinaryTest /> },
   { path: "/api-test", element: <ApiTest /> },
+  // { path: "/sanity-test", element: <SanityTest /> },
+  // { path: "/sanity-debug", element: <SanityDebug /> },
   { path: "*", element: <NotFound /> }
 ];

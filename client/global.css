@@ -1093,6 +1093,11 @@
   }
 
   @media (max-width: 768px) {
+    /* Global mobile spacing fix to prevent navbar overlap */
+    main, .main-content, [role="main"], .min-h-screen {
+      padding-top: 20px !important;
+    }
+    
     .hero-carousel-spacing {
       padding-left: 1rem;
       padding-right: 1rem;

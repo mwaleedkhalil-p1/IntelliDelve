@@ -52,12 +52,12 @@ const CitizenByInvestment = memo(() => {
   ];
 
   const cbiPrograms = [
-    { country: "Antigua & Barbuda", investment: "$100,000+", timeframe: "3-4 months" },
-    { country: "Dominica", investment: "$100,000+", timeframe: "3-4 months" },
-    { country: "Grenada", investment: "$150,000+", timeframe: "4-6 months" },
-    { country: "St. Kitts & Nevis", investment: "$150,000+", timeframe: "4-6 months" },
-    { country: "St. Lucia", investment: "$100,000+", timeframe: "3-4 months" },
-    { country: "Vanuatu", investment: "$130,000+", timeframe: "1-2 months" }
+    { country: "Caribbean Program A", investment: "$100,000+", timeframe: "3-4 months" },
+    { country: "Caribbean Program B", investment: "$100,000+", timeframe: "3-4 months" },
+    { country: "Caribbean Program C", investment: "$150,000+", timeframe: "4-6 months" },
+    { country: "Caribbean Program D", investment: "$150,000+", timeframe: "4-6 months" },
+    { country: "Caribbean Program E", investment: "$100,000+", timeframe: "3-4 months" },
+    { country: "Pacific Program A", investment: "$130,000+", timeframe: "1-2 months" }
   ];
 
   const benefits = [

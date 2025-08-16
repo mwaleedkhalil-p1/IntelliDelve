@@ -1,7 +1,7 @@
 import React, { useRef, forwardRef, useImperativeHandle } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
 
-const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY || '6Le6iYYrAAAAALPQ2Qd7wcP_p53u4wKBridN4bAO';
+const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY || '6Le6iYYrAAAAALPQ2Qd7wcP_p53u4wKBridN4bAO';
 
 export interface ReCaptchaRef {
   executeRecaptcha: () => Promise<string | null>;

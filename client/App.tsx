@@ -23,6 +23,7 @@ import { queryClient } from "./lib/queryClient";
 import { imagePreloader } from "./services/imagePreloader";
 import { routes } from "./routes";
 import { useCalendly } from "./hooks/useCalendly";
+import { useTimeBasedTheme } from "./hooks/useTimeBasedTheme";
 import { AuthProvider } from "./context/AuthContext";
 
 // Import API test utilities for debugging
@@ -80,6 +81,9 @@ const AppContent: React.FC<{ calendly: ReturnType<typeof useCalendly> }> = ({
 
 const App: React.FC = () => {
   const calendly = useCalendly();
+  
+  // Initialize time-based theme
+  useTimeBasedTheme();
 
   // Initialize image preloading on app startup
   useEffect(() => {

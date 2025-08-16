@@ -503,6 +503,19 @@ const Navigation = memo(() => {
     };
   }, [activeMenu, isMobileMenuOpen]);
 
+  // Ensure body styles are reset on component mount
+  useEffect(() => {
+    // Reset body styles on initial mount to prevent stuck states
+    document.body.style.overflow = '';
+    document.body.style.height = '';
+    
+    return () => {
+      // Cleanup on unmount
+      document.body.style.overflow = '';
+      document.body.style.height = '';
+    };
+  }, []);
+
   // Handle window resize
   useEffect(() => {
     const handleResize = () => {

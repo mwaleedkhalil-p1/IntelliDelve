@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   Plus, 
-  Edit, 
-  Trash2, 
   Search, 
   ArrowLeft,
   Loader2,
@@ -11,9 +9,7 @@ import {
 } from 'lucide-react';
 import { 
   useCaseStudies, 
-  useCreateCaseStudy, 
-  useUpdateCaseStudy, 
-  useDeleteCaseStudy 
+  useCreateCaseStudy 
 } from '../../hooks/useApi';
 import { CaseStudy, CaseStudyFilters } from '../../services/apiService';
 import { SEO } from '../../components/SEO';
@@ -58,8 +54,7 @@ const CaseStudyManagement: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<CaseStudy | null>(null);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
-  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
-  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+
   const [formData, setFormData] = useState<Partial<CaseStudy>>({
     title: '',
     client: '',
@@ -90,8 +85,6 @@ const CaseStudyManagement: React.FC = () => {
 
   // Mutations
   const createCaseStudyMutation = useCreateCaseStudy();
-  const updateCaseStudyMutation = useUpdateCaseStudy();
-  const deleteCaseStudyMutation = useDeleteCaseStudy();
 
   // Get case studies from API response and normalize UUID field
   const rawCaseStudies = caseStudiesResponse?.success ? caseStudiesResponse.data.data : [];
@@ -374,13 +367,13 @@ const CaseStudyManagement: React.FC = () => {
                   <TableHead>Industry</TableHead>
                   <TableHead>Status</TableHead>
                   <TableHead>Tags</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
+
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {caseStudies.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={6} className="text-center py-8 text-gray-500">
+                    <TableCell colSpan={5} className="text-center py-8 text-gray-500">
                       No case studies found. Create your first case study!
                     </TableCell>
                   </TableRow>
@@ -411,16 +404,7 @@ const CaseStudyManagement: React.FC = () => {
                           )}
                         </div>
                       </TableCell>
-                      <TableCell className="text-right">
-                        <div className="flex items-center justify-end gap-2">
-                          <Button variant="ghost" size="icon" onClick={() => openEditDialog(caseStudy)}>
-                            <Edit className="h-4 w-4" />
-                          </Button>
-                          <Button variant="ghost" size="icon" onClick={() => openDeleteDialog(caseStudy)}>
-                            <Trash2 className="h-4 w-4" />
-                          </Button>
-                        </div>
-                      </TableCell>
+
                     </TableRow>
                   ))
                 )}

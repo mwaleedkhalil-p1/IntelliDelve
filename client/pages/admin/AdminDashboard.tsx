@@ -8,16 +8,52 @@ import {
   Plus,
   Edit,
   Trash2,
-  Eye
+  Eye,
+  Edit3,
+  Globe
 } from 'lucide-react';
 import { useAuth, useBlogs, useCaseStudies, useLogout } from '../../hooks/useApi';
 import { LoginForm } from '../../components/admin/LoginForm';
 import { SEO } from '../../components/SEO';
-import { ApiTestComponent } from '@/components/admin/ApiTestComponent';
+import { ApiTestComponent } from '../../components/admin/ApiTestComponent';
+import { ErrorBoundary } from '../../components/admin/ErrorBoundary';
+// Lazy load Sanity components to prevent blocking
+const SanityStudioIntegration = React.lazy(() => 
+  import('../../components/admin/SanityStudioIntegration').catch(() => ({
+    default: () => (
+      <div className="p-6 text-center">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Sanity CMS Integration</h3>
+        <p className="text-gray-600 dark:text-gray-400">Loading Sanity components...</p>
+        <div className="mt-4">
+          <a 
+            href="https://k9jiezj8.sanity.studio" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90"
+          >
+            <Edit3 className="w-4 h-4" />
+            Open Sanity Studio
+          </a>
+        </div>
+      </div>
+    )
+  }))
+);
+
+const SitemapManager = React.lazy(() => 
+  import('../../components/admin/SitemapManager').catch(() => ({
+    default: () => (
+      <div className="p-6 text-center">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">SEO & Sitemap Tools</h3>
+        <p className="text-gray-600 dark:text-gray-400">SEO tools are loading...</p>
+      </div>
+    )
+  }))
+);
 
 const AdminDashboard: React.FC = () => {
   const { user, isAuthenticated, isLoading, error } = useAuth();
-  const [activeTab, setActiveTab] = useState<'blogs' | 'case-studies'>('blogs');
+  const [activeTab, setActiveTab] = useState<'blogs' | 'case-studies' | 'sanity' | 'seo'>('blogs');
   const [showDebugInfo, setShowDebugInfo] = useState(false);
   const navigate = useNavigate();
   
@@ -149,6 +185,8 @@ const AdminDashboard: React.FC = () => {
               {[
                 { id: 'blogs', name: 'Blogs', icon: BookOpen },
                 { id: 'case-studies', name: 'Case Studies', icon: FileText },
+                { id: 'sanity', name: 'Sanity CMS', icon: Edit3 },
+                { id: 'seo', name: 'SEO & Sitemaps', icon: Globe },
               ].map((tab) => (
                 <button
                   key={tab.id}
@@ -248,13 +286,13 @@ const AdminDashboard: React.FC = () => {
                   <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
                     Case Studies ({caseStudies.length})
                   </h2>
-                  <button 
+                  {/* <button 
                     onClick={() => navigate('/admin/CaseStudyManagement')}
                     className="inline-flex items-center gap-2 px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-primary hover:bg-primary/90"
                   >
                     <Plus className="w-4 h-4" />
                     Manage Case Studies
-                  </button>
+                  </button> */}
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -291,6 +329,36 @@ const AdminDashboard: React.FC = () => {
                 </div>
               </div>
             )}
+
+            {activeTab === 'sanity' && (
+              <div className="-m-6">
+                <ErrorBoundary>
+                  <React.Suspense fallback={
+                    <div className="flex items-center justify-center p-8">
+                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                      <span className="ml-2">Loading Sanity CMS...</span>
+                    </div>
+                  }>
+                    <SanityStudioIntegration />
+                  </React.Suspense>
+                </ErrorBoundary>
+              </div>
+            )}
+
+            {activeTab === 'seo' && (
+              <div className="-m-6">
+                <ErrorBoundary>
+                  <React.Suspense fallback={
+                    <div className="flex items-center justify-center p-8">
+                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                      <span className="ml-2">Loading SEO Tools...</span>
+                    </div>
+                  }>
+                    <SitemapManager />
+                  </React.Suspense>
+                </ErrorBoundary>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -298,4 +366,7 @@ const AdminDashboard: React.FC = () => {
   );
 };
 
-export default AdminDashboard;
+// export default AdminDashboard;
+
+// If there are issues, uncomment the line below and comment out the line above
+export { default } from './AdminDashboardSafe';

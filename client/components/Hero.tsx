@@ -47,10 +47,10 @@ export function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative min-h-screen flex items-center bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-brand-navy dark:via-brand-navy/90 dark:to-purple-900/20 overflow-hidden"
+      className="relative min-h-screen flex items-center bg-gradient-to-br from-gray-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800/90 dark:to-purple-900/20 overflow-hidden"
     >
 
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-5">
         <div className="absolute top-20 left-10 w-72 h-72 bg-brand-pink rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
         <div className="absolute top-40 right-10 w-72 h-72 bg-brand-purple rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-1000"></div>
         <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-brand-yellow rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-2000"></div>
@@ -64,7 +64,7 @@ export function Hero() {
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight mb-6"
             >
               Professional{" "}
-              <span className="text-primary dark:text-sky-300">
+              <span className="text-purple-600 dark:text-purple-400">
                 Background Checks
               </span>{" "}
               & <br />
@@ -81,7 +81,7 @@ export function Hero() {
             <div ref={buttonRef}>
               <Link
                 to="/contact"
-                className="inline-flex items-center bg-primary text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-primary/20"
+                className="inline-flex items-center bg-purple-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-purple-600/20"
               >
                 Book Consultation
               </Link>

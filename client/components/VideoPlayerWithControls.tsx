@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import { Play, Pause } from 'lucide-react';
 import { useVideoScrollControl } from '../hooks/useVideoScrollControl';
 
@@ -16,14 +16,14 @@ interface VideoPlayerWithControlsProps {
   onPause?: () => void;
 }
 
-const VideoPlayerWithControls = memo<VideoPlayerWithControlsProps>(({
+const VideoPlayerWithControls = memo<VideoPlayerWithControlsProps>({
   src,
   poster,
   className = "w-full h-64 md:h-80",
-  autoPlay = false,
+  autoPlay = true,
   loop = false,
   muted = false,
-  volume = 0.4,
+  volume = 0.1,
   autoPauseOnScroll = true,
   visibilityThreshold = 0.3,
   onPlay,
@@ -62,6 +62,27 @@ const VideoPlayerWithControls = memo<VideoPlayerWithControlsProps>(({
     }
   };
 
+  // Auto-play video when component mounts and is visible
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video && autoPlay) {
+      const playVideo = async () => {
+        try {
+          await video.play();
+          setIsPlaying(true);
+          onPlay?.();
+        } catch (error) {
+          console.warn('Autoplay failed:', error);
+          // Autoplay might be blocked by browser policy
+        }
+      };
+      
+      // Small delay to ensure video is loaded
+      const timer = setTimeout(playVideo, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [autoPlay, onPlay]);
+
 
 
   const handleMouseEnter = () => {
@@ -84,6 +105,8 @@ const VideoPlayerWithControls = memo<VideoPlayerWithControlsProps>(({
         className="w-full h-full object-cover"
         poster={poster}
         loop={loop}
+        autoPlay={autoPlay}
+        muted={muted}
         preload="metadata"
         onPlay={() => {
           setIsPlaying(true);

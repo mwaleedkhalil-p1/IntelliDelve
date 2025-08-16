@@ -474,7 +474,7 @@ export default function Index() {
               </div>
             </div>
 
-            <div className="flex justify-between items-center mt-6">
+            <div className="flex justify-between items-center mt-6 pt-20 md:pt-0">
               <button
                 onClick={() => setCurrentServiceSlide(Math.max(0, currentServiceSlide - 1))}
                 disabled={currentServiceSlide === 0}

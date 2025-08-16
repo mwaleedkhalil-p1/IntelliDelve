@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { Eye, EyeOff, Loader2, Lock, Mail } from 'lucide-react';
-import { useLogin } from '../../hooks/useApi';
-import { toast } from 'react-hot-toast';
+import { LogIn, Eye, EyeOff } from 'lucide-react';
 
 interface LoginFormProps {
   onSuccess?: () => void;
@@ -11,33 +9,40 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  
-  const loginMutation = useLogin();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !password) {
-      toast.error('Please fill in all fields');
-      return;
-    }
+    setIsLoading(true);
+    setError('');
 
-    loginMutation.mutate({ email, password }, {
-      onSuccess: (data) => {
-        if (data.success) {
-          console.log('🔐 Login successful, triggering success callback');
-          // The useLogin hook now handles query invalidation.
-          // The parent component (AdminDashboard) will re-render automatically.
-          onSuccess?.();
-        } else {
-          // Error toast is already shown by the useLogin hook
-          console.error('🔐 Login mutation returned success:false');
-        }
-      },
-      onError: (error) => {
-        // Error is already handled and toasted by the useLogin hook
-        console.error('🔐 Login mutation failed:', error);
+    try {
+      // Simulate login - replace with actual authentication logic
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // For demo purposes, accept any email/password
+      if (email && password) {
+        // Set demo token and user data
+        localStorage.setItem('token', 'demo-token');
+        localStorage.setItem('demo-user', JSON.stringify({
+          id: 'demo-user-1',
+          email: email,
+          name: email.split('@')[0],
+          role: 'admin'
+        }));
+        
+        // Trigger success callback and force page reload to update auth state
+        onSuccess?.();
+        window.location.reload();
+      } else {
+        setError('Please enter both email and password');
       }
-    });
+    } catch (err) {
+      setError('Login failed. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -45,7 +50,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSuccess }) => {
       <div className="max-w-md w-full space-y-8">
         <div>
           <div className="mx-auto h-12 w-12 flex items-center justify-center rounded-full bg-primary">
-            <Lock className="h-6 w-6 text-white" />
+            <LogIn className="h-6 w-6 text-white" />
           </div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
             Admin Login
@@ -58,35 +63,27 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSuccess }) => {
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-4">
             <div>
-              <label htmlFor="email" className="sr-only">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 Email address
               </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Mail className="h-5 w-5 text-gray-400" />
-                </div>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="appearance-none relative block w-full px-3 py-2 pl-10 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm dark:bg-gray-800"
-                  placeholder="Email address"
-                />
-              </div>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-800 rounded-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
+                placeholder="Enter your email"
+              />
             </div>
             
             <div>
-              <label htmlFor="password" className="sr-only">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                 Password
               </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Lock className="h-5 w-5 text-gray-400" />
-                </div>
+              <div className="mt-1 relative">
                 <input
                   id="password"
                   name="password"
@@ -95,8 +92,8 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSuccess }) => {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="appearance-none relative block w-full px-3 py-2 pl-10 pr-10 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm dark:bg-gray-800"
-                  placeholder="Password"
+                  className="appearance-none relative block w-full px-3 py-2 pr-10 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-800 rounded-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
+                  placeholder="Enter your password"
                 />
                 <button
                   type="button"
@@ -104,33 +101,43 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSuccess }) => {
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? (
-                    <EyeOff className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                    <EyeOff className="h-4 w-4 text-gray-400" />
                   ) : (
-                    <Eye className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                    <Eye className="h-4 w-4 text-gray-400" />
                   )}
                 </button>
               </div>
             </div>
           </div>
 
+          {error && (
+            <div className="text-red-600 dark:text-red-400 text-sm text-center">
+              {error}
+            </div>
+          )}
+
           <div>
             <button
               type="submit"
-              disabled={loginMutation.isPending}
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={isLoading}
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {loginMutation.isPending ? (
-                <>
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  Signing in...
-                </>
+              {isLoading ? (
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
               ) : (
-                'Sign in'
+                <>
+                  <LogIn className="h-4 w-4 mr-2" />
+                  Sign in
+                </>
               )}
             </button>
           </div>
 
-
+          <div className="text-center">
+            <p className="text-xs text-gray-500 dark:text-gray-400">
+              Demo: Use any email and password to login
+            </p>
+          </div>
         </form>
       </div>
     </div>

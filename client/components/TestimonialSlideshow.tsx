@@ -85,16 +85,13 @@ const TestimonialSlideshow = memo<TestimonialSlideshowProps>(
                 <div className="flex items-center justify-center">
                   <img
                     src={currentTestimonial.avatar}
-                    alt={currentTestimonial.name}
+                    alt={currentTestimonial.role}
                     className="w-16 h-16 rounded-full mr-4"
                   />
                   <div className="text-left">
                     <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
-                      {currentTestimonial.name}
-                    </h4>
-                    <p className="text-gray-600 dark:text-gray-300">
                       {currentTestimonial.role}
-                    </p>
+                    </h4>
                     <p className="text-primary dark:text-sky-300 font-medium">
                       {currentTestimonial.company}
                     </p>
@@ -156,11 +153,11 @@ const TestimonialSlideshow = memo<TestimonialSlideshowProps>(
               >
                 <img
                   src={testimonial.avatar}
-                  alt={testimonial.name}
+                  alt={testimonial.role}
                   className="w-12 h-12 rounded-full mx-auto mb-2"
                 />
                 <h5 className="text-sm font-medium truncate">
-                  {testimonial.name}
+                  {testimonial.role}
                 </h5>
                 <p className="text-xs opacity-75 truncate text-gray-600 dark:text-gray-300">
                   {testimonial.company}

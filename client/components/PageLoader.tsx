@@ -6,8 +6,8 @@ const PageLoader = memo(() => {
   useEffect(() => {
     const video = videoRef.current;
     if (video) {
-      // Set video volume to 40% (0.4) for loading animation
-      video.volume = 0.4;
+      // Set video volume to 10% (0.1) for loading animation
+      video.volume = 0.1;
     }
   }, []);
 

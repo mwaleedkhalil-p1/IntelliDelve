@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   Plus, 
-  Edit, 
-  Trash2, 
   Search, 
   ArrowLeft,
   Loader2,
@@ -13,8 +11,6 @@ import {
 import { 
   useBlogs, 
   useCreateBlog, 
-  useUpdateBlog, 
-  useDeleteBlog,
   useUploadImage,
   useBulkUploadImages,
   useImages,
@@ -64,8 +60,7 @@ const BlogManagement: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedBlog, setSelectedBlog] = useState<BlogPost | null>(null);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
-  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
-  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+
   const [formData, setFormData] = useState<{
     title: string;
     excerpt: string;
@@ -105,8 +100,6 @@ const BlogManagement: React.FC = () => {
 
   // Mutations
   const createBlogMutation = useCreateBlog();
-  const updateBlogMutation = useUpdateBlog();
-  const deleteBlogMutation = useDeleteBlog();
   const uploadImageMutation = useUploadImage();
   const bulkUploadImagesMutation = useBulkUploadImages();
   const deleteImageMutation = useDeleteImage();
@@ -167,28 +160,7 @@ const BlogManagement: React.FC = () => {
     setIsCreateDialogOpen(true);
   };
 
-  // Open edit dialog
-  const openEditDialog = (blog: any) => {
-    setSelectedBlog(blog);
-    setFormData({
-      title: blog.title || '',
-      excerpt: blog.excerpt || '',
-      content: blog.content || '',
-      author: blog.author || '',
-      category: blog.category || '',
-      tags: blog.tags || [],
-      status: blog.status || 'draft'
-    });
-    setUploadedImages(blog.images || []);
-    setPendingImages([]);
-    setIsEditDialogOpen(true);
-  };
 
-  // Open delete dialog
-  const openDeleteDialog = (blog: any) => {
-    setSelectedBlog(blog);
-    setIsDeleteDialogOpen(true);
-  };
 
   // Handle create blog
   const handleCreateBlog = async (e: React.FormEvent) => {
@@ -296,61 +268,7 @@ const BlogManagement: React.FC = () => {
     }
   };
 
-  // Handle update blog
-  const handleUpdateBlog = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!selectedBlog?.uuid) return;
 
-    // Validate required fields
-    if (!formData.title.trim() || !formData.content.trim() || !formData.excerpt.trim() || 
-        !formData.author.trim() || !formData.category.trim()) {
-      alert('Please fill in all required fields');
-      return;
-    }
-
-    // Verify content integrity before updating (development mode)
-    if (process.env.NODE_ENV === 'development') {
-      console.log('🔍 Verifying content integrity before updating...');
-      try {
-        await verifyContentIntegrity(formData.content.trim(), 'blog', `update-${formData.title.substring(0, 20)}`);
-      } catch (error) {
-        console.warn('Content verification failed, but proceeding with update:', error);
-      }
-    }
-
-    // Prepare data according to API docs - process rich text content
-    const blogData = {
-      title: formData.title.trim(),
-      content: processRichTextContent(formData.content.trim()),
-      excerpt: formData.excerpt.trim(),
-      author: formData.author.trim(),
-      status: formData.status,
-      tags: formData.tags.filter(tag => tag.trim() !== ''),
-      category: formData.category.trim()
-    };
-
-    console.log('Updating blog with data:', blogData);
-
-    try {
-      await updateBlogMutation.mutateAsync({ uuid: selectedBlog.uuid, blog: blogData });
-      setIsEditDialogOpen(false);
-      // No need to call refetch() - the mutation handles cache invalidation automatically
-    } catch (error) {
-      console.error('Error updating blog:', error);
-    }
-  };
-
-  // Handle delete blog
-  const handleDeleteBlog = () => {
-    if (!selectedBlog?.uuid) return;
-    
-    deleteBlogMutation.mutate(selectedBlog.uuid, {
-      onSuccess: () => {
-        setIsDeleteDialogOpen(false);
-        // No need to call refetch() here as the mutation handles cache invalidation
-      }
-    });
-  };
 
   // Handle search
   const handleSearch = (e: React.FormEvent) => {
@@ -500,13 +418,13 @@ const BlogManagement: React.FC = () => {
                   <TableHead>Status</TableHead>
                   <TableHead>Tags</TableHead>
                   <TableHead>Created</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
+
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {blogs.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={7} className="text-center py-8 text-gray-500">
+                    <TableCell colSpan={6} className="text-center py-8 text-gray-500">
                       No blog posts found. Create your first blog post!
                     </TableCell>
                   </TableRow>
@@ -543,26 +461,7 @@ const BlogManagement: React.FC = () => {
                         {blog.created_at ? new Date(blog.created_at).toLocaleDateString() : 
                          blog.createdAt ? new Date(blog.createdAt).toLocaleDateString() : 'N/A'}
                       </TableCell>
-                      <TableCell className="text-right">
-                        <div className="flex items-center justify-end gap-2">
-                          <Button 
-                            variant="ghost" 
-                            size="icon" 
-                            onClick={() => openEditDialog(blog)}
-                            title="Edit blog"
-                          >
-                            <Edit className="h-4 w-4" />
-                          </Button>
-                          <Button 
-                            variant="ghost" 
-                            size="icon" 
-                            onClick={() => openDeleteDialog(blog)}
-                            title="Delete blog"
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </Button>
-                        </div>
-                      </TableCell>
+
                     </TableRow>
                   ))
                 )}
@@ -784,202 +683,10 @@ const BlogManagement: React.FC = () => {
         </DialogContent>
       </Dialog>
 
-      {/* Edit Blog Dialog */}
-      <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
-        <DialogContent className="max-w-4xl max-h-[95vh] overflow-y-auto">
-          <DialogHeader className="pb-6">
-            <DialogTitle className="text-2xl font-bold text-gray-900 dark:text-white">
-              Edit Blog Post
-            </DialogTitle>
-            <DialogDescription className="text-gray-600 dark:text-gray-300">
-              Update your blog post details and content.
-            </DialogDescription>
-          </DialogHeader>
-          <form onSubmit={handleUpdateBlog} className="space-y-6">
-            {/* Basic Information Section */}
-            <div className="space-y-6">
-              <div className="border-b pb-4">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                  Basic Information
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label htmlFor="edit-title" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                      Title *
-                    </label>
-                    <Input
-                      id="edit-title"
-                      name="title"
-                      value={formData.title}
-                      onChange={handleInputChange}
-                      required
-                      placeholder="Enter a compelling blog title..."
-                      className="w-full"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="edit-author" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                      Author *
-                    </label>
-                    <Input
-                      id="edit-author"
-                      name="author"
-                      value={formData.author}
-                      onChange={handleInputChange}
-                      required
-                      placeholder="Author name"
-                      className="w-full"
-                    />
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-                  <div className="space-y-2">
-                    <label htmlFor="edit-category" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                      Category *
-                    </label>
-                    <Input
-                      id="edit-category"
-                      name="category"
-                      value={formData.category}
-                      onChange={handleInputChange}
-                      required
-                      placeholder="e.g., Technology, Business"
-                      className="w-full"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="edit-status" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                      Status *
-                    </label>
-                    <select
-                      id="edit-status"
-                      name="status"
-                      value={formData.status}
-                      onChange={handleInputChange}
-                      className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                      required
-                    >
-                      <option value="draft">Draft</option>
-                      <option value="published">Published</option>
-                    </select>
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="edit-tags" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                      Tags
-                    </label>
-                    <Input
-                      id="edit-tags"
-                      name="tags"
-                      value={formData.tags.join(', ')}
-                      onChange={handleTagsChange}
-                      placeholder="tag1, tag2, tag3"
-                      className="w-full"
-                    />
-                  </div>
-                </div>
-              </div>
 
-              {/* Content Section */}
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                  Content
-                </h3>
-                <div className="space-y-2">
-                  <label htmlFor="edit-excerpt" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Excerpt *
-                  </label>
-                  <textarea
-                    id="edit-excerpt"
-                    name="excerpt"
-                    value={formData.excerpt}
-                    onChange={handleInputChange}
-                    className="w-full min-h-[100px] rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                    required
-                    placeholder="Write a compelling excerpt that summarizes your blog post..."
-                    rows={4}
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="edit-content" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Blog Content *
-                  </label>
-                  <div className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
-                    <RichTextEditor
-                      value={formData.content}
-                      onChange={handleContentChange}
-                      placeholder="Write your blog post content here. Use the toolbar above to format your text, add links, images, and more..."
-                      height={500}
-                      className="editor-enhanced"
-                    />
-                  </div>
-                </div>
-              </div>
 
-              {/* Image Upload Section */}
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                  Images
-                </h3>
-                <ImageUpload
-                  images={[...uploadedImages, ...pendingImages]}
-                  onImagesChange={handleImagesChange}
-                  onImageUpload={handleImageUpload}
-                  onImageDelete={handleImageDelete}
-                  onImageReorder={handleImageReorder}
-                  maxImages={10}
-                  acceptedTypes={['image/jpeg', 'image/png', 'image/webp']}
-                  maxFileSize={5 * 1024 * 1024} // 5MB
-                />
-              </div>
-            </div>
-            <DialogFooter className="flex justify-end gap-2 pt-6 border-t mt-6">
-              <Button type="button" variant="outline" onClick={() => setIsEditDialogOpen(false)}>
-                Cancel
-              </Button>
-              <Button type="submit" disabled={updateBlogMutation.isPending} className="bg-primary hover:bg-primary/90">
-                {updateBlogMutation.isPending ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Updating...
-                  </>
-                ) : (
-                  'Save Changes'
-                )}
-              </Button>
-            </DialogFooter>
-          </form>
-        </DialogContent>
-      </Dialog>
 
-      {/* Delete Confirmation Dialog */}
-      <AlertDialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-            <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete the blog post
-              <strong> "{selectedBlog?.title}"</strong>.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction 
-              onClick={handleDeleteBlog}
-              disabled={deleteBlogMutation.isPending}
-              className="bg-red-600 text-white hover:bg-red-700 focus:ring-red-600"
-            >
-              {deleteBlogMutation.isPending ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Deleting...
-                </>
-              ) : (
-                'Delete'
-              )}
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+
     </div>
   );
 };

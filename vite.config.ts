@@ -1,58 +1,51 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import path from 'path';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tsconfigPaths from "vite-tsconfig-paths";
+import { traeBadgePlugin } from 'vite-plugin-trae-solo-badge';
 
-// https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
-  base: '/',
+// https://vite.dev/config/
+export default defineConfig({
   plugins: [
     react({
-      jsxRuntime: 'classic',
+      // babel: {
+      //   plugins: [
+      //     'react-dev-locator',
+      //   ],
+      // },
     }),
+// traeBadgePlugin({
+    //   variant: 'dark',
+    //   position: 'bottom-right',
+    //   prodOnly: true,
+    //   clickable: true,
+    //   clickUrl: 'https://www.trae.ai/solo?showJoin=1',
+    //   autoTheme: true,
+    //   autoThemeTarget: '#root'
+    // }), 
+    tsconfigPaths(),
   ],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, 'client'),
-      '@shared': path.resolve(__dirname, 'shared'),
-    },
+  define: {
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
   },
   server: {
     port: 3004,
-    open: true,
     proxy: {
       '/api': {
-        target: 'https://informed-bluebird-right.ngrok-free.app',
+        target: 'http://localhost:3001',
         changeOrigin: true,
         secure: false,
-        headers: {
-          'ngrok-skip-browser-warning': 'true',
-          Accept: 'application/json'
-        }
-      },
-      '/calendly-proxy': {
-        target: 'https://assets.calendly.com',
-        changeOrigin: true,
-        secure: true,
-        rewrite: (path) => path.replace(/^\/calendly-proxy/, '')
-      }
-    },
-  },
-  build: {
-    outDir: 'dist/spa',
-    sourcemap: mode !== 'production',
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          recaptcha: ['react-google-recaptcha', 'react-google-recaptcha-v3'],
+        configure: (proxy, _options) => {
+          proxy.on('error', (err, _req, _res) => {
+            console.log('proxy error', err);
+          });
+          proxy.on('proxyReq', (proxyReq, req, _res) => {
+            console.log('Sending Request to the Target:', req.method, req.url);
+          });
+          proxy.on('proxyRes', (proxyRes, req, _res) => {
+            console.log('Received Response from the Target:', proxyRes.statusCode, req.url);
+          });
         },
-      },
-    },
-  },
-  define: {
-    'process.env.NODE_ENV': JSON.stringify(mode),
-    'import.meta.env.NODE_ENV': JSON.stringify(mode),
-    'process.env.REACT_APP_RECAPTCHA_SITE_KEY': JSON.stringify(process.env.REACT_APP_RECAPTCHA_SITE_KEY),
-    __APP_VERSION__: JSON.stringify(process.env.npm_package_version || '1.0.0'),
-  },
-}));
+      }
+    }
+  }
+})

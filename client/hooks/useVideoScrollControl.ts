@@ -26,7 +26,7 @@ export const useVideoScrollControl = (
   options: UseVideoScrollControlOptions = {}
 ): UseVideoScrollControlReturn => {
   const {
-    volume = 0.3,
+    volume = 0.1,
     autoPauseOnScroll = true,
     visibilityThreshold = 0.3,
     autoResumeOnScroll = false,

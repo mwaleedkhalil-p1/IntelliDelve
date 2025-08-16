@@ -80,12 +80,12 @@ const AnimatedCounter = memo<{ value: number; suffix?: string }>(
 AnimatedCounter.displayName = "AnimatedCounter";
 
 const VideoPlayer = memo(() => {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [showControls, setShowControls] = useState(true);
   const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const { videoRef, containerRef } = useVideoScrollControl({
-    volume: 0.4, // 40% volume
+    volume: 0.1, // 10% volume
     autoPauseOnScroll: true,
     visibilityThreshold: 0.3,
     autoResumeOnScroll: false,
@@ -126,6 +126,24 @@ const VideoPlayer = memo(() => {
   };
 
   useEffect(() => {
+    // Auto-play video when component mounts
+    const video = videoRef.current;
+    if (video) {
+      const playVideo = async () => {
+        try {
+          await video.play();
+          setIsPlaying(true);
+        } catch (error) {
+          console.warn('Autoplay failed:', error);
+          // Autoplay might be blocked by browser policy
+        }
+      };
+      
+      // Small delay to ensure video is loaded
+      const timer = setTimeout(playVideo, 100);
+      return () => clearTimeout(timer);
+    }
+    
     return () => {
       if (hideTimeoutRef.current) {
         clearTimeout(hideTimeoutRef.current);
@@ -143,6 +161,8 @@ const VideoPlayer = memo(() => {
       <video
         ref={videoRef}
         className="w-full h-64 md:h-80 object-cover"
+        autoPlay
+        muted={false}
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
         preload="metadata"
@@ -239,7 +259,7 @@ const AboutUs = memo(() => {
             backgroundImage: `url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80')`,
           }}
         ></div>
-        <div className="absolute inset-0 bg-blue-600/85 dark:bg-blue-700/90"></div>
+        <div className="absolute inset-0 bg-blue-600/50 dark:bg-blue-700/60"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -470,21 +490,16 @@ const AboutUs = memo(() => {
             you the AI-powered insight and tech innovation to move faster,
             minimize risk, and make confident, future-ready decisions.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/partners"
-              className="inline-flex items-center px-8 py-4 bg-white text-primary font-semibold rounded-full hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-            >
+          {/* Temporarily commented out due to trae-inspector attribute conflicts */}
+          {/* <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="inline-flex items-center px-8 py-4 bg-white text-primary font-semibold rounded-full hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
               Get Started Today
               <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-            <Link
-              to="/contact"
-              className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-primary transition-all duration-300"
-            >
+            </button>
+            <button className="inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-primary transition-all duration-300">
               Contact Us
-            </Link>
-          </div>
+            </button>
+          </div> */}
         </div>
       </section>
     </div>

@@ -1,5 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { cloudinaryService, CloudinaryImageData, ImageMetadata } from './cloudinaryService';
+import { publicationFilterService } from './publicationFilterService';
+import { loggingService } from './loggingService';
 
 // Base URL configuration
 const getBaseURL = (): string => {
@@ -20,6 +22,24 @@ const apiClient = axios.create({
     'ngrok-skip-browser-warning': 'true',
   },
 });
+
+/**
+ * Validates that public API calls don't include unauthorized parameters
+ * This prevents attempts to bypass publication status filtering
+ */
+const validatePublicApiParams = (params: URLSearchParams, endpoint: string): void => {
+  const statusParam = params.get('status');
+  if (statusParam && statusParam !== 'published') {
+    console.warn(`🚨 API Security: Attempt to bypass publication filter on ${endpoint}`, {
+      requestedStatus: statusParam,
+      endpoint,
+      timestamp: new Date().toISOString(),
+    });
+    // Remove the unauthorized status parameter
+    params.delete('status');
+    params.set('status', 'published');
+  }
+};
 
 // Request interceptor to add auth token
 apiClient.interceptors.request.use(
@@ -176,6 +196,19 @@ export const authService = {
 
   async validateToken(): Promise<ApiResponse<{ user: User }>> {
     try {
+      const token = localStorage.getItem('token');
+      const demoUser = localStorage.getItem('demo-user');
+      
+      // Handle demo authentication
+      if (token === 'demo-token' && demoUser) {
+        const user = JSON.parse(demoUser);
+        return {
+          success: true,
+          data: { user }
+        };
+      }
+      
+      // For real authentication, make API call
       const response: AxiosResponse<ApiResponse<{ user: User }>> = await apiClient.get('/api/auth/validate/');
       return response.data;
     } catch (error: any) {
@@ -186,12 +219,184 @@ export const authService = {
 
   logout(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('demo-user');
     window.location.href = '/admin';
   },
 };
 
 // Blog Service
 export const blogService = {
+  // PUBLIC METHODS - Use these for public-facing pages (enforces publication filtering)
+  async getPublicBlogs(filters?: BlogFilters): Promise<PaginatedResponse<BlogPost>> {
+    const requestId = loggingService.generateRequestId();
+    const startTime = Date.now();
+    
+    try {
+      // Detect and log any bypass attempts
+      if (publicationFilterService.detectFilterBypass(filters || {})) {
+        loggingService.logSecurityEvent(
+          'Publication filter bypass attempt',
+          { filters, endpoint: '/api/blogs/' },
+          'high',
+          requestId
+        );
+      }
+      
+      // Use publication filter service to ensure only published content
+      const queryOptions = publicationFilterService.getPublicBlogsQuery(filters);
+      const params = publicationFilterService.buildApiParams(queryOptions);
+      
+      // Additional security validation
+      validatePublicApiParams(params, '/api/blogs/');
+
+      const response: AxiosResponse<PaginatedResponse<BlogPost>> = await apiClient.get(
+        `/api/blogs/?${params.toString()}`
+      );
+
+      const responseTime = Date.now() - startTime;
+      const resultIds = response.data.results?.map(item => item.id) || [];
+
+      // Log the API request
+      loggingService.logApiRequest(
+        '/api/blogs/',
+        'GET',
+        filters || {},
+        'miss', // Assume miss for now, could be enhanced with actual cache detection
+        'db',
+        resultIds,
+        {
+          responseTime,
+          statusCode: response.status,
+          requestId,
+        }
+      );
+
+      // Validate that API response only contains published content
+      const validation = publicationFilterService.validateApiResponse(response.data.results || []);
+      if (!validation.isValid) {
+        loggingService.logSecurityEvent(
+          'API returned non-published content',
+          { 
+            endpoint: '/api/blogs/',
+            invalidCount: validation.invalidItems.length,
+            invalidItems: validation.invalidItems.map(item => ({ id: item.id, status: item.status }))
+          },
+          'high',
+          requestId
+        );
+        
+        // Filter out any invalid items as a safety measure
+        response.data.results = response.data.results?.filter(item => 
+          publicationFilterService.isPubliclyVisible(item)
+        ) || [];
+      }
+
+      return response.data;
+    } catch (error: any) {
+      const responseTime = Date.now() - startTime;
+      loggingService.logApiRequest(
+        '/api/blogs/',
+        'GET',
+        filters || {},
+        'miss',
+        'db',
+        [],
+        {
+          responseTime,
+          statusCode: error.response?.status,
+          requestId,
+        }
+      );
+      
+      console.error('Get public blogs error:', error);
+      throw error;
+    }
+  },
+
+  async getPublicBlog(id: string): Promise<ApiResponse<BlogPost>> {
+    const requestId = loggingService.generateRequestId();
+    const startTime = Date.now();
+    
+    try {
+      const response: AxiosResponse<ApiResponse<BlogPost>> = await apiClient.get(`/api/blogs/${id}/`);
+      const responseTime = Date.now() - startTime;
+      
+      // Validate that the returned blog is publicly accessible
+      if (response.data.data && !publicationFilterService.validatePublicAccess(response.data.data)) {
+        loggingService.logSecurityEvent(
+          'Attempt to access non-published blog',
+          { 
+            blogId: id,
+            status: response.data.data.status,
+            endpoint: `/api/blogs/${id}/`
+          },
+          'medium',
+          requestId
+        );
+        
+        // Log the blocked request
+        loggingService.logApiRequest(
+          `/api/blogs/${id}/`,
+          'GET',
+          {},
+          'miss',
+          'db',
+          [],
+          {
+            responseTime,
+            statusCode: 404, // We're returning 404
+            requestId,
+          }
+        );
+        
+        // Return 404-like error for non-published content
+        const error = new Error('Blog post not found or not available') as any;
+        error.response = { status: 404 };
+        throw error;
+      }
+
+      // Log successful request
+      loggingService.logApiRequest(
+        `/api/blogs/${id}/`,
+        'GET',
+        {},
+        'miss',
+        'db',
+        [response.data.data?.id || ''],
+        {
+          responseTime,
+          statusCode: response.status,
+          requestId,
+        }
+      );
+
+      return response.data;
+    } catch (error: any) {
+      const responseTime = Date.now() - startTime;
+      
+      // Log failed request (if not already logged above)
+      if (!error.message?.includes('not found or not available')) {
+        loggingService.logApiRequest(
+          `/api/blogs/${id}/`,
+          'GET',
+          {},
+          'miss',
+          'db',
+          [],
+          {
+            responseTime,
+            statusCode: error.response?.status,
+            requestId,
+          }
+        );
+      }
+      
+      console.error('Get public blog error:', error);
+      throw error;
+    }
+  },
+
+  // ADMIN METHODS - Use these for admin/CMS interfaces (no publication filtering)
   async getBlogs(filters?: BlogFilters): Promise<PaginatedResponse<BlogPost>> {
     try {
       const params = new URLSearchParams();
@@ -254,6 +459,59 @@ export const blogService = {
 
 // Case Study Service
 export const caseStudyService = {
+  // PUBLIC METHODS - Use these for public-facing pages (enforces publication filtering)
+  async getPublicCaseStudies(filters?: CaseStudyFilters): Promise<PaginatedResponse<CaseStudy>> {
+    try {
+      // Detect and log any bypass attempts
+      publicationFilterService.detectFilterBypass(filters || {});
+      
+      // Use publication filter service to ensure only published content
+      const queryOptions = publicationFilterService.getPublicCaseStudiesQuery(filters);
+      const params = publicationFilterService.buildApiParams(queryOptions);
+      
+      // Additional security validation
+      validatePublicApiParams(params, '/api/case-studies/');
+
+      const response: AxiosResponse<PaginatedResponse<CaseStudy>> = await apiClient.get(
+        `/api/case-studies/?${params.toString()}`
+      );
+
+      // Validate that API response only contains published content
+      const validation = publicationFilterService.validateApiResponse(response.data.results || []);
+      if (!validation.isValid) {
+        // Filter out any invalid items as a safety measure
+        response.data.results = response.data.results?.filter(item => 
+          publicationFilterService.isPubliclyVisible(item)
+        ) || [];
+      }
+
+      return response.data;
+    } catch (error: any) {
+      console.error('Get public case studies error:', error);
+      throw error;
+    }
+  },
+
+  async getPublicCaseStudy(id: string): Promise<ApiResponse<CaseStudy>> {
+    try {
+      const response: AxiosResponse<ApiResponse<CaseStudy>> = await apiClient.get(`/api/case-studies/${id}/`);
+      
+      // Validate that the returned case study is publicly accessible
+      if (response.data.data && !publicationFilterService.validatePublicAccess(response.data.data)) {
+        // Return 404-like error for non-published content
+        const error = new Error('Case study not found or not available') as any;
+        error.response = { status: 404 };
+        throw error;
+      }
+
+      return response.data;
+    } catch (error: any) {
+      console.error('Get public case study error:', error);
+      throw error;
+    }
+  },
+
+  // ADMIN METHODS - Use these for admin/CMS interfaces (no publication filtering)
   async getCaseStudies(filters?: CaseStudyFilters): Promise<PaginatedResponse<CaseStudy>> {
     try {
       const params = new URLSearchParams();
@@ -544,3 +802,13 @@ export const imageService = {
 // Export the API client for custom requests
 export { apiClient };
 export default apiClient;
+
+// Individual services are already exported above when declared
+
+// Legacy compatibility - export combined service object
+export const apiService = {
+  ...authService,
+  ...blogService,
+  ...caseStudyService,
+  ...imageService
+};

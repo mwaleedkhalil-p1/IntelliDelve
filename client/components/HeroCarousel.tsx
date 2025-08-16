@@ -300,20 +300,23 @@ export function HeroCarousel() {
         ))}
       </div>
 
-      <button
-        onClick={prevSlide}
-        className="absolute left-4 sm:left-6 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-lg text-white p-3 sm:p-4 rounded-full hover:bg-white/30 transition-all duration-300 shadow-xl z-20"
-        aria-label="Previous slide"
-      >
-        <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
-      </button>
-      <button
-        onClick={nextSlide}
-        className="absolute right-4 sm:right-6 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-lg text-white p-3 sm:p-4 rounded-full hover:bg-white/30 transition-all duration-300 shadow-xl z-20"
-        aria-label="Next slide"
-      >
-        <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
-      </button>
+      <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex gap-[150px] z-20">
+  <button
+    onClick={prevSlide}
+    className="bg-white/20 backdrop-blur-lg text-white p-3 sm:p-4 rounded-full hover:bg-white/30 transition-all duration-300 shadow-xl"
+    aria-label="Previous slide"
+  >
+    <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
+  </button>
+  <button
+    onClick={nextSlide}
+    className="bg-white/20 backdrop-blur-lg text-white p-3 sm:p-4 rounded-full hover:bg-white/30 transition-all duration-300 shadow-xl"
+    aria-label="Next slide"
+  >
+    <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
+  </button>
+</div>
+
 
       <div className="absolute bottom-16 sm:bottom-20 left-1/2 transform -translate-x-1/2 flex items-center space-x-4 z-20">
 

@@ -99,20 +99,20 @@ export default function Clients() {
   const testimonials = [
     {
       quote: "IntelliDelve's AI-powered screening has revolutionized our hiring process. The accuracy and speed are unmatched.",
-      author: "Sarah Johnson",
-      position: "CHRO, Global Tech Corp",
+      author: "Chief Human Resources Officer",
+      position: "Global Technology Company",
       rating: 5,
     },
     {
       quote: "Their compliance expertise and attention to detail have been invaluable for our regulatory requirements.",
-      author: "Michael Chen",
-      position: "Risk Manager, Financial Services Inc",
+      author: "Risk Management Director",
+      position: "Leading Financial Institution",
       rating: 5,
     },
     {
       quote: "The comprehensive reporting and real-time updates have streamlined our entire verification workflow.",
-      author: "Emily Rodriguez",
-      position: "HR Director, Healthcare Network",
+      author: "HR Leadership Team",
+      position: "Major Healthcare Organization",
       rating: 5,
     },
   ];

@@ -18,7 +18,7 @@
       "stat": "1 in 4 Leading Law Firms Trust IntelliDelve for Screening",
       "text": "A top-tier law firm partnered with IntelliDelve to strengthen its hiring process using our legal-specific verification framework. Within 3 months, the firm saw a 48% drop in fraudulent CVs through checks on academic credentials, bar-council registration, and prior misconduct. From paralegals to partners, IntelliDelve ensures every legal hire is compliant, credible, and client-ready."
     },
-    "cta": "Want to vet professionals faster? Contact us for our corporate screening demo."
+    "cta": "Fast Professional Screening Demo."
   },
   {
     "slug": "legal-services",
@@ -40,7 +40,7 @@
       "stat": "95% of Top Law Firms Use Professional Screening",
       "text": "A prestigious law firm implemented our comprehensive screening process and discovered 12% of applicants had misrepresented their bar status or academic credentials, preventing potential malpractice issues and protecting client interests."
     },
-    "cta": "Protect your practice with professional legal screening solutions."
+    "cta": "Practice Protection Screening."
   },
   {
     "slug": "real-estate",
@@ -62,7 +62,7 @@
       "stat": "78% Reduction in Client Complaints",
       "text": "A major property management company reduced client complaints by 78% after implementing comprehensive background screening, ensuring only qualified and trustworthy professionals represent their brand."
     },
-    "cta": "Enhance your real estate team's credibility with professional screening."
+    "cta": "Strengthen Real Estate Trust."
   },
   {
     "slug": "accounting-advisory",
@@ -84,7 +84,7 @@
       "stat": "100% Compliance Achievement",
       "text": "An accounting firm achieved 100% regulatory compliance and avoided potential sanctions by implementing our comprehensive screening process, identifying and addressing credential discrepancies before hiring."
     },
-    "cta": "Ensure compliance and integrity in your accounting practice."
+    "cta": "Integrity & Compliance Accounting."
   },
   {
     "slug": "banking-financial",
@@ -106,7 +106,7 @@
       "stat": "5 Out of Every 15 Financial Institutions in Pakistan Choose IntelliDelve",
       "text": "With over 45 banks operating in Pakistan, background screening is now critical. One major bank reported a 30% reduction in onboarding time and successfully blocked a high-risk hire—saving costs and preserving institutional trust."
     },
-    "cta": "Get ahead of financial risk—schedule a demo with our compliance team today."
+    "cta": "Secure Your Finances."
   },
   {
     "slug": "it-software",
@@ -128,7 +128,7 @@
       "stat": "85% Reduction in Security Incidents",
       "text": "A software company reduced security incidents by 85% after implementing comprehensive IT screening, identifying potential insider threats and ensuring all developers met security requirements."
     },
-    "cta": "Secure your technology infrastructure with professional IT screening."
+    "cta": "Secure Tech Infrastructure."
   },
   {
     "slug": "startups-tech",
@@ -150,7 +150,7 @@
       "stat": "50% Faster Hiring Process",
       "text": "A fast-growing tech startup reduced their hiring timeline by 50% while maintaining quality standards, using our streamlined screening process to build a team of 200+ employees in 18 months."
     },
-    "cta": "Scale your startup team with confidence and speed."
+    "cta": "Confident Startup Growth."
   },
   {
     "slug": "ecommerce-digital",
@@ -172,7 +172,7 @@
       "stat": "92% Improvement in Customer Trust",
       "text": "An e-commerce platform improved customer trust scores by 92% after implementing comprehensive team screening, ensuring all customer-facing staff met high integrity standards."
     },
-    "cta": "Build trust in your digital commerce operations."
+    "cta": "Secure Digital Commerce."
   },
   {
     "slug": "gig-workers",
@@ -193,7 +193,7 @@
       "stat": "40% Drop in Fraud, 60% Fewer Complaints",
       "text": "A leading rideshare platform reduced onboarding fraud by 40% and cut user complaints by 60% using IntelliDelve's gig-worker screening API—powered by ID verification, geo-location cross-checks, and physical-appearance matching."
     },
-    "cta": "Streamline your gig-worker onboarding—get started with developer-friendly tools today."
+    "cta": "Simplify Gig Onboarding."
   },
   {
     "slug": "telecommunications",
@@ -215,7 +215,7 @@
       "stat": "99.8% Network Security Compliance",
       "text": "A major telecom provider achieved 99.8% security compliance after implementing comprehensive screening, ensuring all network access personnel met strict security requirements."
     },
-    "cta": "Secure your telecommunications infrastructure with professional screening."
+    "cta": "Secure Telecom Infrastructure."
   },
   {
     "slug": "government-public",
@@ -237,7 +237,7 @@
       "stat": "100% Security Clearance Success Rate",
       "text": "A government agency achieved 100% success rate in security clearance processing, ensuring all personnel met strict requirements for handling sensitive public information."
     },
-    "cta": "Ensure public trust with comprehensive government screening."
+    "cta": "Government Trust Screening."
   },
   {
     "slug": "healthcare-medical",
@@ -257,7 +257,7 @@
       "stat": "Fake Doctor Flagged Before Onboarding",
       "text": "A regional healthcare network avoided a legal crisis when IntelliDelve identified a fake medical practitioner with a falsified license and a history on the OIG exclusion list—before they were hired."
     },
-    "cta": "Safeguard your facility and your patients—request a healthcare screening consultation today."
+    "cta": "Healthcare Security Screening."
   },
   {
     "slug": "education-academic",
@@ -278,7 +278,7 @@
       "stat": "Major University Avoids Public Backlash",
       "text": "After IntelliDelve flagged a fake Master's claim during international academic verification, the university prevented an unqualified professor from entering the classroom."
     },
-    "cta": "Protect your students—schedule a background-check consultation today."
+    "cta": "Secure Student Screening."
   },
   {
     "slug": "hospitality-food-leisure",
@@ -299,7 +299,7 @@
       "stat": "Luxury Hotel Chain Cuts Internal Theft by 45%",
       "text": "After adopting IntelliDelve across all properties, the chain uncovered candidates with fake IDs, undisclosed criminal records, and falsified employment histories."
     },
-    "cta": "Secure your guest experience—book a hospitality background-screening demo now."
+    "cta": "Hospitality Screening Demo."
   },
   {
     "slug": "insurance",
@@ -320,7 +320,7 @@
       "stat": "33% Reduction in Internal Fraud",
       "text": "A regional provider cut internal fraud cases by 33% within six months by catching red flags before offer letters were issued."
     },
-    "cta": "Get ahead of insurance risk—schedule a demo with our compliance team today."
+    "cta": "Outsmart Insurance Risk."
   },
   {
     "slug": "manufacturing-industrial",
@@ -341,7 +341,7 @@
       "stat": "20% Drop in Workplace Incidents",
       "text": "After screening 1,200+ workers, a production facility saw a 20% fall in incident rates linked to improved hiring quality."
     },
-    "cta": "Protect your operations—book a free consultation for industrial workforce screening."
+    "cta": "Industrial Workforce Screening."
   },
   {
     "slug": "non-profit",
@@ -362,7 +362,7 @@
       "stat": "Real-Time Red Flag Prevents Harm",
       "text": "During refugee-assistance volunteer onboarding, IntelliDelve flagged an applicant previously dismissed for misconduct—preventing reputational and operational harm."
     },
-    "cta": "Secure your mission—explore our NGO screening plans now."
+    "cta": "NGO Screening Solutions."
   },
   {
     "slug": "energy-utilities",
@@ -383,7 +383,7 @@
       "stat": "Million-Dollar Compliance Fine Averted",
       "text": "An oil-exploration firm nearly onboarded a senior engineer on a global sanctions registry. IntelliDelve flagged the issue in real time—averting fines and reputational damage."
     },
-    "cta": "Protect your people and assets—book your energy screening session today."
+    "cta": "Energy Security Screening."
   },
   {
     "slug": "pharmaceutical-biotech",
@@ -404,7 +404,7 @@
       "stat": "Falsified Credentials Exposed Before Phase III",
       "text": "A biotech firm discovered a candidate had falsified clinical research credentials and omitted disciplinary history—preventing regulatory risk and data compromise."
     },
-    "cta": "Build your research team with integrity—start screening smarter today."
+    "cta": "Screen Smarter, Build Trust."
   },
   {
     "slug": "real-estate-property",
@@ -425,7 +425,7 @@
       "stat": "50% Reduction in Resident Complaints",
       "text": "A residential group achieved stronger community satisfaction after screening all tenants and property staff."
     },
-    "cta": "Start building safer communities—speak to a residential-screening expert now."
+    "cta": "Residential Safety Screening."
   },
   {
     "slug": "recruitment-agencies",
@@ -446,7 +446,7 @@
       "stat": "Staffing Agency Doubles Client Retention",
       "text": "After bundling IntelliDelve's checks with all submissions, an agency doubled client retention."
     },
-    "cta": "Upgrade your placements—book a staffing-solutions demo today."
+    "cta": "Better Placement Solutions."
   },
   {
     "slug": "driver-fleet",
@@ -466,7 +466,7 @@
       "stat": "95% Fewer License-Related Onboarding Delays",
       "text": "A national logistics provider eliminated most delays after adopting IntelliDelve's automated verification—accelerating hiring while avoiding costly penalties."
     },
-    "cta": "Drive safer hiring decisions—get started with logistics background checks today."
+    "cta": "Hire with Confidence."
   },
   {
     "slug": "tech-saas-cybersecurity",
@@ -487,7 +487,7 @@
       "stat": "Critical Insider Threat Blocked",
       "text": "A fintech startup avoided hiring a developer with undisclosed sanctions exposure and falsified GitHub contributions, preventing potential IP theft and regulatory violations."
     },
-    "cta": "Secure your future—book a cybersecurity-screening consultation today."
+    "cta": "Cybersecurity for Tomorrow."
   },
   {
     "slug": "retail-consumer",
@@ -509,7 +509,7 @@
       "stat": "67% Reduction in Theft Incidents",
       "text": "A major retail chain reduced internal theft incidents by 67% after implementing comprehensive employee screening, creating a more secure shopping environment for customers."
     },
-    "cta": "Protect your retail operations with comprehensive staff screening."
+    "cta": "Comprehensive Retail Security."
   },
   {
     "slug": "transportation-logistics",
@@ -531,6 +531,6 @@
       "stat": "89% Improvement in Safety Scores",
       "text": "A logistics company improved their safety scores by 89% after implementing comprehensive driver screening, reducing accidents and ensuring regulatory compliance across their fleet."
     },
-    "cta": "Ensure safe and compliant transportation operations."
+    "cta": "Trusted Transportation Compliance."
   }
 ]

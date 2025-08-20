@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from "lucide-react";
 
 export function Footer() {
-
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -39,9 +38,7 @@ export function Footer() {
     { name: "Careers", href: "/careers" },
   ];
 
-  const collaborateWithUs = [
-    { name: "Partner", href: "/partners" },
-  ];
+  const collaborateWithUs = [{ name: "Partner", href: "/partners" }];
 
   const socialLinks = [
     {
@@ -64,19 +61,14 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-2 mb-6">
-
-              <img
-                src="/logo.png"
-                alt="IntelliDelve"
-                className="h-10 w-auto"
-              />
+              <img src="/logo.png" alt="IntelliDelve" className="h-10 w-auto" />
             </div>
 
             <p className="text-gray-400 text-sm mb-6">
-              IntelliDelve empowers organizations with intelligent background screening,
-              fraud detection, and compliance solutions across 100+ countries. Our
-              AI-driven platform also delivers cutting-edge data science and IT
-              innovations for smarter, faster decisions.
+              IntelliDelve empowers organizations with intelligent background
+              screening, fraud detection, and compliance solutions across 100+
+              countries. Our AI-driven platform also delivers cutting-edge data
+              science and IT innovations for smarter, faster decisions.
             </p>
             <div className="flex space-x-4 mb-6">
               {socialLinks.map((social, index) => (
@@ -149,38 +141,49 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-lg font-semibold mb-6 font-primary">
-              Collaborate with Us
-            </h3>
-            <ul className="space-y-3">
-              {collaborateWithUs.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    to={item.href}
-                    onClick={scrollToTop}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-secondary"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <h3 className="text-lg font-semibold mb-6 font-primary">Members</h3>
+            <div className="flex space-x-4">
+              <img
+                src="/images/Members_Images/FBR.png"
+                alt="Member 1"
+                className="h-12 w-12 rounded-full object-cover border-2 border-white shadow"
+              />
+              <img
+                src="/images/Members_Images/PBSA.png"
+                alt="Member 2"
+                className="h-12 w-12 rounded-full object-cover border-2 border-white shadow"
+              />
+              <img
+                src="/images/Members_Images/SECP.png"
+                alt="Member 3"
+                className="h-12 w-12 rounded-full object-cover border-2 border-white shadow"
+              />
+            </div>
           </div>
 
           <div>
             <h3 className="text-lg font-semibold mb-6 font-primary">
               Contact Us
             </h3>
+            <h6 className="text-gray-400 text-sm mb-2 font-secondary">
+              All inquiries are responded to within 24 hours.
+            </h6>
             <ul className="space-y-3 text-gray-300 text-sm font-secondary">
+              <li className="font-bold">For inquiries:</li>
+              <li>info@intellidelve.com</li>
+
+              <li className="font-bold">For Sales:</li>
+              <li>sales@intellidelve.com</li>
+
+              <li className="font-bold">For Verification Purposes: </li>
+              <li>verify@intellidelve.com </li>
+
+              <li className="font-bold">For Contact: </li>
               <li>Tel: +92 333 000 1456</li>
               <li>Tel: +92 51 612 3383</li>
-              <li>Sales Team:</li>
-              <li>Sales@intellidelve.com</li>
-              <li>Information Queries:</li>
-              <li>info@intellidelve.com</li>
+              <li>Tel: +61 415 55 8159</li>
             </ul>
           </div>
-
         </div>
 
         <div className="border-t border-gray-700 mt-6 pt-4 text-center">

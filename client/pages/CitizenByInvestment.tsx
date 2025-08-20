@@ -15,7 +15,7 @@ import {
   BarChart3,
   AlertTriangle,
   Building,
-  CreditCard
+  CreditCard,
 } from "lucide-react";
 import { useCalendlyContext } from "../App";
 import { SEO } from "../components/SEO";
@@ -28,36 +28,96 @@ const CitizenByInvestment = memo(() => {
     {
       icon: Search,
       title: "Due Diligence Screening",
-      description: "Comprehensive background checks for CBI applicants including criminal, financial, and reputational screening",
-      features: ["Criminal record verification", "Financial history analysis", "Source of funds verification", "Sanctions screening"]
+      description:
+        "Comprehensive background checks for CBI applicants including criminal, financial, and reputational screening",
+      features: [
+        "Criminal record verification",
+        "Financial history analysis",
+        "Source of funds verification",
+        "Sanctions screening",
+      ],
     },
     {
       icon: FileCheck,
       title: "Document Verification",
-      description: "Authentication and verification of all supporting documents required for CBI applications",
-      features: ["Educational credentials", "Professional certifications", "Financial statements", "Identity documents"]
+      description:
+        "Authentication and verification of all supporting documents required for CBI applications",
+      features: [
+        "Educational credentials",
+        "Professional certifications",
+        "Financial statements",
+        "Identity documents",
+      ],
     },
     {
       icon: Globe,
       title: "Compliance Monitoring",
-      description: "Ongoing monitoring to ensure continued compliance with CBI program requirements",
-      features: ["Regulatory updates", "Status monitoring", "Renewal assistance", "Compliance reporting"]
+      description:
+        "Ongoing monitoring to ensure continued compliance with CBI program requirements",
+      features: [
+        "Regulatory updates",
+        "Status monitoring",
+        "Renewal assistance",
+        "Compliance reporting",
+      ],
     },
     {
       icon: Shield,
       title: "Risk Assessment",
-      description: "Comprehensive risk evaluation for CBI programs and individual applications",
-      features: ["Political exposure screening", "Adverse media monitoring", "Risk scoring", "Mitigation strategies"]
-    }
+      description:
+        "Comprehensive risk evaluation for CBI programs and individual applications",
+      features: [
+        "Political exposure screening",
+        "Adverse media monitoring",
+        "Risk scoring",
+        "Mitigation strategies",
+      ],
+    },
   ];
 
   const cbiPrograms = [
-    { country: "Caribbean Program A", investment: "$100,000+", timeframe: "3-4 months" },
-    { country: "Caribbean Program B", investment: "$100,000+", timeframe: "3-4 months" },
-    { country: "Caribbean Program C", investment: "$150,000+", timeframe: "4-6 months" },
-    { country: "Caribbean Program D", investment: "$150,000+", timeframe: "4-6 months" },
-    { country: "Caribbean Program E", investment: "$100,000+", timeframe: "3-4 months" },
-    { country: "Pacific Program A", investment: "$130,000+", timeframe: "1-2 months" }
+    {
+      country: "Premium Citizenship Program",
+      description:
+        "Expert support for fast, compliant citizenship applications.",
+      investment: "$100,000",
+      timeframe: "3-4 months",
+    },
+    {
+      country: "Family Citizenship Program",
+      description:
+        "Solutions designed to secure global mobility for you and your family.",
+      investment: "$100,000+",
+      timeframe: "3-4 months",
+    },
+    {
+      country: " Investment Citizenship Program",
+      description:
+        "Tailored investment options with thorough due diligence and guidance.",
+      investment: "$150,000+",
+      timeframe: "4-6 months",
+    },
+    {
+      country: "Fast-Track Citizenship Program",
+      description:
+        "Efficient processes to help you achieve citizenship smoothly.",
+      investment: "$150,000+",
+      timeframe: "4-6 months",
+    },
+    {
+      country: "Global Opportunity Program",
+      description:
+        "Access worldwide benefits and residency solutions through trusted programs.",
+      investment: "$100,000+",
+      timeframe: "3-4 months",
+    },
+    {
+      country: "Comprehensive Support Program",
+      description:
+        "Access worldwide benefits and residency solutions through trusted programs.",
+      investment: "$130,000+",
+      timeframe: "1-2 months",
+    },
   ];
 
   const benefits = [
@@ -66,7 +126,7 @@ const CitizenByInvestment = memo(() => {
     "Business expansion and investment diversification",
     "Educational opportunities for family members",
     "Political and economic stability",
-    "Legacy planning and generational wealth transfer"
+    "Legacy planning and generational wealth transfer",
   ];
 
   return (
@@ -77,8 +137,10 @@ const CitizenByInvestment = memo(() => {
         keywords="citizen by investment, CBI due diligence, investment citizenship, passport programs, compliance screening, document verification"
       />
 
-      <section ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden">
-
+      <section
+        ref={heroRef}
+        className="relative min-h-screen flex items-center overflow-hidden"
+      >
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=85"
@@ -102,7 +164,9 @@ const CitizenByInvestment = memo(() => {
                 </span>
               </h1>
               <p className="text-xl text-gray-200 mb-8 leading-relaxed">
-                Comprehensive due diligence and compliance services for Citizen by Investment programs, ensuring secure and compliant pathways to global citizenship.
+                Comprehensive due diligence and compliance services for Citizen
+                by Investment programs, ensuring secure and compliant pathways
+                to global citizenship.
               </p>
 
               <div className="grid grid-cols-3 gap-6 mb-8">
@@ -122,7 +186,9 @@ const CitizenByInvestment = memo(() => {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
-                  onClick={() => openCalendly("CBI Due Diligence - Schedule Consultation")}
+                  onClick={() =>
+                    openCalendly("CBI Due Diligence - Schedule Consultation")
+                  }
                   className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-full hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                 >
                   Schedule Consultation
@@ -141,26 +207,38 @@ const CitizenByInvestment = memo(() => {
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
                 <div className="text-center mb-6">
                   <Globe className="w-16 h-16 text-white mx-auto mb-4" />
-                  <h3 className="text-xl font-bold text-white mb-2">Global Citizenship Solutions</h3>
-                  <p className="text-gray-200">Expert guidance for investment citizenship programs</p>
+                  <h3 className="text-xl font-bold text-white mb-2">
+                    Global Citizenship Solutions
+                  </h3>
+                  <p className="text-gray-200">
+                    Expert guidance for investment citizenship programs
+                  </p>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-white/10 rounded-xl p-4 text-center">
                     <Award className="w-6 h-6 text-yellow-400 mx-auto mb-2" />
-                    <div className="text-white font-semibold text-sm">Certified Experts</div>
+                    <div className="text-white font-semibold text-sm">
+                      Certified Experts
+                    </div>
                   </div>
                   <div className="bg-white/10 rounded-xl p-4 text-center">
                     <Shield className="w-6 h-6 text-green-400 mx-auto mb-2" />
-                    <div className="text-white font-semibold text-sm">Secure Process</div>
+                    <div className="text-white font-semibold text-sm">
+                      Secure Process
+                    </div>
                   </div>
                   <div className="bg-white/10 rounded-xl p-4 text-center">
                     <Clock className="w-6 h-6 text-blue-400 mx-auto mb-2" />
-                    <div className="text-white font-semibold text-sm">Fast Processing</div>
+                    <div className="text-white font-semibold text-sm">
+                      Fast Processing
+                    </div>
                   </div>
                   <div className="bg-white/10 rounded-xl p-4 text-center">
                     <TrendingUp className="w-6 h-6 text-purple-400 mx-auto mb-2" />
-                    <div className="text-white font-semibold text-sm">High Success</div>
+                    <div className="text-white font-semibold text-sm">
+                      High Success
+                    </div>
                   </div>
                 </div>
               </div>
@@ -180,13 +258,17 @@ const CitizenByInvestment = memo(() => {
               Comprehensive CBI Due Diligence
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              End-to-end due diligence services for Citizen by Investment programs
+              End-to-end due diligence services for Citizen by Investment
+              programs
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8">
             {cbiServices.map((service, index) => (
-              <div key={index} className="group bg-white dark:bg-gray-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+              <div
+                key={index}
+                className="group bg-white dark:bg-gray-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+              >
                 <div className="p-8">
                   <div className="flex items-center mb-6">
                     <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mr-4">
@@ -205,7 +287,9 @@ const CitizenByInvestment = memo(() => {
                     {service.features.map((feature, featureIndex) => (
                       <div key={featureIndex} className="flex items-center">
                         <CheckCircle className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
-                        <span className="text-sm text-gray-600 dark:text-gray-300">{feature}</span>
+                        <span className="text-sm text-gray-600 dark:text-gray-300">
+                          {feature}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -227,28 +311,25 @@ const CitizenByInvestment = memo(() => {
               CBI Programs We Support
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              We provide due diligence services for leading Citizen by Investment programs worldwide
+              We provide due diligence services for leading Citizen by
+              Investment programs worldwide
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {cbiPrograms.map((program, index) => (
-              <div key={index} className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-6 hover:shadow-lg transition-all duration-300">
+              <div
+                key={index}
+                className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-6 hover:shadow-lg transition-all duration-300"
+              >
                 <div className="text-center">
                   <Building className="w-12 h-12 text-blue-600 dark:text-blue-400 mx-auto mb-4" />
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
                     {program.country}
                   </h3>
-                  <div className="space-y-2">
-                    <div className="flex justify-between">
-                      <span className="text-sm text-gray-600 dark:text-gray-300">Investment:</span>
-                      <span className="text-sm font-semibold text-gray-900 dark:text-white">{program.investment}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-sm text-gray-600 dark:text-gray-300">Timeframe:</span>
-                      <span className="text-sm font-semibold text-gray-900 dark:text-white">{program.timeframe}</span>
-                    </div>
-                  </div>
+                  <h6 className="text-xs font-normal text-gray-900 dark:text-white mb-2">
+                    {program.description}
+                  </h6>
                 </div>
               </div>
             ))}
@@ -268,14 +349,18 @@ const CitizenByInvestment = memo(() => {
                 Why Choose CBI?
               </h2>
               <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-                Citizen by Investment programs offer numerous advantages for individuals and families seeking global mobility and opportunities.
+                Citizen by Investment programs offer numerous advantages for
+                individuals and families seeking global mobility and
+                opportunities.
               </p>
 
               <div className="space-y-4">
                 {benefits.map((benefit, index) => (
                   <div key={index} className="flex items-start">
                     <CheckCircle className="w-6 h-6 text-green-500 mr-3 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-700 dark:text-gray-300">{benefit}</span>
+                    <span className="text-gray-700 dark:text-gray-300">
+                      {benefit}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -300,12 +385,15 @@ const CitizenByInvestment = memo(() => {
             Ready to Explore CBI Options?
           </h2>
           <p className="text-xl text-gray-200 mb-8 max-w-3xl mx-auto">
-            Let our experts guide you through the Citizen by Investment process with comprehensive due diligence and compliance support.
+            Let our experts guide you through the Citizen by Investment process
+            with comprehensive due diligence and compliance support.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
-              onClick={() => openCalendly("CBI Due Diligence - Ready to Explore")}
+              onClick={() =>
+                openCalendly("CBI Due Diligence - Ready to Explore")
+              }
               className="inline-flex items-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-full hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
               Schedule Consultation

@@ -210,100 +210,90 @@ export default function Index() {
     {
       name: "Sarah Chen",
       role: "CISO",
-      company: "TechCorp",
+      company: "VP of Operations, Leading Financial Services Firm, USA",
       content:
         "IntelliDelve's comprehensive screening saved us from a potentially catastrophic security breach. Their AI-powered analysis is unmatched.",
-      avatar: "https://randomuser.me/api/portraits/women/44.jpg",
       rating: 5,
     },
     {
       name: "Michael Rodriguez",
       role: "HR Director",
-      company: "GlobalBank",
+      company: "Top Technology Company, Australia",
       content:
         "The speed and accuracy of their background checks have streamlined our hiring process while maintaining the highest security standards.",
-      avatar: "https://randomuser.me/api/portraits/men/32.jpg",
       rating: 5,
     },
     {
       name: "Dr. Emma Thompson",
       role: "Chief Medical Officer",
-      company: "HealthPlus",
+      company: "Head of Compliance, Background Screening Company, UK",
       content:
         "Essential for our healthcare compliance. IntelliDelve ensures every hire meets our strict regulatory requirements.",
-      avatar: "https://randomuser.me/api/portraits/women/68.jpg",
       rating: 5,
     },
     {
       name: "James Wilson",
       role: "VP of Operations",
-      company: "FinanceFirst",
+      company: "Operations Manager, Prominent Banking Institution, Pakistan",
       content:
         "Their AI-powered risk assessment tools helped us identify potential compliance issues before they became problems. Outstanding service.",
-      avatar: "https://randomuser.me/api/portraits/men/45.jpg",
       rating: 5,
     },
     {
       name: "Maria Garcia",
       role: "Legal Compliance Manager",
-      company: "LawPartners",
+      company: "Senior Risk Analyst, Best Insurance Company, USA",
       content:
         "IntelliDelve's due diligence reports are thorough and delivered faster than any competitor. They're our trusted verification partner.",
-      avatar: "https://randomuser.me/api/portraits/women/32.jpg",
       rating: 5,
     },
     {
       name: "David Park",
       role: "Chief Technology Officer",
-      company: "StartupNext",
+      company: "Talent Acquisition Lead, HR Outsourcing Network, Australia",
       content:
         "Their tech solutions and background verification services scale perfectly with our growing team. Excellent technical integration.",
-      avatar: "https://randomuser.me/api/portraits/men/56.jpg",
       rating: 5,
     },
     {
       name: "Lisa Chen",
       role: "Head of Talent Acquisition",
-      company: "GlobalTech Solutions",
+      company: "Regional Director, Leading Energy Provider, Pakistan",
       content:
         "IntelliDelve transformed our hiring process. We can now make confident decisions faster while maintaining the highest security standards across all our global offices.",
-      avatar: "https://randomuser.me/api/portraits/women/65.jpg",
       rating: 5,
     },
     {
       name: "Robert Johnson",
       role: "Compliance Director",
-      company: "SecureBank",
+      company: "Chief Legal Counsel, Global Investment Firm, UK",
       content:
         "The depth of their background investigations is remarkable. They caught discrepancies that other providers missed, saving us from potential regulatory issues.",
-      avatar: "https://randomuser.me/api/portraits/men/78.jpg",
       rating: 5,
     },
     {
       name: "Amanda Foster",
       role: "VP of Human Resources",
-      company: "MediCare Plus",
+      company: "COO,Leading Cybersecurity Company, USA.",
       content:
         "Essential for healthcare compliance. Their medical license verifications and criminal background checks ensure every hire meets our stringent requirements.",
-      avatar: "https://randomuser.me/api/portraits/women/22.jpg",
       rating: 5,
     },
     {
       name: "Kevin Martinez",
       role: "Risk Management Officer",
-      company: "InsuranceFirst",
+      company:
+        "General Manager, Major Logistics & Supply Chain Company, Australia",
       content:
         "Their AI-powered fraud detection capabilities have been game-changing for our risk assessment processes. Outstanding accuracy and speed.",
-      avatar: "https://randomuser.me/api/portraits/men/33.jpg",
       rating: 5,
     },
     {
       name: "Sophia Williams",
       role: "Chief Security Officer",
-      company: "CyberDefense Corp",
+      company: "Chief HR - Largest Fintech Company, Pakistan",
       content:
         "IntelliDelve's comprehensive security clearance and background verification processes align perfectly with our high-security requirements. Absolutely reliable.",
-      avatar: "https://randomuser.me/api/portraits/women/41.jpg",
       rating: 5,
     },
   ];
@@ -409,29 +399,45 @@ export default function Index() {
                   data-chart-icon
                 />
               </div>
-              <div className="text-4xl md:text-5xl font-bold mb-2 font-mono tracking-tight text-white">99.8%</div>
-              <div className="text-lg text-white/90 font-medium">Accuracy Rate</div>
+              <div className="text-4xl md:text-5xl font-bold mb-2 font-mono tracking-tight text-white">
+                99.8%
+              </div>
+              <div className="text-lg text-white/90 font-medium">
+                Accuracy Rate
+              </div>
             </div>
             <div className="text-center">
               <div className="flex justify-center mb-4">
                 <Users className="h-16 w-16 text-yellow-300" data-chart-icon />
               </div>
-              <div className="text-4xl md:text-5xl font-bold mb-2 font-mono tracking-tight text-white">50+</div>
-              <div className="text-lg text-white/90 font-medium">Enterprise Clients</div>
+              <div className="text-4xl md:text-5xl font-bold mb-2 font-mono tracking-tight text-white">
+                50+
+              </div>
+              <div className="text-lg text-white/90 font-medium">
+                Enterprise Clients
+              </div>
             </div>
             <div className="text-center">
               <div className="flex justify-center mb-4">
                 <Shield className="h-16 w-16 text-yellow-300" data-chart-icon />
               </div>
-              <div className="text-4xl md:text-5xl font-bold mb-2 font-mono tracking-tight text-white">1M+</div>
-              <div className="text-lg text-white/90 font-medium">Background Checks</div>
+              <div className="text-4xl md:text-5xl font-bold mb-2 font-mono tracking-tight text-white">
+                1M+
+              </div>
+              <div className="text-lg text-white/90 font-medium">
+                Background Checks
+              </div>
             </div>
             <div className="text-center">
               <div className="flex justify-center mb-4">
                 <Search className="h-16 w-16 text-yellow-300" data-chart-icon />
               </div>
-              <div className="text-4xl md:text-5xl font-bold mb-2 font-mono tracking-tight text-white">24hr</div>
-              <div className="text-lg text-white/90 font-medium">Average Turnaround</div>
+              <div className="text-4xl md:text-5xl font-bold mb-2 font-mono tracking-tight text-white">
+                24hr
+              </div>
+              <div className="text-lg text-white/90 font-medium">
+                Average Turnaround
+              </div>
             </div>
           </div>
         </div>
@@ -464,7 +470,9 @@ export default function Index() {
             <div className="overflow-hidden">
               <div
                 className="flex transition-transform duration-300 ease-in-out"
-                style={{ transform: `translateX(-${currentServiceSlide * 100}%)` }}
+                style={{
+                  transform: `translateX(-${currentServiceSlide * 100}%)`,
+                }}
               >
                 {services.map((service, index) => (
                   <div key={index} className="w-full flex-shrink-0 px-4">
@@ -476,7 +484,9 @@ export default function Index() {
 
             <div className="flex justify-between items-center mt-6 pt-20 md:pt-0">
               <button
-                onClick={() => setCurrentServiceSlide(Math.max(0, currentServiceSlide - 1))}
+                onClick={() =>
+                  setCurrentServiceSlide(Math.max(0, currentServiceSlide - 1))
+                }
                 disabled={currentServiceSlide === 0}
                 className="p-2 rounded-full bg-primary text-white disabled:bg-gray-300 disabled:text-gray-500 transition-colors"
               >
@@ -489,14 +499,20 @@ export default function Index() {
                     key={index}
                     onClick={() => setCurrentServiceSlide(index)}
                     className={`w-2 h-2 rounded-full transition-colors ${
-                      index === currentServiceSlide ? 'bg-primary' : 'bg-gray-300'
+                      index === currentServiceSlide
+                        ? "bg-primary"
+                        : "bg-gray-300"
                     }`}
                   />
                 ))}
               </div>
 
               <button
-                onClick={() => setCurrentServiceSlide(Math.min(services.length - 1, currentServiceSlide + 1))}
+                onClick={() =>
+                  setCurrentServiceSlide(
+                    Math.min(services.length - 1, currentServiceSlide + 1),
+                  )
+                }
                 disabled={currentServiceSlide === services.length - 1}
                 className="p-2 rounded-full bg-primary text-white disabled:bg-gray-300 disabled:text-gray-500 transition-colors"
               >

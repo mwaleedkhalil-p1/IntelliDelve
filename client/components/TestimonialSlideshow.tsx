@@ -1,12 +1,18 @@
 import React, { useState, useEffect, memo } from "react";
-import { ChevronLeft, ChevronRight, Star, Quote, Play, Pause } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Star,
+  Quote,
+  Play,
+  Pause,
+} from "lucide-react";
 
 interface Testimonial {
   name: string;
   role: string;
   company: string;
   content: string;
-  avatar: string;
   rating: number;
 }
 
@@ -64,7 +70,6 @@ const TestimonialSlideshow = memo<TestimonialSlideshowProps>(
           </div>
 
           <div className="relative">
-
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 md:p-12 max-w-4xl mx-auto">
               <div className="text-center">
                 <Quote className="w-12 h-12 text-primary dark:text-accent mx-auto mb-6 opacity-20" />
@@ -83,11 +88,14 @@ const TestimonialSlideshow = memo<TestimonialSlideshowProps>(
                 </div>
 
                 <div className="flex items-center justify-center">
-                  <img
-                    src={currentTestimonial.avatar}
-                    alt={currentTestimonial.role}
-                    className="w-16 h-16 rounded-full mr-4"
-                  />
+                  <div
+                    style={{
+                      height: "48px",
+                      width: "48px",
+                      borderRadius: 100,
+                    }}
+                    className="mr-4"
+                  ></div>
                   <div className="text-left">
                     <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
                       {currentTestimonial.role}
@@ -151,11 +159,15 @@ const TestimonialSlideshow = memo<TestimonialSlideshowProps>(
                     : "bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 shadow-md"
                 }`}
               >
-                <img
-                  src={testimonial.avatar}
-                  alt={testimonial.role}
+                <div
+                  style={{
+                    height: "48px",
+                    width: "48px",
+                    borderRadius: 100,
+                  }}
                   className="w-12 h-12 rounded-full mx-auto mb-2"
-                />
+                ></div>
+
                 <h5 className="text-sm font-medium truncate">
                   {testimonial.role}
                 </h5>
